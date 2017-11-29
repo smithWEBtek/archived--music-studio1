@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
  
-  # root '/', to: 'students#index'
+  namespace :api do
+    resources :students
+  end
 end
