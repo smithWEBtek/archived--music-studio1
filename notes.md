@@ -112,10 +112,31 @@ use Pundit to control dropdown list for genre, level and format
       Admin has 'full control' access to all resources
       Admin approves, edits & categorizes resources submitted by Teacher 
 
+[ ]  - The LESSON experience
+    Student home page is main viewer
+    Student or Teacher can select Resource to show or play
+    Teacher can draw on the screen to mark up the lesson page, which auto saves
+    Teacher can quantize record notation for student during lesson
+    Lesson is audio recorded and midi recorded both Teacher and Student playing examples
+    All is saved to Student's resource area
+    Teacher can add new Resources to Student
+
+    Lesson Assignment captures specific Resources assigned for Student to work on next
+    Lesson Assignment has a Due Date, Helpful Hints, Escalation paths, research links
+
+    Difference between a Resource and a Research:  
+      Resource is in the Libary, approved/categorized by Admin
+      Research might be a one time recommendation for this particular student, context and time (could also be submitted as a Resource by the Teacher, but not by default)
+
+
+
+
+
+
 
 [ ] build the database 
 [ ] seed the database 
 [ ] plan the views required 
-[ ] create the api data for the views 
+[ ] create the api data for the required views 
 [ ] plan the react app
 [ ] plan the redux parts
