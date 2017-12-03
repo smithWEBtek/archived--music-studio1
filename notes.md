@@ -1,4 +1,4 @@
-[ ] REQUIREMENTS
+REQUIREMENTS
 [ ] The code should be written in ES6 as much as possible
 [x] Use create-react-app generator to start your project.
 [x] Follow the instructions on this repo to setup the generator: create-react-app
@@ -22,7 +22,7 @@
 TEACHER
 has_many :students
 has_many :lessons
-rails g model Teacher username email
+rails g resource Teacher username email
 Ex: {username: "Tom Hopkins", email: "thopkins@music.com"}
 Ex: {username: "Brenda Shafer", email: "bshafer@music.com"}
 Ex: {username: "Ted Moon", email: "tmoon@music.com"}
@@ -31,7 +31,7 @@ STUDENT
 belongs_to :teacher
 has_many :lessons
 has_many :resources, through: :lessons
-rails g model Student username email level
+rails g resource Student username email level
 Ex: {username: "Jane Burda", email: "jburda@abc.com", level: '1'}
 Ex: {username: "Kay Mossa", email: "kmossa@abc.com", level: '2'}
 Ex: {username: "Warren Brody", email: "wbrody@abc.com", level: '4'}
@@ -40,13 +40,13 @@ LESSON
 belongs_to :teacher
 belongs_to :student
 has_many :resources
-rails g model Lesson date notes
+rails g resource Lesson date notes
 Ex: { teacher_id: 1, student_id: 1, resources: [1], date: '2017-11-3' }
 Ex: { teacher_id: 2, student_id: 2, resources: [1,2,3], date: '2017-11-3' }
 Ex: { teacher_id: 3, student_id: 3, resources: [5,6,7,8], date: '2017-11-3' }
 
 RESOURCE
-rails g model Resource title genre level description format location
+rails g resource Resource title genre level description format location
 Ex: pdf, doc, sib, xml, jpg, mp3, mp4
 Ex: {name: 'blues in F', genre: 'jazz blues', level: '1', description: 'basic blues exercise', format: 'pdf', location: '#'}
 Ex: {name: 'blues in F', genre: 'jazz blues', level: '1', description: 'basic blues audio 1', format: 'mp3', location: '#'}
@@ -113,26 +113,27 @@ use Pundit to control dropdown list for genre, level and format
       Admin approves, edits & categorizes resources submitted by Teacher 
 
 [ ]  - The LESSON experience
-    Student home page is main viewer
-    Student or Teacher can select Resource to show or play
-    Teacher can draw on the screen to mark up the lesson page, which auto saves
-    Teacher can quantize record notation for student during lesson
-    Lesson is audio recorded and midi recorded both Teacher and Student playing examples
-    All is saved to Student's resource area
-    Teacher can add new Resources to Student
-
-    Lesson Assignment captures specific Resources assigned for Student to work on next
-    Lesson Assignment has a Due Date, Helpful Hints, Escalation paths, research links
+    1: will happen in v1    2: might happen in v1     3: dream
+    [1] Student home page is main viewer
+    [1] Student or Teacher can select Resource to show or play
+    [1] Teacher can assign Research items, docs, links to Student
+    [1] Teacher can assign Resource to Student, with lesson notes
+    [2] App has a built in metronome
+    [2] Lesson is audio recorded and midi recorded both Teacher and Student playing examples
+    [2] Student can use the app on laptop, tablet or phone to record daily practice drafts of assigned pieces
+    [3] Teacher can draw on the screen to mark up the lesson page, which auto saves
+    [3] App has built in drum pattern styles to play along with, using headphones
+    [3] App has an AudioOnly mode, where nothing is visual based, only audio
+    [3] App has a Visual mode, where notation responds to player, reinforcing notation note/rhythm recognition
+    [3] Teacher can quantize record notated and audible playing samples for student during lesson
+    [3] App has Sketchup 3D hands, demonstrating instrument technique from player's view perspective
 
     Difference between a Resource and a Research:  
       Resource is in the Libary, approved/categorized by Admin
       Research might be a one time recommendation for this particular student, context and time (could also be submitted as a Resource by the Teacher, but not by default)
 
 
-
-
-
-
+    All is saved to Student's resource area, available on Student show page
 
 [ ] build the database 
 [ ] seed the database 
