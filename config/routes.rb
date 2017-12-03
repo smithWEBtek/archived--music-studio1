@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
  
-  resources :lesson_resources
-  resources :resources
-  resources :lessons
-  resources :teachers
   namespace :api do
+    resources :teachers
     resources :students
+    resources :resources
+    resources :lessons
+    resources :lesson_resources
   end
 end
