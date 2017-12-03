@@ -19,6 +19,17 @@ REQUIREMENTS
 [x] plan the application 
 [x]  -plan the data model
 
+
+[x] build the database 
+[x] seed the database 
+[x] create the api data, all models, index and create 
+[ ] plan the views required 
+[ ] plan the react app
+[ ] plan the redux parts
+
+==================================================================================
+DATA MODEL, migrations, active record relationships and sample data
+==================================================================================
 TEACHER
 has_many :students
 has_many :lessons
@@ -27,6 +38,7 @@ Ex: {username: "Tom Hopkins", email: "thopkins@music.com"}
 Ex: {username: "Brenda Shafer", email: "bshafer@music.com"}
 Ex: {username: "Ted Moon", email: "tmoon@music.com"}
 
+==================================================================================
 STUDENT
 belongs_to :teacher
 has_many :lessons
@@ -36,6 +48,7 @@ Ex: {username: "Jane Burda", email: "jburda@abc.com", level: '1'}
 Ex: {username: "Kay Mossa", email: "kmossa@abc.com", level: '2'}
 Ex: {username: "Warren Brody", email: "wbrody@abc.com", level: '4'}
 
+==================================================================================
 LESSON
 belongs_to :teacher
 belongs_to :student
@@ -47,11 +60,12 @@ Ex: { teacher_id: 1, student_id: 1, resources: [1], date: '2017-11-3' }
 Ex: { teacher_id: 2, student_id: 2, resources: [1,2,3], date: '2017-11-3' }
 Ex: { teacher_id: 3, student_id: 3, resources: [5,6,7,8], date: '2017-11-3' }
 
+==================================================================================
 LESSON_RESOURCE
 belongs_to :lesson
 belongs_to :resource
 
-
+==================================================================================
 RESOURCE
 rails g resource Resource title genre level description format location
 Ex: pdf, doc, sib, xml, jpg, mp3, mp4
@@ -63,6 +77,7 @@ Ex: {name: 'Blue Bossa', genre: 'bossa nova', level: '1', description: 'jazz sta
 all physical resources will be located on Cloudinary, except for YouTube links
 use Pundit to control dropdown list for genre, level and format
 
+==================================================================================
 [ ]  -plan the teacher experience 
   teacher signs up and logs in
   admin assigns new students to teacher
@@ -81,6 +96,7 @@ use Pundit to control dropdown list for genre, level and format
       Teacher has 'read' access to all resources
       Teacher can submit new resource for approval by admin (admin maintains naming conventions and categorization)
 
+==================================================================================
 [ ]  -plan the student experience 
   student signs up and logs in
   admin assigns students to teacher
@@ -96,6 +112,7 @@ use Pundit to control dropdown list for genre, level and format
       all assigned resources, default sorted by title, Location/Link opens resource in viewer window
       filter buttons for sorting by title, genre, level 
 
+==================================================================================
 [ ]  -plan the admin experience 
   student signs up and logs in
   admin assigns students to teacher
@@ -119,6 +136,7 @@ use Pundit to control dropdown list for genre, level and format
       Admin has 'full control' access to all resources
       Admin approves, edits & categorizes resources submitted by Teacher 
 
+==================================================================================
 [ ]  - The LESSON experience
     1: will happen in v1    2: might happen in v1     3: dream
     [1] Student home page is main viewer
@@ -138,13 +156,5 @@ use Pundit to control dropdown list for genre, level and format
     Difference between a Resource and a Research:  
       Resource is in the Libary, approved/categorized by Admin
       Research might be a one time recommendation for this particular student, context and time (could also be submitted as a Resource by the Teacher, but not by default)
-
-
     All is saved to Student's resource area, available on Student show page
-
-[x] build the database 
-[x] seed the database 
-[ ] plan the views required 
-[ ] create the api data for the required views 
-[ ] plan the react app
-[ ] plan the redux parts
+==================================================================================
