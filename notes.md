@@ -16,8 +16,8 @@ REQUIREMENTS
 [ ] app should have some minimal styling: feel free to stick to a framework (like react-bootstrap), 
 [ ] write (additional) CSS yourself if you wish
 
-[ ] plan the application 
-[ ]  -plan the data model
+[x] plan the application 
+[x]  -plan the data model
 
 TEACHER
 has_many :students
@@ -39,11 +39,18 @@ Ex: {username: "Warren Brody", email: "wbrody@abc.com", level: '4'}
 LESSON
 belongs_to :teacher
 belongs_to :student
-has_many :resources
+has_many :lesson_resources
+has_many :resources, through: :lesson_resources
+
 rails g resource Lesson date notes
 Ex: { teacher_id: 1, student_id: 1, resources: [1], date: '2017-11-3' }
 Ex: { teacher_id: 2, student_id: 2, resources: [1,2,3], date: '2017-11-3' }
 Ex: { teacher_id: 3, student_id: 3, resources: [5,6,7,8], date: '2017-11-3' }
+
+LESSON_RESOURCE
+belongs_to :lesson
+belongs_to :resource
+
 
 RESOURCE
 rails g resource Resource title genre level description format location
@@ -135,8 +142,8 @@ use Pundit to control dropdown list for genre, level and format
 
     All is saved to Student's resource area, available on Student show page
 
-[ ] build the database 
-[ ] seed the database 
+[x] build the database 
+[x] seed the database 
 [ ] plan the views required 
 [ ] create the api data for the required views 
 [ ] plan the react app

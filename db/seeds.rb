@@ -1,17 +1,150 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+DATA_teachers = {
+  :teacher_keys =>
+    ["firstname", "lastname", "email"],
+  :teachers => [
+    ['Not', 'Assigned', 'unassigned@music.com'],
+    ['Joe', 'Pepper', 'jpepper@music.com'],
+    ['Mila', 'Filatova', 'mfilatova@music.com'],
+    ['Barry', 'Gendron', 'bgendron@music.com']
+  ]
+}
 
+def make_teachers
+  DATA_teachers[:teachers].each do |teacher|
+    new_teacher = Teacher.new
+    teacher.each_with_index do |attribute, i|
+      new_teacher.send(DATA_teachers[:teacher_keys][i]+"=", attribute)
+    end
+    new_teacher.save
+  end
+end
+ 
+DATA_students = {
+  :student_keys =>
+    ["level", "teacher_id", "firstname", "lastname", "email"],
+  :students => [
+    [1, 1, 'James', 'Smith', 'jsmith@student.com'],
+    [2, 1, 'Peter', 'Granger', 'pgranger@student.com'],
+    [2, 1, 'Teddy', 'Mullet', 'tmullet@student.com'],
+    [2, 2, 'Francis', 'Callucci', 'fcallucci@student.com'],
+    [3, 2, 'Brian', 'Nadeau', 'bnadeau@student.com'],
+    [1, 2, 'Sue', 'Morrow', 'smorrow@student.com'],
+    [1, 3, 'Andrea', 'McPhail', 'amcphail@student.com'],
+    [3, 3, 'Orin', 'Keepnews', 'okeepnews@student.com'],
+    [1, 3, 'Will', 'Marron', 'wmarron@student.com']
+  ]
+}
 
+def make_students
+  DATA_students[:students].each do |student|
+    new_student = Student.new
+    student.each_with_index do |attribute, i|
+      new_student.send(DATA_students[:student_keys][i]+"=", attribute)
+    end
+    new_student.save
+  end
+end
 
-students = Student.create([
- {name: 'Billy Bixby', level: 'intermediate'},
- {name: 'Jimmy Bragdon', level: 'beginner'},
- {name: 'Sally Okeefe', level: 'beginner'},
- {name: 'Zayed Damsa', level: 'intermediate'},
- {name: 'Vinny Calucci', level: 'advanced'}
-])
+DATA_lessons = {
+  :lesson_keys =>
+    ["date", "notes", "teacher_id", "student_id"],
+  :lessons => [
+    ['2017-10-01', 'initial meet and greet', 1, 1],
+    ['2017-10-01', 'initial meet and greet', 1, 2],
+    ['2017-10-01', 'initial meet and greet', 1, 3],
+    ['2017-10-01', 'initial meet and greet', 2, 4],
+    ['2017-10-01', 'initial meet and greet', 2, 5],
+    ['2017-10-01', 'initial meet and greet', 2, 6],
+    ['2017-10-01', 'initial meet and greet', 3, 7],
+    ['2017-10-01', 'initial meet and greet', 3, 8],
+    ['2017-10-01', 'initial meet and greet', 3, 9]
+
+  ]
+}
+
+def make_lessons
+  DATA_lessons[:lessons].each do |lesson|
+    new_lesson = Lesson.new
+    lesson.each_with_index do |attribute, i|
+      new_lesson.send(DATA_lessons[:lesson_keys][i]+"=", attribute)
+    end
+    new_lesson.save
+  end
+end
+
+DATA_resources = {
+  :resource_keys =>
+    ["title", "category", "description", "format", "location"],
+  :resources => [
+    ['cycle of fifths 1', 'harmony', '12 keys in 12 bars', 'pdf', 'cloudinary'],
+    ['blues in F', 'blues', '12 bar blues', 'pdf', 'cloudinary'],
+    ['II-V-I 4bar', 'improv', '4 bar phrases', 'pdf', 'cloudinary'],
+    ['maj triad', 'chords', 'major triad inversions', 'pdf', 'cloudinary'],
+    ['min triad', 'chords', 'minor triad inversions', 'pdf', 'cloudinary'],
+    ['dom7', 'chords', 'dom7 inversions', 'pdf', 'cloudinary'],
+    ['min7', 'chords', 'min7 inversions', 'pdf', 'cloudinary'],
+    ['min7b5', 'chords', 'min7b5 inversions', 'pdf', 'cloudinary'],
+    ['maj7', 'chords', 'maj7 inversions', 'pdf', 'cloudinary'],
+    ['major scales', 'scales', 'major scales', 'pdf', 'cloudinary'],
+    ['minor scales', 'scales', 'minor scales', 'pdf', 'cloudinary'],
+    ['modal scales', 'scales', 'modal scales', 'pdf', 'cloudinary'],
+    ['alt scales', 'scales', 'alt scales', 'pdf', 'cloudinary'],
+    ['chord tones', 'improv', 'chord tones', 'pdf', 'cloudinary'],
+    ['approach notes', 'improv', 'approach notes', 'pdf', 'cloudinary'],
+    ['bi chords', 'improv', 'bi chords', 'pdf', 'cloudinary'],
+    ['Autumn Leaves', 'tune', 'standard', 'pdf', 'cloudinary'],
+    ['Blue Bossa', 'tune', 'standard', 'pdf', 'cloudinary'],
+    ['All The Things', 'tune', 'standard', 'pdf', 'cloudinary'],
+    ['I Got Rhythm', 'tune', 'standard', 'pdf', 'cloudinary'],
+    ['Bill Evans - Universal Mind', 'documentary', 'philosophy of music', 'video', 'youtube'],
+    ['Gary Burton - Improvisation', 'master class', 'philosophy of improv', 'video', 'youtube'],
+    ['Kenny Werner - Effortless Mastery', 'master class', 'psychology of playing', 'video', 'youtube'],
+    ['Kurt Elling - Role of Band Leader', 'master class', 'leading a gig', 'video', 'youtube']
+  ]
+}
+
+def make_resources
+  DATA_resources[:resources].each do |resource|
+    new_resource = Resource.new
+    resource.each_with_index do |attribute, i|
+      new_resource.send(DATA_resources[:resource_keys][i]+"=", attribute)
+    end
+    new_resource.save
+  end
+end
+
+DATA_lesson_resources = {
+  :lesson_resource_keys =>
+    ["lesson_id", "resource_id"],
+  :lesson_resources => [
+    [1,1],
+    [1,2],
+    [1,3],
+    [2,1],
+    [2,2],
+    [2,3],
+    [3,4],
+    [3,2],
+    [3,1]
+  ]
+}
+
+def make_lesson_resources
+  DATA_lesson_resources[:lesson_resources].each do |lesson_resource|
+    new_lesson_resource = LessonResource.new
+    lesson_resource.each_with_index do |attribute, i|
+      new_lesson_resource.send(DATA_lesson_resources[:lesson_resource_keys][i]+"=", attribute)
+    end
+    new_lesson_resource.save
+  end
+end
+ 
+def main 
+  make_teachers
+  make_students
+  make_lessons
+  make_resources
+  make_lesson_resources
+end
+
+main
