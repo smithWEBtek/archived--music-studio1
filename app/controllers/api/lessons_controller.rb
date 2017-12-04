@@ -13,6 +13,16 @@ class Api::LessonsController < ApplicationController
       render json: { errors: { message: 'lesson NOT created' }}
     end
   end
+
+  def update
+    @lesson = Lesson.find(params[:id])
+    @lesson.update
+    if @lesson.save
+      render json: @lesson
+    else
+      render json: { errors: { message: 'lesson NOT updated' }}
+    end
+  end
   
   private
   def lesson_params
