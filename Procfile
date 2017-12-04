@@ -1,2 +1,2 @@
-web: cd .. && cd piano-student-client && npm start
+web: cd client && npm start
 api: bundle exec rails s -p 3001

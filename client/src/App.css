@@ -1,0 +1,100 @@
+.App {
+  text-align: center;
+  background-color: rgba(100, 112, 121, 0.247);
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: rgba(53, 22, 22, 0.664);
+  height: 60px;
+  padding: 20px;
+  color: white;
+}
+
+.App-title {
+  font-size: 1em;
+}
+
+.container {
+  margin: 10px;
+}
+
+.add-form {
+  float: right;
+  text-align: left;
+  width: 20vw;
+  height: 60vh;
+  background: rgb(155, 206, 164);
+  color: rgb(119, 114, 114);
+}
+
+.credit {
+  text-align: right;
+  font-size: small;
+}
+
+div.navbar {
+  float: left;
+  width: 100vw;
+  height: 10vh;
+  background: rgb(124, 118, 131);
+  color: white;
+  border-bottom: 3px solid white;
+}
+
+.field-form {
+  float: right;
+  width: 30%;
+}
+ 
+.main-content { 
+  float: left;
+  width: 70%;
+  height: 90vh;
+  background: rgb(165, 170, 165);
+  color: black;
+  border-bottom: 5px solid white;
+}
+
+.nav-button {
+  border: 1px solid rgb(50, 50, 58);
+  color: white;
+  background-color: rgb(99, 113, 150);
+  margin: 12px;
+  padding: 8px;
+}
+
+.nav-button:hover {
+  color: black;
+  border: 1px solid rgb(50, 105, 73);
+  background: white;
+}
+
+.nav-button:focus {
+  outline: 0;
+  color: black;
+  border: 1px solid rgb(50, 105, 73);
+  background: white;
+}
+
+.sidebar {
+  float: left;
+  text-align: left;
+  width: 30vw;
+  height: 90vh;
+  background: rgb(153, 186, 212);
+  color: rgb(119, 114, 114);
+}
+
+.table-border {
+  border: 2px;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
