@@ -10,8 +10,6 @@
 
 .App-header {
   background-color: rgba(53, 22, 22, 0.664);
-  height: 60px;
-  padding: 20px;
   color: white;
 }
 
@@ -24,11 +22,11 @@
 }
 
 .add-form {
-  float: right;
+  float: left;
   text-align: left;
-  width: 20vw;
-  height: 60vh;
-  background: rgb(155, 206, 164);
+  width: 60vw;
+  height: 40vh;
+  background: rgb(200, 241, 207);
   color: rgb(119, 114, 114);
 }
 
@@ -84,8 +82,8 @@ div.navbar {
 .sidebar {
   float: left;
   text-align: left;
-  width: 30vw;
-  height: 90vh;
+  width: 60vw;
+  height: 100vh;
   background: rgb(153, 186, 212);
   color: rgb(119, 114, 114);
 }

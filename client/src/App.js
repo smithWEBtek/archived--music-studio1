@@ -24,7 +24,7 @@ class App extends Component {
   
   addStudent = student => {
     StudentService.createStudent(student).then(student => this.setState({
-      students: this.state.students.concat(student)
+      students: this.state.students.concat(student),
     }))
   }
    
@@ -36,11 +36,13 @@ class App extends Component {
         {/* <div className='navbar'>
           <Navbar />
         </div> */}
-        <div className='sidebar container'>
-          <Students students={this.state.students} />
-        </div>
-        <div>
-          <AddStudent addStudent={this.addStudent} />
+        <div className='container'>
+
+          <div className='sidebar'>
+            <AddStudent addStudent={this.addStudent} />
+            <Students students={this.state.students} />
+          </div>
+        
         </div>
       </div>
     );
