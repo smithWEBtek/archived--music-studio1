@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import AddStudent from './components/AddStudent';
-import Students from './components/Students';
-import StudentService from './services/StudentService';
+import AddStudent from '../components/Students/AddStudent';
+import Students from '../components/Students/Students';
+import StudentService from '../components/Students/StudentService';
 import './App.css';
 import { Button } from 'reactstrap';
 
@@ -14,6 +14,7 @@ class App extends Component {
 
     this.state = {
       students: [],
+      student: {},
     }
   }
 
@@ -27,6 +28,7 @@ class App extends Component {
       students: this.state.students.concat(student),
     }))
   }
+ 
    
   render() {
     return (
@@ -37,8 +39,7 @@ class App extends Component {
           <Navbar />
         </div> */}
         <div className='container'>
-
-          <div className='sidebar'>
+          <div className='sidebar'> 
             <AddStudent addStudent={this.addStudent} />
             <Students students={this.state.students} />
           </div>

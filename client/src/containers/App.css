@@ -83,7 +83,7 @@ div.navbar {
   float: left;
   text-align: left;
   width: 60vw;
-  height: 100vh;
+  height: 100%;
   background: rgb(153, 186, 212);
   color: rgb(119, 114, 114);
 }

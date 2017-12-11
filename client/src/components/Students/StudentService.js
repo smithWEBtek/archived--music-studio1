@@ -6,6 +6,11 @@ const StudentService = {
       .then(response => response.json())
   },
 
+  fetchStudent: (id) => {
+    return fetch(`${API_URL}/students/${id}`)
+      .then(response => response.json())
+  },
+
   createStudent(student) {
     const request = {
       method: 'POST',
