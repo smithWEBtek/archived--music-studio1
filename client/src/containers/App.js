@@ -4,10 +4,8 @@ import Students from '../components/Students/Students';
 import StudentService from '../components/Students/StudentService';
 import './App.css';
 import { Button } from 'reactstrap';
-
-// import Navbar from './components/Navbar';
-// import Student from './components/Student';
-
+import Navbar from './Navbar';
+ 
 class App extends Component {
   constructor(){
     super()
