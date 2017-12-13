@@ -4,7 +4,6 @@ import Teacher from './Teacher/Teacher';
 import TeacherService from './TeacherService';
 
 const showTeacher = (event, teacher) => {
-  event.preventDefault();
     TeacherService.fetchTeacher(teacher.id)
       .then(
       <teacher teacher={teacher} />
@@ -17,7 +16,7 @@ const Teachers = ({ teachers }) => {
       <Table striped>
         <thead>
           <tr>
-            <td onClick={(event)=>showTeacher(event, teacher)}>Show</td>
+            <td><button onClick={(event)=>showTeacher(event, teacher)}>show</button></td>
             <td className='right aligned'>{teacher.id}</td>
             <td className='right aligned'>{teacher.firstname}</td>
             <td className='right aligned'>{teacher.lastname}</td>

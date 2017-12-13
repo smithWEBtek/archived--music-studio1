@@ -10,7 +10,7 @@ import TeacherService from '../components/Teachers/TeacherService';
 
 import './App.css';
 import { Button } from 'reactstrap';
-import Navbar from './Navbar';
+// import Navbar from './Navbar';
  
 class App extends Component {
   constructor(){
@@ -49,9 +49,6 @@ class App extends Component {
       <div className="App container">
         <h2>Piano Student App</h2>
           <Button />
-        {/* <div className='navbar'>
-          <Navbar />
-        </div> */}
         <div className='container'>
           <div className='sidebar'> 
             <AddStudent addStudent={this.addStudent} />

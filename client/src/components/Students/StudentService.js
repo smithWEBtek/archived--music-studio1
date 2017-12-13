@@ -7,8 +7,10 @@ const StudentService = {
   },
 
   fetchStudent: (id) => {
+    console.log("fetchStudent: id:", id)
+
     return fetch(`${API_URL}/students/${id}`)
-      .then(response => response.json())
+    .then(response => response.json())
   },
 
   createStudent(student) {
