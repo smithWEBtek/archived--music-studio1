@@ -6,12 +6,12 @@ REQUIREMENTS
 [ ] There should be 2 container components
 [ ] There should be 5 stateless components
 [ ] There should be 3 routes
-[ ] use react-router and proper RESTful routing
-[ ] use Redux middleware to respond to and modify state change
-[ ] use async actions to send data to and receive data from a server
+----[ ] use react-router and proper RESTful routing
+----[ ] use Redux middleware to respond to and modify state change
+----[ ] use async actions to send data to and receive data from a server
 [ ] Rails API should handle the data persistence. 
 [ ] You should be using fetch() within your actions to GET and [ ] POST data from your API
-[ ] Do not use jQuery methods.
+[x] Do not use jQuery methods.
 [ ] client-side application should handle the display of data with minimal data manipulation
 [ ] app should have some minimal styling: feel free to stick to a framework (like react-bootstrap), 
 [ ] write (additional) CSS yourself if you wish
