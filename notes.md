@@ -16,6 +16,10 @@ REQUIREMENTS
 [ ] app should have some minimal styling: feel free to stick to a framework (like react-bootstrap), 
 [ ] write (additional) CSS yourself if you wish
 
+
+
+
+
 [x] plan the application 
 [x]  -plan the data model
 
@@ -152,6 +156,24 @@ use Pundit to control dropdown list for genre, level and format
     [3] App has a Visual mode, where notation responds to player, reinforcing notation note/rhythm recognition
     [3] Teacher can quantize record notated and audible playing samples for student during lesson
     [3] App has Sketchup 3D hands, demonstrating instrument technique from player's view perspective
+
+    [] As the teacher adds resources to the student during a lesson, the app tallies the resoures along various measures, such as: 
+      technique
+      harmony
+      rhythm
+      licks
+      all keys
+      notation skills
+      melodic memory
+      ear training
+      genres
+      play alongs
+      time required
+  
+    the time required tallies according to calculation of the resource assigned and the students age, current ability and current practice agreement
+
+
+
 
     Difference between a Resource and a Research:  
       Resource is in the Libary, approved/categorized by Admin
