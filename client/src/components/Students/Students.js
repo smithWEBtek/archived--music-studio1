@@ -13,7 +13,7 @@ const showStudent = (event, student) => {
   }
   
 const Students = ({ students }) => {
-  const renderStudents = students.map((student) => 
+  const renderStudents = students.map(student => 
     <div key={student.id}>
       <Table striped>
         <thead>

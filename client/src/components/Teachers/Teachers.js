@@ -11,7 +11,7 @@ const showTeacher = (event, teacher) => {
   }
 
 const Teachers = ({ teachers }) => {
-  const renderTeachers = teachers.map((teacher) => 
+  const renderTeachers = teachers.map(teacher => 
     <div key={teacher.id}>
       <Table striped>
         <thead>
