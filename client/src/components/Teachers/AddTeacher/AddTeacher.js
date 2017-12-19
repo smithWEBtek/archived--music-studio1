@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import classes from './AddTeacher.css';
 
 class AddTeacher extends Component {
   constructor(props){
@@ -37,7 +38,7 @@ class AddTeacher extends Component {
 
   render() {
     return (
-      <div>
+      <div className={classes.AddTeacher}>
         <button onClick={(event)=>this.handleShowForm(event)}>
           Add Teacher</button>
         { this.state.formVisible

@@ -4,9 +4,13 @@ import AddStudent from './components/Students/AddStudent/AddStudent';
 import Students from './components/Students/Students';
 import StudentService from './components/Students/StudentService';
 
-import AddTeacher from './components/Teachers/AddTeacher';
+import AddTeacher from './components/Teachers/AddTeacher/AddTeacher';
 import Teachers from './components/Teachers/Teachers';
 import TeacherService from './components/Teachers/TeacherService';
+
+import AddResource from './components/Resources/AddResource/AddResource';
+import Resources from './components/Resources/Resources';
+import ResourceService from './components/Resources/ResourceService';
 
 import './App.css';
 import { Button } from 'reactstrap';
@@ -21,6 +25,8 @@ class App extends Component {
       student: {},
       teachers: [],
       teacher: {},
+      resources: [],
+      resource: {}
     }
   }
 
@@ -30,6 +36,9 @@ class App extends Component {
 
     TeacherService.fetchTeachers()
     .then(teachers => this.setState({ teachers }))
+
+    ResourceService.fetchResources()
+    .then(resources => this.setState({ resources }))
   }
   
   addStudent = student => {
@@ -41,6 +50,12 @@ class App extends Component {
   addTeacher = teacher => {
   TeacherService.createTeacher(teacher).then(teacher => this.setState({
     teachers: this.state.teachers.concat(teacher),
+    }))
+  }
+  
+  addResource = resource => {
+    ResourceService.createResource(resource).then(resource => this.setState({
+      resource : this.state.resources.concat(resource),
     }))
   }
  
@@ -57,6 +72,10 @@ class App extends Component {
           <div className='sidebar'> 
             <AddTeacher addTeacher={this.addTeacher} />
             <Teachers teachers={this.state.teachers} />
+          </div>
+          <div className='sidebar'> 
+            <AddResource addResource={this.addResource} />
+            <Resources resources={this.state.resources} />
           </div>
         </div>
       </div>
