@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import classes from './AddStudent.css';
+
 
 class AddStudent extends Component {
   constructor(props){
@@ -46,7 +48,7 @@ class AddStudent extends Component {
           Add Student</button>
         { this.state.formVisible
           ? 
-        <form onSubmit={this.handleSubmit} className='add-form'>
+        <form onSubmit={this.handleSubmit} className={classes.AddForm}>
 
           <p><label htmlFor="student_name">First name </label>
           <input 

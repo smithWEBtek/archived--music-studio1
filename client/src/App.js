@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 
-import AddStudent from '../components/Students/AddStudent';
-import Students from '../components/Students/Students';
-import StudentService from '../components/Students/StudentService';
+import AddStudent from './components/Students/AddStudent/AddStudent';
+import Students from './components/Students/Students';
+import StudentService from './components/Students/StudentService';
 
-import AddTeacher from '../components/Teachers/AddTeacher';
-import Teachers from '../components/Teachers/Teachers';
-import TeacherService from '../components/Teachers/TeacherService';
+import AddTeacher from './components/Teachers/AddTeacher';
+import Teachers from './components/Teachers/Teachers';
+import TeacherService from './components/Teachers/TeacherService';
 
 import './App.css';
 import { Button } from 'reactstrap';
