@@ -1,19 +1,13 @@
 import React from 'react';
-import { Component } from 'react';
+import classes from './Teacher.css';
 
-class Teacher extends Component {
-  constructor(props){
-    super(props)
-    
-  }
+const teacher = (props) => (
+  <div>
+    <fieldset>
+      <p className={classes.Teacher}>Name: {props.teacher.firstname} {props.teacher.lastname}</p>
+      <p className={classes.Teacher}>Email: {props.teacher.email}</p>
+    </fieldset>
+  </div>
+)
 
-  render() {
-    return (
-      <div>
-        <p>{this.props.teacher}</p>
-      </div>
-    )
-  } 
-}
-
-export default Teacher;
+export default teacher;
