@@ -2,12 +2,9 @@
   text-align: center;
 }
   
-.App-title {
+.Title {
+  color: rgb(149, 167, 184);
   font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
 }
 
 @keyframes App-logo-spin {

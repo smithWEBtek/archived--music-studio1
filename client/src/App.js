@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import Keyboard from './containers/Keyboard/Keyboard'; 
 import AddStudent from './components/Students/AddStudent/AddStudent';
 import Students from './components/Students/Students';
 import StudentService from './components/Students/StudentService';
@@ -60,8 +61,10 @@ class App extends Component {
   render() {
     return (
       <div className={[classes.App, classes.container].join(' ')}>
-        <h2>Piano Student App</h2>
+        <h2 className={classes.Title}>Piano Student App</h2>
         <div className='container'>
+
+          <Keyboard />
 
           <div className={classes.Sidebar}> 
             <AddStudent addStudent={this.addStudent} />

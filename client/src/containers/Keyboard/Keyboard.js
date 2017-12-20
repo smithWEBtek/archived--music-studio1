@@ -1,7 +1,7 @@
 import React from 'react';
-import classes from './Logo.css';
+import classes from './Keyboard.css';
 
-const logo = (props) => (
+const keyboard = (props) => (
   <div className={classes.Keyboardcontainer}>
     <p>Keyboard</p>
     <ul className={classes.set}>
@@ -20,5 +20,4 @@ const logo = (props) => (
     </ul>
   </div>
 )
-
-export default logo;
+export default keyboard;
