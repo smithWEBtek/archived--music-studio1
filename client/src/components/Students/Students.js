@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Table } from 'reactstrap';
-
 import AddStudent from './AddStudent/AddStudent';
 import Student from './Student/Student';
 import StudentService from './StudentService';
@@ -15,13 +14,7 @@ class Students extends Component {
 
   componentDidMount() {
   StudentService.fetchStudents()
-    .then(students => this.setState({students}))
-  }
-
-  closeStudent= () => {
-    this.setState({
-      student: null
-    });
+    .then(students => this.setState({students: students}))
   }
 
   addStudent = student => {
@@ -29,6 +22,12 @@ class Students extends Component {
     .then(student => this.setState({
       students: this.state.students.concat(student)
     }))
+  }
+
+  closeStudent= () => {
+    this.setState({
+      student: null
+    });
   }
 
   render() {
@@ -59,7 +58,7 @@ class Students extends Component {
         <Table className={classes.Students}>
           <thead>
             <tr>
-              <th scope="row">ID</th>
+              <th>ID</th>
               <th>Name</th>
               <th>Email</th>
             </tr>

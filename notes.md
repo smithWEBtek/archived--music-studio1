@@ -15,6 +15,9 @@ REQUIREMENTS
 [x] client-side application should handle the display of data with minimal data manipulation
 [x] app should have some minimal styling: feel free to stick to a framework (like react-bootstrap), 
 [x] write (additional) CSS yourself if you wish
+
+
+[ ] move teachers, students, resources and lessons code out of layout, leaving just <ComponentName />
 [ ] connect toolbar links to show indexes for students, teachers, resources and lessons
 
  
