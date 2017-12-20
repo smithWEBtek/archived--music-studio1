@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import classes from './App.css';
- 
+import Aux from './hoc/Aux/Aux';
+
 import AddStudent from './components/Students/AddStudent/AddStudent';
 import Students from './components/Students/Students';
 import StudentService from './components/Students/StudentService';
@@ -76,35 +77,32 @@ class App extends Component {
  
   render() {
     return (
-      <div className={[classes.App, classes.container].join(' ')}>
-        <h2 className={classes.Title}>Piano Student App</h2>
-
-        <ToolBar />
-
-        <div className='container'>
+      <Aux>
+        <ToolBar /><br />
+        <div className={[classes.App, classes.container].join(' ')}>
+ 
+          <div className={classes.Sidebar}> 
+            <Students students={this.state.students} />
+            <AddStudent addStudent={this.addStudent} />
+          </div>
          
           <div className={classes.Sidebar}> 
-            <AddLesson addLesson={this.addLesson} />
             <Lessons lessons={this.state.lessons} />
+            <AddLesson addLesson={this.addLesson} />
           </div>
 
           <div className={classes.Sidebar}> 
-            <AddStudent addStudent={this.addStudent} />
-            <Students students={this.state.students} />
-          </div>
-
-          <div className={classes.Sidebar}> 
-            <AddTeacher addTeacher={this.addTeacher} />
             <Teachers teachers={this.state.teachers} />
+            <AddTeacher addTeacher={this.addTeacher} />
           </div>
 
           <div className={classes.Sidebar}> 
-            <AddResource addResource={this.addResource} />
             <Resources resources={this.state.resources} />
+            <AddResource addResource={this.addResource} />
           </div>
 
         </div>
-      </div>
+      </Aux>
     );
   }
 }

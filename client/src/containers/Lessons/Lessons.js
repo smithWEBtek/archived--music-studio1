@@ -25,10 +25,8 @@ class Lessons extends Component {
         );
     };
 
-    const lessonsList = this
-      .props
-      .lessons
-      .map(lesson => <div key={lesson.id}>
+    const lessonsList = this.props.lessons.map(lesson => 
+      <div key={lesson.id}>
         <Table className={classes.Lessons}>
           <thead>
             <tr>
@@ -44,11 +42,10 @@ class Lessons extends Component {
           </thead>
         </Table>
       </div>);
-
     return (
       <Aux>
         <div>
-          <Table className={classes.lessons}>
+          <Table className={classes.Lessons}>
             <thead>
               <tr>
                 <th scope="row">ID</th>

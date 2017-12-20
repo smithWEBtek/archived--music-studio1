@@ -4,7 +4,6 @@ import Logo from '../../../assets/images/logo.png';
 import Aux from '../../../hoc/Aux/Aux';
 import NavigationItems from '../NavigationItems/NavigationItems';
 
-// import NavigationItems from '../NavigationItems/NavigationItems';
 // import DrawerToggle from '../SideDrawer/DrawerToggle/DrawerToggle';
 
 const toolBar = (props) => (

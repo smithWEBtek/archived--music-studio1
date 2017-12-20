@@ -5,8 +5,8 @@
 .AddForm {
   float: left;
   text-align: left;
-  width: 60vw;
+  width: 40vw;
   height: 40vh;
-  background: rgb(200, 241, 207);
+  background: rgb(207, 230, 210);
   color: rgb(119, 114, 114);
 }
