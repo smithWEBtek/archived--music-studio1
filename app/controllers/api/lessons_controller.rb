@@ -5,6 +5,11 @@ class Api::LessonsController < ApplicationController
     render json: @lessons
   end
 
+  def show
+    @lesson = Lesson.find(params[:id])
+    render json: @lesson
+  end
+
   def create
     @lesson = Lesson.new(lesson_params)
     if @lesson.save

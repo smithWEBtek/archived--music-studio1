@@ -5,6 +5,11 @@ class Api::ResourcesController < ApplicationController
     render json: @resources
   end
 
+  def show 
+    @resource = Resource.find(params[:id])
+    render json: @resource
+  end
+
   def create
     @resource = Resource.new(resource_params)
     if @resource.save
