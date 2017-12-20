@@ -59,7 +59,7 @@ class AddStudent extends Component {
             placeholder="firstname"
           /></p>
 
-          <p><label htmlFor="student_name">Last name </label>
+          <p><label>Last name </label>
           <input 
             type="text"
             name="lastname"
@@ -68,7 +68,7 @@ class AddStudent extends Component {
             placeholder="lastname"
           /></p>
 
-          <p><label htmlFor="student_name">Email </label>
+          <p><label>Email </label>
           <input 
             type="text"
             name="email"
@@ -77,7 +77,7 @@ class AddStudent extends Component {
             placeholder="email"
           /></p>
 
-          <p><label htmlFor="student_level">Level </label>
+          <p><label>Level </label>
           <input 
             type="text"
             name="level"
@@ -86,7 +86,7 @@ class AddStudent extends Component {
             placeholder="level"
           /></p>
 
-          <p><label htmlFor="student_level">Teacher ID </label>
+          <p><label>Teacher ID </label>
           <input 
             type="text"
             name="teacher_id"

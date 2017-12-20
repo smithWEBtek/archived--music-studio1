@@ -43,7 +43,7 @@ class AddTeacher extends Component {
           Add Teacher</button>
         { this.state.formVisible
           ? 
-        <form onSubmit={this.handleSubmit} className='add-form'>
+        <form onSubmit={this.handleSubmit} className={classes.AddForm}>
 
           <p><label htmlFor="teacher_name">First name </label>
           <input 

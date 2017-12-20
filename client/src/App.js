@@ -12,10 +12,8 @@ import AddResource from './components/Resources/AddResource/AddResource';
 import Resources from './components/Resources/Resources';
 import ResourceService from './components/Resources/ResourceService';
 
-import './App.css';
-import { Button } from 'reactstrap';
-// import Navbar from './Navbar';
- 
+import classes from './App.css';
+
 class App extends Component {
   constructor(){
     super()
@@ -61,22 +59,25 @@ class App extends Component {
  
   render() {
     return (
-      <div className="App container">
+      <div className={[classes.App, classes.container].join(' ')}>
         <h2>Piano Student App</h2>
-          <Button />
         <div className='container'>
-          <div className='sidebar'> 
+
+          <div className={classes.Sidebar}> 
             <AddStudent addStudent={this.addStudent} />
             <Students students={this.state.students} />
           </div>
-          <div className='sidebar'> 
+
+          <div className={classes.Sidebar}> 
             <AddTeacher addTeacher={this.addTeacher} />
             <Teachers teachers={this.state.teachers} />
           </div>
-          <div className='sidebar'> 
+
+          <div className={classes.Sidebar}> 
             <AddResource addResource={this.addResource} />
             <Resources resources={this.state.resources} />
           </div>
+
         </div>
       </div>
     );

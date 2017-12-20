@@ -23,10 +23,10 @@ class Students extends Component {
           <thead>
             <tr>
               <td><button onClick={()=>showStudent(student.id)}>show</button></td>
-              <td className='right aligned'>{student.id}</td>
-              <td className='right aligned'>{student.firstname}</td>
-              <td className='right aligned'>{student.lastname}</td>
-              <td className='right aligned'>{student.email}</td>
+              <td>{student.id}</td>
+              <td>{student.firstname}</td>
+              <td>{student.lastname}</td>
+              <td>{student.email}</td>
             </tr>
           </thead>
         </Table>

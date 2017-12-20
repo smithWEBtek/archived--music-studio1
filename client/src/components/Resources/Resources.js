@@ -43,8 +43,10 @@ class Resources extends Component {
             <tr>
               <th scope="row">ID</th>
               <th>Title</th>
-              <th>Location</th>
+              <th>Category</th>
+              <th>Description</th>
               <th>Format</th>
+              <th>Location</th>
             </tr>
           </thead>
         </Table>
