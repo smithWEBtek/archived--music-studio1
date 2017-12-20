@@ -23,12 +23,12 @@ class Resources extends Component {
           <thead>
             <tr>
               <td><button onClick={()=>showResource(resource.id)}>show</button></td>
-              <td className='right aligned'>{resource.id}</td>
-              <td className='right aligned'>{resource.title}</td>
-              <td className='right aligned'>{resource.category}</td>
-              <td className='right aligned'>{resource.description}</td>
-              <td className='right aligned'>{resource.format}</td>
-              <td className='right aligned'>{resource.location}</td>
+              <td>{resource.id}</td>
+              <td>{resource.title}</td>
+              <td>{resource.category}</td>
+              <td>{resource.description}</td>
+              <td>{resource.format}</td>
+              <td>{resource.location}</td>
             </tr>
           </thead>
         </Table>
