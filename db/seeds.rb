@@ -58,7 +58,6 @@ DATA_lessons = {
     ['2017-10-01', 'initial meet and greet', 3, 7],
     ['2017-10-01', 'initial meet and greet', 3, 8],
     ['2017-10-01', 'initial meet and greet', 3, 9]
-
   ]
 }
 
