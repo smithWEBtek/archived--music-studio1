@@ -11,6 +11,12 @@ class Resources extends Component {
     resourceInfo: null
   }
 
+  closeResource = () => {
+    this.setState({
+      resourceInfo: null
+    });
+  }
+
   render() {
     const showResource = (id) => {
       ResourceService.fetchResource(id)
@@ -53,7 +59,7 @@ class Resources extends Component {
         {resourcesList}
       </div>
       <Aux>
-        {this.state.resourceInfo ? <Resource resource={this.state.resourceInfo} /> : null }
+        {this.state.resourceInfo ? <Resource resource={this.state.resourceInfo} close={this.closeResource} /> : null }
       </Aux>
     </Aux>
     )

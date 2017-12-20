@@ -9,6 +9,7 @@ const resource = (props) => (
       <p className={classes.Resource}>Description: {props.resource.description}</p>
       <p className={classes.Resource}>Format: {props.resource.format}</p>
       <p className={classes.Resource}>Location: {props.resource.location}</p>
+      <button onClick={props.close}>Close</button>
     </fieldset>
   </div>
 )

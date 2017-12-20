@@ -6,6 +6,7 @@ const teacher = (props) => (
     <fieldset>
       <p className={classes.Teacher}>Name: {props.teacher.firstname} {props.teacher.lastname}</p>
       <p className={classes.Teacher}>Email: {props.teacher.email}</p>
+      <button onClick={props.close}>Close</button>
     </fieldset>
   </div>
 )
