@@ -4,10 +4,7 @@ import Aux from '../Aux/Aux';
 
 import Students from '../../components/Students/Students';
 import Teachers from '../../components/Teachers/Teachers';
-
-import AddResource from '../../components/Resources/AddResource/AddResource';
 import Resources from '../../components/Resources/Resources';
-import ResourceService from '../../components/Resources/ResourceService';
 
 import AddLesson from '../../containers/Lessons/AddLesson/AddLesson';
 import Lessons from '../../containers/Lessons/Lessons';
@@ -19,32 +16,15 @@ class Layout extends Component {
     super()
 
     this.state = {
-      resources: [],
-      resource: {},
       lessons: [],
       lesson: {}
     }
   }
 
   componentDidMount() {
-    ResourceService
-      .fetchResources()
-      .then(resources => this.setState({resources}))
-
     LessonService
       .fetchLessons()
       .then(lessons => this.setState({lessons}))
-  }
-
-  addResource = resource => {
-    ResourceService
-      .createResource(resource)
-      .then(resource => this.setState({
-        resources: this
-          .state
-          .resources
-          .concat(resource)
-      }))
   }
 
   addLesson = lesson => {
@@ -73,13 +53,12 @@ class Layout extends Component {
           </div>
 
           <div className={classes.Sidebar}>
-            <Lessons lessons={this.state.lessons}/>
-            <AddLesson addLesson={this.addLesson}/>
+            <Resources />
           </div>
 
           <div className={classes.Sidebar}>
-            <Resources resources={this.state.resources}/>
-            <AddResource addResource={this.addResource}/>
+            <Lessons lessons={this.state.lessons}/>
+            <AddLesson addLesson={this.addLesson}/>
           </div>
 
         </div>

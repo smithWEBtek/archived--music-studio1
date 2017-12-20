@@ -2,28 +2,41 @@ import React, { Component } from 'react';
 import { Table } from 'reactstrap';
 import Resource from './Resource/Resource';
 import ResourceService from './ResourceService';
+import AddResource from '../../components/Resources/AddResource/AddResource';
 import classes from './Resources.css';
 import Aux from '../../hoc/Aux/Aux';
 
 class Resources extends Component {
   state = {
-    resources: this.props.resources,
-    resourceInfo: null
+    resources : [],
+    resource : null
+  }
+
+  componentDidMount() {
+    ResourceService.fetchResources()
+    .then(resources => this.setState({resources: resources}))
   }
 
   closeResource = () => {
     this.setState({
-      resourceInfo: null
+      resource: null
     });
+  }
+
+  addResource = resource => {
+    ResourceService.createResource(resource)
+      .then(resource => this.setState({
+        resources: this.state.resources.concat(resource)
+    }))
   }
 
   render() {
     const showResource = (id) => {
       ResourceService.fetchResource(id)
-      .then(response => this.setState({resourceInfo: response}));
+      .then(response => this.setState({resource: response}));
     };
       
-    const resourcesList = this.props.resources.map(resource => 
+    const resourcesList = this.state.resources.map(resource => 
       <div key={resource.id}>
         <Table className={classes.Resources}>
           <thead>
@@ -56,10 +69,11 @@ class Resources extends Component {
             </tr>
           </thead>
         </Table>
+        <AddResource addResource={this.addResource}/>
         {resourcesList}
       </div>
       <Aux>
-        {this.state.resourceInfo ? <Resource resource={this.state.resourceInfo} close={this.closeResource} /> : null }
+        {this.state.resource ? <Resource resource={this.state.resource} close={this.closeResource} /> : null }
       </Aux>
     </Aux>
     )
