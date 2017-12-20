@@ -1,29 +1,25 @@
 REQUIREMENTS
-[ ] The code should be written in ES6 as much as possible
+[x] The code should be written in ES6 as much as possible
 [x] Use create-react-app generator to start your project.
 [x] Follow the instructions on this repo to setup the generator: create-react-app
-[ ] Your app should have one HTML page to render your react-redux application
+[x] Your app should have one HTML page to render your react-redux application
 [ ] There should be 2 container components
 [ ] There should be 5 stateless components
 [ ] There should be 3 routes
 ----[ ] use react-router and proper RESTful routing
 ----[ ] use Redux middleware to respond to and modify state change
 ----[ ] use async actions to send data to and receive data from a server
-[ ] Rails API should handle the data persistence. 
-[ ] You should be using fetch() within your actions to GET and [ ] POST data from your API
+[x] Rails API should handle the data persistence. 
+[x] You should be using fetch() within your actions to GET and [ ] POST data from your API
 [x] Do not use jQuery methods.
-[ ] client-side application should handle the display of data with minimal data manipulation
-[ ] app should have some minimal styling: feel free to stick to a framework (like react-bootstrap), 
-[ ] write (additional) CSS yourself if you wish
+[x] client-side application should handle the display of data with minimal data manipulation
+[x] app should have some minimal styling: feel free to stick to a framework (like react-bootstrap), 
+[x] write (additional) CSS yourself if you wish
+[ ] connect toolbar links to show indexes for students, teachers, resources and lessons
 
-
-
-
-
+ 
 [x] plan the application 
 [x]  -plan the data model
-
-
 [x] build the database 
 [x] seed the database 
 [x] create the api data, all models, index and create 

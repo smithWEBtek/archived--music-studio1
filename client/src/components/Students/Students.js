@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Table } from 'reactstrap';
+
+import AddStudent from './AddStudent/AddStudent';
 import Student from './Student/Student';
 import StudentService from './StudentService';
 import classes from './Students.css';
@@ -7,23 +9,35 @@ import Aux from '../../hoc/Aux/Aux';
 
 class Students extends Component {
   state = {
-    students: this.props.students,
-    studentInfo: null
+    students: [],
+    student: null
+  }
+
+  componentDidMount() {
+  StudentService.fetchStudents()
+    .then(students => this.setState({students}))
   }
 
   closeStudent= () => {
     this.setState({
-      studentInfo: null
+      student: null
     });
+  }
+
+  addStudent = student => {
+    StudentService.createStudent(student)
+    .then(student => this.setState({
+      students: this.state.students.concat(student)
+    }))
   }
 
   render() {
     const showStudent = (id) => {
       StudentService.fetchStudent(id)
-      .then(response => this.setState({studentInfo: response}));
+      .then(response => this.setState({student: response}));
     };
       
-    const studentsList = this.props.students.map(student => 
+    const studentsList = this.state.students.map(student => 
       <div key={student.id}>
         <Table className={classes.Students}>
           <thead>
@@ -51,10 +65,11 @@ class Students extends Component {
             </tr>
           </thead>
         </Table>
+        <AddStudent addStudent={this.addStudent}/>
         {studentsList}
       </div>
       <Aux>
-        {this.state.studentInfo ? <Student student={this.state.studentInfo} close={this.closeStudent}
+        {this.state.student ? <Student student={this.state.student} close={this.closeStudent}
           /> : null }
       </Aux>
     </Aux>
