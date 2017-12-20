@@ -180,8 +180,12 @@ use Pundit to control dropdown list for genre, level and format
       Research might be a one time recommendation for this particular student, context and time (could also be submitted as a Resource by the Teacher, but not by default)
     All is saved to Student's resource area, available on Student show page
 ==================================================================================
+after: 
+-updating the repo including api and client
+-creating a branch to test build
+-running 'npm run build'
 
-build notes: 
+here is what you see: 
 
 [19:25:04] (build-test) client
 // ♥ npm run build
