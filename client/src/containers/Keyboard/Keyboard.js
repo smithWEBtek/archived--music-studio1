@@ -9,7 +9,7 @@ const keyboard = (props) => (
       <li className={[classes.black, classes.as].join(' ')}></li>
       <li className={[classes.white, classes.a].join(' ')}></li>
       <li className={[classes.black, classes.gs].join(' ')}></li>
-      <li className={[classes.white, classes.g].join(' ')}></li>
+      <li className={[classes.white, classes.d].join(' ')}></li>
       <li className={[classes.black, classes.fs].join(' ')}></li>
       <li className={[classes.white, classes.f].join(' ')}></li>
       <li className={[classes.white, classes.e].join(' ')}></li>
