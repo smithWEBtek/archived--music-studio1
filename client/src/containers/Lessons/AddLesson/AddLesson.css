@@ -1,0 +1,12 @@
+.AddLesson {
+  color: violet;
+}
+
+.AddForm {
+  float: left;
+  text-align: left;
+  width: 60vw;
+  height: 40vh;
+  background: rgb(200, 241, 207);
+  color: rgb(119, 114, 114);
+}

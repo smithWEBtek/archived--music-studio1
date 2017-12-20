@@ -13,8 +13,10 @@ import AddResource from './components/Resources/AddResource/AddResource';
 import Resources from './components/Resources/Resources';
 import ResourceService from './components/Resources/ResourceService';
  
-import Lesson from './containers/Lesson/Lesson';
-
+import AddLesson from './containers/Lessons/AddLesson/AddLesson';
+import Lessons from './containers/Lessons/Lessons';
+import LessonService from './containers/Lessons/LessonService';
+ 
 class App extends Component {
   constructor(){
     super()
@@ -25,7 +27,9 @@ class App extends Component {
       teachers: [],
       teacher: {},
       resources: [],
-      resource: {}
+      resource: {},
+      lessons: [],
+      lesson: {}
     }
   }
 
@@ -38,6 +42,9 @@ class App extends Component {
 
     ResourceService.fetchResources()
     .then(resources => this.setState({ resources }))
+  
+    LessonService.fetchLessons()
+    .then(lessons => this.setState({ lessons }))
   }
   
   addStudent = student => {
@@ -47,14 +54,20 @@ class App extends Component {
   }
   
   addTeacher = teacher => {
-  TeacherService.createTeacher(teacher).then(teacher => this.setState({
-    teachers: this.state.teachers.concat(teacher),
+    TeacherService.createTeacher(teacher).then(teacher => this.setState({
+      teachers: this.state.teachers.concat(teacher),
     }))
   }
   
   addResource = resource => {
     ResourceService.createResource(resource).then(resource => this.setState({
-      resource : this.state.resources.concat(resource),
+      resources: this.state.resources.concat(resource),
+    }))
+  }
+  
+  addLesson = lesson => {
+    LessonService.createLesson(lesson).then(lesson => this.setState({
+      lessons: this.state.lessons.concat(lesson),
     }))
   }
  
@@ -64,7 +77,10 @@ class App extends Component {
         <h2 className={classes.Title}>Piano Student App</h2>
         <div className='container'>
 
-          <Lesson />
+          <div className={classes.Sidebar}> 
+            <AddLesson addLesson={this.addLesson} />
+            <Lessons lessons={this.state.lessons} />
+          </div>
 
           <div className={classes.Sidebar}> 
             <AddStudent addStudent={this.addStudent} />
@@ -80,6 +96,7 @@ class App extends Component {
             <AddResource addResource={this.addResource} />
             <Resources resources={this.state.resources} />
           </div>
+
 
         </div>
       </div>
