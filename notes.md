@@ -180,3 +180,33 @@ use Pundit to control dropdown list for genre, level and format
       Research might be a one time recommendation for this particular student, context and time (could also be submitted as a Resource by the Teacher, but not by default)
     All is saved to Student's resource area, available on Student show page
 ==================================================================================
+
+build notes: 
+
+[19:25:04] (build-test) client
+// ♥ npm run build
+
+> piano-student-client@0.1.0 build /Users/BradSmith/dev/_final/piano-student/client
+> node scripts/build.js
+
+Creating an optimized production build...
+Compiled successfully.
+
+File sizes after gzip:
+
+  62.87 KB  build/static/js/main.0c4e68b5.js
+  445 B     build/static/css/main.28ebad44.css
+
+The project was built assuming it is hosted at the server root.
+To override this, specify the homepage in your package.json.
+For example, add this to build it for GitHub Pages:
+
+  "homepage" : "http://myname.github.io/myapp",
+
+The build folder is ready to be deployed.
+You may serve it with a static server:
+
+  npm install -g serve
+  serve -s build
+==================================================================================
+
