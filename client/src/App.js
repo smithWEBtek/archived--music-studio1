@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-
-import Keyboard from './containers/Keyboard/Keyboard'; 
+import classes from './App.css';
+ 
 import AddStudent from './components/Students/AddStudent/AddStudent';
 import Students from './components/Students/Students';
 import StudentService from './components/Students/StudentService';
@@ -12,8 +12,8 @@ import TeacherService from './components/Teachers/TeacherService';
 import AddResource from './components/Resources/AddResource/AddResource';
 import Resources from './components/Resources/Resources';
 import ResourceService from './components/Resources/ResourceService';
-
-import classes from './App.css';
+ 
+import Lesson from './containers/Lesson/Lesson';
 
 class App extends Component {
   constructor(){
@@ -64,7 +64,7 @@ class App extends Component {
         <h2 className={classes.Title}>Piano Student App</h2>
         <div className='container'>
 
-          <Keyboard />
+          <Lesson />
 
           <div className={classes.Sidebar}> 
             <AddStudent addStudent={this.addStudent} />

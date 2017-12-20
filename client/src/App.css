@@ -1,9 +1,10 @@
 .App {
   text-align: center;
+  background-color: rgb(220, 241, 255);
 }
   
 .Title {
-  color: rgb(149, 167, 184);
+  color: rgb(176, 210, 241);
   font-size: 1.5em;
 }
 

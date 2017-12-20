@@ -11,6 +11,12 @@ class Students extends Component {
     studentInfo: null
   }
 
+  closeStudent= () => {
+    this.setState({
+      studentInfo: null
+    });
+  }
+
   render() {
     const showStudent = (id) => {
       StudentService.fetchStudent(id)
@@ -48,7 +54,8 @@ class Students extends Component {
         {studentsList}
       </div>
       <Aux>
-        {this.state.studentInfo ? <Student student={this.state.studentInfo} /> : null }
+        {this.state.studentInfo ? <Student student={this.state.studentInfo} close={this.closeStudent}
+          /> : null }
       </Aux>
     </Aux>
     )

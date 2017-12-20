@@ -8,6 +8,7 @@ const student = (props) => (
       <p className={classes.Student}>Email: {props.student.email}</p>
       <p className={classes.Student}>Level: {props.student.level}</p>
       <p className={classes.Student}>TeacherID: {props.student.teacher_id}</p>
+      <button onClick={props.close}>Close</button>
     </fieldset>
   </div>
 )
