@@ -14,14 +14,16 @@ class Lesson extends Component {
   render() {
     return (
       <Aux>
-        <div className={classes.Lesson}>
-          <h3>Current Lesson info</h3>
-          <p>Student info: {this.props.lesson.student_id}</p>
-          <p>Teacher info: {this.props.lesson.teacher_id}</p>
-          <p>Notes: {this.props.lesson.notes}</p>
-        <LessonControls />
-        <button onClick={this.props.close}>Close</button>
-        </div>
+        <fieldset>
+          <div className={classes.Lesson}>
+            <h3>Current Lesson info</h3>
+            <p>Student info: {this.props.lesson.student_id}</p>
+            <p>Teacher info: {this.props.lesson.teacher_id}</p>
+            <p>Notes: {this.props.lesson.notes}</p>
+          <LessonControls />
+          <button onClick={this.props.close}>Close</button>
+          </div>
+        </fieldset>
       </Aux>
     )
   }
