@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
-  root '/api/students'
-
+  
+  root 'students#index'
   namespace :api do
     resources :teachers
     resources :students
