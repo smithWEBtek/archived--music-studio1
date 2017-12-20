@@ -17,7 +17,8 @@ import AddLesson from './containers/Lessons/AddLesson/AddLesson';
 import Lessons from './containers/Lessons/Lessons';
 import LessonService from './containers/Lessons/LessonService';
  
-import Logo from './assets/images/logo.png';
+// import Logo from './assets/images/logo.png';
+import ToolBar from './components/Navigation/ToolBar/ToolBar';
 
 class App extends Component {
   constructor(){
@@ -77,9 +78,10 @@ class App extends Component {
     return (
       <div className={[classes.App, classes.container].join(' ')}>
         <h2 className={classes.Title}>Piano Student App</h2>
-        <div className='container'>
 
-          <img src={Logo} alt="app-logo"/>
+        <ToolBar />
+
+        <div className='container'>
          
           <div className={classes.Sidebar}> 
             <AddLesson addLesson={this.addLesson} />
@@ -100,7 +102,6 @@ class App extends Component {
             <AddResource addResource={this.addResource} />
             <Resources resources={this.state.resources} />
           </div>
-
 
         </div>
       </div>
