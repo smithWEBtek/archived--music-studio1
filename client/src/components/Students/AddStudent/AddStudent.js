@@ -3,19 +3,15 @@ import classes from './AddStudent.css';
 
 
 class AddStudent extends Component {
-  constructor(props){
-    super(props)
-
-    this.state = {   
-      formVisible: false,   
-      firstname: '',
-      lastname: '',
-      email: '',
-      level: '',
-      teacher_id: '',
-    }
+  state = {   
+    formVisible: false,   
+    firstname: '',
+    lastname: '',
+    email: '',
+    level: '',
+    teacher_id: '',
   }
-
+  
   handleShowForm = (event) => {
     this.setState({formVisible: !this.state.formVisible})
   }
