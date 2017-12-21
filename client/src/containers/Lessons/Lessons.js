@@ -1,31 +1,44 @@
 import React, {Component} from 'react';
 import {Table} from 'reactstrap';
 import classes from './Lessons.css';
-import Aux from '../../hoc/Aux/Aux';
 import LessonService from './LessonService';
 import Lesson from './Lesson/Lesson';
+import AddLesson from './AddLesson/AddLesson';
+import Aux from '../../hoc/Aux/Aux';
 
 class Lessons extends Component {
   state = {
-    lessons: this.props.lessons,
-    lessonInfo: null
+    lessons: [],
+    lesson: null
   }
 
   closeLesson = () => {
-    this.setState({lessonInfo: null})
+    this.setState({lesson: null})
+  }
+  
+  componentDidMount() {
+    LessonService.fetchLessons()
+    .then(lessons => this.setState({lessons: lessons}))
+  }
+  
+  addLesson = lesson => {
+    LessonService.createLesson(lesson)
+      .then(lesson => this.setState({
+        lessons: this.state.lessons.concat(lesson)
+    }));
   }
 
   render() {
     const showLesson = (id) => {
       LessonService
         .fetchLesson(id)
-        .then(response => this.setState({lessonInfo: response}, 
-        console.log('this.state.lessonInfo: ', this.state.lessonInfo)
+        .then(response => this.setState({lesson: response}, 
+        console.log('this.state.lesson: ', this.state.lesson)
         )
         );
     };
 
-    const lessonsList = this.props.lessons.map(lesson => 
+    const lessonsList = this.state.lessons.map(lesson => 
       <div key={lesson.id}>
         <Table className={classes.Lessons}>
           <thead>
@@ -42,6 +55,7 @@ class Lessons extends Component {
           </thead>
         </Table>
       </div>);
+
     return (
       <Aux>
         <div>
@@ -55,11 +69,12 @@ class Lessons extends Component {
               </tr>
             </thead>
           </Table>
+          <AddLesson addLesson={this.addLesson}/>
           {lessonsList}
         </div>
         <Aux>
-          {this.state.lessonInfo
-            ? <Lesson lesson={this.state.lessonInfo} close={this.closeLesson}/>
+          {this.state.lesson
+            ? <Lesson lesson={this.state.lesson} close={this.closeLesson}/>
             : null}
         </Aux>
       </Aux>

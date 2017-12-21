@@ -22,9 +22,7 @@ class AddStudent extends Component {
  
   handleOnChange = (event) => {
     const { name, value } = event.target;
-    this.setState({
-      [name]: value
-    })
+    this.setState({[name]: value})
   }
  
   handleSubmit = (e) => { 
@@ -32,12 +30,12 @@ class AddStudent extends Component {
     const student = this.state;   
     this.props.addStudent(student)
     this.setState({
+      formVisible: false,
       firstname: '',
       lastname: '',
       email: '',
       level: '',
-      teacher_id: '',
-      formVisible: false,
+      teacher_id: ''
     })
   }
 
@@ -45,7 +43,7 @@ class AddStudent extends Component {
     return (
       <div>
         <button onClick={(event)=>this.handleShowForm(event)}>
-          Add Student</button>
+          AddStudentForm</button>
         { this.state.formVisible
           ? 
         <form onSubmit={this.handleSubmit} className={classes.AddForm}>

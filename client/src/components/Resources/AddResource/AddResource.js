@@ -44,7 +44,7 @@ class AddResource extends Component {
     return (
       <div>
         <button onClick={(event) => this.handleShowForm(event)}>
-          Add Resource</button>
+          AddResourceForm</button>
         {this.state.formVisible
           ? <form onSubmit={this.handleSubmit} className={classes.AddForm}>
               <p>

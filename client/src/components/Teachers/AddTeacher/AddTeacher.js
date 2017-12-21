@@ -40,7 +40,7 @@ class AddTeacher extends Component {
     return (
       <div className={classes.AddTeacher}>
         <button onClick={(event)=>this.handleShowForm(event)}>
-          Add Teacher</button>
+          AddTeacherForm</button>
         { this.state.formVisible
           ? 
         <form onSubmit={this.handleSubmit} className={classes.AddForm}>
