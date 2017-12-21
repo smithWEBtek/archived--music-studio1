@@ -29,7 +29,7 @@ class AddTeacher extends Component {
       lastname: '',
       email: '',
       formVisible: false,
-    })
+    });
   }
 
   render() {

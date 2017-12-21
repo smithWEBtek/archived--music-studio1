@@ -21,8 +21,10 @@ class Students extends Component {
     StudentService.createStudent(student)
       .then(student => this.setState({
         students: this.state.students.concat(student)
-      }))
+      })
+    )
   }
+  
   // handleEditStudent
 
   handleDeleteStudent = (id) => {

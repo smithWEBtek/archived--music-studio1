@@ -16,12 +16,14 @@ class Teachers extends Component {
     .then(teachers => this.setState({teachers: teachers}))
   }
   
-  addTeacher = teacher => {
+  handleAddTeacher = teacher => {
     TeacherService.createTeacher(teacher)
     .then(teacher => this.setState({
       teachers: this.state.teachers.concat(teacher)
     }))
   }
+
+  // handleEditTeacher
 
   handleDeleteTeacher = (id) => {
     TeacherService.deleteTeacher(id);
@@ -61,7 +63,7 @@ class Teachers extends Component {
   return (
     <Aux>
       <div><fieldset><legend>Teachers</legend>
-        <AddTeacher addTeacher={this.addTeacher}/>
+        <AddTeacher addTeacher={this.handleAddTeacher}/>
 
 
         <Table className={classes.Teachers}>
