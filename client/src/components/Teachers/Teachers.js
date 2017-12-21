@@ -53,7 +53,8 @@ class Teachers extends Component {
 
   return (
     <Aux>
-      <div>
+      <div><fieldset><legend>Teachers</legend>
+        <AddTeacher addTeacher={this.addTeacher}/>
         <Table className={classes.Teachers}>
           <thead>
             <tr>
@@ -63,8 +64,8 @@ class Teachers extends Component {
             </tr>
           </thead>
         </Table>
-        <AddTeacher addTeacher={this.addTeacher}/>
         {TeachersList}
+        </fieldset>
       </div>
       <Aux>
         {this.state.teacher ? <Teacher teacher={this.state.teacher} close={this.closeTeacher}/> : null }

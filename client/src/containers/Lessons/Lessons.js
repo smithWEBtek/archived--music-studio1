@@ -58,7 +58,8 @@ class Lessons extends Component {
 
     return (
       <Aux>
-        <div>
+        <div><fieldset><legend>Lessons</legend>
+          <AddLesson addLesson={this.addLesson}/>
           <Table className={classes.Lessons}>
             <thead>
               <tr>
@@ -69,8 +70,8 @@ class Lessons extends Component {
               </tr>
             </thead>
           </Table>
-          <AddLesson addLesson={this.addLesson}/>
           {lessonsList}
+          </fieldset>
         </div>
         <Aux>
           {this.state.lesson

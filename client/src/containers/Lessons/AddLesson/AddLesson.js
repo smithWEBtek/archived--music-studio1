@@ -63,7 +63,7 @@ class AddLesson extends Component {
     }
     
     LessonService.createLesson(lessonData)
-    .then(response => console.log(response));
+    .then(response => console.log('lessonData: ', response));
 
     this.setState({
       formVisible : false,
@@ -74,8 +74,7 @@ class AddLesson extends Component {
       resource : '',
       teachers : [],
       students : [],
-      resources : [],
-      lessons : []
+      resources : []
     });
   }
   

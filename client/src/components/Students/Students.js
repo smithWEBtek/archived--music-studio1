@@ -54,7 +54,8 @@ class Students extends Component {
 
   return (
     <Aux>
-      <div>
+      <div><fieldset><legend>Students</legend>
+        <AddStudent addStudent={this.addStudent}/>
         <Table className={classes.Students}>
           <thead>
             <tr>
@@ -64,8 +65,8 @@ class Students extends Component {
             </tr>
           </thead>
         </Table>
-        <AddStudent addStudent={this.addStudent}/>
         {studentsList}
+        </fieldset>
       </div>
       <Aux>
         {this.state.student ? <Student student={this.state.student} close={this.closeStudent}

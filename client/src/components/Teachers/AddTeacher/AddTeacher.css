@@ -2,8 +2,8 @@
 .AddForm {
   float: left;
   text-align: left;
-  width: 60vw;
-  height: 40vh;
+  width: 100vw;
+  height: 20vh;
   background: rgb(200, 241, 207);
   color: rgb(119, 114, 114);
   font-family: 'Open Sans', sans-serif;

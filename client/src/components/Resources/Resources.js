@@ -56,7 +56,8 @@ class Resources extends Component {
 
   return (
     <Aux>
-      <div>
+      <div><fieldset><legend>Resources</legend>
+        <AddResource addResource={this.addResource}/>
         <Table className={classes.Resources}>
           <thead>
             <tr>
@@ -69,8 +70,8 @@ class Resources extends Component {
             </tr>
           </thead>
         </Table>
-        <AddResource addResource={this.addResource}/>
         {resourcesList}
+        </fieldset>
       </div>
       <Aux>
         {this.state.resource ? <Resource resource={this.state.resource} close={this.closeResource} /> : null }
