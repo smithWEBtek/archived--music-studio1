@@ -3,8 +3,11 @@ REQUIREMENTS
 [x] Use create-react-app generator to start your project.
 [x] Follow the instructions on this repo to setup the generator: create-react-app
 [x] Your app should have one HTML page to render your react-redux application
-[ ] There should be 2 container components
-[ ] There should be 5 stateless components
+[x] There should be 2 container components
+    Stateful: <Layout />, <Lesson />, <AddLesson />, <Students />, <Teachers />, <Resources />
+[x] There should be 5 stateless components
+    Stateless: <Student />, <Teacher />, <Resource />, <StudentService />, <TeacherService />, <ResourceService />, <LessonService />
+
 [ ] There should be 3 routes
 ----[ ] use react-router and proper RESTful routing
 ----[ ] use Redux middleware to respond to and modify state change
@@ -17,10 +20,42 @@ REQUIREMENTS
 [x] write (additional) CSS yourself if you wish
 
 
-[ ] move teachers, students, resources and lessons code out of layout, leaving just <ComponentName />
+[x] move teachers, students, resources and lessons code out of layout, leaving just <ComponentName />
+[x] buttons to toggle Students, Teachers, Resources, Lessons
 [ ] connect toolbar links to show indexes for students, teachers, resources and lessons
-
  
+[ ] edit, update, delete student, teacher, resource, lesson
+[ ] add multiple resources to new or existing lesson
+[ ] constrain views for admin, teacher, student
+[ ] user authentication
+[ ] needs more style
+
+[ ] show lesson:
+  [ ]should showcase video, pdf, audio and lesson experience
+  [ ]should have easy ways for teacher to add resources
+  [ ]should have easy way for teacher to create resource on the fly
+
+[ ] show student
+  [ ] should have complete list of lessons and resources assigned
+  [ ] should have a chart showing practice progress on assigned resources
+  [ ] should have a way to submit new resource ideas back to the teacher, favorite tunes
+  [ ] should have a student practice log
+
+[ ] show resource
+  [ ] should be more elaborate view of resource
+  [ ] should take advantage of serialization data, to show "Students Assigned To This Resource"
+  [ ] should have a chart showing students practice frequency for this resource
+  [ ] if pdf: view the pdf in a small window
+  [ ] if video: show YouTube small video window
+  [ ] should have feedback mechanism for students to comment on progress, difficulty, improvements, etc.
+
+[ ] show teacher
+  [ ] shows all students assigned
+
+[ ] show admin
+  [ ] main view, access to all students, teachers, resources
+
+
 [x] plan the application 
 [x]  -plan the data model
 [x] build the database 

@@ -37,9 +37,6 @@ class Layout extends Component {
           {this.state.teachersVisible ? <Teachers /> : null }
           {this.state.resourcesVisible ? <Resources /> : null }
           {this.state.lessonsVisible ? <Lessons /> : null }
-
-
-
         </div>
       </Aux>
     );
