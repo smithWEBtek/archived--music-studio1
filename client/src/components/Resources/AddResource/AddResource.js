@@ -16,9 +16,7 @@ class AddResource extends Component {
   }
 
   handleShowForm = (event) => {
-    this.setState({
-      formVisible: !this.state.formVisible
-    })
+    this.setState({formVisible: !this.state.formVisible})
   }
 
   handleOnChange = (event) => {
@@ -28,15 +26,15 @@ class AddResource extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const resource = this.state;
-    this.props.addResource(resource)
+    const resourceData = this.state;
+    this.props.addResource(resourceData)
     this.setState({
+      formVisible: false,
       title : '',
       category : '',
       description : '',
       format : '',
-      location : '',
-      formVisible: false
+      location : ''
     })
   }
 
@@ -92,7 +90,7 @@ class AddResource extends Component {
                   value={this.state.location}
                   onChange={(event) => this.handleOnChange(event)}
                   placeholder="location"/></p>
-              <button>Add Resource</button>
+              <button>Save Resource</button>
             </form>
           : null }
       </div>

@@ -16,20 +16,26 @@ class Resources extends Component {
     ResourceService.fetchResources()
     .then(resources => this.setState({resources: resources}))
   }
+  
+  handleAddResource = resource => {
+    ResourceService.createResource(resource)
+    .then(resource => this.setState({
+      resources: this.state.resources.concat(resource)
+    }))
+  }
+
+  // handleEditResource
+
+  handleDeleteResource = (id) => {
+    ResourceService.deleteResource(id);
+  };
 
   closeResource = () => {
     this.setState({
       resource: null
     });
   }
-
-  addResource = resource => {
-    ResourceService.createResource(resource)
-      .then(resource => this.setState({
-        resources: this.state.resources.concat(resource)
-    }))
-  }
-
+  
   render() {
     const showResource = (id) => {
       ResourceService.fetchResource(id)
@@ -42,6 +48,9 @@ class Resources extends Component {
           <thead>
             <tr>
               <td><button onClick={()=>showResource(resource.id)}>show</button></td>
+              <td><button>Edit</button></td>
+              <td><button onClick={()=>this.handleDeleteResource(resource.id)}>Delete</button></td>
+              
               <td>{resource.id}</td>
               <td>{resource.title}</td>
               <td>{resource.category}</td>
@@ -57,7 +66,7 @@ class Resources extends Component {
   return (
     <Aux>
       <div><fieldset><legend>Resources</legend>
-        <AddResource addResource={this.addResource}/>
+        <AddResource addResource={this.handleAddResource}/>
         <Table className={classes.Resources}>
           <thead>
             <tr>

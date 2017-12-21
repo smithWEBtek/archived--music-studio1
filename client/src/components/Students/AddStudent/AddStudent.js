@@ -87,7 +87,7 @@ class AddStudent extends Component {
             onChange={(event)=>this.handleOnChange(event)} 
             placeholder="teacher_id"
           /></p>
-          <button>Save</button>
+          <button>Save Student</button>
         </form>
         : null
         }

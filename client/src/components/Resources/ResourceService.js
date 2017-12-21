@@ -18,7 +18,12 @@ const ResourceService = {
       }
     }
     return fetch(`${API_URL}/resources`, request).then(response => response.json())
+  },
+
+  deleteResource(id) {
+    fetch(`${API_URL}/resources/${id}`, { method: 'DELETE' });
   }
+
 }
 
 export default ResourceService;

@@ -19,6 +19,11 @@ class Api::ResourcesController < ApplicationController
     end
   end
 
+  def destroy 
+    @resource = Resource.find(params[:id])
+    @resource.delete
+  end
+
   private
   def resource_params
     params.require(:resource).permit(:title, :category, :description, :format, :location)

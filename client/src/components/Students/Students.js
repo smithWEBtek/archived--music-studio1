@@ -50,7 +50,7 @@ class Students extends Component {
             <tr>
               <td><button onClick={()=>showStudent(student.id)}>Show</button></td>
               <td><button>Edit</button></td>
-              <td><button onClick={() => this.handleDeleteStudent(student.id)}>Delete</button></td>
+              <td><button onClick={()=>this.handleDeleteStudent(student.id)}>Delete</button></td>
 
               <td>{student.id}</td>
               <td>{student.firstname}</td>
@@ -65,11 +65,7 @@ class Students extends Component {
   return (
     <Aux>
       <div><fieldset><legend>Students</legend>
-
         <AddStudent addStudent={this.handleAddStudent}/>
-
-        
- 
         <Table className={classes.Students}>
           <thead>
             <tr>

@@ -68,7 +68,7 @@ class AddTeacher extends Component {
             placeholder="email"
           /></p>
  
-          <button>Add Teacher</button>
+          <button>Save Teacher</button>
         </form>
         : null
         }
