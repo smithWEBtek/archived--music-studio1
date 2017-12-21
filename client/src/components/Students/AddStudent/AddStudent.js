@@ -20,7 +20,8 @@ class AddStudent extends Component {
     this.setState({[name]: value})
   }
  
-  handleSubmit = () => { 
+  handleSubmit = (e) => {
+    e.preventDefault(); 
     const studentData = this.state;
     this.props.addStudent(studentData)
     this.setState({
@@ -32,13 +33,6 @@ class AddStudent extends Component {
       teacher_id: ''
     });
   }
-
-  // handleDeleteStudent = (id) => {
-  //   StudentService.deleteStudent(id)
-  //   .then(response => {
-  //     console.log('deleteStudent response: ', response)
-  //   })
-  // }
 
   render() {
     return (
@@ -93,9 +87,7 @@ class AddStudent extends Component {
             onChange={(event)=>this.handleOnChange(event)} 
             placeholder="teacher_id"
           /></p>
-          <button>Add Student</button>
-          <button>Edit Student</button>
-          <button onClick={()=>this.handleDeleteStudent()}>Delete Student</button>
+          <button>Save</button>
         </form>
         : null
         }

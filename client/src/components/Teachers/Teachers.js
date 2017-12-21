@@ -23,6 +23,10 @@ class Teachers extends Component {
     }))
   }
 
+  handleDeleteTeacher = (id) => {
+    TeacherService.deleteTeacher(id);
+  };
+
   closeTeacher = () => {
     this.setState({
       teacher: null
@@ -41,6 +45,9 @@ class Teachers extends Component {
           <thead>
             <tr>
               <td><button onClick={()=>showTeacher(teacher.id)}>show</button></td>
+              <td><button>Edit</button></td>
+              <td><button onClick={()=>this.handleDeleteTeacher(teacher.id)}>Delete</button></td>
+              
               <td className='right aligned'>{teacher.id}</td>
               <td className='right aligned'>{teacher.firstname}</td>
               <td className='right aligned'>{teacher.lastname}</td>
@@ -55,6 +62,8 @@ class Teachers extends Component {
     <Aux>
       <div><fieldset><legend>Teachers</legend>
         <AddTeacher addTeacher={this.addTeacher}/>
+
+
         <Table className={classes.Teachers}>
           <thead>
             <tr>

@@ -23,6 +23,10 @@ const TeacherService = {
     }
     return fetch(`${API_URL}/teachers`, request)
     .then(response => response.json())
+  },
+
+  deleteTeacher(id) {
+    fetch(`${API_URL}/teachers/${id}`, { method: 'DELETE' });
   }
 }
   

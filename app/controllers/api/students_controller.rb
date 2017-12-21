@@ -28,6 +28,11 @@ class Api::StudentsController < ApplicationController
       render json: { errors: { message: 'student NOT updated' }}
     end
   end
+
+  def destroy
+    @student = Student.find(params[:id])
+    @student.delete
+  end
   
   private
   def student_params

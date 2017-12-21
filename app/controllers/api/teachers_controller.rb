@@ -29,6 +29,11 @@ class Api::TeachersController < ApplicationController
       end
     end
     
+    def destroy
+      @teacher = Teacher.find(params[:id])
+      @teacher.delete
+    end
+
     private
     def teacher_params
       params.require(:teacher).permit(:firstname, :lastname, :email)

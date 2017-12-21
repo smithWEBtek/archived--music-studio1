@@ -14,16 +14,21 @@ class Students extends Component {
 
   componentDidMount() {
   StudentService.fetchStudents()
-    .then(students => this.setState({students: students}))
+    .then(response => this.setState({ students: response}))
   }
 
-  addStudent = (student) => {
+  handleAddStudent = (student) => {
     StudentService.createStudent(student)
       .then(student => this.setState({
         students: this.state.students.concat(student)
       }))
   }
-  
+  // handleEditStudent
+
+  handleDeleteStudent = (id) => {
+    StudentService.deleteStudent(id);
+  };
+
   closeStudent= () => {
     this.setState({
       student: null
@@ -41,7 +46,10 @@ class Students extends Component {
         <Table className={classes.Students}>
           <thead>
             <tr>
-              <td><button onClick={()=>showStudent(student.id)}>show</button></td>
+              <td><button onClick={()=>showStudent(student.id)}>Show</button></td>
+              <td><button>Edit</button></td>
+              <td><button onClick={() => this.handleDeleteStudent(student.id)}>Delete</button></td>
+
               <td>{student.id}</td>
               <td>{student.firstname}</td>
               <td>{student.lastname}</td>
@@ -55,7 +63,11 @@ class Students extends Component {
   return (
     <Aux>
       <div><fieldset><legend>Students</legend>
-        <AddStudent addStudent={this.addStudent}/>
+
+        <AddStudent addStudent={this.handleAddStudent}/>
+
+        
+ 
         <Table className={classes.Students}>
           <thead>
             <tr>
