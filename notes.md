@@ -28,7 +28,8 @@ REQUIREMENTS
 [ ] add multiple resources to new or existing lesson
 [ ] constrain views for admin, teacher, student
 [ ] user authentication
-[ ] needs more style
+[ ] needs more style (steal css from udemy-react-blog)
+[ ] determine if you can refactor some stateful components to stateless with props only
 
 [ ] show lesson:
   [ ]should showcase video, pdf, audio and lesson experience

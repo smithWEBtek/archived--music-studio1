@@ -17,13 +17,13 @@ class Students extends Component {
     .then(students => this.setState({students: students}))
   }
 
-  addStudent = student => {
+  addStudent = (student) => {
     StudentService.createStudent(student)
-    .then(student => this.setState({
-      students: this.state.students.concat(student)
-    }))
+      .then(student => this.setState({
+        students: this.state.students.concat(student)
+      }))
   }
-
+  
   closeStudent= () => {
     this.setState({
       student: null

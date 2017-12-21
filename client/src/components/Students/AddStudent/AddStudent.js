@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
 import classes from './AddStudent.css';
 
-
 class AddStudent extends Component {
   state = {   
-    formVisible: false,   
+    formVisible: false,
     firstname: '',
     lastname: '',
     email: '',
     level: '',
-    teacher_id: '',
+    teacher_id: ''
   }
-  
+ 
   handleShowForm = (event) => {
     this.setState({formVisible: !this.state.formVisible})
   }
@@ -21,10 +20,9 @@ class AddStudent extends Component {
     this.setState({[name]: value})
   }
  
-  handleSubmit = (e) => { 
-    e.preventDefault();
-    const student = this.state;   
-    this.props.addStudent(student)
+  handleSubmit = () => { 
+    const studentData = this.state;
+    this.props.addStudent(studentData)
     this.setState({
       formVisible: false,
       firstname: '',
@@ -32,8 +30,15 @@ class AddStudent extends Component {
       email: '',
       level: '',
       teacher_id: ''
-    })
+    });
   }
+
+  // handleDeleteStudent = (id) => {
+  //   StudentService.deleteStudent(id)
+  //   .then(response => {
+  //     console.log('deleteStudent response: ', response)
+  //   })
+  // }
 
   render() {
     return (
@@ -89,6 +94,8 @@ class AddStudent extends Component {
             placeholder="teacher_id"
           /></p>
           <button>Add Student</button>
+          <button>Edit Student</button>
+          <button onClick={()=>this.handleDeleteStudent()}>Delete Student</button>
         </form>
         : null
         }
