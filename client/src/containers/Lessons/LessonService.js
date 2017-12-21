@@ -18,7 +18,13 @@ const LessonService = {
       }
     }
     return fetch(`${API_URL}/lessons`, request).then(response => response.json())
+  },
+
+  deleteLesson(id) {
+    fetch(`${API_URL}/lessons/${id}`, {method: 'delete'});
   }
+
+
 }
 
 export default LessonService;

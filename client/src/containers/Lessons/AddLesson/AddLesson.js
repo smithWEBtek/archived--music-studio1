@@ -3,16 +3,15 @@ import classes from './AddLesson.css';
 import TeacherService from '../../../components/Teachers/TeacherService';
 import StudentService from '../../../components/Students/StudentService';
 import ResourceService from '../../../components/Resources/ResourceService';
-import LessonService from '../LessonService';
 
 class AddLesson extends Component {
   state = {
     formVisible: false,
-    lesson: '', 
     teacher: '',
     student: '',
     notes: '',
     resource: '',
+    
     teachers: [],
     students: [],
     resources: [],
@@ -31,9 +30,7 @@ class AddLesson extends Component {
   }
 
   handleShowForm = (event) => {
-    this.setState({
-      formVisible: !this.state.formVisible
-    })
+    this.setState({formVisible: !this.state.formVisible})
   }
 
   handleTeacherSelect = (event) => {
@@ -54,27 +51,26 @@ class AddLesson extends Component {
     })
   };
 
-  handleSubmit = () => {
+  handleSubmit = (e) => {
+    e.preventDefault();
     const lessonData = {
       teacher_id: this.state.teacher.id,
       student_id: this.state.student.id,
       resource_id: this.state.resource.id,
       notes: this.state.notes
     }
-    
-    LessonService.createLesson(lessonData)
-    .then(response => console.log('lessonData: ', response));
-
+    this.props.addLesson(lessonData)
     this.setState({
-      formVisible : false,
-      lesson : '',
-      teacher : '',
-      student : '',
-      notes : '',
-      resource : '',
-      teachers : [],
-      students : [],
-      resources : []
+      formVisible: false,
+      teacher: '',
+      student: '',
+      notes: '',
+      resource: '',
+
+      teachers: [],
+      students: [],
+      resources: [],
+      lessons: []
     });
   }
   
@@ -121,7 +117,7 @@ class AddLesson extends Component {
           <label>Notes</label>
           <input 
             type="text"
-            value={this.state.lesson.notes}
+            value={this.state.notes}
             onChange={(event) => this.setState({notes: event.target.value})}
             placeholder="notes" />
         </p>

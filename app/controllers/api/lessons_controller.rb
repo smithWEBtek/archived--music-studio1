@@ -28,7 +28,12 @@ class Api::LessonsController < ApplicationController
       render json: { errors: { message: 'lesson NOT updated' }}
     end
   end
-  
+
+  def destroy 
+    @lesson = Lesson.find(params[:id])
+    @lesson.delete
+  end
+
   private
   def lesson_params
     params.require(:lesson).permit(:date, :teacher_id, :student_id, :notes, resource_ids: [])

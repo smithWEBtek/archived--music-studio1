@@ -11,23 +11,30 @@ class Lessons extends Component {
     lessons: [],
     lesson: null
   }
-
-  closeLesson = () => {
-    this.setState({lesson: null})
-  }
-  
   componentDidMount() {
     LessonService.fetchLessons()
     .then(lessons => this.setState({lessons: lessons}))
   }
   
-  addLesson = lesson => {
+  handleAddLesson = (lesson) => {
     LessonService.createLesson(lesson)
-      .then(lesson => this.setState({
-        lessons: this.state.lessons.concat(lesson)
+    .then(lesson => this.setState({
+      lessons: this.state.lessons.concat(lesson)
     }));
   }
+  
+  // handleEditLesson
 
+  handleDeleteLesson = (id) => {
+    LessonService.deleteLesson(id);
+  };
+
+  closeLesson = () => {
+    this.setState({
+      lesson: null
+    });
+  }
+  
   render() {
     const showLesson = (id) => {
       LessonService
@@ -43,9 +50,9 @@ class Lessons extends Component {
         <Table className={classes.Lessons}>
           <thead>
             <tr>
-              <td>
-                <button onClick={() => showLesson(lesson.id)}>show</button>
-              </td>
+              <td><button onClick={() => showLesson(lesson.id)}>show</button></td>
+              <td><button>Edit</button></td>
+              <td><button onClick={() => this.handleDeleteLesson(lesson.id)}>Delete</button></td>
               <td className='right aligned'>{lesson.id}</td>
               <td className='right aligned'>{lesson.teacher_id}</td>
               <td className='right aligned'>{lesson.student_id}</td>
@@ -59,7 +66,7 @@ class Lessons extends Component {
     return (
       <Aux>
         <div><fieldset><legend>Lessons</legend>
-          <AddLesson addLesson={this.addLesson}/>
+          <AddLesson addLesson={this.handleAddLesson} />
           <Table className={classes.Lessons}>
             <thead>
               <tr>
