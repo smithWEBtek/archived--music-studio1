@@ -2,17 +2,13 @@ import React, { Component } from 'react';
 import classes from './AddTeacher.css';
 
 class AddTeacher extends Component {
-  constructor(props){
-    super(props)
-
-    this.state = {   
-      formVisible: false,   
-      firstname: '',
-      lastname: '',
-      email: ''
-    }
+  state = {   
+    formVisible: false,   
+    firstname: '',
+    lastname: '',
+    email: ''
   }
-
+ 
   handleShowForm = (event) => {
     this.setState({formVisible: !this.state.formVisible})
   }
