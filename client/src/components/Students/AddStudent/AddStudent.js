@@ -39,10 +39,8 @@ class AddStudent extends Component {
       <div>
         <button onClick={(event)=>this.handleShowForm(event)}>
           AddStudentForm</button>
-        { this.state.formVisible
-          ? 
+        { this.state.formVisible ? 
         <form onSubmit={this.handleSubmit} className={classes.AddForm}>
-
           <p><label htmlFor="student_name">First name </label>
           <input 
             type="text"
@@ -51,7 +49,6 @@ class AddStudent extends Component {
             onChange={(event)=>this.handleOnChange(event)} 
             placeholder="firstname"
           /></p>
-
           <p><label>Last name </label>
           <input 
             type="text"
@@ -60,7 +57,6 @@ class AddStudent extends Component {
             onChange={(event)=>this.handleOnChange(event)} 
             placeholder="lastname"
           /></p>
-
           <p><label>Email </label>
           <input 
             type="text"
@@ -69,7 +65,6 @@ class AddStudent extends Component {
             onChange={(event)=>this.handleOnChange(event)} 
             placeholder="email"
           /></p>
-
           <p><label>Level </label>
           <input 
             type="text"
@@ -78,19 +73,16 @@ class AddStudent extends Component {
             onChange={(event)=>this.handleOnChange(event)} 
             placeholder="level"
           /></p>
-
           <p><label>Teacher ID </label>
           <input 
             type="text"
             name="teacher_id"
             value={this.state.teacher_id} 
             onChange={(event)=>this.handleOnChange(event)} 
-            placeholder="teacher_id"
-          /></p>
+            placeholder="teacher_id"/></p>
           <button>Save Student</button>
         </form>
-        : null
-        }
+        : null }
       </div>   
     )
   }
