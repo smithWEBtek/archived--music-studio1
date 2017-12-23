@@ -1,11 +1,20 @@
 import React from 'react';
 import classes from './NavigationItem.css';
-import { Link } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 
 const navigationItem = (props) => (
   <li className={classes.NavigationItem}>
-    <Link to={{pathname: props.link}} className={props.active ? classes.active : null}>{props.children}</Link>
+    <NavLink 
+      to={{pathname: props.link}} 
+      exact 
+      className={props.active ? classes.active : null}
+      activeClassName="my-active"
+      activeStyle={{
+        color: '#2d3d1a',
+        fontStyle: 'normal'
+      }}
+      >{props.children}</NavLink>
   </li>
 )
 
-export default navigationItem;
+export default withRouter(navigationItem);

@@ -16,7 +16,7 @@ const StudentService = {
       method: 'POST',
       body: JSON.stringify({
         student: student
-      }),
+      }), 
       headers: {
         'Content-Type': 'application/json'
       }
