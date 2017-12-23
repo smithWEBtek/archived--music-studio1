@@ -19,7 +19,7 @@ const navigationItems = () => (
       <NavigationItem link="/resources" active>Resources</NavigationItem>
     </ul>
     <div>
-<Route path="/" exact render={() => <h1>Welcome Home Dorothy!</h1>} />
+      <Route path="/" exact render={() => <h1>Welcome Home Dorothy!</h1>} />
       <Route path="/students" exact component={Students} />
       <Route path="/teachers" exact component={Teachers} />
       <Route path="/lessons" exact component={Lessons} />

@@ -12,6 +12,7 @@ class Teachers extends Component {
     teacher: null
   }
   componentDidMount() {
+    console.log('props @ Teachers componentDidMount', this.props)
     TeacherService.fetchTeachers()
     .then(teachers => this.setState({teachers: teachers}))
   }
@@ -38,7 +39,10 @@ class Teachers extends Component {
   render() {
     const showTeacher = (id) => {
       TeacherService.fetchTeacher(id)
-      .then(response => this.setState({teacher: response}));
+      .then(response => this.setState({
+        teacher: response
+        })
+      )
     };
       
     const TeachersList = this.state.teachers.map(teacher => 
@@ -64,8 +68,6 @@ class Teachers extends Component {
     <Aux>
       <div><fieldset><legend>Teachers</legend>
         <AddTeacher addTeacher={this.handleAddTeacher}/>
-
-
         <Table className={classes.Teachers}>
           <thead>
             <tr>
@@ -79,7 +81,12 @@ class Teachers extends Component {
         </fieldset>
       </div>
       <Aux>
-        {this.state.teacher ? <Teacher teacher={this.state.teacher} close={this.closeTeacher}/> : null }
+        {this.state.teacher ? <Teacher 
+          teacher={this.state.teacher} 
+          {...this.props} 
+          close={this.closeTeacher}
+          students={this.state.teacher.students}
+          /> : null }
       </Aux>
     </Aux>
     )

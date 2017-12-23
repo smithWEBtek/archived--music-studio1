@@ -79,7 +79,13 @@ class Students extends Component {
         </fieldset>
       </div>
       <Aux>
-        {this.state.student ? <Student student={this.state.student} close={this.closeStudent}
+        {this.state.student ? <Student 
+          firstname={this.state.student.firstname}
+          lastname={this.state.student.lastname}
+          email={this.state.student.email}
+          level={this.state.student.level}
+          teacher_id={this.state.student.teacher_id}
+          close={this.closeStudent}
           /> : null }
       </Aux>
     </Aux>
