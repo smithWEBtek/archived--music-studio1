@@ -5,7 +5,8 @@ DATA_teachers = {
     ['Not', 'Assigned', 'unassigned@music.com'],
     ['Joe', 'Pepper', 'jpepper@music.com'],
     ['Mila', 'Filatova', 'mfilatova@music.com'],
-    ['Barry', 'Gendron', 'bgendron@music.com']
+    ['Barry', 'Gendron', 'bgendron@music.com'],
+    ['James', 'Brown', 'jb@getfunky.com']
   ]
 }
 
@@ -24,14 +25,16 @@ DATA_students = {
     ["level", "teacher_id", "firstname", "lastname", "email"],
   :students => [
     [1, 1, 'James', 'Smith', 'jsmith@student.com'],
-    [2, 1, 'Peter', 'Granger', 'pgranger@student.com'],
-    [2, 1, 'Teddy', 'Mullet', 'tmullet@student.com'],
+    [2, 5, 'Peter', 'Granger', 'pgranger@student.com'],
+    [2, 3, 'Teddy', 'Mullet', 'tmullet@student.com'],
     [2, 2, 'Francis', 'Callucci', 'fcallucci@student.com'],
     [3, 2, 'Brian', 'Nadeau', 'bnadeau@student.com'],
-    [1, 2, 'Sue', 'Morrow', 'smorrow@student.com'],
+    [1, 3, 'Sue', 'Morrow', 'smorrow@student.com'],
     [1, 3, 'Andrea', 'McPhail', 'amcphail@student.com'],
-    [3, 3, 'Orin', 'Keepnews', 'okeepnews@student.com'],
-    [1, 3, 'Will', 'Marron', 'wmarron@student.com']
+    [3, 4, 'Orin', 'Keepnews', 'okeepnews@student.com'],
+    [1, 4, 'Will', 'Marron', 'wmarron@student.com'],
+    [1, 5, 'Penny', 'Clump', 'pclump@student.com'],
+    [1, 5, 'Babu', 'Aadou', 'babadoo@student.com']
   ]
 }
 

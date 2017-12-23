@@ -3,7 +3,7 @@ import { Table } from 'reactstrap';
 import AddStudent from './AddStudent/AddStudent';
 import Student from './Student/Student';
 import StudentService from './StudentService';
-import classes from './Students.css';
+// import classes from './Students.css';
 import Aux from '../../hoc/Aux/Aux';
 
 class Students extends Component {
@@ -45,7 +45,8 @@ class Students extends Component {
       
     const studentsList = this.state.students.map(student => 
       <div key={student.id}>
-        <Table className={classes.Students}>
+        {/* <Table className={classes.Students}> */}
+        <Table className='dark'>
           <thead>
             <tr>
               <td><button onClick={()=>showStudent(student.id)}>Show</button></td>
@@ -66,7 +67,8 @@ class Students extends Component {
     <Aux>
       <div><fieldset><legend>Students</legend>
         <AddStudent addStudent={this.handleAddStudent}/>
-        <Table className={classes.Students}>
+        {/* <Table className={classes.Table}> */}
+        <Table className='dark'>
           <thead>
             <tr>
               <th>ID</th>
