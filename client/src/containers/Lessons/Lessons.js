@@ -37,11 +37,8 @@ class Lessons extends Component {
   
   render() {
     const showLesson = (id) => {
-      LessonService
-        .fetchLesson(id)
-        .then(response => this.setState({lesson: response}, 
-        console.log('this.state.lesson: ', this.state.lesson)
-        )
+      LessonService.fetchLesson(id)
+        .then(response => this.setState({lesson: response})
         );
     };
 

@@ -24,7 +24,7 @@ REQUIREMENTS
 [x] buttons to toggle Students, Teachers, Resources, Lessons
 [ ] connect toolbar links to show indexes for students, teachers, resources and lessons
  
-[ ] edit, update, delete student, teacher, resource, lesson
+[ ] edit, update student, teacher, resource, lesson
 [ ] add multiple resources to new or existing lesson
 [ ] constrain views for admin, teacher, student
 [ ] user authentication

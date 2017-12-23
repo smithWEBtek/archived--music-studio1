@@ -4,7 +4,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  color: whitesmoke;
+  color: rgb(124, 110, 110);
   background-color: rgb(79, 131, 161);
   display: flex;
   justify-content: space-between;
