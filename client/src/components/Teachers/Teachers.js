@@ -14,14 +14,14 @@ class Teachers extends Component {
   componentDidMount() {
     console.log('props @ Teachers componentDidMount', this.props)
     TeacherService.fetchTeachers()
-    .then(teachers => this.setState({teachers: teachers}))
+      .then(teachers => this.setState({ teachers: teachers }))
   }
-  
+
   handleAddTeacher = teacher => {
     TeacherService.createTeacher(teacher)
-    .then(teacher => this.setState({
-      teachers: this.state.teachers.concat(teacher)
-    }))
+      .then(teacher => this.setState({
+        teachers: this.state.teachers.concat(teacher)
+      }))
   }
 
   // handleEditTeacher
@@ -39,56 +39,58 @@ class Teachers extends Component {
   render() {
     const showTeacher = (id) => {
       TeacherService.fetchTeacher(id)
-      .then(response => this.setState({
-        teacher: response
+        .then(response => this.setState({
+          teacher: response
         })
-      )
+        )
     };
-      
-    const TeachersList = this.state.teachers.map(teacher => 
-      <div key={teacher.id}>
-        <Table className={classes.Teachers}>
-          <thead>
-            <tr>
-              <td><button onClick={()=>showTeacher(teacher.id)}>show</button></td>
-              <td><button>Edit</button></td>
-              <td><button onClick={()=>this.handleDeleteTeacher(teacher.id)}>Delete</button></td>
-              
-              <td className='right aligned'>{teacher.id}</td>
-              <td className='right aligned'>{teacher.firstname}</td>
-              <td className='right aligned'>{teacher.lastname}</td>
-              <td className='right aligned'>{teacher.email}</td>
-            </tr>
-          </thead>
-        </Table>
-      </div> 
-    );
 
-  return (
-    <Aux>
-      <div><fieldset><legend>Teachers</legend>
-        <AddTeacher addTeacher={this.handleAddTeacher}/>
-        <Table className={classes.Teachers}>
-          <thead>
-            <tr>
-              <th scope="row">ID</th>
-              <th>Name</th>
-              <th>Email</th>
-            </tr>
-          </thead>
-        </Table>
-        {TeachersList}
-        </fieldset>
-      </div>
+    const TeachersList = this.state.teachers.map(teacher => {
+      return (
+        <Aux key={teacher.id}>
+          <tr>
+            <td>{teacher.id}</td>
+            <td>{teacher.firstname}</td>
+            <td>{teacher.lastname}</td>
+            <td>{teacher.email}</td>
+            <td><button onClick={() => showTeacher(teacher.id)}>Show</button></td>
+            <td><button>Edit</button></td>
+            <td><button onClick={() => this.handleDeleteTeacher(teacher.id)}>X</button></td>
+          </tr>
+        </Aux>
+      )
+    });
+
+    return (
       <Aux>
-        {this.state.teacher ? <Teacher 
-          teacher={this.state.teacher} 
-          {...this.props} 
-          close={this.closeTeacher}
-          students={this.state.teacher.students}
-          /> : null }
+        <div style={{ margin: '30px' }}>
+          <AddTeacher addTeacher={this.handleAddTeacher} />
+          <Table className={classes.Teachers}>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>First</th>
+                <th>Last</th>
+                <th>Email</th>
+                <th>Show</th>
+                <th>Edit</th>
+                <th>Del</th>
+              </tr>
+            </thead>
+            <tbody>
+              {TeachersList}
+            </tbody>
+          </Table>
+        </div>
+        <Aux>
+          {this.state.teacher ? <Teacher
+            teacher={this.state.teacher}
+            {...this.props}
+            close={this.closeTeacher}
+            students={this.state.teacher.students}
+          /> : null}
+        </Aux>
       </Aux>
-    </Aux>
     )
   }
 }

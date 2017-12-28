@@ -1,8 +1,5 @@
-.Resources {
-  color: rgb(52, 55, 105);
-  font-family: 'Open Sans', sans-serif;
-}
-
 .Resources td {
-  padding: 3px;
+  color: black;
+  padding: 4px;
+  font-family: 'Open Sans', sans-serif;
 }

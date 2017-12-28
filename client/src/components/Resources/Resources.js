@@ -8,20 +8,20 @@ import Aux from '../../hoc/Aux/Aux';
 
 class Resources extends Component {
   state = {
-    resources : [],
-    resource : null
+    resources: [],
+    resource: null
   }
 
   componentDidMount() {
     ResourceService.fetchResources()
-    .then(resources => this.setState({resources: resources}))
+      .then(resources => this.setState({ resources: resources }))
   }
-  
+
   handleAddResource = resource => {
     ResourceService.createResource(resource)
-    .then(resource => this.setState({
-      resources: this.state.resources.concat(resource)
-    }))
+      .then(resource => this.setState({
+        resources: this.state.resources.concat(resource)
+      }))
   }
 
   // handleEditResource
@@ -35,57 +35,56 @@ class Resources extends Component {
       resource: null
     });
   }
-  
+
   render() {
     const showResource = (id) => {
       ResourceService.fetchResource(id)
-      .then(response => this.setState({resource: response}));
+        .then(response => this.setState({ resource: response }));
     };
-      
-    const resourcesList = this.state.resources.map(resource => 
-      <div key={resource.id}>
-        <Table className={classes.Resources}>
-          <thead>
-            <tr>
-              <td><button onClick={()=>showResource(resource.id)}>show</button></td>
-              <td><button>Edit</button></td>
-              <td><button onClick={()=>this.handleDeleteResource(resource.id)}>Delete</button></td>
-              
-              <td>{resource.id}</td>
-              <td>{resource.title}</td>
-              <td>{resource.category}</td>
-              <td>{resource.description}</td>
-              <td>{resource.format}</td>
-              <td>{resource.location}</td>
-            </tr>
-          </thead>
-        </Table>
-      </div> 
+
+    const resourcesList = this.state.resources.map(resource =>
+      <Aux key={resource.id}>
+        <tr>
+          <td>{resource.id}</td>
+          <td>{resource.title}</td>
+          <td>{resource.category}</td>
+          <td>{resource.description}</td>
+          <td>{resource.format}</td>
+          <td>{resource.location}</td>
+          <td><button onClick={() => showResource(resource.id)}>show</button></td>
+          <td><button>Edit</button></td>
+          <td><button onClick={() => this.handleDeleteResource(resource.id)}>X</button></td>
+        </tr>
+      </Aux>
     );
 
-  return (
-    <Aux>
-      <div><fieldset><legend>Resources</legend>
-        <AddResource addResource={this.handleAddResource}/>
-        <Table className={classes.Resources}>
-          <thead>
-            <tr>
-              <th scope="row">ID</th>
-              <th>Title</th>
-              <th>Category</th>
-              <th>Description</th>
-              <th>Format</th>
-              <th>Location</th>
-            </tr>
-          </thead>
-        </Table>
-        {resourcesList}
-        </fieldset>
-      </div>
+    return (
       <Aux>
-        {this.state.resource ? <Resource resource={this.state.resource} close={this.closeResource} /> : null }
+        <div style={{ margin: '30px' }}>
+          <AddResource addResource={this.handleAddResource} />
+          <Table className={classes.Resources}>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Description</th>
+                <th>Format</th>
+                <th>Location</th>
+                <th>Show</th>
+                <th>Edit</th>
+                <th>Del</th>
+              </tr>
+            </thead>
+            <tbody>
+              {resourcesList}
+            </tbody>
+          </Table>
+        </div>
+        <Aux>
+          {this.state.resource ? <Resource resource={this.state.resource} close={this.closeResource} /> : null}
+        </Aux>
       </Aux>
-    </Aux>
     )
   }
 }

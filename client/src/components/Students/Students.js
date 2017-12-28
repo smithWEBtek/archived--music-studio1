@@ -6,7 +6,6 @@ import StudentService from './StudentService';
 import classes from './Students.css';
 import Aux from '../../hoc/Aux/Aux';
 // import NavStudents from './NavStudents/NavStudents';
-// import Table from '../UI/Table/Table';
 
 class Students extends Component {
   state = {
@@ -46,45 +45,41 @@ class Students extends Component {
     };
 
     const studentsList = this.state.students.map(student => {
-      return <div key={student.id} className={[classes.StudentsTable, classes.StudentsTableRounded].join(' ')}>
-        {/* <Table className={[classes.StudentsTable, classes.StudentsTableRounded].join(' ')}> */}
-        <Table>
-          <tbody>
-            <tr>
-              <td><button onClick={() => showStudent(student.id)}>Show</button></td>
-              <td><button>Edit</button></td>
-              <td><button onClick={() => this.handleDeleteStudent(student.id)}>Del</button></td>
-
-              <td className='right aligned'>{student.id}</td>
-              <td className='right aligned'>{student.firstname}</td>
-              <td className='right aligned'>{student.lastname}</td>
-              <td className='right aligned'>{student.email}</td>
-            </tr>
-          </tbody>
-        </Table>
-      </div>
+      return (
+        <Aux key={student.id}>
+          <tr>
+            <td>{student.id}</td>
+            <td>{student.firstname}</td>
+            <td>{student.lastname}</td>
+            <td>{student.email}</td>
+            <td><button onClick={() => showStudent(student.id)}>Show</button></td>
+            <td><button>Edit</button></td>
+            <td><button onClick={() => this.handleDeleteStudent(student.id)}>X</button></td>
+          </tr>
+        </Aux>
+      )
     });
 
     return (
       <Aux>
-        <div className={classes.Students}><fieldset><legend>Students</legend>
+        <div style={{ margin: '30px' }}>
           <AddStudent addStudent={this.handleAddStudent} />
-          {/* <Table className={[classes.StudentsTable, classes.StudentsTableRounded].join(' ')}> */}
-          <Table>
+          <Table className={classes.Students}>
             <thead>
               <tr>
+                <th>ID</th>
+                <th>First</th>
+                <th>Last</th>
+                <th>Email</th>
                 <th>Show</th>
                 <th>Edit</th>
                 <th>Del</th>
-                <th>ID</th>
-                <th>FirstName</th>
-                <th>LastName</th>
-                <th>Email</th>
               </tr>
             </thead>
+            <tbody>
+              {studentsList}
+            </tbody>
           </Table>
-          {studentsList}
-        </fieldset>
         </div>
         <Aux>
           {this.state.student ? <Student

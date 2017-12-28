@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Table} from 'reactstrap';
+import React, { Component } from 'react';
+import { Table } from 'reactstrap';
 import classes from './Lessons.css';
 import LessonService from './LessonService';
 import Lesson from './Lesson/Lesson';
@@ -13,16 +13,16 @@ class Lessons extends Component {
   }
   componentDidMount() {
     LessonService.fetchLessons()
-    .then(lessons => this.setState({lessons: lessons}))
+      .then(lessons => this.setState({ lessons: lessons }))
   }
-  
+
   handleAddLesson = (lesson) => {
     LessonService.createLesson(lesson)
-    .then(lesson => this.setState({
-      lessons: this.state.lessons.concat(lesson)
-    }));
+      .then(lesson => this.setState({
+        lessons: this.state.lessons.concat(lesson)
+      }));
   }
-  
+
   // handleEditLesson
 
   handleDeleteLesson = (id) => {
@@ -34,52 +34,55 @@ class Lessons extends Component {
       lesson: null
     });
   }
-  
+
   render() {
     const showLesson = (id) => {
       LessonService.fetchLesson(id)
-        .then(response => this.setState({lesson: response})
+        .then(response => this.setState({ lesson: response })
         );
     };
 
-    const lessonsList = this.state.lessons.map(lesson => 
-      <div key={lesson.id}>
-        <Table className={classes.Lessons}>
-          <thead>
-            <tr>
-              <td><button onClick={() => showLesson(lesson.id)}>show</button></td>
-              <td><button>Edit</button></td>
-              <td><button onClick={() => this.handleDeleteLesson(lesson.id)}>Delete</button></td>
-              <td className='right aligned'>{lesson.id}</td>
-              <td className='right aligned'>{lesson.teacher_id}</td>
-              <td className='right aligned'>{lesson.student_id}</td>
-              {/* <td className='right aligned'>{lesson.resources[0]}</td> */}
-              <td className='right aligned'>{lesson.notes}</td>
-            </tr>
-          </thead>
-        </Table>
-      </div>);
+    const lessonsList = this.state.lessons.map(lesson => {
+      return (
+        <Aux key={lesson.id}>
+          <tr>
+            <td>{lesson.id}</td>
+            <td>{lesson.teacher_id}</td>
+            <td>{lesson.student_id}</td>
+            {/* <td>{lesson.resources[0]}</td> */}
+            <td>{lesson.notes}</td>
+            <td><button onClick={() => showLesson(lesson.id)}>Show</button></td>
+            <td><button>Edit</button></td>
+            <td><button onClick={() => this.handleDeleteLesson(lesson.id)}>X</button></td>
+          </tr>
+        </Aux>
+      )
+    });
 
     return (
       <Aux>
-        <div><fieldset><legend>Lessons</legend>
+        <div style={{ margin: '30px' }}>
           <AddLesson addLesson={this.handleAddLesson} />
           <Table className={classes.Lessons}>
             <thead>
               <tr>
                 <th scope="row">ID</th>
-                <th>FirstName</th>
-                <th>LastName</th>
-                <th>Email</th>
+                <th>Level</th>
+                <th>TeacherID</th>
+                <th>Notes</th>
+                <th>Show</th>
+                <th>Edit</th>
+                <th>Del</th>
               </tr>
             </thead>
+            <tbody>
+              {lessonsList}
+            </tbody>
           </Table>
-          {lessonsList}
-          </fieldset>
         </div>
         <Aux>
           {this.state.lesson
-            ? <Lesson lesson={this.state.lesson} close={this.closeLesson}/>
+            ? <Lesson lesson={this.state.lesson} close={this.closeLesson} />
             : null}
         </Aux>
       </Aux>

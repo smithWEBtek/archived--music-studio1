@@ -1,8 +1,5 @@
-.Lessons {
-  color: rgb(66, 66, 24);
-  font-family: 'Open Sans', sans-serif;
-}
-      
 .Lessons td {
-  padding: 3px;
+  color: black;
+  padding: 4px;
+  font-family: 'Open Sans', sans-serif;
 }

@@ -1,8 +1,5 @@
-.Teachers {
+.Teachers  td {
   color: black;
+  padding: 4px;
   font-family: 'Open Sans', sans-serif;
-}
-
-.Teachers td {
-  padding: 3px;
 }
