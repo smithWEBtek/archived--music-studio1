@@ -22,7 +22,6 @@ class Students extends Component {
       .then(response => this.setState({ students: response }))
   }
 
-
   // handleEditStudent
 
   deleteStudentHandler = (id) => {
@@ -51,7 +50,6 @@ class Students extends Component {
   }
 
   addStudentCancelHandler = () => {
-    console.log('[Students] state top of addStudentCancelHandler: ', this.state)
     this.setState({
       student: null,
       addingStudent: false
@@ -82,15 +80,14 @@ class Students extends Component {
 
     const addStudentData = [...this.state.addedStudent];
 
-
     return (
       <Aux>
         <div style={{ margin: '30px' }}>
-          {/* put inside modal */}
           <AddStudent
             addStudent={this.addStudentHandler}
-            addStudentCancel={this.addStudentCancelHandler}
-          />
+            addStudentCancel={this.addStudentCancelHandler} />
+
+          {/* put AddStudent inside modal */}
           <Modal show={this.state.addingStudent} modalClosed={this.addStudentCancelHandler}>
             {addStudentData}
           </Modal>

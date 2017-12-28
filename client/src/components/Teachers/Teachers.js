@@ -5,6 +5,7 @@ import TeacherService from './TeacherService';
 import AddTeacher from './AddTeacher/AddTeacher';
 import classes from './Teachers.css';
 import Aux from '../../hoc/Aux/Aux';
+import Modal from '../UI/Modal/Modal';
 
 class Teachers extends Component {
   state = {
@@ -14,40 +15,48 @@ class Teachers extends Component {
     addingTeacher: false
   }
   componentDidMount() {
-    console.log('props @ Teachers componentDidMount', this.props)
     TeacherService.fetchTeachers()
-      .then(teachers => this.setState({ teachers: teachers }))
-  }
-
-  handleAddTeacher = teacher => {
-    TeacherService.createTeacher(teacher)
-      .then(teacher => this.setState({
-        teachers: this.state.teachers.concat(teacher)
-      }))
+      .then(response => this.setState({ teachers: response }))
   }
 
   // handleEditTeacher
 
-  handleDeleteTeacher = (id) => {
+  deleteTeacherHandler = (id) => {
     TeacherService.deleteTeacher(id);
     let teachers = [...this.state.teachers];
     teachers = teachers.filter(teacher => teacher.id !== id);
     this.setState({ teachers: teachers });
   };
 
-  closeTeacher = () => {
+  closeTeacherHandler = () => {
     this.setState({
       teacher: null
+    })
+  }
+
+  addTeacherHandler = teacher => {
+    if (teacher.email !== "") {
+      this.setState({ addingTeacher: true })
+      TeacherService.createTeacher(teacher)
+        .then(teacher => this.setState({
+          teachers: this.state.teachers.concat(teacher)
+        })
+        )
+      this.setState({ addingTeacher: false })
+    }
+  }
+
+  addTeacherCancelHandler = () => {
+    this.setState({
+      teacher: null,
+      addingTeacher: false
     })
   }
 
   render() {
     const showTeacher = (id) => {
       TeacherService.fetchTeacher(id)
-        .then(response => this.setState({
-          teacher: response
-        })
-        )
+        .then(response => this.setState({ teacher: response }));
     };
 
     const TeachersList = this.state.teachers.map(teacher => {
@@ -60,16 +69,26 @@ class Teachers extends Component {
             <td>{teacher.email}</td>
             <td><button onClick={() => showTeacher(teacher.id)}>Show</button></td>
             <td><button>Edit</button></td>
-            <td><button onClick={() => this.handleDeleteTeacher(teacher.id)}>X</button></td>
+            <td><button onClick={() => this.deleteTeacherHandler(teacher.id)}>X</button></td>
           </tr>
         </Aux>
       )
     });
 
+    const addTeacherData = [...this.state.addedTeacher];
+
     return (
       <Aux>
         <div style={{ margin: '30px' }}>
-          <AddTeacher addTeacher={this.handleAddTeacher} />
+          <AddTeacher
+            addTeacher={this.addTeacherHandler}
+            addTeacherCancel={this.addTeacherCancelHandler} />
+
+          {/* put AddTeacher inside modal */}
+          <Modal show={this.state.addingTeacher} modalClosed={this.addTeacherCancelHandler}>
+            {addTeacherData}
+          </Modal>
+
           <Table className={classes.Teachers}>
             <thead>
               <tr>
@@ -89,9 +108,10 @@ class Teachers extends Component {
         </div>
         <Aux>
           {this.state.teacher ? <Teacher
-            teacher={this.state.teacher}
-            {...this.props}
-            close={this.closeTeacher}
+            firstname={this.state.teacher.firstname}
+            lastname={this.state.teacher.lastname}
+            email={this.state.teacher.email}
+            close={this.closeTeacherHandler}
             students={this.state.teacher.students}
           /> : null}
         </Aux>
