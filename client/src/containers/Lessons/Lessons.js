@@ -27,6 +27,9 @@ class Lessons extends Component {
 
   handleDeleteLesson = (id) => {
     LessonService.deleteLesson(id);
+    let lessons = [...this.state.lessons];
+    lessons = lessons.filter(lesson => lesson.id !== id);
+    this.setState({ lessons: lessons });
   };
 
   closeLesson = () => {
@@ -42,9 +45,9 @@ class Lessons extends Component {
         );
     };
 
-    const lessonsList = this.state.lessons.map(lesson => {
+    const lessonsList = this.state.lessons.map((lesson, index) => {
       return (
-        <Aux key={lesson.id}>
+        <Aux key={index}>
           <tr>
             <td>{lesson.id}</td>
             <td>{lesson.teacher_id}</td>

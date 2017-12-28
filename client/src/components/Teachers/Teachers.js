@@ -28,6 +28,9 @@ class Teachers extends Component {
 
   handleDeleteTeacher = (id) => {
     TeacherService.deleteTeacher(id);
+    let teachers = [...this.state.teachers];
+    teachers = teachers.filter(teacher => teacher.id !== id);
+    this.setState({ teachers: teachers });
   };
 
   closeTeacher = () => {

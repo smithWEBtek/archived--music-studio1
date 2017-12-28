@@ -30,6 +30,9 @@ class Students extends Component {
 
   handleDeleteStudent = (id) => {
     StudentService.deleteStudent(id);
+    let students = [...this.state.students];
+    students = students.filter(student => student.id !== id);
+    this.setState({ students: students });
   };
 
   closeStudent = () => {

@@ -28,6 +28,13 @@ class Resources extends Component {
 
   handleDeleteResource = (id) => {
     ResourceService.deleteResource(id);
+
+
+    let resources = [...this.state.resources];
+    console.log('[Resources.handleDeleteResources] resources: ', resources)
+    let updatedResources = resources.filter(res => res.id !== id);
+    console.log('[Resources.handleDeleteResources] updatedResources: ', updatedResources)
+    this.setState({ resources: updatedResources })
   };
 
   closeResource = () => {
