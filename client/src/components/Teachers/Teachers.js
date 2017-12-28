@@ -9,7 +9,9 @@ import Aux from '../../hoc/Aux/Aux';
 class Teachers extends Component {
   state = {
     teachers: [],
-    teacher: null
+    teacher: null,
+    addedTeacher: { name: "Mrs. McGillicuddy", email: "mmg@mus.com" },
+    addingTeacher: false
   }
   componentDidMount() {
     console.log('props @ Teachers componentDidMount', this.props)
