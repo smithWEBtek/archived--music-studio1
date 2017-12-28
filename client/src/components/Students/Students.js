@@ -13,7 +13,11 @@ class Students extends Component {
   state = {
     students: [],
     student: null,
-    addedStudent: { name: 'Brad', level: 2, email: 'brad@swt.com' },
+    addedStudent: {
+      name: 'Brad',
+      level: 2,
+      email: 'brad@swt.com'
+    },
     addingStudent: false
   }
 
@@ -116,8 +120,7 @@ class Students extends Component {
             email={this.state.student.email}
             level={this.state.student.level}
             teacher_id={this.state.student.teacher_id}
-            close={this.closeStudentHandler}
-          /> : null}
+            close={this.closeStudentHandler} /> : null}
         </Aux>
       </Aux>
     )
