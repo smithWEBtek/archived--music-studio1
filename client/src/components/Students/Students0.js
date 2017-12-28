@@ -1,22 +1,31 @@
 import React, { Component } from 'react';
-import { Table } from 'reactstrap';
+// import { Table } from 'reactstrap';
 import AddStudent from './AddStudent/AddStudent';
 import Student from './Student/Student';
 import StudentService from './StudentService';
 import classes from './Students.css';
 import Aux from '../../hoc/Aux/Aux';
 // import NavStudents from './NavStudents/NavStudents';
-// import Table from '../UI/Table/Table';
+import Table from '../UI/Table/Table';
 
 class Students extends Component {
   state = {
     students: [],
+    headers: [],
     student: null
   }
 
   componentDidMount() {
     StudentService.fetchStudents()
-      .then(response => this.setState({ students: response }))
+      .then(response => this.setState({ students: response })
+        .then(this.createHeaders())
+      );
+  }
+
+  createHeaders() {
+    let firstRow = this.state.students[0];
+    let headers = Object.keys(firstRow);
+    this.setState({ headers: headers });
   }
 
   handleAddStudent = (student) => {

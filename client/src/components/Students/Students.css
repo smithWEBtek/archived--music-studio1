@@ -1,5 +1,8 @@
 .Students {
-  color: rgba(79, 112, 17, 0.836);
+  color: black;
   font-family: 'Open Sans', sans-serif;
 }
- 
+
+.Students td {
+  padding: 3px;
+}

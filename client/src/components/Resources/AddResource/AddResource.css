@@ -1,9 +1,10 @@
-
 .AddForm {
   float: left;
   text-align: left;
-  width: 100vw;
-  height: 25vh;
-  background: rgb(200, 241, 207);
+  padding: 15px;
+  width: 80%;
+  height: 30vh;
+  background: rgb(164, 209, 171);
   color: rgb(119, 114, 114);
+  font-family: 'Open Sans', sans-serif;
 }
