@@ -5,12 +5,16 @@ import Student from './Student/Student';
 import StudentService from './StudentService';
 import classes from './Students.css';
 import Aux from '../../hoc/Aux/Aux';
+import Modal from '../UI/Modal/Modal';
+
 // import NavStudents from './NavStudents/NavStudents';
 
 class Students extends Component {
   state = {
     students: [],
-    student: null
+    student: null,
+    addedStudent: { name: 'Brad', level: 2, email: 'brad@swt.com' },
+    addingStudent: false
   }
 
   componentDidMount() {
@@ -18,27 +22,40 @@ class Students extends Component {
       .then(response => this.setState({ students: response }))
   }
 
-  handleAddStudent = (student) => {
-    StudentService.createStudent(student)
-      .then(student => this.setState({
-        students: this.state.students.concat(student)
-      })
-      )
-  }
 
   // handleEditStudent
 
-  handleDeleteStudent = (id) => {
+  deleteStudentHandler = (id) => {
     StudentService.deleteStudent(id);
     let students = [...this.state.students];
     students = students.filter(student => student.id !== id);
     this.setState({ students: students });
   };
 
-  closeStudent = () => {
+  closeStudentHandler = () => {
     this.setState({
       student: null
     });
+  }
+
+  addStudentHandler = (student) => {
+    if (student.teacher_id !== "") {
+      this.setState({ addingStudent: true })
+      StudentService.createStudent(student)
+        .then(student => this.setState({
+          students: this.state.students.concat(student)
+        })
+        )
+      this.setState({ addingStudent: false });
+    }
+  }
+
+  addStudentCancelHandler = () => {
+    console.log('[Students] state top of addStudentCancelHandler: ', this.state)
+    this.setState({
+      student: null,
+      addingStudent: false
+    })
   }
 
   render() {
@@ -57,16 +74,27 @@ class Students extends Component {
             <td>{student.email}</td>
             <td><button onClick={() => showStudent(student.id)}>Show</button></td>
             <td><button>Edit</button></td>
-            <td><button onClick={() => this.handleDeleteStudent(student.id)}>X</button></td>
+            <td><button onClick={() => this.deleteStudentHandler(student.id)}>X</button></td>
           </tr>
         </Aux>
       )
     });
 
+    const addStudentData = [...this.state.addedStudent];
+
+
     return (
       <Aux>
         <div style={{ margin: '30px' }}>
-          <AddStudent addStudent={this.handleAddStudent} />
+          {/* put inside modal */}
+          <AddStudent
+            addStudent={this.addStudentHandler}
+            addStudentCancel={this.addStudentCancelHandler}
+          />
+          <Modal show={this.state.addingStudent} modalClosed={this.addStudentCancelHandler}>
+            {addStudentData}
+          </Modal>
+
           <Table className={classes.Students}>
             <thead>
               <tr>
@@ -91,7 +119,7 @@ class Students extends Component {
             email={this.state.student.email}
             level={this.state.student.level}
             teacher_id={this.state.student.teacher_id}
-            close={this.closeStudent}
+            close={this.closeStudentHandler}
           /> : null}
         </Aux>
       </Aux>
