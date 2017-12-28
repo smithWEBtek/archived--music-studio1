@@ -5,6 +5,7 @@ import LessonService from './LessonService';
 import Lesson from './Lesson/Lesson';
 import AddLesson from './AddLesson/AddLesson';
 import Aux from '../../hoc/Aux/Aux';
+import Modal from '../../components/UI/Modal/Modal';
 
 class Lessons extends Component {
   state = {
