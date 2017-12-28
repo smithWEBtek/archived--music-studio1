@@ -1,70 +1,72 @@
 REQUIREMENTS
-[x] The code should be written in ES6 as much as possible
-[x] Use create-react-app generator to start your project.
-[x] Follow the instructions on this repo to setup the generator: create-react-app
-[x] Your app should have one HTML page to render your react-redux application
-[x] There should be 2 container components
+[X] The code should be written in ES6 as much as possible
+[X] Use create-react-app generator to start your project.
+[X] Follow the instructions on this repo to setup the generator: create-react-app
+[X] Your app should have one HTML page to render your react-redux application
+[X] There should be 2 container components
     Stateful: <Layout />, <Lesson />, <AddLesson />, <Students />, <Teachers />, <Resources />
-[x] There should be 5 stateless components
+[X] There should be 5 stateless components
     Stateless: <Student />, <Teacher />, <Resource />, <StudentService />, <TeacherService />, <ResourceService />, <LessonService />
 
-[ ] There should be 3 routes
-----[ ] use react-router and proper RESTful routing
-----[ ] use Redux middleware to respond to and modify state change
-----[ ] use async actions to send data to and receive data from a server
-[x] Rails API should handle the data persistence. 
-[x] You should be using fetch() within your actions to GET and [ ] POST data from your API
-[x] Do not use jQuery methods.
-[x] client-side application should handle the display of data with minimal data manipulation
-[x] app should have some minimal styling: feel free to stick to a framework (like react-bootstrap), 
-[x] write (additional) CSS yourself if you wish
+[X] There should be 3 routes
+[X] use react-router and proper RESTful routing
+[X] use async actions to send data to and receive data from a server
+[X] Rails API should handle the data persistence. 
+[X] You should be using fetch() within your actions to GET and []  POST data from your API
+[X] Do not use jQuery methods.
+[X] client-side application should handle the display of data with minimal data manipulation
+[X] app should have some minimal styling: feel free to stick to a framework (like react-bootstrap), 
+[X] write (additional) CSS yourself if you wish
+----[]  use Redux middleware to respond to and modify state change
 
-
-[x] move teachers, students, resources and lessons code out of layout, leaving just <ComponentName />
-[x] buttons to toggle Students, Teachers, Resources, Lessons
-[ ] connect toolbar links to show indexes for students, teachers, resources and lessons
+[X] move teachers, students, resources and lessons code out of layout, leaving just <ComponentName />
+[X] buttons to toggle Students, Teachers, Resources, Lessons
+[X] connect toolbar links to show indexes for students, teachers, resources and lessons
  
-[ ] edit, update student, teacher, resource, lesson
-[ ] add multiple resources to new or existing lesson
-[ ] constrain views for admin, teacher, student
-[ ] user authentication
-[ ] needs more style (steal css from udemy-react-blog)
-[ ] determine if you can refactor some stateful components to stateless with props only
+[]  edit & update student, teacher, resource, lesson
+[]  add multiple resources to new or existing lesson
+[]  use Modal(s) timed 3 seconds after clicking 'show' 
+[]  use Modal for Add form
 
-[ ] show lesson:
+[]  user authentication
+[]  constrain views for admin, teacher, student
+[]  needs more style (steal css from udemy-react-blog)
+[]  determine if you can refactor some stateful components to stateless with props only
+
+[]  show lesson:
   [ ]should showcase video, pdf, audio and lesson experience
   [ ]should have easy ways for teacher to add resources
   [ ]should have easy way for teacher to create resource on the fly
 
-[ ] show student
-  [ ] should have complete list of lessons and resources assigned
-  [ ] should have a chart showing practice progress on assigned resources
-  [ ] should have a way to submit new resource ideas back to the teacher, favorite tunes
-  [ ] should have a student practice log
+[]  show student
+  []  should have complete list of lessons and resources assigned
+  []  should have a chart showing practice progress on assigned resources
+  []  should have a way to submit new resource ideas back to the teacher, favorite tunes
+  []  should have a student practice log
 
-[ ] show resource
-  [ ] should be more elaborate view of resource
-  [ ] should take advantage of serialization data, to show "Students Assigned To This Resource"
-  [ ] should have a chart showing students practice frequency for this resource
-  [ ] if pdf: view the pdf in a small window
-  [ ] if video: show YouTube small video window
-  [ ] should have feedback mechanism for students to comment on progress, difficulty, improvements, etc.
+[]  show resource
+  []  should be more elaborate view of resource
+  []  should take advantage of serialization data, to show "Students Assigned To This Resource"
+  []  should have a chart showing students practice frequency for this resource
+  []  if pdf: view the pdf in a small window
+  []  if video: show YouTube small video window
+  []  should have feedback mechanism for students to comment on progress, difficulty, improvements, etc.
 
-[ ] show teacher
-  [ ] shows all students assigned
+[]  show teacher
+  []  shows all students assigned
 
-[ ] show admin
-  [ ] main view, access to all students, teachers, resources
+[]  show admin
+  []  main view, access to all students, teachers, resources
 
 
-[x] plan the application 
-[x]  -plan the data model
-[x] build the database 
-[x] seed the database 
-[x] create the api data, all models, index and create 
-[ ] plan the views required 
-[ ] plan the react app
-[ ] plan the redux parts
+[X] plan the application 
+[X]  -plan the data model
+[X] build the database 
+[X] seed the database 
+[X] create the api data, all models, index and create 
+[]  plan the views required 
+[]  plan the react app
+[]  plan the redux parts
 
 ==================================================================================
 DATA MODEL, migrations, active record relationships and sample data
@@ -117,7 +119,7 @@ all physical resources will be located on Cloudinary, except for YouTube links
 use Pundit to control dropdown list for genre, level and format
 
 ==================================================================================
-[ ]  -plan the teacher experience 
+[]  -plan the teacher experience 
   teacher signs up and logs in
   admin assigns new students to teacher
   home screen navbar: 
@@ -136,7 +138,7 @@ use Pundit to control dropdown list for genre, level and format
       Teacher can submit new resource for approval by admin (admin maintains naming conventions and categorization)
 
 ==================================================================================
-[ ]  -plan the student experience 
+[]  -plan the student experience 
   student signs up and logs in
   admin assigns students to teacher
   home screen navbar: 
@@ -152,7 +154,7 @@ use Pundit to control dropdown list for genre, level and format
       filter buttons for sorting by title, genre, level 
 
 ==================================================================================
-[ ]  -plan the admin experience 
+[]  -plan the admin experience 
   student signs up and logs in
   admin assigns students to teacher
   home screen navbar:
@@ -176,7 +178,7 @@ use Pundit to control dropdown list for genre, level and format
       Admin approves, edits & categorizes resources submitted by Teacher 
 
 ==================================================================================
-[ ]  - The LESSON experience
+[]  - The LESSON experience
     1: will happen in v1    2: might happen in v1     3: dream
     [1] Student home page is main viewer
     [1] Student or Teacher can select Resource to show or play
@@ -192,7 +194,7 @@ use Pundit to control dropdown list for genre, level and format
     [3] Teacher can quantize record notated and audible playing samples for student during lesson
     [3] App has Sketchup 3D hands, demonstrating instrument technique from player's view perspective
 
-    [] As the teacher adds resources to the student during a lesson, the app tallies the resoures along various measures, such as: 
+    []  As the teacher adds resources to the student during a lesson, the app tallies the resoures along various measures, such as: 
       technique
       harmony
       rhythm
