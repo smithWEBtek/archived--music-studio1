@@ -9,6 +9,13 @@
   font-family: 'Open Sans', sans-serif;
 }
  
+.Danger:hover {
+  background-color: rgb(247, 186, 186);
+}
+
+.Success:hover {
+  background-color: rgb(187, 250, 211);
+}
 
 .FormInstructions {
   font-style: italic;

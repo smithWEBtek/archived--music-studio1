@@ -78,8 +78,8 @@ class AddStudent extends Component {
               value={this.state.teacher_id}
               onChange={(event) => this.handleOnChange(event)}
               placeholder="teacher_id" /></p>
-          <button onClick={this.props.addStudentCancel}>CANCEL</button>
-          <button>ADD Student</button>
+          <button onClick={this.props.addStudentCancel} className={classes.Danger}>CANCEL</button>
+          <button className={classes.Success}>ADD Student</button>
         </form>
       </div>
     )

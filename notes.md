@@ -26,7 +26,7 @@ REQUIREMENTS
 []  edit & update student, teacher, resource, lesson
 []  add multiple resources to new or existing lesson
 []  use Modal(s) timed 3 seconds after clicking 'show' 
-[]  use Modal for Add form
+[X]  use Modal for Add form
 
 []  user authentication
 []  constrain views for admin, teacher, student
