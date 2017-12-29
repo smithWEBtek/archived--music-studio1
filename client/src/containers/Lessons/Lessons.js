@@ -16,41 +16,56 @@ class Lessons extends Component {
       student_id: 1,
       notes: '',
       resources: []
-    }
+    },
+    addingLesson: false
   }
   componentDidMount() {
     LessonService.fetchLessons()
-      .then(lessons => this.setState({ lessons: lessons }))
-  }
-
-  handleAddLesson = (lesson) => {
-    LessonService.createLesson(lesson)
-      .then(lesson => this.setState({
-        lessons: this.state.lessons.concat(lesson)
-      }));
+      .then(response => this.setState({ lessons: response }))
   }
 
   // handleEditLesson
 
-  handleDeleteLesson = (id) => {
+  deleteLessonHandler = (id) => {
     LessonService.deleteLesson(id);
     let lessons = [...this.state.lessons];
     lessons = lessons.filter(lesson => lesson.id !== id);
     this.setState({ lessons: lessons });
   };
 
-  closeLesson = () => {
+  closeLessonHandler = () => {
     this.setState({
       lesson: null
     });
   }
 
+  addLessonHandler = (lesson) => {
+    if (lesson.teacher_id !== "") {
+      this.setState({ addingLesson: true })
+      LessonService.createLesson(lesson)
+        .then(lesson => this.setState({
+          lessons: this.state.lessons.concat(lesson)
+        })
+        )
+      this.setState({ addingLesson: false });
+    }
+  }
+
+  addLessonCancelHandler = () => {
+    this.setState({
+      student: null,
+      addingLesson: false
+    })
+  }
+
+  showModal = () => {
+    this.setState({ addingLesson: true })
+  }
+
   render() {
     const showLesson = (id) => {
       LessonService.fetchLesson(id)
-        .then(response => this.setState({ lesson: response })
-        );
-      console.log('lesson state', this.state)
+        .then(response => this.setState({ lesson: response }));
     };
 
     const lessonsList = this.state.lessons.map((lesson, index) => {
@@ -63,7 +78,7 @@ class Lessons extends Component {
             <td>{lesson.notes}</td>
             <td><button onClick={() => showLesson(lesson.id)}>Show</button></td>
             <td><button>Edit</button></td>
-            <td><button onClick={() => this.handleDeleteLesson(lesson.id)}>X</button></td>
+            <td><button onClick={() => this.deleteLessonHandler(lesson.id)}>X</button></td>
           </tr>
         </Aux>
       )
@@ -72,7 +87,7 @@ class Lessons extends Component {
     return (
       <Aux>
         <div style={{ margin: '30px' }}>
-          <AddLesson addLesson={this.handleAddLesson} />
+          <AddLesson addLesson={this.addLessonHandler} />
           <Table className={classes.Lessons}>
             <thead>
               <tr>
@@ -98,7 +113,7 @@ class Lessons extends Component {
               student={this.state.lesson.student.lastname}
               notes={this.state.lesson.notes}
               resources={this.state.lesson.resources}
-              close={this.closeLesson} />
+              close={this.closeLessonHandler} />
             : null}
 
         </Aux>

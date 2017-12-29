@@ -7,8 +7,6 @@ import classes from './Students.css';
 import Aux from '../../hoc/Aux/Aux';
 import Modal from '../UI/Modal/Modal';
 
-// import NavStudents from './NavStudents/NavStudents';
-
 class Students extends Component {
   state = {
     students: [],
