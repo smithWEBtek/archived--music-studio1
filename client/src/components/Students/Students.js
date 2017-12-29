@@ -86,8 +86,6 @@ class Students extends Component {
       )
     });
 
-    const addStudentData = [...this.state.addedStudent];
-
     return (
       <Aux>
         <div style={{ margin: '30px' }}>
@@ -97,7 +95,6 @@ class Students extends Component {
             <AddStudent
               addStudent={this.addStudentHandler}
               addStudentCancel={this.addStudentCancelHandler} />
-            {/* {addStudentData} */}
           </Modal>
 
           <Table className={classes.Students}>

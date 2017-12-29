@@ -27,6 +27,7 @@ REQUIREMENTS
 []  add multiple resources to new or existing lesson
 []  use Modal(s) timed 3 seconds after clicking 'show' 
 [X]  use Modal for Add form
+[]  enforce active record delete related objects
 
 []  user authentication
 []  constrain views for admin, teacher, student
