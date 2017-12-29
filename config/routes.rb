@@ -7,8 +7,8 @@ Rails.application.routes.draw do
     get '/resetdb', to: 'resources#resetdb'
     resources :teachers
     resources :students
-    resources :resources
     resources :lessons
+    resources :resources
     resources :lesson_resources
   end
 

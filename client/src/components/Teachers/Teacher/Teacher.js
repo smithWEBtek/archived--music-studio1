@@ -3,7 +3,6 @@ import classes from './Teacher.css';
 import Student from '../../Students/Student/Student';
 
 class Teacher extends Component {
-
   state = {
     teacher: this.props.teacher,
     students: []
@@ -24,14 +23,14 @@ class Teacher extends Component {
   render() {
     let students = null;
     if (this.state.students) {
-      students = this.state.students.map((stu, index) => {
+      students = this.state.students.map((student, index) => {
         return <Student
-          firstname={stu.firstname}
-          lastname={stu.lastname}
-          email={stu.email}
-          level={stu.level}
-          teacher_id={stu.teacher_id}
-          id={stu.id}
+          firstname={student.firstname}
+          lastname={student.lastname}
+          email={student.email}
+          level={student.level}
+          teacher_id={student.teacher_id}
+          id={student.id}
           key={index}
           close={this.closeStudent}
         />

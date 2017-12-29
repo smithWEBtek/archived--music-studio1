@@ -37,53 +37,50 @@ class AddStudent extends Component {
   render() {
     return (
       <div>
-        <button onClick={(event) => this.handleShowForm(event)}>
-          AddStudentForm</button>
-        {this.state.formVisible ?
-          <form onSubmit={this.handleSubmit} className={classes.AddForm}>
-            <p><label htmlFor="student_name">First name </label>
-              <input
-                type="text"
-                name="firstname"
-                value={this.state.firstname}
-                onChange={(event) => this.handleOnChange(event)}
-                placeholder="firstname"
-              /></p>
-            <p><label>Last name </label>
-              <input
-                type="text"
-                name="lastname"
-                value={this.state.lastname}
-                onChange={(event) => this.handleOnChange(event)}
-                placeholder="lastname"
-              /></p>
-            <p><label>Email </label>
-              <input
-                type="text"
-                name="email"
-                value={this.state.email}
-                onChange={(event) => this.handleOnChange(event)}
-                placeholder="email"
-              /></p>
-            <p><label>Level </label>
-              <input
-                type="text"
-                name="level"
-                value={this.state.level}
-                onChange={(event) => this.handleOnChange(event)}
-                placeholder="level"
-              /></p>
-            <p><label>Teacher ID </label>
-              <input
-                type="text"
-                name="teacher_id"
-                value={this.state.teacher_id}
-                onChange={(event) => this.handleOnChange(event)}
-                placeholder="teacher_id" /></p>
-            <button onClick={this.props.addStudentCancel}>CANCEL</button>
-            <button>ADD Student</button>
-          </form>
-          : null}
+        <p className={classes.FormInstructions}>Complete form and click 'Add Student'</p>
+        <form onSubmit={this.handleSubmit} className={classes.AddForm}>
+          <p><label htmlFor="student_name">First name </label>
+            <input
+              type="text"
+              name="firstname"
+              value={this.state.firstname}
+              onChange={(event) => this.handleOnChange(event)}
+              placeholder="firstname"
+            /></p>
+          <p><label>Last name </label>
+            <input
+              type="text"
+              name="lastname"
+              value={this.state.lastname}
+              onChange={(event) => this.handleOnChange(event)}
+              placeholder="lastname"
+            /></p>
+          <p><label>Email </label>
+            <input
+              type="text"
+              name="email"
+              value={this.state.email}
+              onChange={(event) => this.handleOnChange(event)}
+              placeholder="email"
+            /></p>
+          <p><label>Level </label>
+            <input
+              type="text"
+              name="level"
+              value={this.state.level}
+              onChange={(event) => this.handleOnChange(event)}
+              placeholder="level"
+            /></p>
+          <p><label>Teacher ID </label>
+            <input
+              type="text"
+              name="teacher_id"
+              value={this.state.teacher_id}
+              onChange={(event) => this.handleOnChange(event)}
+              placeholder="teacher_id" /></p>
+          <button onClick={this.props.addStudentCancel}>CANCEL</button>
+          <button>ADD Student</button>
+        </form>
       </div>
     )
   }

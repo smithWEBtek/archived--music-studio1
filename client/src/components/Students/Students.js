@@ -60,6 +60,10 @@ class Students extends Component {
     })
   }
 
+  showModal = () => {
+    this.setState({ addingStudent: true })
+  }
+
   render() {
     const showStudent = (id) => {
       StudentService.fetchStudent(id)
@@ -87,13 +91,13 @@ class Students extends Component {
     return (
       <Aux>
         <div style={{ margin: '30px' }}>
-          <AddStudent
-            addStudent={this.addStudentHandler}
-            addStudentCancel={this.addStudentCancelHandler} />
-
-          {/* put AddStudent inside modal */}
+          {/* <button onClick={this.addStudentHandler}>AddStudent</button> */}
+          <button onClick={this.showModal}>AddStudent</button>
           <Modal show={this.state.addingStudent} modalClosed={this.addStudentCancelHandler}>
-            {addStudentData}
+            <AddStudent
+              addStudent={this.addStudentHandler}
+              addStudentCancel={this.addStudentCancelHandler} />
+            {/* {addStudentData} */}
           </Modal>
 
           <Table className={classes.Students}>

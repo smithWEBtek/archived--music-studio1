@@ -1,4 +1,9 @@
 .Lesson {
-  color: green;
+  color: rgb(46, 73, 46);
+  font-family: 'Open Sans', sans-serif;
+}
+
+.LessonControls {
+  color: rgb(65, 59, 52);
   font-family: 'Open Sans', sans-serif;
 }

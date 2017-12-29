@@ -4,8 +4,13 @@
   text-align: left;
   padding: 15px;
   width: 100%;
-  height: 30vh;
-  background: rgb(164, 209, 171);
-  color: rgb(119, 114, 114);
+  height: 45vh; 
+  color: rgb(75, 67, 67);
   font-family: 'Open Sans', sans-serif;
+}
+ 
+
+.FormInstructions {
+  font-style: italic;
+  font-weight: 600;
 }

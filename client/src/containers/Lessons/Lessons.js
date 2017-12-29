@@ -10,7 +10,13 @@ import Modal from '../../components/UI/Modal/Modal';
 class Lessons extends Component {
   state = {
     lessons: [],
-    lesson: null
+    lesson: null,
+    addedLesson: {
+      teacher_id: 2,
+      student_id: 1,
+      notes: '',
+      resources: []
+    }
   }
   componentDidMount() {
     LessonService.fetchLessons()
@@ -44,6 +50,7 @@ class Lessons extends Component {
       LessonService.fetchLesson(id)
         .then(response => this.setState({ lesson: response })
         );
+      console.log('lesson state', this.state)
     };
 
     const lessonsList = this.state.lessons.map((lesson, index) => {
@@ -51,9 +58,8 @@ class Lessons extends Component {
         <Aux key={index}>
           <tr>
             <td>{lesson.id}</td>
-            <td>{lesson.teacher_id}</td>
-            <td>{lesson.student_id}</td>
-            {/* <td>{lesson.resources[0]}</td> */}
+            <td>{lesson.teacher.lastname}</td>
+            <td>{lesson.student.lastname}</td>
             <td>{lesson.notes}</td>
             <td><button onClick={() => showLesson(lesson.id)}>Show</button></td>
             <td><button>Edit</button></td>
@@ -71,9 +77,10 @@ class Lessons extends Component {
             <thead>
               <tr>
                 <th scope="row">ID</th>
-                <th>Level</th>
-                <th>TeacherID</th>
+                <th>Teacher</th>
+                <th>Student</th>
                 <th>Notes</th>
+                <th>Resources</th>
                 <th>Show</th>
                 <th>Edit</th>
                 <th>Del</th>
@@ -86,8 +93,14 @@ class Lessons extends Component {
         </div>
         <Aux>
           {this.state.lesson
-            ? <Lesson lesson={this.state.lesson} close={this.closeLesson} />
+            ? <Lesson
+              teacher={this.state.lesson.teacher.lastname}
+              student={this.state.lesson.student.lastname}
+              notes={this.state.lesson.notes}
+              resources={this.state.lesson.resources}
+              close={this.closeLesson} />
             : null}
+
         </Aux>
       </Aux>
     )

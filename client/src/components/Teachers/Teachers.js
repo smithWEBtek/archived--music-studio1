@@ -111,8 +111,8 @@ class Teachers extends Component {
             firstname={this.state.teacher.firstname}
             lastname={this.state.teacher.lastname}
             email={this.state.teacher.email}
-            close={this.closeTeacherHandler}
             students={this.state.teacher.students}
+            close={this.closeTeacherHandler}
           /> : null}
         </Aux>
       </Aux>
