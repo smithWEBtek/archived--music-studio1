@@ -1,0 +1,9 @@
+.TeacherStudents {
+  height: 100%;
+}
+
+.TeacherStudents td {
+  color: black;
+  padding: 4px;
+  font-family: 'Open Sans', sans-serif;
+}

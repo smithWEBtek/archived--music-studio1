@@ -17,7 +17,7 @@ class Teachers extends Component {
 
   componentDidMount() {
     TeacherService.fetchTeachers()
-      .then(response => this.setState({ teachers: response }))
+      .then(response => this.setState({ teachers: response }));
   }
 
   // handleEditTeacher
@@ -58,11 +58,15 @@ class Teachers extends Component {
     this.setState({ addingTeacher: true });
   }
 
+  showTeacher = (id) => {
+    TeacherService.fetchTeacher(id)
+      .then(response => this.setState({
+        teacher: response
+      })
+      );
+  };
+
   render() {
-    const showTeacher = (id) => {
-      TeacherService.fetchTeacher(id)
-        .then(response => this.setState({ teacher: response }));
-    };
 
     const teachersList = this.state.teachers.map(teacher => {
       return (
@@ -72,7 +76,7 @@ class Teachers extends Component {
             <td>{teacher.firstname}</td>
             <td>{teacher.lastname}</td>
             <td>{teacher.email}</td>
-            <td><button onClick={() => showTeacher(teacher.id)}>Show</button></td>
+            <td><button onClick={() => this.showTeacher(teacher.id)}>Show</button></td>
             <td><button>Edit</button></td>
             <td><button onClick={() => this.deleteTeacherHandler(teacher.id)}>X</button></td>
           </tr>
