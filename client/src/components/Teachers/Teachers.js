@@ -12,7 +12,8 @@ class Teachers extends Component {
     teachers: [],
     teacher: null,
     addedTeacher: null,
-    addingTeacher: false
+    addingTeacher: false,
+    showTeacher: false
   }
 
   componentDidMount() {
@@ -29,11 +30,11 @@ class Teachers extends Component {
     this.setState({ teachers: teachers });
   };
 
-  closeTeacherHandler = () => {
-    this.setState({
-      teacher: null
-    });
-  }
+  // closeTeacherHandler = () => {
+  //   this.setState({
+  //     teacher: null
+  //   });
+  // }
 
   addTeacherHandler = teacher => {
     if (teacher.email !== "") {
@@ -58,13 +59,21 @@ class Teachers extends Component {
     this.setState({ addingTeacher: true });
   }
 
-  showTeacher = (id) => {
+  showTeacherHandler = (id) => {
     TeacherService.fetchTeacher(id)
       .then(response => this.setState({
-        teacher: response
+        teacher: response,
+        showTeacher: true
       })
       );
-  };
+  }
+
+  showTeacherCancelHandler = () => {
+    this.setState({
+      teacher: null,
+      showTeacher: false
+    });
+  }
 
   render() {
 
@@ -76,7 +85,8 @@ class Teachers extends Component {
             <td>{teacher.firstname}</td>
             <td>{teacher.lastname}</td>
             <td>{teacher.email}</td>
-            <td><button onClick={() => this.showTeacher(teacher.id)}>Show</button></td>
+            <td>{teacher.students.length}</td>
+            <td><button onClick={() => this.showTeacherHandler(teacher.id)}>Show</button></td>
             <td><button>Edit</button></td>
             <td><button onClick={() => this.deleteTeacherHandler(teacher.id)}>X</button></td>
           </tr>
@@ -102,6 +112,7 @@ class Teachers extends Component {
                 <th>First</th>
                 <th>Last</th>
                 <th>Email</th>
+                <th>#Students</th>
                 <th>Show</th>
                 <th>Edit</th>
                 <th>Del</th>
@@ -112,15 +123,19 @@ class Teachers extends Component {
             </tbody>
           </Table>
         </div>
-        <Aux>
-          {this.state.teacher ? <Teacher
-            firstname={this.state.teacher.firstname}
-            lastname={this.state.teacher.lastname}
-            email={this.state.teacher.email}
-            students={this.state.teacher.students}
-            close={this.closeTeacherHandler}
-          /> : null}
-        </Aux>
+        <Modal
+          show={this.state.showTeacher}
+          modalClosed={this.showTeacherCancelHandler}>
+          <Aux>
+            {this.state.teacher ? <Teacher
+              firstname={this.state.teacher.firstname}
+              lastname={this.state.teacher.lastname}
+              email={this.state.teacher.email}
+              students={this.state.teacher.students}
+              close={this.showTeacherCancelHandler}
+            /> : null}
+          </Aux>
+        </Modal>
       </Aux>
     )
   }

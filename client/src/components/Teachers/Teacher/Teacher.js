@@ -25,9 +25,9 @@ class Teacher extends Component {
 
     return (
       <div className={classes.Teacher} >
-        <p>{this.props.firstname} {this.props.lastname}</p>
+        <p>Teacher: {this.props.firstname} {this.props.lastname}</p>
         <p>Email: {this.props.email}</p>
-        <div>Students: {teacherStudents}</div>
+        <div> {this.props.firstname}'s students: {teacherStudents}</div>
         <button onClick={this.props.close}>Close</button>
       </div>
     )
