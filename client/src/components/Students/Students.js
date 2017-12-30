@@ -44,7 +44,6 @@ class Students extends Component {
 
   addStudentCancelHandler = () => {
     this.setState({
-      student: null,
       addingStudent: false
     });
   }

@@ -1,9 +1,22 @@
 .Lesson {
-  color: rgb(46, 73, 46);
+  float: left;
+  text-align: left;
+  padding: 15px;
+  width: 100%;
+  height: 100%;
+  color: rgb(75, 67, 67);
   font-family: 'Open Sans', sans-serif;
 }
+ 
+.Danger:hover {
+  background-color: rgb(247, 186, 186);
+}
 
-.LessonControls {
-  color: rgb(65, 59, 52);
-  font-family: 'Open Sans', sans-serif;
+.Success:hover {
+  background-color: rgb(187, 250, 211);
+}
+
+.FormInstructions {
+  font-style: italic;
+  font-weight: 600;
 }

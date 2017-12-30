@@ -1,0 +1,11 @@
+.LessonResources {
+  height: 100%;
+  width: 80%;
+  margin: 0;
+}
+
+.LessonResources td {
+  color: black;
+  padding: 1px;
+  font-family: 'Open Sans', sans-serif;
+}

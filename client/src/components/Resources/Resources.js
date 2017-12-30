@@ -49,7 +49,6 @@ class Resources extends Component {
 
   addResourceCancelHandler = () => {
     this.setState({
-      resource: null,
       addingResource: false
     });
   }

@@ -30,12 +30,6 @@ class Teachers extends Component {
     this.setState({ teachers: teachers });
   };
 
-  // closeTeacherHandler = () => {
-  //   this.setState({
-  //     teacher: null
-  //   });
-  // }
-
   addTeacherHandler = teacher => {
     if (teacher.email !== "") {
       this.setState({ addingTeacher: true })
@@ -50,7 +44,6 @@ class Teachers extends Component {
 
   addTeacherCancelHandler = () => {
     this.setState({
-      teacher: null,
       addingTeacher: false
     });
   }

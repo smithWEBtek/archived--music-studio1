@@ -23,11 +23,13 @@ REQUIREMENTS
 [X] buttons to toggle Students, Teachers, Resources, Lessons
 [X] connect toolbar links to show indexes for students, teachers, resources and lessons
  
+[]  enforce active record delete related objects
+[]  add Lesson, does not save resource or date
+[]  add lesson, DATE
 []  edit & update student, teacher, resource, lesson
 []  add multiple resources to new or existing lesson
 []  use Modal(s) timed 3 seconds after clicking 'show' 
-[.] use Modal for Add forms, Student, Teacher, Resource, Lesson
-[]  enforce active record delete related objects
+[X] use Modal for Add forms, Student, Teacher, Resource, Lesson
 
 []  user authentication
 []  constrain views for admin, teacher, student
@@ -54,8 +56,8 @@ REQUIREMENTS
   []  should have feedback mechanism for students to comment on progress, difficulty, improvements, etc.
   []  button in index, to "ADD TO CURRENT LESSON"
   
-[]  show teacher
-  []  shows all students assigned
+[X]  show teacher
+  [X]  shows all students assigned
 
 []  show admin
   []  main view, access to all students, teachers, resources
