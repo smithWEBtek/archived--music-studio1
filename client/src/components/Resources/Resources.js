@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Table } from 'reactstrap';
 import AddResource from '../../components/Resources/AddResource/AddResource';
 import Resource from './Resource/Resource';
+import ResourceView from './Resource/ResourceView';
 import ResourceService from './ResourceService';
 import classes from './Resources.css';
 import Aux from '../../hoc/Aux/Aux';
@@ -12,7 +13,8 @@ class Resources extends Component {
     resources: [],
     resource: null,
     addedResource: null,
-    addingResource: false
+    addingResource: false,
+    showResource: false
   }
 
   componentDidMount() {
@@ -28,12 +30,6 @@ class Resources extends Component {
     resources = resources.filter(resource => resource.id !== id);
     this.setState({ resources: resources });
   };
-
-  closeResourceHandler = () => {
-    this.setState({
-      resource: null
-    });
-  }
 
   addResourceHandler = (resource) => {
     if (resource.title !== "") {
@@ -53,16 +49,26 @@ class Resources extends Component {
     });
   }
 
-  showModal = () => {
+  showAddResourceModal = () => {
     this.setState({ addingResource: true });
   }
 
-  render() {
-    const showResource = (id) => {
-      ResourceService.fetchResource(id)
-        .then(response => this.setState({ resource: response }));
-    };
+  showResourceHandler = (id) => {
+    ResourceService.fetchResource(id)
+      .then(response => this.setState({
+        resource: response,
+        showResource: true
+      })
+      );
+  }
 
+  showResourceCancelHandler = () => {
+    this.setState({
+      showResource: false
+    });
+  }
+
+  render() {
     const resourcesList = this.state.resources.map(resource => {
       return (
         <Aux key={resource.id}>
@@ -73,7 +79,7 @@ class Resources extends Component {
             <td>{resource.description}</td>
             <td>{resource.format}</td>
             <td>{resource.location}</td>
-            <td><button onClick={() => showResource(resource.id)}>show</button></td>
+            <td><button onClick={() => this.showResourceHandler(resource.id)}>show</button></td>
             <td><button>Edit</button></td>
             <td><button onClick={() => this.deleteResourceHandler(resource.id)}>X</button></td>
           </tr>
@@ -84,7 +90,7 @@ class Resources extends Component {
     return (
       <Aux>
         <div style={{ margin: '30px' }}>
-          <button onClick={this.showModal}>Add Resource</button>
+          <button onClick={this.showAddResourceModal}>Add Resource</button>
           <Modal
             show={this.state.addingResource}
             modalClosed={this.addResourceCancelHandler}>
@@ -111,15 +117,19 @@ class Resources extends Component {
             </tbody>
           </Table>
         </div>
-        <Aux>
-          {this.state.resource ? <Resource
-            title={this.state.resource.title}
-            category={this.state.resource.category}
-            description={this.state.resource.description}
-            format={this.state.resource.format}
-            location={this.state.resource.location}
-            close={this.closeResourceHandler} /> : null}
-        </Aux>
+        <Modal
+          show={this.state.showResource}
+          modalClosed={this.showResourceCancelHandler}>
+          <Aux>
+            {this.state.resource ? <Resource
+              title={this.state.resource.title}
+              category={this.state.resource.category}
+              description={this.state.resource.description}
+              format={this.state.resource.format}
+              location={this.state.resource.location}
+              close={this.showResourceCancelHandler} /> : null}
+          </Aux>
+        </Modal>
       </Aux>
     )
   }
