@@ -11,9 +11,10 @@ class Teachers extends Component {
   state = {
     teachers: [],
     teacher: null,
-    addedTeacher: { name: "Mrs. McGillicuddy", email: "mmg@mus.com" },
+    addedTeacher: null,
     addingTeacher: false
   }
+
   componentDidMount() {
     TeacherService.fetchTeachers()
       .then(response => this.setState({ teachers: response }))
@@ -31,7 +32,7 @@ class Teachers extends Component {
   closeTeacherHandler = () => {
     this.setState({
       teacher: null
-    })
+    });
   }
 
   addTeacherHandler = teacher => {
@@ -42,15 +43,19 @@ class Teachers extends Component {
           teachers: this.state.teachers.concat(teacher)
         })
         )
-      this.setState({ addingTeacher: false })
     }
+    this.setState({ addingTeacher: false })
   }
 
   addTeacherCancelHandler = () => {
     this.setState({
       teacher: null,
       addingTeacher: false
-    })
+    });
+  }
+
+  showModal = () => {
+    this.setState({ addingTeacher: true });
   }
 
   render() {
@@ -59,7 +64,7 @@ class Teachers extends Component {
         .then(response => this.setState({ teacher: response }));
     };
 
-    const TeachersList = this.state.teachers.map(teacher => {
+    const teachersList = this.state.teachers.map(teacher => {
       return (
         <Aux key={teacher.id}>
           <tr>
@@ -75,20 +80,17 @@ class Teachers extends Component {
       )
     });
 
-    const addTeacherData = [...this.state.addedTeacher];
-
     return (
       <Aux>
         <div style={{ margin: '30px' }}>
-          <AddTeacher
-            addTeacher={this.addTeacherHandler}
-            addTeacherCancel={this.addTeacherCancelHandler} />
-
-          {/* put AddTeacher inside modal */}
-          <Modal show={this.state.addingTeacher} modalClosed={this.addTeacherCancelHandler}>
-            {addTeacherData}
+          <button onClick={this.showModal}>AddTeacher</button>
+          <Modal
+            show={this.state.addingTeacher}
+            modalClosed={this.addTeacherCancelHandler}>
+            <AddTeacher
+              addTeacher={this.addTeacherHandler}
+              addTeacherCancel={this.addTeacherCancelHandler} />
           </Modal>
-
           <Table className={classes.Teachers}>
             <thead>
               <tr>
@@ -102,7 +104,7 @@ class Teachers extends Component {
               </tr>
             </thead>
             <tbody>
-              {TeachersList}
+              {teachersList}
             </tbody>
           </Table>
         </div>

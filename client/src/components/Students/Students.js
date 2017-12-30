@@ -51,11 +51,11 @@ class Students extends Component {
     this.setState({
       student: null,
       addingStudent: false
-    })
+    });
   }
 
   showModal = () => {
-    this.setState({ addingStudent: true })
+    this.setState({ addingStudent: true });
   }
 
   render() {
@@ -84,12 +84,13 @@ class Students extends Component {
       <Aux>
         <div style={{ margin: '30px' }}>
           <button onClick={this.showModal}>AddStudent</button>
-          <Modal show={this.state.addingStudent} modalClosed={this.addStudentCancelHandler}>
+          <Modal
+            show={this.state.addingStudent}
+            modalClosed={this.addStudentCancelHandler}>
             <AddStudent
               addStudent={this.addStudentHandler}
               addStudentCancel={this.addStudentCancelHandler} />
           </Modal>
-
           <Table className={classes.Students}>
             <thead>
               <tr>
