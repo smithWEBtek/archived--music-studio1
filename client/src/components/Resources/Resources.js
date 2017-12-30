@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Table } from 'reactstrap';
 import AddResource from '../../components/Resources/AddResource/AddResource';
-import Resource from './Resource/Resource';
 import ResourceView from './Resource/ResourceView';
 import ResourceService from './ResourceService';
 import classes from './Resources.css';

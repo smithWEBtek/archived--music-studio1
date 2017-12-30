@@ -25,7 +25,7 @@ const resourceView = (props) => {
   }
 
   return (
-    <div>
+    <div className={classes.ResourceView}>
       {resource}
     </div>
   )
