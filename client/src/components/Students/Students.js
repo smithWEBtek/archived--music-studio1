@@ -10,9 +10,10 @@ import Modal from '../UI/Modal/Modal';
 class Students extends Component {
   state = {
     students: [],
-    student: null,
+    student: {},
     addedStudent: null,
-    addingStudent: false
+    addingStudent: false,
+    showStudent: false
   }
 
   componentDidMount() {
@@ -28,12 +29,6 @@ class Students extends Component {
     students = students.filter(student => student.id !== id);
     this.setState({ students: students });
   };
-
-  closeStudentHandler = () => {
-    this.setState({
-      student: null
-    });
-  }
 
   addStudentHandler = (student) => {
     if (student.teacher_id !== "") {
@@ -54,16 +49,26 @@ class Students extends Component {
     });
   }
 
-  showModal = () => {
+  showAddStudentModal = () => {
     this.setState({ addingStudent: true });
   }
 
-  render() {
-    const showStudent = (id) => {
-      StudentService.fetchStudent(id)
-        .then(response => this.setState({ student: response }));
-    };
+  showStudentHandler = (id) => {
+    StudentService.fetchStudent(id)
+      .then(response => this.setState({
+        student: response,
+        showStudent: true
+      })
+      );
+  }
 
+  showStudentCancelHandler = () => {
+    this.setState({
+      showStudent: false
+    });
+  }
+
+  render() {
     const studentsList = this.state.students.map(student => {
       return (
         <Aux key={student.id}>
@@ -72,7 +77,7 @@ class Students extends Component {
             <td>{student.firstname}</td>
             <td>{student.lastname}</td>
             <td>{student.email}</td>
-            <td><button onClick={() => showStudent(student.id)}>Show</button></td>
+            <td><button onClick={() => this.showStudentHandler(student.id)}>Show</button></td>
             <td><button>Edit</button></td>
             <td><button onClick={() => this.deleteStudentHandler(student.id)}>X</button></td>
           </tr>
@@ -83,7 +88,7 @@ class Students extends Component {
     return (
       <Aux>
         <div style={{ margin: '30px' }}>
-          <button onClick={this.showModal}>Add Student</button>
+          <button onClick={this.showAddStudentModal}>Add Student</button>
           <Modal
             show={this.state.addingStudent}
             modalClosed={this.addStudentCancelHandler}>
@@ -108,15 +113,19 @@ class Students extends Component {
             </tbody>
           </Table>
         </div>
-        <Aux>
-          {this.state.student ? <Student
-            firstname={this.state.student.firstname}
-            lastname={this.state.student.lastname}
-            email={this.state.student.email}
-            level={this.state.student.level}
-            teacher_id={this.state.student.teacher_id}
-            close={this.closeStudentHandler} /> : null}
-        </Aux>
+        <Modal
+          show={this.state.showStudent}
+          modalClosed={this.showStudentCancelHandler}>
+          <Aux>
+            <Student
+              firstname={this.state.student.firstname}
+              lastname={this.state.student.lastname}
+              email={this.state.student.email}
+              level={this.state.student.level}
+              teacher_id={this.state.student.teacher_id}
+              close={this.showStudentCancelHandler} />
+          </Aux>
+        </Modal>
       </Aux>
     )
   }

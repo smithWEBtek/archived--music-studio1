@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import classes from './Teacher.css';
-import TeacherStudents from '../TeacherStudents/TeacherStudents';
+import TeacherStudents from './TeacherStudents';
 
 const teacher = (props) => (
   <div className={classes.Teacher} >

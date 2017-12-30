@@ -55,7 +55,7 @@ class Teachers extends Component {
     });
   }
 
-  showModal = () => {
+  showAddTeacherModal = () => {
     this.setState({ addingTeacher: true });
   }
 
@@ -70,7 +70,6 @@ class Teachers extends Component {
 
   showTeacherCancelHandler = () => {
     this.setState({
-      teacher: null,
       showTeacher: false
     });
   }
@@ -97,7 +96,7 @@ class Teachers extends Component {
     return (
       <Aux>
         <div style={{ margin: '30px' }}>
-          <button onClick={this.showModal}>AddTeacher</button>
+          <button onClick={this.showAddTeacherModal}>AddTeacher</button>
           <Modal
             show={this.state.addingTeacher}
             modalClosed={this.addTeacherCancelHandler}>
