@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Table } from 'reactstrap';
+import AddResource from '../../components/Resources/AddResource/AddResource';
 import Resource from './Resource/Resource';
 import ResourceService from './ResourceService';
-import AddResource from '../../components/Resources/AddResource/AddResource';
 import classes from './Resources.css';
 import Aux from '../../hoc/Aux/Aux';
 import Modal from '../UI/Modal/Modal';
@@ -11,13 +11,7 @@ class Resources extends Component {
   state = {
     resources: [],
     resource: null,
-    addedResource: {
-      title: 'how to eat grapes',
-      category: 'food',
-      description: 'start with the peel, watch for seeds',
-      format: 'text doc',
-      location: 'disk'
-    },
+    addedResource: null,
     addingResource: false
   }
 
@@ -41,7 +35,7 @@ class Resources extends Component {
     });
   }
 
-  addResourceHandler = resource => {
+  addResourceHandler = (resource) => {
     if (resource.title !== "") {
       this.setState({ addingResource: true })
       ResourceService.createResource(resource)
@@ -49,15 +43,19 @@ class Resources extends Component {
           resources: this.state.resources.concat(resource)
         })
         )
-      this.setState({ addingResource: false });
     }
+    this.setState({ addingResource: false });
   }
 
   addResourceCancelHandler = () => {
     this.setState({
       resource: null,
       addingResource: false
-    })
+    });
+  }
+
+  showModal = () => {
+    this.setState({ addingResource: true });
   }
 
   render() {
@@ -66,36 +64,35 @@ class Resources extends Component {
         .then(response => this.setState({ resource: response }));
     };
 
-    const resourcesList = this.state.resources.map(resource =>
-      <Aux key={resource.id}>
-        <tr>
-          <td>{resource.id}</td>
-          <td>{resource.title}</td>
-          <td>{resource.category}</td>
-          <td>{resource.description}</td>
-          <td>{resource.format}</td>
-          <td>{resource.location}</td>
-          <td><button onClick={() => showResource(resource.id)}>show</button></td>
-          <td><button>Edit</button></td>
-          <td><button onClick={() => this.deleteResourceHandler(resource.id)}>X</button></td>
-        </tr>
-      </Aux>
-    );
-
-    const addResourceData = [...this.state.addedResource];
+    const resourcesList = this.state.resources.map(resource => {
+      return (
+        <Aux key={resource.id}>
+          <tr>
+            <td>{resource.id}</td>
+            <td>{resource.title}</td>
+            <td>{resource.category}</td>
+            <td>{resource.description}</td>
+            <td>{resource.format}</td>
+            <td>{resource.location}</td>
+            <td><button onClick={() => showResource(resource.id)}>show</button></td>
+            <td><button>Edit</button></td>
+            <td><button onClick={() => this.deleteResourceHandler(resource.id)}>X</button></td>
+          </tr>
+        </Aux>
+      );
+    });
 
     return (
       <Aux>
         <div style={{ margin: '30px' }}>
-          <AddResource
-            addResource={this.addResourceHandler}
-            addResourceCancel={this.addResourceCancelHandler} />
-
-          {/* put AddResource inside modal */}
-          <Modal show={this.state.addingResource} modalClosed={this.addResourceCancelHandler}>
-            {addResourceData}
+          <button onClick={this.showModal}>Add Resource</button>
+          <Modal
+            show={this.state.addingResource}
+            modalClosed={this.addResourceCancelHandler}>
+            <AddResource
+              addResource={this.addResourceHandler}
+              addResourceCancel={this.addResourceCancelHandler} />
           </Modal>
-
           <Table className={classes.Resources}>
             <thead>
               <tr>

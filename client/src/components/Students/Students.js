@@ -83,7 +83,7 @@ class Students extends Component {
     return (
       <Aux>
         <div style={{ margin: '30px' }}>
-          <button onClick={this.showModal}>AddStudent</button>
+          <button onClick={this.showModal}>Add Student</button>
           <Modal
             show={this.state.addingStudent}
             modalClosed={this.addStudentCancelHandler}>

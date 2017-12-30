@@ -1,10 +1,23 @@
+
 .AddForm {
   float: left;
   text-align: left;
   padding: 15px;
-  width: 80%;
-  height: 30vh;
-  background: rgb(164, 209, 171);
-  color: rgb(119, 114, 114);
+  width: 100%;
+  height: 100%; 
+  color: rgb(75, 67, 67);
   font-family: 'Open Sans', sans-serif;
+}
+ 
+.Danger:hover {
+  background-color: rgb(247, 186, 186);
+}
+
+.Success:hover {
+  background-color: rgb(165, 238, 193);
+}
+
+.FormInstructions {
+  font-style: italic;
+  font-weight: 600;
 }
