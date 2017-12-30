@@ -5,9 +5,9 @@ const docViewer = (props) => {
 
   return (
     <div>
-      <h3>Hello docViewer!</h3>
+      <h3 className={classes.DocViewer}>Hello docViewer!</h3>
     </div>
   )
 }
 
-export default docViewer.js;
+export default docViewer;

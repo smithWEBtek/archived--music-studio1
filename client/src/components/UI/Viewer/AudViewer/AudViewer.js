@@ -5,9 +5,9 @@ const audViewer = (props) => {
 
   return (
     <div>
-      <h3>Hello audViewer!</h3>
+      <h3 className={classes.AudViewer}>Hello audViewer!</h3>
     </div>
   )
 }
 
-export default audViewer.js;
+export default audViewer;

@@ -5,9 +5,9 @@ const pdfViewer = (props) => {
 
   return (
     <div>
-      <h3>Hello pdfViewer!</h3>
+      <h3 className={classes.PdfViewer}>Hello pdfViewer!</h3>
     </div>
   )
 }
 
-export default pdfViewer.js;
+export default pdfViewer;

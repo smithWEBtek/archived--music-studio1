@@ -8,24 +8,26 @@ import AudViewer from '../../UI/Viewer/AudViewer/AudViewer';
 
 const resourceView = (props) => {
   let resource = null;
-  if (props.resource === 'pdf') {
+  if (props.format === 'pdf') {
     resource = <PdfViewer resource={resource} />
   }
 
-  if (props.resource === 'doc') {
+  if (props.format === 'doc') {
     resource = <DocViewer resource={resource} />
   }
 
-  if (props.resource === 'aud') {
+  if (props.format === 'aud') {
     resource = <AudViewer resource={resource} />
   }
 
-  if (props.resource === 'vid') {
+  if (props.format === 'vid') {
     resource = <VidViewer resource={resource} />
   }
 
   return (
-    { resource }
+    <div>
+      {resource}
+    </div>
   )
 }
 

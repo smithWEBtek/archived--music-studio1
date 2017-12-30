@@ -121,7 +121,7 @@ class Resources extends Component {
           show={this.state.showResource}
           modalClosed={this.showResourceCancelHandler}>
           <Aux>
-            {this.state.resource ? <Resource
+            {this.state.resource ? <ResourceView
               title={this.state.resource.title}
               category={this.state.resource.category}
               description={this.state.resource.description}
