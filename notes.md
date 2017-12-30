@@ -26,7 +26,7 @@ REQUIREMENTS
 []  edit & update student, teacher, resource, lesson
 []  add multiple resources to new or existing lesson
 []  use Modal(s) timed 3 seconds after clicking 'show' 
-[X]  use Modal for Add form
+[.] use Modal for Add forms, Student, Teacher, Resource, Lesson
 []  enforce active record delete related objects
 
 []  user authentication
@@ -52,7 +52,8 @@ REQUIREMENTS
   []  if pdf: view the pdf in a small window
   []  if video: show YouTube small video window
   []  should have feedback mechanism for students to comment on progress, difficulty, improvements, etc.
-
+  []  button in index, to "ADD TO CURRENT LESSON"
+  
 []  show teacher
   []  shows all students assigned
 
