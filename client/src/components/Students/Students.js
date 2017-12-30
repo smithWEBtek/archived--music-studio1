@@ -11,11 +11,7 @@ class Students extends Component {
   state = {
     students: [],
     student: null,
-    addedStudent: {
-      name: 'Brad',
-      level: 2,
-      email: 'brad@swt.com'
-    },
+    addedStudent: null,
     addingStudent: false
   }
 
@@ -47,8 +43,8 @@ class Students extends Component {
           students: this.state.students.concat(student)
         })
         )
-      this.setState({ addingStudent: false });
     }
+    this.setState({ addingStudent: false });
   }
 
   addStudentCancelHandler = () => {
@@ -87,7 +83,6 @@ class Students extends Component {
     return (
       <Aux>
         <div style={{ margin: '30px' }}>
-          {/* <button onClick={this.addStudentHandler}>AddStudent</button> */}
           <button onClick={this.showModal}>AddStudent</button>
           <Modal show={this.state.addingStudent} modalClosed={this.addStudentCancelHandler}>
             <AddStudent

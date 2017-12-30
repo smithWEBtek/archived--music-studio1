@@ -11,14 +11,10 @@ class Lessons extends Component {
   state = {
     lessons: [],
     lesson: null,
-    addedLesson: {
-      teacher_id: 2,
-      student_id: 1,
-      notes: '',
-      resources: []
-    },
+    addedLesson: null,
     addingLesson: false
   }
+
   componentDidMount() {
     LessonService.fetchLessons()
       .then(response => this.setState({ lessons: response }))
@@ -47,13 +43,13 @@ class Lessons extends Component {
           lessons: this.state.lessons.concat(lesson)
         })
         )
-      this.setState({ addingLesson: false });
     }
+    this.setState({ addingLesson: false });
   }
 
   addLessonCancelHandler = () => {
     this.setState({
-      student: null,
+      lesson: null,
       addingLesson: false
     })
   }
@@ -69,12 +65,14 @@ class Lessons extends Component {
     };
 
     const lessonsList = this.state.lessons.map((lesson, index) => {
+      // console.log(lesson)
       return (
         <Aux key={index}>
           <tr>
             <td>{lesson.id}</td>
-            <td>{lesson.teacher.lastname}</td>
-            <td>{lesson.student.lastname}</td>
+            <td>{lesson.date}</td>
+            <td>{lesson.teacher_id}</td>
+            <td>{lesson.student_id}</td>
             <td>{lesson.notes}</td>
             <td><button onClick={() => showLesson(lesson.id)}>Show</button></td>
             <td><button>Edit</button></td>
@@ -87,11 +85,19 @@ class Lessons extends Component {
     return (
       <Aux>
         <div style={{ margin: '30px' }}>
-          <AddLesson addLesson={this.addLessonHandler} />
+          <button onClick={this.showModal}>AddLesson</button>
+
+          <Modal show={this.state.addingLesson} modalClosed={this.addLessonCancelHandler}>
+            <AddLesson
+              addLesson={this.addLessonHandler}
+              addLessonCancel={this.addLessonCancelHandler} />
+          </Modal>
+
           <Table className={classes.Lessons}>
             <thead>
               <tr>
-                <th scope="row">ID</th>
+                <th>ID</th>
+                <th>Date</th>
                 <th>Teacher</th>
                 <th>Student</th>
                 <th>Notes</th>
@@ -107,15 +113,13 @@ class Lessons extends Component {
           </Table>
         </div>
         <Aux>
-          {this.state.lesson
-            ? <Lesson
-              teacher={this.state.lesson.teacher.lastname}
-              student={this.state.lesson.student.lastname}
-              notes={this.state.lesson.notes}
-              resources={this.state.lesson.resources}
-              close={this.closeLessonHandler} />
-            : null}
-
+          {this.state.lesson ? <Lesson
+            date={this.state.lesson.date}
+            teacher={this.state.lesson.teacher_id}
+            student={this.state.lesson.student_id}
+            notes={this.state.lesson.notes}
+            resources={this.state.lesson.resources}
+            close={this.closeLessonHandler} /> : null}
         </Aux>
       </Aux>
     )

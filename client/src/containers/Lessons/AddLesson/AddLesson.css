@@ -1,12 +1,22 @@
-.AddLesson {
-  color: violet;
-}
-
 .AddForm {
   float: left;
   text-align: left;
-  width: 100vw;
-  height: 40vh;
-  background: rgb(207, 230, 210);
-  color: rgb(119, 114, 114);
+  padding: 15px;
+  width: 100%;
+  height: 45vh; 
+  color: rgb(75, 67, 67);
+  font-family: 'Open Sans', sans-serif;
+}
+ 
+.Danger:hover {
+  background-color: rgb(247, 186, 186);
+}
+
+.Success:hover {
+  background-color: rgb(187, 250, 211);
+}
+
+.FormInstructions {
+  font-style: italic;
+  font-weight: 600;
 }

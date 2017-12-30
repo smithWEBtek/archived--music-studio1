@@ -1,36 +1,38 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import classes from './AddLesson.css';
 import TeacherService from '../../../components/Teachers/TeacherService';
 import StudentService from '../../../components/Students/StudentService';
 import ResourceService from '../../../components/Resources/ResourceService';
 
+
 class AddLesson extends Component {
   state = {
     formVisible: false,
+    date: '',
     teacher: '',
     student: '',
     notes: '',
     resource: '',
-    
+
     teachers: [],
     students: [],
     resources: [],
     lessons: []
   }
 
-  componentDidMount(){
+  componentDidMount() {
     TeacherService.fetchTeachers()
-    .then(teachers => this.setState({teachers: teachers}))
+      .then(teachers => this.setState({ teachers: teachers }))
 
     StudentService.fetchStudents()
-    .then(students => this.setState({students: students}))
+      .then(students => this.setState({ students: students }))
 
     ResourceService.fetchResources()
-    .then(resources => this.setState({resources: resources}))
+      .then(resources => this.setState({ resources: resources }))
   }
 
   handleShowForm = (event) => {
-    this.setState({formVisible: !this.state.formVisible})
+    this.setState({ formVisible: !this.state.formVisible })
   }
 
   handleTeacherSelect = (event) => {
@@ -54,6 +56,7 @@ class AddLesson extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const lessonData = {
+      date: this.state.date,
       teacher_id: this.state.teacher.id,
       student_id: this.state.student.id,
       resource_id: this.state.resource.id,
@@ -62,6 +65,7 @@ class AddLesson extends Component {
     this.props.addLesson(lessonData)
     this.setState({
       formVisible: false,
+      date: '',
       teacher: '',
       student: '',
       notes: '',
@@ -73,7 +77,7 @@ class AddLesson extends Component {
       lessons: []
     });
   }
-  
+
   render() {
 
     const teacherOptions = this.state.teachers.map(teacher => {
@@ -88,42 +92,43 @@ class AddLesson extends Component {
       return <option value={resource.title} id={resource.id} key={resource.id}>{resource.title}</option>
     });
 
-  return (
-    <div className={classes.AddLesson}>
-      <button onClick={(event) => this.handleShowForm(this.id)}>AddLessonForm</button>
-      {this.state.formVisible ? <form onSubmit={(event)=>this.handleSubmit(event)} className={classes.AddForm}>
-        <p>
-          <label>TeacherSelector</label>
-          <select value={this.state.teacher.lastname} onChange={(event)=> this.handleTeacherSelect(event)}>
-            {teacherOptions}
-          </select>
-        </p>
+    return (
+      <div className={classes.AddLesson}>
+        <p className={classes.FormInstructions}>Complete form and click 'Add Lesson'</p>
+        <form onSubmit={(event) => this.handleSubmit(event)} className={classes.AddForm}>
+          <p>
+            <label>TeacherSelector</label>
+            <select value={this.state.teacher.lastname} onChange={(event) => this.handleTeacherSelect(event)}>
+              {teacherOptions}
+            </select>
+          </p>
 
-        <p>
-          <label>StudentSelector</label>
-          <select value={this.state.student.lastname} onChange={(event)=> this.handleStudentSelect(event)}>
-            {studentOptions}
-          </select>
-        </p>
+          <p>
+            <label>StudentSelector</label>
+            <select value={this.state.student.lastname} onChange={(event) => this.handleStudentSelect(event)}>
+              {studentOptions}
+            </select>
+          </p>
 
-        <p>
-          <label>ResourceSelector</label>
-          <select value={this.state.resource.title} onChange={(event)=> this.handleResourceSelect(event)}>
-            {resourceOptions}
-          </select>
-        </p>
+          <p>
+            <label>ResourceSelector</label>
+            <select value={this.state.resource.title} onChange={(event) => this.handleResourceSelect(event)}>
+              {resourceOptions}
+            </select>
+          </p>
 
-        <p>
-          <label>Notes</label>
-          <input 
-            type="text"
-            value={this.state.notes}
-            onChange={(event) => this.setState({notes: event.target.value})}
-            placeholder="notes" />
-        </p>
-        <button type="submit">Add lesson</button>
-      </form> : null }
-    </div>
+          <p>
+            <label>Notes</label>
+            <input
+              type="text"
+              value={this.state.notes}
+              onChange={(event) => this.setState({ notes: event.target.value })}
+              placeholder="notes" />
+          </p>
+          <button onClick={this.props.addLessonCancel} className={classes.Danger}>CANCEL</button>
+          <button className={classes.Success}>ADD Lesson</button>
+        </form>
+      </div>
     )
   }
 }

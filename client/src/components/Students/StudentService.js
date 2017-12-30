@@ -14,12 +14,8 @@ const StudentService = {
   createStudent(student) {
     const request = {
       method: 'POST',
-      body: JSON.stringify({
-        student: student
-      }),
-      headers: {
-        'Content-Type': 'application/json'
-      }
+      body: JSON.stringify({ student: student }),
+      headers: { 'Content-Type': 'application/json' }
     }
     return fetch(`${API_URL}/students`, request)
       .then(response => response.json())
@@ -28,7 +24,6 @@ const StudentService = {
   deleteStudent(id) {
     fetch(`${API_URL}/students/${id}`, { method: 'DELETE' });
   }
-
 }
 
 export default StudentService;
