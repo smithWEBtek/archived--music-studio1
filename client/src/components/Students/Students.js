@@ -11,17 +11,14 @@ class Students extends Component {
   state = {
     students: [],
     student: {},
-    addedStudent: null,
-    addingStudent: false,
-    showStudent: false
+    showStudent: false,
+    addingStudent: false
   }
 
   componentDidMount() {
     StudentService.fetchStudents()
       .then(response => this.setState({ students: response }))
   }
-
-  // handleEditStudent
 
   deleteStudentHandler = (id) => {
     StudentService.deleteStudent(id);
@@ -77,7 +74,7 @@ class Students extends Component {
             <td>{student.lastname}</td>
             <td>{student.email}</td>
             <td><button onClick={() => this.showStudentHandler(student.id)}>Show</button></td>
-            <td><button>Edit</button></td>
+            <td><button>*Edit</button></td>
             <td><button onClick={() => this.deleteStudentHandler(student.id)}>X</button></td>
           </tr>
         </Aux>

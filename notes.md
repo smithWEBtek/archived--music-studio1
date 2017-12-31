@@ -1,3 +1,6 @@
+
+
+==================================================================================
 REQUIREMENTS
 [X] The code should be written in ES6 as much as possible
 [X] Use create-react-app generator to start your project.
@@ -18,26 +21,23 @@ REQUIREMENTS
 [X] app should have some minimal styling: feel free to stick to a framework (like react-bootstrap), 
 [X] write (additional) CSS yourself if you wish
 ----[]  use Redux middleware to respond to and modify state change
-
-[X] move teachers, students, resources and lessons code out of layout, leaving just <ComponentName />
-[X] buttons to toggle Students, Teachers, Resources, Lessons
-[X] connect toolbar links to show indexes for students, teachers, resources and lessons
- 
+==================================================================================
+TODO
+[]  add lesson, DATE
 []  enforce active record delete related objects
 []  add Lesson, does not save resource or date
-[]  add lesson, DATE
 []  edit & update student, teacher, resource, lesson
 []  add multiple resources to new or existing lesson
 []  use Modal(s) timed 3 seconds after clicking 'show' 
 [X] use Modal for Add forms, Student, Teacher, Resource, Lesson
-
+[]  hovering over 'X', changes background color and tooltip, has confirmation msg on del;
 []  user authentication
 []  constrain views for admin, teacher, student
 []  needs more style (steal css from udemy-react-blog)
 []  determine if you can refactor some stateful components to stateless with props only
 
 []  show lesson:
-  [ ]should showcase video, pdf, audio and lesson experience
+  [.]should showcase video, pdf, audio and lesson experience
   [ ]should have easy ways for teacher to add resources
   [ ]should have easy way for teacher to create resource on the fly
 
@@ -48,7 +48,7 @@ REQUIREMENTS
   []  should have a student practice log
 
 []  show resource
-  []  should be more elaborate view of resource
+  [X]  should be more elaborate view of resource
   []  should take advantage of serialization data, to show "Students Assigned To This Resource"
   []  should have a chart showing students practice frequency for this resource
   []  if pdf: view the pdf in a small window
@@ -56,21 +56,20 @@ REQUIREMENTS
   []  should have feedback mechanism for students to comment on progress, difficulty, improvements, etc.
   []  button in index, to "ADD TO CURRENT LESSON"
   
-[X]  show teacher
-  [X]  shows all students assigned
-
-[]  show admin
-  []  main view, access to all students, teachers, resources
-
-
+TODO DONE------------------------------------------------------
+[X]  show teacher shows all students assigned
+[X] move teachers, students, resources and lessons code out of layout, leaving just <ComponentName />
+[X] buttons to toggle Students, Teachers, Resources, Lessons
+[X] connect toolbar links to show indexes for students, teachers, resources and lessons
+ 
+[]  plan the redux parts
 [X] plan the application 
 [X]  -plan the data model
 [X] build the database 
 [X] seed the database 
 [X] create the api data, all models, index and create 
-[]  plan the views required 
-[]  plan the react app
-[]  plan the redux parts
+[X]  plan the views required 
+[X]  plan the react app
 
 ==================================================================================
 DATA MODEL, migrations, active record relationships and sample data

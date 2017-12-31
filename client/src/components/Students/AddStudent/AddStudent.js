@@ -38,7 +38,7 @@ class AddStudent extends Component {
     return (
       <div>
         <p className={classes.FormInstructions}>Complete form and click 'Add Student'</p>
-        <form onSubmit={this.handleSubmit} className={classes.AddForm}>
+        <form onSubmit={this.handleSubmit} className={classes.Form}>
           <p><label htmlFor="student_name">First name </label>
             <input
               type="text"
