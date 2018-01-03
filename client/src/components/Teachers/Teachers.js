@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import * as actionTypes from '../../store/actions';
+import { connect } from 'react-redux';
+
 import { Table } from 'reactstrap';
 import Teacher from './Teacher/Teacher';
 import TeacherService from './TeacherService';
@@ -9,17 +12,17 @@ import Modal from '../UI/Modal/Modal';
 
 class Teachers extends Component {
   state = {
-    teachers: [],
+    // teachers: [],
     teacher: null,
     addedTeacher: null,
     addingTeacher: false,
     showTeacher: false
   }
 
-  componentDidMount() {
-    TeacherService.fetchTeachers()
-      .then(response => this.setState({ teachers: response }));
-  }
+  // componentDidMount() {
+  //   TeacherService.fetchTeachers()
+  //     .then(response => this.setState({ teachers: response }));
+  // }
 
   // handleEditTeacher
 
@@ -69,7 +72,7 @@ class Teachers extends Component {
 
   render() {
 
-    const teachersList = this.state.teachers.map(teacher => {
+    const teachersList = this.props.tch.map(teacher => {
       return (
         <Aux key={teacher.id}>
           <tr>
@@ -77,7 +80,7 @@ class Teachers extends Component {
             <td>{teacher.firstname}</td>
             <td>{teacher.lastname}</td>
             <td>{teacher.email}</td>
-            <td>{teacher.students.length}</td>
+            {/* <td>{teacher.students.length}</td> */}
             <td><button onClick={() => this.showTeacherHandler(teacher.id)}>Show</button></td>
             <td><button>Edit</button></td>
             <td><button onClick={() => this.deleteTeacherHandler(teacher.id)}>X</button></td>
@@ -104,7 +107,7 @@ class Teachers extends Component {
                 <th>First</th>
                 <th>Last</th>
                 <th>Email</th>
-                <th>#Students</th>
+                {/* <th>#Students</th> */}
                 <th>Show</th>
                 <th>Edit</th>
                 <th>Del</th>
@@ -133,4 +136,17 @@ class Teachers extends Component {
   }
 }
 
-export default Teachers;
+const mapStateToProps = state => {
+  return {
+    tch: state.tch.teachers
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onTeacherAdded: (data) => dispatch({ type: actionTypes.ADD_TEACHER, teacherData: data }),
+    onTeacherRemoved: (id) => dispatch({ type: actionTypes.REMOVE_TEACHER, teacherId: id })
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Teachers);

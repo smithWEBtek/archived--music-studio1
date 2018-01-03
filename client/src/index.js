@@ -4,10 +4,10 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 
-import studentReducer from './store/reducers/studentReducer';
-import teacherReducer from './store/reducers/teacherReducer';
-import resourceReducer from './store/reducers/resourceReducer';
-import lessonReducer from './store/reducers/lessonReducer';
+import studentReducer from './store/reducers/student';
+import teacherReducer from './store/reducers/teacher';
+// import resourceReducer from './store/reducers/resource';
+// import lessonReducer from './store/reducers/lesson';
 
 
 import App from './App';
@@ -16,9 +16,9 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 const rootReducer = combineReducers({
   stu: studentReducer,
-  tch: teacherReducer,
-  les: lessonReducer,
-  res: resourceReducer
+  tch: teacherReducer
+  // les: lessonReducer,
+  // res: resourceReducer
 });
 
 const logger = store => {
@@ -27,8 +27,6 @@ const logger = store => {
     return action => {
       console.log('[Middleware] Dispatching', action);
       const result = next(action);
-      let asdf = { ...store.getState() };
-      console.log('[Middleware] next state (what does it all mean?) answer:', asdf.res.meaningOfLife)
       return result
     }
   }
