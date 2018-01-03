@@ -1,0 +1,11 @@
+export const ADD_STUDENT = 'ADD_STUDENT';
+export const REMOVE_STUDENT = 'REMOVE_STUDENT';
+
+export const ADD_TEACHER = 'ADD_TEACHER';
+export const REMOVE_TEACHER = 'REMOVE_TEACHER';
+
+export const ADD_RESOURCE = 'ADD_RESOURCE';
+export const REMOVE_RESOURCE = 'REMOVE_RESOURCE';
+
+export const ADD_LESSON = 'ADD_LESSON';
+export const REMOVE_LESSON = 'REMOVE_LESSON';
