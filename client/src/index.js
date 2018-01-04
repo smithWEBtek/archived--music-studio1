@@ -7,7 +7,7 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import studentReducer from './store/reducers/student';
 import teacherReducer from './store/reducers/teacher';
 import resourceReducer from './store/reducers/resource';
-// import lessonReducer from './store/reducers/lesson';
+import lessonReducer from './store/reducers/lesson';
 
 
 import App from './App';
@@ -17,7 +17,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 const rootReducer = combineReducers({
   stu: studentReducer,
   tch: teacherReducer,
-  // les: lessonReducer,
+  les: lessonReducer,
   res: resourceReducer
 });
 

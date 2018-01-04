@@ -17,7 +17,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.ADD_TEACHER:
 
       const newTeacher = action.teacherData
-      newTeacher.id = new Date().getTime();
+      newTeacher.id = state.teachers[state.teachers.length - 1].id + 1;
       return {
         ...state,
         teachers: state.teachers.concat(newTeacher)

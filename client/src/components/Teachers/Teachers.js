@@ -81,7 +81,7 @@ class Teachers extends Component {
             show={this.state.addingTeacher}
             modalClosed={this.addTeacherCancelHandler}>
             <AddTeacher
-              addTeacher={this.addTeacherHandler}
+              addTeacher={this.props.onTeacherAdded}
               addTeacherCancel={this.addTeacherCancelHandler} />
           </Modal>
           <Table className={classes.Teachers}>

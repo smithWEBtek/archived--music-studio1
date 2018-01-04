@@ -21,7 +21,7 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.ADD_RESOURCE:
       const newResource = action.resourceData
-      newResource.id = new Date().getTime();
+      newResource.id = state.resources[state.resources.length - 1].id + 1;
       return {
         ...state,
         resources: state.resources.concat(newResource)
