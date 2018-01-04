@@ -14,9 +14,8 @@ class Teachers extends Component {
   state = {
     // teachers: [],
     teacher: null,
-    addedTeacher: null,
+    showTeacher: false,
     addingTeacher: false,
-    showTeacher: false
   }
 
   // componentDidMount() {
@@ -38,7 +37,7 @@ class Teachers extends Component {
       this.setState({ addingTeacher: true })
       TeacherService.createTeacher(teacher)
         .then(teacher => this.setState({
-          teachers: this.state.teachers.concat(teacher)
+          teachers: this.props.tch.concat(teacher)
         })
         )
     }
@@ -71,7 +70,6 @@ class Teachers extends Component {
   }
 
   render() {
-
     const teachersList = this.props.tch.map(teacher => {
       return (
         <Aux key={teacher.id}>

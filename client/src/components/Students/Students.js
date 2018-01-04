@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import * as actionTypes from '../../store/actions';
 import { connect } from 'react-redux';
 
-
 import { Table } from 'reactstrap';
 import AddStudent from './AddStudent/AddStudent';
 import Student from './Student/Student';
@@ -19,11 +18,11 @@ class Students extends Component {
     addingStudent: false
   }
 
-  componentDidMount() {
-    console.log('[Students]DidMount this.props.stu', this.props.stu)
-    //   StudentService.fetchStudents()
-    //     .then(response => this.setState({ students: response }))
-  }
+  // componentDidMount() {
+  //   console.log('[Students]DidMount this.props.stu', this.props.stu)
+  //   //   StudentService.fetchStudents()
+  //   //     .then(response => this.setState({ students: response }))
+  // }
 
   // deleteStudentHandler = (id) => {
   //   StudentService.deleteStudent(id);
@@ -32,18 +31,17 @@ class Students extends Component {
   //   this.setState({ students: students });
   // };
 
-
-  // addStudentHandler = (student) => {
-  //   if (student.teacher_id !== "") {
-  //     this.setState({ addingStudent: true })
-  //     StudentService.createStudent(student)
-  //       .then(student => this.setState({
-  //         students: this.state.students.concat(student)
-  //       })
-  //       )
-  //   }
-  //   this.setState({ addingStudent: false });
-  // }
+  addStudentHandler = (student) => {
+    if (student.name !== "") {
+      this.setState({ addingStudent: true })
+      StudentService.createStudent(student)
+        .then(student => this.setState({
+          students: this.props.stu.concat(student)
+        })
+        )
+    }
+    this.setState({ addingStudent: false });
+  }
 
   addStudentCancelHandler = () => {
     this.setState({
@@ -112,7 +110,7 @@ class Students extends Component {
               </tr>
             </thead>
             <tbody>
-              {/* {studentsList} */}
+              {studentsList}
             </tbody>
           </Table>
         </div>

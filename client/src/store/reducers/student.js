@@ -11,14 +11,11 @@ const STUDENTS = [
   { id: 8, level: 3, teacher_id: 4, firstname: 'Orin', lastname: 'Keepnews', email: 'okeepnews@student.com' },
   { id: 9, level: 1, teacher_id: 4, firstname: 'Will', lastname: 'Marron', email: 'wmarron@student.com' },
   { id: 10, level: 1, teacher_id: 5, firstname: 'Penny', lastname: 'Clump', email: 'pclump@student.com' },
-  { id: 11, level: 1, teacher_id: 5, firstname: 'Babu', lastname: 'Aadou', email: 'babadoo@student.com' }
+  { id: 11, level: 1, teacher_id: 5, firstname: 'Babu', lastname: 'Aadou', email: 'baba3doo@student.com' }
 ]
 
 const initialState = {
-  teachers: {},
-  students: STUDENTS,
-  resources: {},
-  lessons: {}
+  students: STUDENTS
 };
 
 const reducer = (state = initialState, action) => {

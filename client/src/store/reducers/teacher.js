@@ -1,15 +1,14 @@
 import * as actionTypes from '../actions';
 
 const TEACHERS = [
-  { id: 1, firstname: 'Not', firstname: 'Assigned', email: 'unassigned@music.com' },
-  { id: 2, firstname: 'Joe', firstname: 'Pepper', email: 'jpepper@music.com' },
-  { id: 3, firstname: 'Mila', firstname: 'Filatova', email: 'mfilatova@music.com' },
-  { id: 4, firstname: 'Barry', firstname: 'Gendron', email: 'bgendron@music.com' },
-  { id: 5, firstname: 'James', firstname: 'Brown', email: 'jb@getfunky.com' }
+  { id: 1, firstname: 'Not', lastname: 'Assigned', email: 'unassigned@music.com' },
+  { id: 2, firstname: 'Joe', lastname: 'Pepper', email: 'jpepper@music.com' },
+  { id: 3, firstname: 'Mila', lastname: 'Filatova', email: 'mfilatova@music.com' },
+  { id: 4, firstname: 'Barry', lastname: 'Gendron', email: 'bgendron@music.com' },
+  { id: 5, firstname: 'James', lastname: 'Brown', email: 'jb@getfunky1.com' }
 ]
 
 const initialState = {
-  // teachers: []
   teachers: TEACHERS
 }
 
