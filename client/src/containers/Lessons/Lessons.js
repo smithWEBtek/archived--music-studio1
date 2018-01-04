@@ -17,18 +17,18 @@ class Lessons extends Component {
     addingLesson: false,
     showLesson: false
   }
- 
-  // addLessonHandler = (lesson) => {
-  //   if (lesson.teacher_id !== "") {
-  //     this.setState({ addingLesson: true })
-  //     LessonService.createLesson(lesson)
-  //       .then(lesson => this.setState({
-  //         lessons: this.state.lessons.concat(lesson)
-  //       })
-  //       )
-  //   }
-  //   this.setState({ addingLesson: false });
-  // }
+
+  addLessonHandler = (lesson) => {
+    if (lesson.teacher_id !== "") {
+      this.setState({ addingLesson: true })
+      LessonService.createLesson(lesson)
+        .then(lesson => this.setState({
+          lessons: this.state.lessons.concat(lesson)
+        })
+        )
+    }
+    this.setState({ addingLesson: false });
+  }
 
   addLessonHandler = () => {
     this.setState({ addingLesson: false });
