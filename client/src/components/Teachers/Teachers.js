@@ -12,37 +12,22 @@ import Modal from '../UI/Modal/Modal';
 
 class Teachers extends Component {
   state = {
-    // teachers: [],
     teacher: null,
     showTeacher: false,
     addingTeacher: false,
   }
 
-  // componentDidMount() {
-  //   TeacherService.fetchTeachers()
-  //     .then(response => this.setState({ teachers: response }));
+  // addTeacherHandler = teacher => {
+  //   if (teacher.lastname !== "") {
+  //     this.setState({ addingTeacher: true })
+  //     TeacherService.createTeacher(teacher)
+  //       .then(teacher => this.setState({
+  //         teachers: this.props.tch.concat(teacher)
+  //       })
+  //       )
+  //   }
+  //   this.setState({ addingTeacher: false })
   // }
-
-  // handleEditTeacher
-
-  deleteTeacherHandler = (id) => {
-    TeacherService.deleteTeacher(id);
-    let teachers = [...this.state.teachers];
-    teachers = teachers.filter(teacher => teacher.id !== id);
-    this.setState({ teachers: teachers });
-  };
-
-  addTeacherHandler = teacher => {
-    if (teacher.email !== "") {
-      this.setState({ addingTeacher: true })
-      TeacherService.createTeacher(teacher)
-        .then(teacher => this.setState({
-          teachers: this.props.tch.concat(teacher)
-        })
-        )
-    }
-    this.setState({ addingTeacher: false })
-  }
 
   addTeacherCancelHandler = () => {
     this.setState({
@@ -70,6 +55,7 @@ class Teachers extends Component {
   }
 
   render() {
+
     const teachersList = this.props.tch.map(teacher => {
       return (
         <Aux key={teacher.id}>
@@ -81,7 +67,7 @@ class Teachers extends Component {
             {/* <td>{teacher.students.length}</td> */}
             <td><button onClick={() => this.showTeacherHandler(teacher.id)}>Show</button></td>
             <td><button>Edit</button></td>
-            <td><button onClick={() => this.deleteTeacherHandler(teacher.id)}>X</button></td>
+            <td><button onClick={() => this.props.onTeacherRemoved(teacher.id)}>X</button></td>
           </tr>
         </Aux>
       )

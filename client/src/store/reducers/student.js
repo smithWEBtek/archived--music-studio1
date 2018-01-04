@@ -23,6 +23,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.ADD_STUDENT:
 
       const newStudent = action.studentData
+      newStudent.id = new Date().getTime();
       return {
         ...state,
         students: state.students.concat(newStudent)

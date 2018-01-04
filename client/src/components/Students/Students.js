@@ -12,36 +12,22 @@ import Modal from '../UI/Modal/Modal';
 
 class Students extends Component {
   state = {
-    // students: [],
     student: {},
     showStudent: false,
     addingStudent: false
   }
 
-  // componentDidMount() {
-  //   console.log('[Students]DidMount this.props.stu', this.props.stu)
-  //   //   StudentService.fetchStudents()
-  //   //     .then(response => this.setState({ students: response }))
+  // addStudentHandler = (student) => {
+  //   if (student.lastname !== "") {
+  //     this.setState({ addingStudent: true })
+  //     StudentService.createStudent(student)
+  //       .then(student => this.setState({
+  //         students: this.props.stu.concat(student)
+  //       })
+  //       )
+  //   }
+  //   this.setState({ addingStudent: false });
   // }
-
-  // deleteStudentHandler = (id) => {
-  //   StudentService.deleteStudent(id);
-  //   let students = [...this.state.students];
-  //   students = students.filter(student => student.id !== id);
-  //   this.setState({ students: students });
-  // };
-
-  addStudentHandler = (student) => {
-    if (student.name !== "") {
-      this.setState({ addingStudent: true })
-      StudentService.createStudent(student)
-        .then(student => this.setState({
-          students: this.props.stu.concat(student)
-        })
-        )
-    }
-    this.setState({ addingStudent: false });
-  }
 
   addStudentCancelHandler = () => {
     this.setState({
@@ -93,9 +79,14 @@ class Students extends Component {
           <Modal
             show={this.state.addingStudent}
             modalClosed={this.addStudentCancelHandler}>
-            {/* <AddStudent
-              addStudent={this.props.onStudentAdded(this.state.student)}
-              addStudentCancel={this.addStudentCancelHandler} /> */}
+
+
+            <AddStudent
+              addStudent={this.props.onStudentAdded}
+              addStudentCancel={this.addStudentCancelHandler} />
+
+
+
           </Modal>
           <Table className={classes.Students}>
             <thead>
