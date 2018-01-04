@@ -29,6 +29,10 @@ class Students extends Component {
   //   this.setState({ addingStudent: false });
   // }
 
+  addStudentHandler = () => {
+    this.setState({ addingStudent: false });
+  }
+
   addStudentCancelHandler = () => {
     this.setState({
       addingStudent: false
@@ -36,6 +40,7 @@ class Students extends Component {
   }
 
   showAddStudentModal = () => {
+    this.props.onStudentAdded
     this.setState({ addingStudent: true });
   }
 
@@ -79,14 +84,9 @@ class Students extends Component {
           <Modal
             show={this.state.addingStudent}
             modalClosed={this.addStudentCancelHandler}>
-
-
             <AddStudent
               addStudent={this.props.onStudentAdded}
               addStudentCancel={this.addStudentCancelHandler} />
-
-
-
           </Modal>
           <Table className={classes.Students}>
             <thead>
