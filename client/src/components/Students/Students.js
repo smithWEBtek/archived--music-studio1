@@ -40,7 +40,7 @@ class Students extends Component {
   }
 
   showAddStudentModal = () => {
-    this.props.onStudentAdded
+    // this.props.onStudentAdded
     this.setState({ addingStudent: true });
   }
 
@@ -77,7 +77,6 @@ class Students extends Component {
     });
 
     return (
-
       <Aux>
         <div style={{ margin: '30px' }}>
           <button onClick={this.showAddStudentModal}>Add Student</button>

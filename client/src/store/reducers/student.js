@@ -21,21 +21,18 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.ADD_STUDENT:
-
       const newStudent = action.studentData
       newStudent.id = new Date().getTime();
       return {
         ...state,
         students: state.students.concat(newStudent)
       }
-
     case actionTypes.REMOVE_STUDENT:
       const updatedStudentsArray = state.students.filter(student => student.id !== action.studentId);
       return {
         ...state,
         students: updatedStudentsArray
       };
-
     default:
       return state;
   }
