@@ -1,10 +1,37 @@
 import * as actionTypes from './actionTypes';
 import StudentService from '../../components/Students/StudentService';
 
-export const addStudent = (student) => {
+export const addStudent = (studentData) => {
+  return dispatch => {
+    dispatch(addStudentStart());
+    StudentService.createStudent(studentData)
+      .then(response => {
+        dispatch(addStudentSuccess(response))
+        dispatch(fetchStudents())
+      })
+      .catch(error => {
+        dispatch(addStudentFail(error))
+      })
+  }
+}
+
+export const addStudentStart = () => {
   return {
-    type: actionTypes.ADD_STUDENT,
-    studentData: student
+    type: actionTypes.ADD_STUDENT_START
+  }
+}
+
+export const addStudentSuccess = (students) => {
+  return {
+    type: actionTypes.ADD_STUDENT_SUCCESS,
+    studentsList: students
+  }
+}
+
+export const addStudentFail = (error) => {
+  return {
+    type: actionTypes.ADD_STUDENT_FAIL,
+    error: error
   }
 }
 
@@ -14,9 +41,6 @@ export const removeStudent = (id) => {
     id: id
   }
 }
-
-
-
 
 export const fetchStudentsSuccess = (students) => {
   return {
@@ -43,14 +67,7 @@ export const fetchStudents = () => {
     dispatch(fetchStudentsStart());
     StudentService.fetchStudents()
       .then(response => {
-        const fetchedStudents = [];
-        for (let key in response.data) {
-          fetchedStudents.push({
-            ...response.data[key],
-            id: key
-          });
-        }
-        dispatch(fetchStudentsSuccess(fetchedStudents))
+        dispatch(fetchStudentsSuccess(response))
       })
       .catch(error => {
         dispatch(fetchStudentsFail(error))

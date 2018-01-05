@@ -25,7 +25,7 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
 
     case actionTypes.ADD_STUDENT:
-      const newStudent = StudentService.createStudent(action.studentData)
+      const newStudent = action.studentData
       return {
         ...state,
         students: state.students.concat(newStudent)

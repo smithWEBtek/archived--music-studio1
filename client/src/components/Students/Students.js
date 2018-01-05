@@ -21,6 +21,10 @@ class Students extends Component {
     this.props.onFetchStudents();
   }
 
+  // componentDidUpdate() {
+  //   this.props.onFetchStudents();
+  // }
+
   addStudentCancelHandler = () => {
     this.setState({ addingStudent: false });
   }
