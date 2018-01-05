@@ -30,9 +30,7 @@ class Teachers extends Component {
   // }
 
   addTeacherCancelHandler = () => {
-    this.setState({
-      addingTeacher: false
-    });
+    this.setState({ addingTeacher: false });
   }
 
   showAddTeacherModal = () => {
@@ -49,13 +47,10 @@ class Teachers extends Component {
   }
 
   showTeacherCancelHandler = () => {
-    this.setState({
-      showTeacher: false
-    });
+    this.setState({ showTeacher: false });
   }
 
   render() {
-
     const teachersList = this.props.tch.map(teacher => {
       return (
         <Aux key={teacher.id}>
