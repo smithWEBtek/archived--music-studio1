@@ -1,9 +1,10 @@
 import * as actionTypes from './actionTypes';
+import StudentService from '../../components/Students/StudentService';
 
 export const addStudent = (student) => {
   return {
     type: actionTypes.ADD_STUDENT,
-    student: student
+    studentData: student
   }
 }
 
@@ -14,23 +15,45 @@ export const removeStudent = (id) => {
   }
 }
 
-// export const addStudentStart = () => {
-//   return {
-//     type: actionTypes.ADD_STUDENT_START,
-//     loading: true
-//   }
-// }
 
-// export const addStudentSuccess = (student) => {
-//   return {
-//     type: actionTypes.ADD_STUDENT_SUCCESS,
-//     student: student
-//   }
-// }
 
-// export const addStudentFail = (error) => {
-//   return {
-//     type: actionTypes.ADD_STUDENT_FAIL,
-//     error: error
-//   }
-// }
+
+export const fetchStudentsSuccess = (students) => {
+  return {
+    type: actionTypes.FETCH_STUDENTS_SUCCESS,
+    studentsList: students
+  }
+}
+
+export const fetchStudentsFail = (error) => {
+  return {
+    type: actionTypes.FETCH_STUDENTS_FAIL,
+    error: error
+  }
+}
+
+export const fetchStudentsStart = () => {
+  return {
+    type: actionTypes.FETCH_STUDENTS_START
+  }
+}
+
+export const fetchStudents = () => {
+  return dispatch => {
+    dispatch(fetchStudentsStart());
+    StudentService.fetchStudents()
+      .then(response => {
+        const fetchedStudents = [];
+        for (let key in response.data) {
+          fetchedStudents.push({
+            ...response.data[key],
+            id: key
+          });
+        }
+        dispatch(fetchStudentsSuccess(fetchedStudents))
+      })
+      .catch(error => {
+        dispatch(fetchStudentsFail(error))
+      })
+  }
+}

@@ -1,4 +1,5 @@
 import * as actionTypes from '../actions/actionTypes';
+import StudentService from '../../components/Students/StudentService';
 
 const STUDENTS = [
   { id: 1, level: 1, teacher_id: 1, firstname: 'James', lastname: 'Smith', email: 'jsmith@student.com' },
@@ -15,7 +16,8 @@ const STUDENTS = [
 ]
 
 const initialState = {
-  students: STUDENTS,
+  // students: STUDENTS,
+  students: [],
   loading: false
 };
 
@@ -23,8 +25,7 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
 
     case actionTypes.ADD_STUDENT:
-      const newStudent = action.student
-      newStudent.id = state.students[state.students.length - 1].id + 1;
+      const newStudent = StudentService.createStudent(action.studentData)
       return {
         ...state,
         students: state.students.concat(newStudent)
@@ -37,21 +38,12 @@ const reducer = (state = initialState, action) => {
         students: updatedStudentsArray
       };
 
-    // case actionTypes.ADD_STUDENT_START:
-    //   return {
-    //     ...state,
-    //     loading: true
-    //   }
+    case actionTypes.FETCH_STUDENTS_SUCCESS:
+      return {
+        ...state,
+        students: action.studentsList
+      }
 
-    // case actionTypes.ADD_STUDENT_SUCCESS:
-    //   return {
-    //     ...state,
-    //     addingStudent: false
-    //   }
-    // case actionTypes.ADD_STUDENT_FAIL:
-    //   return {
-    //     ...state
-    //   }
     default:
       return state;
   }

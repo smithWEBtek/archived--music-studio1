@@ -1,4 +1,5 @@
 export {
   addStudent,
-  removeStudent
+  removeStudent,
+  fetchStudents
 } from './studentActions'

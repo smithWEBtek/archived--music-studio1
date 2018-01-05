@@ -17,16 +17,9 @@ class Students extends Component {
     addingStudent: false
   }
 
-  // addStudentHandler = () => {
-  //   debugger;
-  //   console.log('student', this.state.student)
-
-  //   this.state.addingStudent = true;
-  //   if (this.state.student.firstname !== "") {
-  //     this.props.onStudentAdded(this.state.student)
-  //     this.state.addingStudent = false;
-  //   }
-  // }
+  componentDidMount() {
+    this.props.onFetchStudents();
+  }
 
   addStudentCancelHandler = () => {
     this.setState({ addingStudent: false });
@@ -124,8 +117,11 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     onStudentAdded: (studentData) => dispatch(actionCreators.addStudent(studentData)),
-    onStudentRemoved: (id) => dispatch(actionCreators.removeStudent(id))
+    onStudentRemoved: (id) => dispatch(actionCreators.removeStudent(id)),
+    onFetchStudents: () => dispatch(actionCreators.fetchStudents())
   }
 }
+
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(Students);
