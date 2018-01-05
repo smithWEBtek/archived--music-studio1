@@ -15,11 +15,13 @@ const STUDENTS = [
 ]
 
 const initialState = {
-  students: STUDENTS
+  students: STUDENTS,
+  loading: false
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+
     case actionTypes.ADD_STUDENT:
       const newStudent = action.student
       newStudent.id = state.students[state.students.length - 1].id + 1;
@@ -27,12 +29,29 @@ const reducer = (state = initialState, action) => {
         ...state,
         students: state.students.concat(newStudent)
       }
+
     case actionTypes.REMOVE_STUDENT:
-      const updatedStudentsArray = state.students.filter(student => student.id !== action.studentId);
+      const updatedStudentsArray = state.students.filter(student => student.id !== action.id);
       return {
         ...state,
         students: updatedStudentsArray
       };
+
+    // case actionTypes.ADD_STUDENT_START:
+    //   return {
+    //     ...state,
+    //     loading: true
+    //   }
+
+    // case actionTypes.ADD_STUDENT_SUCCESS:
+    //   return {
+    //     ...state,
+    //     addingStudent: false
+    //   }
+    // case actionTypes.ADD_STUDENT_FAIL:
+    //   return {
+    //     ...state
+    //   }
     default:
       return state;
   }

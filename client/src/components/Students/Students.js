@@ -17,32 +17,22 @@ class Students extends Component {
     addingStudent: false
   }
 
-  // addStudentHandler = (student) => {
-  //   if (student.lastname !== "") {
-  //     this.setState({ addingStudent: true })
-  //     StudentService.createStudent(student)
-  //       .then(student => this.setState({
-  //         students: this.props.stu.concat(student)
-  //       })
-  //       )
-  //   }
-  //   this.setState({ addingStudent: false });
-  // }
+  // addStudentHandler = () => {
+  //   debugger;
+  //   console.log('student', this.state.student)
 
-  addStudentHandler = (student) => {
-    this.setState({ addingStudent: true });
-    if (student.firstname !== "") {
-      this.props.onStudentAdded(student)
-      this.setState({ addingStudent: false });
-    }
-  }
+  //   this.state.addingStudent = true;
+  //   if (this.state.student.firstname !== "") {
+  //     this.props.onStudentAdded(this.state.student)
+  //     this.state.addingStudent = false;
+  //   }
+  // }
 
   addStudentCancelHandler = () => {
     this.setState({ addingStudent: false });
   }
 
-  showAddStudentModal = () => {
-    // this.props.onStudentAdded
+  showAddStudentForm = () => {
     this.setState({ addingStudent: true });
   }
 
@@ -57,11 +47,11 @@ class Students extends Component {
   }
 
   showStudentCancelHandler = () => {
-    this.setState({ addingStudent: true });
+    this.setState({ showStudent: false });
   }
 
   render() {
-    const studentsList = this.props.students.map(student => {
+    const studentsList = this.props.stu.map(student => {
       return (
         <Aux key={student.id}>
           <tr>
@@ -80,7 +70,7 @@ class Students extends Component {
     return (
       <Aux>
         <div style={{ margin: '30px' }}>
-          <button onClick={this.showAddStudentModal}>Add Student</button>
+          <button onClick={this.showAddStudentForm}>Add Student</button>
           <Modal
             show={this.state.addingStudent}
             modalClosed={this.addStudentCancelHandler}>
@@ -109,13 +99,15 @@ class Students extends Component {
           show={this.state.showStudent}
           modalClosed={this.showStudentCancelHandler}>
           <Aux>
-            <Student
-              firstname={this.state.student.firstname}
-              lastname={this.state.student.lastname}
-              email={this.state.student.email}
-              level={this.state.student.level}
-              teacher_id={this.state.student.teacher_id}
-              close={this.showStudentCancelHandler} />
+            {this.state.student ?
+              <Student
+                firstname={this.state.student.firstname}
+                lastname={this.state.student.lastname}
+                email={this.state.student.email}
+                level={this.state.student.level}
+                teacher_id={this.state.student.teacher_id}
+                close={this.showStudentCancelHandler}
+              /> : null}
           </Aux>
         </Modal>
       </Aux>
@@ -125,7 +117,7 @@ class Students extends Component {
 
 const mapStateToProps = state => {
   return {
-    students: state.stu.students
+    stu: state.stu.students
   }
 }
 

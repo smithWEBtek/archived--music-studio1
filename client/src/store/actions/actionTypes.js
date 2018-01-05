@@ -1,3 +1,7 @@
+
+// export const ADD_STUDENT_START = 'ADD_STUDENT_START';
+// export const ADD_STUDENT_SUCCESS = 'ADD_STUDENT_SUCCESS';
+// export const ADD_STUDENT_FAIL = 'ADD_STUDENT_FAIL';
 export const ADD_STUDENT = 'ADD_STUDENT';
 export const REMOVE_STUDENT = 'REMOVE_STUDENT';
 
