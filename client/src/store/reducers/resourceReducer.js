@@ -1,4 +1,4 @@
-import * as actionTypes from '../actions';
+import * as actionTypes from '../actions/actionTypes';
 
 const RESOURCES = [
   { id: 1, title: 'cycle of fifths 1', category: 'harmony', description: '12 keys in 12 bars', format: 'doc', location: 'cloud' },

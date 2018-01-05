@@ -1,4 +1,4 @@
-import * as actionTypes from '../actions';
+import * as actionTypes from '../actions/actionTypes';
 
 const STUDENTS = [
   { id: 1, level: 1, teacher_id: 1, firstname: 'James', lastname: 'Smith', email: 'jsmith@student.com' },

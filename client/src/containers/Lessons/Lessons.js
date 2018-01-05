@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import * as actionTypes from '../../store/actions';
+import * as actionTypes from '../../store/actions/actionTypes';
 import { connect } from 'react-redux';
 
 import { Table } from 'reactstrap';

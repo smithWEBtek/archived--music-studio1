@@ -4,10 +4,10 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 
-import studentReducer from './store/reducers/student';
-import teacherReducer from './store/reducers/teacher';
-import resourceReducer from './store/reducers/resource';
-import lessonReducer from './store/reducers/lesson';
+import studentReducer from './store/reducers/studentReducer';
+import teacherReducer from './store/reducers/teacherReducer';
+import resourceReducer from './store/reducers/resourceReducer';
+import lessonReducer from './store/reducers/lessonReducer';
 
 
 import App from './App';
