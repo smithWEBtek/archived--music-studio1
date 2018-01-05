@@ -1,5 +1,4 @@
 import * as actionTypes from './actionTypes';
-// import { ADD_RESOURCE } from './actionTypes';
 
 export const addStudent = (student) => {
   return {

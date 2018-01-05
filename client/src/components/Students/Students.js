@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import * as actionTypes from '../../store/actions/actionTypes';
+import * as actionCreators from '../../store/actions/index';
 import { connect } from 'react-redux';
 
 import { Table } from 'reactstrap';
 import AddStudent from './AddStudent/AddStudent';
 import Student from './Student/Student';
-import StudentService from './StudentService';
+// import StudentService from './StudentService';
 import classes from './Students.css';
 import Aux from '../../hoc/Aux/Aux';
 import Modal from '../UI/Modal/Modal';
@@ -29,14 +29,16 @@ class Students extends Component {
   //   this.setState({ addingStudent: false });
   // }
 
-  addStudentHandler = () => {
-    this.setState({ addingStudent: false });
+  addStudentHandler = (student) => {
+    this.setState({ addingStudent: true });
+    if (student.firstname !== "") {
+      this.props.onStudentAdded(student)
+      this.setState({ addingStudent: false });
+    }
   }
 
   addStudentCancelHandler = () => {
-    this.setState({
-      addingStudent: false
-    });
+    this.setState({ addingStudent: false });
   }
 
   showAddStudentModal = () => {
@@ -45,22 +47,21 @@ class Students extends Component {
   }
 
   showStudentHandler = (id) => {
-    StudentService.fetchStudent(id)
-      .then(response => this.setState({
-        student: response,
-        showStudent: true
-      })
-      );
+    alert('you need to add FETCH_STUDENT action in studentReducer.js')
+    // StudentService.fetchStudent(id)
+    //   .then(response => this.setState({
+    //     student: response,
+    //     showStudent: true
+    //   })
+    //   );
   }
 
   showStudentCancelHandler = () => {
-    this.setState({
-      showStudent: false
-    });
+    this.setState({ addingStudent: true });
   }
 
   render() {
-    const studentsList = this.props.stu.map(student => {
+    const studentsList = this.props.students.map(student => {
       return (
         <Aux key={student.id}>
           <tr>
@@ -124,14 +125,14 @@ class Students extends Component {
 
 const mapStateToProps = state => {
   return {
-    stu: state.stu.students
+    students: state.stu.students
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    onStudentAdded: (data) => dispatch({ type: actionTypes.ADD_STUDENT, studentData: data }),
-    onStudentRemoved: (id) => dispatch({ type: actionTypes.REMOVE_STUDENT, studentId: id })
+    onStudentAdded: (studentData) => dispatch(actionCreators.addStudent(studentData)),
+    onStudentRemoved: (id) => dispatch(actionCreators.removeStudent(id))
   }
 }
 

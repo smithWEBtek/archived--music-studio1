@@ -21,7 +21,7 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.ADD_STUDENT:
-      const newStudent = action.studentData
+      const newStudent = action.student
       newStudent.id = state.students[state.students.length - 1].id + 1;
       return {
         ...state,
