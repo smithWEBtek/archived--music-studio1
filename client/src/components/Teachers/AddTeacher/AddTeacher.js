@@ -3,14 +3,9 @@ import classes from './AddTeacher.css';
 
 class AddTeacher extends Component {
   state = {
-    formVisible: false,
     firstname: '',
     lastname: '',
     email: ''
-  }
-
-  handleShowForm = (event) => {
-    this.setState({ formVisible: !this.state.formVisible })
   }
 
   handleOnChange = (event) => {
@@ -20,14 +15,14 @@ class AddTeacher extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const teacher = this.state;
-    this.props.addTeacher(teacher)
+    const teacherData = this.state;
+    this.props.addTeacher(teacherData)
     this.setState({
-      formVisible: false,
       firstname: '',
       lastname: '',
       email: ''
     });
+    this.props.addTeacherCancel()
   }
 
   render() {
@@ -42,6 +37,7 @@ class AddTeacher extends Component {
               value={this.state.firstname}
               onChange={(event) => this.handleOnChange(event)}
               placeholder="firstname"
+              required
             /></p>
           <p><label htmlFor="teacher_name">Last name </label>
             <input
@@ -50,6 +46,7 @@ class AddTeacher extends Component {
               value={this.state.lastname}
               onChange={(event) => this.handleOnChange(event)}
               placeholder="lastname"
+              required
             /></p>
           <p><label htmlFor="teacher_name">Email </label>
             <input
@@ -58,8 +55,13 @@ class AddTeacher extends Component {
               value={this.state.email}
               onChange={(event) => this.handleOnChange(event)}
               placeholder="email"
+              required
             /></p>
-          <button onClick={this.props.addTeacherCancel} className={classes.Danger}>CANCEL</button>
+          <button
+            type="button"
+            onClick={this.props.addTeacherCancel}
+            className={classes.Danger}
+          >CANCEL</button>
           <button className={classes.Success}>ADD Teacher</button>
         </form>
       </div>

@@ -3,16 +3,11 @@ import classes from './AddResource.css';
 
 class AddResource extends Component {
   state = {
-    formVisible: false,
     title: '',
     category: '',
     description: '',
     format: '',
     location: ''
-  }
-
-  handleShowForm = (event) => {
-    this.setState({ formVisible: !this.state.formVisible })
   }
 
   handleOnChange = (event) => {
@@ -25,13 +20,13 @@ class AddResource extends Component {
     const resourceData = this.state;
     this.props.addResource(resourceData)
     this.setState({
-      formVisible: false,
       title: '',
       category: '',
       description: '',
       format: '',
       location: ''
     });
+    this.props.addResourceCancel()
   }
 
   render() {
@@ -46,7 +41,8 @@ class AddResource extends Component {
               name="title"
               value={this.state.title}
               onChange={(event) => this.handleOnChange(event)}
-              placeholder="title" /></p>
+              placeholder="title"
+              required /></p>
           <p><label htmlFor="resource_name">Category
             </label>
             <input
@@ -54,7 +50,8 @@ class AddResource extends Component {
               name="category"
               value={this.state.category}
               onChange={(event) => this.handleOnChange(event)}
-              placeholder="category" /></p>
+              placeholder="category"
+              required /></p>
           <p><label htmlFor="resource_name">Description
             </label>
             <input
@@ -62,7 +59,8 @@ class AddResource extends Component {
               name="description"
               value={this.state.description}
               onChange={(event) => this.handleOnChange(event)}
-              placeholder="description" /></p>
+              placeholder="description"
+              required /></p>
           <p><label htmlFor="resource_name">Format
             </label>
             <input
@@ -70,7 +68,8 @@ class AddResource extends Component {
               name="format"
               value={this.state.format}
               onChange={(event) => this.handleOnChange(event)}
-              placeholder="format" /></p>
+              placeholder="format"
+              required /></p>
           <p><label htmlFor="resource_name">Location
             </label>
             <input
@@ -78,8 +77,12 @@ class AddResource extends Component {
               name="location"
               value={this.state.location}
               onChange={(event) => this.handleOnChange(event)}
-              placeholder="location" /></p>
-          <button onClick={this.props.addResourceCancel} className={classes.Danger}>CANCEL</button>
+              placeholder="location"
+              required /></p>
+          <button
+            type="button"
+            onClick={this.props.addResourceCancel}
+            className={classes.Danger}>CANCEL</button>
           <button className={classes.Success}>ADD Resource</button>
         </form>
       </div>

@@ -7,7 +7,6 @@ import ResourceService from '../../../components/Resources/ResourceService';
 
 class AddLesson extends Component {
   state = {
-    formVisible: false,
     date: '',
     teacher: '',
     student: '',
@@ -20,21 +19,17 @@ class AddLesson extends Component {
     lessons: []
   }
 
-  componentDidMount() {
-    TeacherService.fetchTeachers()
-      .then(teachers => this.setState({ teachers: teachers }))
+  // componentDidMount() {
+  //   // TeacherService.fetchTeachers()
+  //   //   .then(teachers => this.setState({ teachers: teachers }))
 
-    StudentService.fetchStudents()
-      .then(students => this.setState({ students: students }))
+  //   // StudentService.fetchStudents()
+  //   //   .then(students => this.setState({ students: students }))
 
-    ResourceService.fetchResources()
-      .then(resources => this.setState({ resources: resources }))
-  }
-
-  handleShowForm = (event) => {
-    this.setState({ formVisible: !this.state.formVisible })
-  }
-
+  //   // ResourceService.fetchResources()
+  //   //   .then(resources => this.setState({ resources: resources }))
+  // }
+ 
   handleTeacherSelect = (event) => {
     this.setState({
       teacher: this.state.teachers.find(teacher => teacher.lastname === event.target.value)
@@ -76,10 +71,10 @@ class AddLesson extends Component {
       resources: [],
       lessons: []
     });
+    this.props.addLessonCancel()
   }
 
   render() {
-
     const teacherOptions = this.state.teachers.map(teacher => {
       return <option value={teacher.lastname} id={teacher.id} key={teacher.id}>{teacher.lastname}</option>
     });
@@ -123,9 +118,13 @@ class AddLesson extends Component {
               type="text"
               value={this.state.notes}
               onChange={(event) => this.setState({ notes: event.target.value })}
-              placeholder="notes" />
+              placeholder="notes" 
+              required />
           </p>
-          <button onClick={this.props.addLessonCancel} className={classes.Danger}>CANCEL</button>
+          <button 
+            type="button"
+            onClick={this.props.addLessonCancel} 
+            className={classes.Danger}>CANCEL</button>
           <button className={classes.Success}>ADD Lesson</button>
         </form>
       </div>
