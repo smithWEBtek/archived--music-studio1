@@ -40,9 +40,10 @@ export const updateStudentFail = (error) => {
 export const updateStudent = (data) => {
   return dispatch => {
     dispatch(updateStudentStart());
-    StudentService.updateStudent(data)
+    StudentService.updateStudent(data.id, data)
       .then(response => {
         dispatch(updateStudentSuccess(response))
+        dispatch(fetchStudents());
       })
       .catch(error => {
         dispatch(updateStudentFail(error))
@@ -54,15 +55,16 @@ export const updateStudent = (data) => {
 // export const updateStudent = (id) => {
 //   return { type: actionTypes.REMOVE_STUDENT, id: id }
 // }
+
+
+
 // FETCH STUDENT ///////////////////////////////////////
 export const fetchStudent = (id) => {
   return dispatch => {
     dispatch(fetchStudentStart());
     StudentService.fetchStudent(id)
       .then(response => {
-        setTimeout(() => {
-          dispatch(fetchStudentSuccess(response))
-        }, 2000);
+        dispatch(fetchStudentSuccess(response))
       })
       .catch(error => {
         dispatch(fetchStudentFail(error))

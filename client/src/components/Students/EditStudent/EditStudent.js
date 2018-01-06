@@ -5,29 +5,36 @@ import { connect } from 'react-redux';
 
 class EditStudent extends Component {
   state = {
-    student: {},
-    // id: 24,
-    isEditable: false
+    id: '',
+    firstname: '',
+    lastname: '',
+    email: '',
+    level: '',
+    teacher_id: ''
   }
 
   componentDidMount() {
-    console.log('[EditStudent] DidMount student: ', this.state.student)
-    // debugger;
     this.setState({
-      student: this.props.student,
-      isEditable: true
+      id: this.props.id,
+      firstname: this.props.firstname,
+      lastname: this.props.lastname,
+      email: this.props.email,
+      level: this.props.level,
+      teacher_id: this.props.teacher_id
     })
   }
 
-  handleOnChange = (event) => {
-    const { name, value } = event.target;
-    this.setState({ [name]: value })
+  handleOnChange = (e) => {
+    e.preventDefault()
+    const { name, value } = e.target;
+    this.setState({ [name]: value });
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.onUpdateStudent(this.state.id, this.state.student)
-    this.props.editStudentCancel()
+    console.log('[EditStudent][handleSubmit] this.state', this.state)
+    let data = this.state;
+    this.props.updateStudent(data)
   }
 
   render() {
@@ -39,52 +46,42 @@ class EditStudent extends Component {
             <input
               type="text"
               name="firstname"
-              value={this.state.student.firstname}
+              value={this.state.firstname}
               onChange={(event) => this.handleOnChange(event)}
-              placeholder={this.state.student.firstname}
             /></p>
           <p><label>Last name </label>
             <input
               type="text"
               name="lastname"
-              value={this.state.student.lastname}
+              value={this.state.lastname}
               onChange={(event) => this.handleOnChange(event)}
-              placeholder={this.state.lastname}
             /></p>
           <p><label>Email </label>
             <input
               type="text"
               name="email"
-              value={this.state.student.email}
+              value={this.state.email}
               onChange={(event) => this.handleOnChange(event)}
-              placeholder={this.state.email}
             /></p>
           <p><label>Level </label>
             <input
               type="text"
               name="level"
-              value={this.state.student.level}
+              value={this.state.level}
               onChange={(event) => this.handleOnChange(event)}
-              placeholder={this.state.level}
             /></p>
           <p><label>Teacher ID </label>
             <input
               type="text"
               name="teacher_id"
-              value={this.state.student.teacher_id}
+              value={this.state.teacher_id}
               onChange={(event) => this.handleOnChange(event)}
-              placeholder={this.state.teacher_id}
             /></p>
           <button
             type="button"
             onClick={this.props.editStudentCancel}
             className={classes.Danger}
           >CANCEL</button>
-          <button
-            type="button"
-            className={classes.Edit}
-            onClick={() => this.setState({ isEditable: true })}
-          > EDIT</button>
           <button className={classes.Success}
           >SAVE</button>
         </form>
@@ -93,16 +90,14 @@ class EditStudent extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    stu: state.students
-  }
-}
-
 const mapDispatchToProps = dispatch => {
   return {
-    onUpdateStudent: (id, data) => dispatch(actionCreators.updateStudent, (id, data))
+    onUpdateStudent: (data) => dispatch(actionCreators.updateStudent, (data))
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(EditStudent);
+export default connect(null, mapDispatchToProps)(EditStudent);
+
+
+
+

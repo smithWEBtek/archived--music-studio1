@@ -12,7 +12,7 @@ import EditStudent from './EditStudent/EditStudent';
 
 class Students extends Component {
   state = {
-    student: {},
+    student: null,
     showStudent: false,
     addStudent: false,
     editStudent: false
@@ -22,56 +22,46 @@ class Students extends Component {
     this.props.onFetchStudents()
   };
 
-
-
-  showAddStudentForm = () => {
+  addStudentForm = () => {
     this.setState({ addStudent: true })
   };
-  addStudentCancelHandler = () => {
+  addStudentFormCancel = () => {
     this.setState({ addStudent: false })
   };
-  addStudentHandler = (newStudentData) => {
+  addStudent = (newStudentData) => {
     this.props.onStudentAdd(newStudentData)
     this.setState({ addStudent: false })
   };
 
-  showStudentDetailHandler = (id) => {
+
+  showStudent = (id) => {
     alert('you need to add FETCH_STUDENT action in studentReducer.js')
   };
-  showStudentDetailCancelHandler = () => {
+  showStudentCancelHandler = () => {
     this.setState({ showStudent: false })
   };
 
 
-
-  editStudentHandler = (updatedStudentData) => {
-    this.setState({ student: updatedStudentData })
-    this.props.onStudentUpdate(this.state.student);
-    this.setState({ editStudent: false })
-  };
-
-  fetchStudent(id) {
-    let student = this.props.onStudentFetch(id);
-    // debugger;
-    this.setState({ student: student })
-  };
-
   showEditStudentForm = (id) => {
-    this.fetchStudent(id);
-    console.log('[showEditStudentForm] this.state.student: ', this.state.student)
+    let student = this.props.students.filter(student => student.id === id)[0]
     this.setState({
+      student: student,
       editStudent: true
     })
   };
 
-  editStudentCancelHandler = () => {
+  editStudentFalse = () => {
     this.setState({ editStudent: false })
   };
 
+  editStudentUpdate = (data) => {
+    this.props.onStudentUpdate(data)
+    this.setState({ student: null, editStudent: false })
+  }
 
 
   render() {
-    const studentsList = this.props.stu.map(student => {
+    const studentsList = this.props.students.map(student => {
       return (
         <Aux key={student.id}>
           <tr>
@@ -90,26 +80,32 @@ class Students extends Component {
     return (
       <Aux>
         <div style={{ margin: '30px' }}>
-          <button onClick={this.showAddStudentForm}>Add Student</button>
+
+          <button onClick={this.addStudentForm}>Add Student</button>
           <Modal
             show={this.state.addStudent}
-            modalClosed={this.addStudentCancelHandler}>
+            modalClosed={this.addStudentFormCancel}>
             <AddStudent
-              addStudent={(newStudentData) => this.addStudentHandler(newStudentData)}
-              addStudentCancel={this.addStudentCancelHandler} />
+              addStudent={(newStudentData) => this.addStudent(newStudentData)}
+              addStudentCancel={this.addStudentFormCancel} />
           </Modal>
-          {/* 
 
           <Modal
-            // show={this.showEditStudentForm}
-            // modalClosed={this.editStudentCancelHandler}>
             show={this.state.editStudent}
             modalClosed={this.editStudentCancelHandler}>
-            <EditStudent
-              student={this.state.student}
-              editStudent={this.props.onStudentEdit}
-              editStudentCancel={this.editStudentCancelHandler} />
-          </Modal> */}
+            <Aux>
+              {this.state.student ? <EditStudent
+                id={this.state.student.id}
+                firstname={this.state.student.firstname}
+                lastname={this.state.student.lastname}
+                email={this.state.student.email}
+                level={this.state.student.level}
+                teacher_id={this.state.student.teacher_id}
+                // updateStudent={this.props.onUpdateStudent(data)}
+                updateStudent={(data) => this.editStudentUpdate(data)}
+              /> : <p>no student data yet...</p>}
+            </Aux>
+          </Modal>
 
 
           <Table className={classes.Students}>
@@ -131,7 +127,7 @@ class Students extends Component {
         </div>
         <Modal
           show={this.state.showStudent}
-          modalClosed={this.showStudentDetailCancelHandler}>
+          modalClosed={this.showStudentCancelHandler}>
           <Aux>
             {this.state.student ?
               <Student
@@ -140,7 +136,7 @@ class Students extends Component {
                 email={this.state.student.email}
                 level={this.state.student.level}
                 teacher_id={this.state.student.teacher_id}
-                close={this.showStudentDetailCancelHandler}
+                close={this.showStudentCancelHandler}
               /> : null}
           </Aux>
         </Modal>
@@ -151,16 +147,16 @@ class Students extends Component {
 
 const mapStateToProps = state => {
   return {
-    stu: state.stu.students
+    students: state.stu.students
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
     onStudentAdd: (newStudentData) => dispatch(actionCreators.addStudent(newStudentData)),
-    onStudentFetch: (id) => dispatch(actionCreators.fetchStudent(id)),
-    onStudentUpdate: (updatedStudentData) => dispatch(actionCreators.updateStudent(updatedStudentData)),
+    onStudentUpdate: (data) => dispatch(actionCreators.updateStudent(data)),
     onStudentRemoved: (id) => dispatch(actionCreators.removeStudent(id)),
+    onFetchStudent: (id) => dispatch(actionCreators.fetchStudent(id)),
     onFetchStudents: () => dispatch(actionCreators.fetchStudents())
   }
 }
