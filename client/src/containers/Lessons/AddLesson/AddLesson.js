@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import classes from './AddLesson.css';
-import TeacherService from '../../../components/Teachers/TeacherService';
-import StudentService from '../../../components/Students/StudentService';
-import ResourceService from '../../../components/Resources/ResourceService';
+// import TeacherService from '../../../components/Teachers/TeacherService';
+// import StudentService from '../../../components/Students/StudentService';
+// import ResourceService from '../../../components/Resources/ResourceService';
 
 
 class AddLesson extends Component {
@@ -29,7 +29,7 @@ class AddLesson extends Component {
   //   // ResourceService.fetchResources()
   //   //   .then(resources => this.setState({ resources: resources }))
   // }
- 
+
   handleTeacherSelect = (event) => {
     this.setState({
       teacher: this.state.teachers.find(teacher => teacher.lastname === event.target.value)
@@ -118,12 +118,12 @@ class AddLesson extends Component {
               type="text"
               value={this.state.notes}
               onChange={(event) => this.setState({ notes: event.target.value })}
-              placeholder="notes" 
+              placeholder="notes"
               required />
           </p>
-          <button 
+          <button
             type="button"
-            onClick={this.props.addLessonCancel} 
+            onClick={this.props.addLessonCancel}
             className={classes.Danger}>CANCEL</button>
           <button className={classes.Success}>ADD Lesson</button>
         </form>

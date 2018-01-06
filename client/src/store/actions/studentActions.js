@@ -1,12 +1,11 @@
 import * as actionTypes from './actionTypes';
 import StudentService from '../../components/Students/StudentService';
 
+// CREATE //////////////////////////////////////// 
 export const addStudent = (studentData) => {
   return dispatch => {
-    dispatch(addStudentStart());
     StudentService.createStudent(studentData)
       .then(response => {
-        dispatch(addStudentSuccess(response))
         dispatch(fetchStudents())
       })
       .catch(error => {
@@ -15,53 +14,31 @@ export const addStudent = (studentData) => {
   }
 }
 
-export const addStudentStart = () => {
-  return {
-    type: actionTypes.ADD_STUDENT_START
-  }
-}
-
-export const addStudentSuccess = (students) => {
-  return {
-    type: actionTypes.ADD_STUDENT_SUCCESS,
-    studentsList: students
-  }
-}
-
 export const addStudentFail = (error) => {
-  return {
-    type: actionTypes.ADD_STUDENT_FAIL,
-    error: error
-  }
+  return { type: actionTypes.ADD_STUDENT_FAIL, error: error }
 }
 
+// DESTROY //////////////////////////////////////// 
 export const removeStudent = (id) => {
+  return { type: actionTypes.REMOVE_STUDENT, id: id }
+}
+
+// UPDATE //////////////////////////////////////// 
+export const updateStudent = (id, data) => {
   return {
-    type: actionTypes.REMOVE_STUDENT,
-    id: id
+    type: actionTypes.UPDATE_STUDENT,
+    id: id,
+    studentData: data
   }
 }
 
-export const fetchStudentsSuccess = (students) => {
-  return {
-    type: actionTypes.FETCH_STUDENTS_SUCCESS,
-    studentsList: students
-  }
-}
+// SHOW //////////////////////////////////////// 
+// export const updateStudent = (id) => {
+//   return { type: actionTypes.REMOVE_STUDENT, id: id }
+// }
 
-export const fetchStudentsFail = (error) => {
-  return {
-    type: actionTypes.FETCH_STUDENTS_FAIL,
-    error: error
-  }
-}
 
-export const fetchStudentsStart = () => {
-  return {
-    type: actionTypes.FETCH_STUDENTS_START
-  }
-}
-
+// INDEX ///////////////////////////////////////
 export const fetchStudents = () => {
   return dispatch => {
     dispatch(fetchStudentsStart());
@@ -73,4 +50,16 @@ export const fetchStudents = () => {
         dispatch(fetchStudentsFail(error))
       })
   }
+}
+
+export const fetchStudentsStart = () => {
+  return { type: actionTypes.FETCH_STUDENTS_START }
+}
+
+export const fetchStudentsSuccess = (students) => {
+  return { type: actionTypes.FETCH_STUDENTS_SUCCESS, studentsList: students }
+}
+
+export const fetchStudentsFail = (error) => {
+  return { type: actionTypes.FETCH_STUDENTS_FAIL, error: error }
 }

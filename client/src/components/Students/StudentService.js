@@ -5,12 +5,10 @@ const StudentService = {
     return fetch(`${API_URL}/students`)
       .then(response => response.json())
   },
-
   fetchStudent: (id) => {
     return fetch(`${API_URL}/students/${id}`)
       .then(response => response.json())
   },
-
   createStudent(student) {
     const request = {
       method: 'POST',
@@ -20,7 +18,17 @@ const StudentService = {
     return fetch(`${API_URL}/students`, request)
       .then(response => response.json())
   },
-
+  updateStudent(id, data) {
+    const request = {
+      method: 'PATCH',
+      body: JSON.stringify({ student: data }),
+      headers: { 'Content-Type': 'application/json' }
+    }
+    return fetch(`${API_URL}/students/${id}`, request)
+      .then(response => {
+        console.log('[updateStudent]response:', response.json())
+      })
+  },
   deleteStudent(id) {
     fetch(`${API_URL}/students/${id}`, { method: 'DELETE' });
   }
