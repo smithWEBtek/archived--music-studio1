@@ -1,4 +1,5 @@
 export {
+  fetchStudent,
   addStudent,
   removeStudent,
   updateStudent,

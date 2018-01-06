@@ -17,8 +17,8 @@ class AddStudent extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const studentData = this.state;
-    this.props.addStudent(studentData)
+    const newStudentData = this.state;
+    this.props.addStudent(newStudentData)
     this.setState({
       firstname: '',
       lastname: '',

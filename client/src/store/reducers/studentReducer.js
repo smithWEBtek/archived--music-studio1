@@ -20,20 +20,23 @@ const reducer = (state = initialState, action) => {
 
     case actionTypes.UPDATE_STUDENT:
       const studentData = action.studentData
-      const id = action.id
-      StudentService.updateStudent(id, studentData)
-      break;
+      return StudentService.updateStudent(studentData)
 
     case actionTypes.REMOVE_STUDENT:
       const updatedStudentsArray = state.students.filter(student => student.id !== action.id);
       return updateObject(state, { students: updatedStudentsArray })
 
+    case actionTypes.FETCH_STUDENT_START:
+      return updateObject(state, { loading: true })
+    case actionTypes.FETCH_STUDENT_SUCCESS:
+      return updateObject(state, { student: action.studentsData })
+    case actionTypes.FETCH_STUDENT_FAIL:
+      return updateObject(state, { error: action.error })
+
     case actionTypes.FETCH_STUDENTS_START:
       return updateObject(state, { loading: true })
-
     case actionTypes.FETCH_STUDENTS_SUCCESS:
       return updateObject(state, { students: action.studentsList })
-
     case actionTypes.FETCH_STUDENTS_FAIL:
       return updateObject(state, { error: action.error })
 

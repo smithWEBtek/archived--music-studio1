@@ -5,20 +5,16 @@ import { connect } from 'react-redux';
 
 class EditStudent extends Component {
   state = {
-    student: {
-      firstname: 'John',
-      lastname: 'Smith',
-      email: 'js@abc.com',
-      level: '3',
-      teacher_id: '3',
-    },
-    id: 24,
+    student: {},
+    // id: 24,
     isEditable: false
   }
 
   componentDidMount() {
+    console.log('[EditStudent] DidMount student: ', this.state.student)
+    // debugger;
     this.setState({
-      //   student: this.props.student,
+      student: this.props.student,
       isEditable: true
     })
   }
@@ -45,8 +41,8 @@ class EditStudent extends Component {
               name="firstname"
               value={this.state.student.firstname}
               onChange={(event) => this.handleOnChange(event)}
-              placeholder={this.state.firstname}
-              required /></p>
+              placeholder={this.state.student.firstname}
+            /></p>
           <p><label>Last name </label>
             <input
               type="text"
@@ -54,7 +50,7 @@ class EditStudent extends Component {
               value={this.state.student.lastname}
               onChange={(event) => this.handleOnChange(event)}
               placeholder={this.state.lastname}
-              required /></p>
+            /></p>
           <p><label>Email </label>
             <input
               type="text"
@@ -62,7 +58,7 @@ class EditStudent extends Component {
               value={this.state.student.email}
               onChange={(event) => this.handleOnChange(event)}
               placeholder={this.state.email}
-              required /></p>
+            /></p>
           <p><label>Level </label>
             <input
               type="text"
@@ -70,7 +66,7 @@ class EditStudent extends Component {
               value={this.state.student.level}
               onChange={(event) => this.handleOnChange(event)}
               placeholder={this.state.level}
-              required /></p>
+            /></p>
           <p><label>Teacher ID </label>
             <input
               type="text"
@@ -78,7 +74,7 @@ class EditStudent extends Component {
               value={this.state.student.teacher_id}
               onChange={(event) => this.handleOnChange(event)}
               placeholder={this.state.teacher_id}
-              required /></p>
+            /></p>
           <button
             type="button"
             onClick={this.props.editStudentCancel}
