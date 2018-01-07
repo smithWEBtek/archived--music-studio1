@@ -7,8 +7,8 @@ export const createStudent = (data) => {
     dispatch(createStudentStart())
     StudentService.createStudent(data)
       .then(response => {
-        dispatch(createStudentSuccess(response))
-        dispatch(fetchStudents())
+        dispatch({ type: actionTypes.CREATE_STUDENT, data: response })
+        dispatch(createStudentSuccess())
       })
       .catch(error => {
         dispatch(createStudentFail(error))

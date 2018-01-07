@@ -13,7 +13,6 @@ const reducer = (state = initialState, action) => {
     //create---------------------------------------------------------------------
     case actionTypes.CREATE_STUDENT:
       const newStudent = action.data
-      StudentService.createStudent(newStudent)
       return updateObject(state, { students: state.students.concat(newStudent) })
 
     case actionTypes.CREATE_STUDENT_START:
