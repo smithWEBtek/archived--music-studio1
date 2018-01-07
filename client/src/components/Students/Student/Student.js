@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from './Student.css';
- 
+
 const student = (props) => (
   <div>
     <fieldset className={classes.Student}>
@@ -8,7 +8,7 @@ const student = (props) => (
       <p>Email: {props.email}</p>
       <p>Level: {props.level}</p>
       <p>TeacherID: {props.teacher_id}</p>
-      <button onClick={props.close}>Close</button>
+      <button type="button" onClick={props.close}>Close</button>
     </fieldset>
   </div>
 )

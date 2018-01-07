@@ -40,10 +40,14 @@ class Students extends Component {
 
   //********SHOW_STUDENT form handling**************************
   showStudent = (id) => {
-    alert('you need to add FETCH_STUDENT action in studentReducer.js')
+    let student = this.props.students.filter(student => student.id === id)[0]
+    this.setState({
+      student: student,
+      showStudent: true
+    })
   }
 
-  showStudentCancelHandler = () => {
+  showStudentClose = () => {
     this.setState({ showStudent: false })
   }
 
@@ -80,7 +84,7 @@ class Students extends Component {
             <td>{student.firstname}</td>
             <td>{student.lastname}</td>
             <td>{student.email}</td>
-            <td><button onClick={() => this.Detail(student.id)}>Show</button></td>
+            <td><button onClick={() => this.showStudent(student.id)}>Show</button></td>
             <td><button onClick={() => this.showEditStudentForm(student.id)}>Edit</button></td>
             <td><button onClick={() => this.props.onStudentDelete(student.id)}>X</button></td>
           </tr>
@@ -102,6 +106,23 @@ class Students extends Component {
               createStudentCancel={this.createStudentFormCancel} />
           </Modal>
 
+          {/**********SHOW STUDENT MODAL**********************************************/}
+          <Modal
+            show={this.state.showStudent}
+            modalClosed={this.showStudentClose}>
+            <Aux>
+              {this.state.student ? <Student
+                id={this.state.student.id}
+                firstname={this.state.student.firstname}
+                lastname={this.state.student.lastname}
+                email={this.state.student.email}
+                level={this.state.student.level}
+                teacher_id={this.state.student.teacher_id}
+                close={this.showStudentClose}
+              /> : <p> No data for student show</p>}
+            </Aux>
+          </Modal>
+
           {/**********EDIT STUDENT MODAL**********************************************/}
           <Modal
             show={this.state.editStudent}
@@ -114,26 +135,9 @@ class Students extends Component {
                 email={this.state.student.email}
                 level={this.state.student.level}
                 teacher_id={this.state.student.teacher_id}
-                // updateStudent={this.props.onUpdateStudent(data)}
+                close={this.editStudentFalse}
                 updateStudent={(data) => this.editStudentUpdate(data)}
               /> : <p>no student data yet...</p>}
-            </Aux>
-          </Modal>
-
-          {/***********SHOW STUDENT MODAL*********************************************************/}
-          <Modal
-            show={this.state.showStudent}
-            modalClosed={this.showStudentCancelHandler}>
-            <Aux>
-              {this.state.student ?
-                <Student
-                  firstname={this.state.student.firstname}
-                  lastname={this.state.student.lastname}
-                  email={this.state.student.email}
-                  level={this.state.student.level}
-                  teacher_id={this.state.student.teacher_id}
-                  close={this.showStudentCancelHandler}
-                /> : null}
             </Aux>
           </Modal>
 

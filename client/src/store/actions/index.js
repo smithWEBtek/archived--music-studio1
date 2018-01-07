@@ -1,5 +1,6 @@
 export {
   fetchStudent,
+  showStudent,
   createStudent,
   deleteStudent,
   updateStudent,
