@@ -3,7 +3,7 @@ import * as actionCreators from '../../store/actions/index';
 import { connect } from 'react-redux';
 
 import { Table } from 'reactstrap';
-import AddStudent from './AddStudent/AddStudent';
+import CreateStudent from './CreateStudent/CreateStudent';
 import Student from './Student/Student';
 import classes from './Students.css';
 import Aux from '../../hoc/Aux/Aux';
@@ -14,7 +14,7 @@ class Students extends Component {
   state = {
     student: null,
     showStudent: false,
-    addStudent: false,
+    createStudent: false,
     editStudent: false
   }
 
@@ -22,15 +22,15 @@ class Students extends Component {
     this.props.onFetchStudents()
   };
 
-  addStudentForm = () => {
-    this.setState({ addStudent: true })
+  createStudentForm = () => {
+    this.setState({ createStudent: true })
   };
-  addStudentFormCancel = () => {
-    this.setState({ addStudent: false })
+  createStudentFormCancel = () => {
+    this.setState({ createStudent: false })
   };
-  addStudent = (newStudentData) => {
-    this.props.onStudentAdd(newStudentData)
-    this.setState({ addStudent: false })
+  createStudent = (newStudentData) => {
+    this.props.onStudentCreate(newStudentData)
+    this.setState({ createStudent: false })
   };
 
 
@@ -59,9 +59,8 @@ class Students extends Component {
     this.setState({ student: null, editStudent: false })
   }
 
-
   render() {
-    const studentsList = this.props.students.map(student => {
+    let studentsList = this.props.students.map(student => {
       return (
         <Aux key={student.id}>
           <tr>
@@ -81,13 +80,13 @@ class Students extends Component {
       <Aux>
         <div style={{ margin: '30px' }}>
 
-          <button onClick={this.addStudentForm}>Add Student</button>
+          <button onClick={this.createStudentForm}>Add Student</button>
           <Modal
-            show={this.state.addStudent}
-            modalClosed={this.addStudentFormCancel}>
-            <AddStudent
-              addStudent={(newStudentData) => this.addStudent(newStudentData)}
-              addStudentCancel={this.addStudentFormCancel} />
+            show={this.state.createStudent}
+            modalClosed={this.createStudentFormCancel}>
+            <CreateStudent
+              createStudent={(newStudentData) => this.createStudent(newStudentData)}
+              createStudentCancel={this.createStudentFormCancel} />
           </Modal>
 
           <Modal
@@ -106,7 +105,6 @@ class Students extends Component {
               /> : <p>no student data yet...</p>}
             </Aux>
           </Modal>
-
 
           <Table className={classes.Students}>
             <thead>
@@ -153,7 +151,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onStudentAdd: (newStudentData) => dispatch(actionCreators.addStudent(newStudentData)),
+    onStudentCreate: (newStudentData) => dispatch(actionCreators.createStudent(newStudentData)),
     onStudentUpdate: (data) => dispatch(actionCreators.updateStudent(data)),
     onStudentRemoved: (id) => dispatch(actionCreators.removeStudent(id)),
     onFetchStudent: (id) => dispatch(actionCreators.fetchStudent(id)),

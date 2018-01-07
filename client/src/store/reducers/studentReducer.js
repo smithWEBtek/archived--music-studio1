@@ -1,6 +1,5 @@
 import * as actionTypes from '../actions/actionTypes';
 import StudentService from '../../components/Students/StudentService';
-import { updateObject } from '../utility';
 
 const initialState = {
   students: [],
@@ -10,36 +9,70 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-
-    case actionTypes.ADD_STUDENT:
-      const newStudent = action.studentData
-      return updateObject(state, { students: state.students.concat(newStudent) })
-
-    case actionTypes.ADD_STUDENT_FAIL:
-      return action.error
+    case actionTypes.CREATE_STUDENT:
+      const newStudent = action.data
+      StudentService.createStudent(newStudent)
+      return {
+        ...state,
+        students: state.students.concat(newStudent)
+      }
+    case actionTypes.CREATE_STUDENT_START:
+      return {
+        ...state,
+        loading: true
+      }
+    case actionTypes.CREATE_STUDENT_SUCCESS:
+      return {
+        ...state,
+        loading: false
+      }
+    case actionTypes.CREATE_STUDENT_FAIL:
+      return {
+        ...state,
+        error: action.error,
+        loading: false
+      }
 
     case actionTypes.UPDATE_STUDENT:
-      const studentData = action.studentData
+      const studentData = action.updatedStudentData
       return StudentService.updateStudent(studentData.id, studentData)
 
     case actionTypes.REMOVE_STUDENT:
       const updatedStudentsArray = state.students.filter(student => student.id !== action.id);
-      return updateObject(state, { students: updatedStudentsArray })
-
+      return {
+        ...state,
+        students: updatedStudentsArray
+      }
     case actionTypes.FETCH_STUDENT_START:
-      return updateObject(state, { loading: true })
+      return {
+        ...state,
+        loading: true
+      }
     case actionTypes.FETCH_STUDENT_SUCCESS:
-      return updateObject(state, { student: action.studentData })
+      return {
+        ...state,
+        students: action.studentData
+      }
     case actionTypes.FETCH_STUDENT_FAIL:
-      return updateObject(state, { error: action.error })
-
+      return {
+        ...state,
+        error: action.error
+      }
     case actionTypes.FETCH_STUDENTS_START:
-      return updateObject(state, { loading: true })
+      return {
+        ...state,
+        loading: true
+      }
     case actionTypes.FETCH_STUDENTS_SUCCESS:
-      return updateObject(state, { students: action.studentsList })
+      return {
+        ...state,
+        students: action.studentsList.sort((a, b) => (a.id) - (b.id))
+      }
     case actionTypes.FETCH_STUDENTS_FAIL:
-      return updateObject(state, { error: action.error })
-
+      return {
+        ...state,
+        error: action.error
+      }
     default:
       return state;
   }

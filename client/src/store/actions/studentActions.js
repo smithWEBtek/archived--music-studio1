@@ -1,24 +1,32 @@
 import * as actionTypes from './actionTypes';
 import StudentService from '../../components/Students/StudentService';
 
-// CREATE //////////////////////////////////////// 
-export const addStudent = (studentData) => {
+//--CREATE_STUDENT ------------------------- 
+export const createStudent = (data) => {
   return dispatch => {
-    StudentService.createStudent(studentData)
+    dispatch(createStudentStart());
+    StudentService.createStudent(data)
       .then(response => {
+        dispatch(createStudentSuccess(response))
         dispatch(fetchStudents())
       })
       .catch(error => {
-        dispatch(addStudentFail(error))
+        dispatch(createStudentFail(error))
       })
   }
 }
-
-export const addStudentFail = (error) => {
-  return { type: actionTypes.ADD_STUDENT_FAIL, error: error }
+export const createStudentStart = () => {
+  return { type: actionTypes.CREATE_STUDENT_START }
+}
+export const createStudentSuccess = () => {
+  return { type: actionTypes.CREATE_STUDENT_SUCCESS }
+}
+export const createStudentFail = (error) => {
+  return { type: actionTypes.CREATE_STUDENT_FAIL, error: error }
 }
 
-// DESTROY //////////////////////////////////////// 
+
+//--DESTROY_STUDENT ------------------------- 
 export const removeStudent = (id) => {
   return { type: actionTypes.REMOVE_STUDENT, id: id }
 }
@@ -30,7 +38,7 @@ export const updateStudentStart = () => {
 }
 
 export const updateStudentSuccess = (data) => {
-  return { type: actionTypes.UPDATE_STUDENT_SUCCESS, updataedStudentData: data }
+  return { type: actionTypes.UPDATE_STUDENT_SUCCESS, updatedStudentData: data }
 }
 
 export const updateStudentFail = (error) => {
