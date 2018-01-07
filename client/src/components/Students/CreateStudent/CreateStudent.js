@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import classes from './AddStudent.css';
+import classes from './CreateStudent.css';
 
-class AddStudent extends Component {
+class CreateStudent extends Component {
   state = {
     firstname: '',
     lastname: '',
@@ -18,7 +18,7 @@ class AddStudent extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const newStudentData = this.state;
-    this.props.addStudent(newStudentData)
+    this.props.createStudent(newStudentData)
     this.setState({
       firstname: '',
       lastname: '',
@@ -26,7 +26,7 @@ class AddStudent extends Component {
       level: '',
       teacher_id: ''
     });
-    this.props.addStudentCancel()
+    this.props.createStudentCancel()
   }
 
   render() {
@@ -76,15 +76,15 @@ class AddStudent extends Component {
               required /></p>
           <button
             type="button"
-            onClick={this.props.addStudentCancel}
+            onClick={this.props.createStudentCancel}
             className={classes.Danger}
           >CANCEL</button>
           <button className={classes.Success}
-          >ADD Student</button>
+          >CREATE Student</button>
         </form>
       </div>
     )
   }
 }
 
-export default AddStudent;
+export default CreateStudent;
