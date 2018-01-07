@@ -8,6 +8,7 @@ import Aux from '../../hoc/Aux/Aux'
 import Modal from '../UI/Modal/Modal'
 
 import Student from './Student/Student'
+import StudentDetail from './Student/StudentDetail'
 import CreateStudent from './CreateStudent/CreateStudent'
 import EditStudent from './EditStudent/EditStudent'
 import StudentStats from './StudentStats/StudentStats'
@@ -16,6 +17,10 @@ class Students extends Component {
   state = {
     student: null,
     showStudent: false,
+
+    studentDetail: null,
+    showStudentDetail: false,
+
     createStudent: false,
     editStudent: false
   }
@@ -53,6 +58,20 @@ class Students extends Component {
   }
 
 
+  //********SHOW_STUDENT DETAIL form handling**************************
+  showStudentDetail = (id) => {
+    let student = this.props.students.filter(student => student.id === id)[0]
+    this.setState({
+      studentDetail: student,
+      showStudentDetail: true
+    })
+  }
+
+  showStudentDetailClose = () => {
+    this.setState({ showStudentDetail: false })
+  }
+
+
   //********EDIT_STUDENT form handling**************************
   showEditStudentForm = (id) => {
     let student = this.props.students.filter(student => student.id === id)[0]
@@ -85,9 +104,15 @@ class Students extends Component {
             <td>{student.firstname}</td>
             <td>{student.lastname}</td>
             <td>{student.email}</td>
-            <td><button onClick={() => this.showStudent(student.id)}>Show</button></td>
-            <td><button onClick={() => this.showEditStudentForm(student.id)}>Edit</button></td>
-            <td><button onClick={() => this.props.onStudentDelete(student.id)}>X</button></td>
+            <td><button
+              onClick={() => this.showStudent(student.id)}
+              className={classes.Success}>Show</button></td>
+            <td><button
+              onClick={() => this.showEditStudentForm(student.id)}
+              className={classes.Edit}>Edit</button></td>
+            <td><button
+              onClick={() => this.props.onStudentDelete(student.id)}
+              className={classes.Danger}>X</button></td>
           </tr>
         </Aux>
       )
@@ -121,6 +146,23 @@ class Students extends Component {
                 teacher_id={this.state.student.teacher_id}
                 close={this.showStudentClose}
               /> : <p> No data for student show</p>}
+            </Aux>
+          </Modal>
+
+          {/**********SHOW STUDENT DETAIL MODAL**********************************************/}
+          <Modal
+            show={this.state.showStudentDetail}
+            modalClosed={this.showStudentDetailClose}>
+            <Aux>
+              {this.state.studentDetail ? <StudentDetail
+                id={this.state.student.id}
+                firstname={this.state.studentDetail.firstname}
+                lastname={this.state.studentDetail.lastname}
+                email={this.state.studentDetail.email}
+                level={this.state.studentDetail.level}
+                teacher_id={this.state.studentDetail.teacher_id}
+                close={this.showStudentDetailClose}
+              /> : <p> No data for student detail</p>}
             </Aux>
           </Modal>
 

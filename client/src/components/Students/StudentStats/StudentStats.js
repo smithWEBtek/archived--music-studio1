@@ -1,8 +1,9 @@
 import React from 'react'
-import { Route, NavLink, Switch } from 'react-router-dom'
+import { Route, NavLink, Switch, withRouter } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.css'
 import classes from './StudentStats.css'
 import Student from '../Student/Student'
+import StudentDetail from '../Student/StudentDetail'
 import Aux from '../../../hoc/Aux/Aux'
 
 
@@ -12,26 +13,43 @@ const studentStats = (props) => {
     return (
       <div className={classes.StudentStats} key={student.id}>
         <NavLink to={'/students/' + student.id} >{student.lastname}</NavLink>
+
       </div>
     )
   })
 
-  // let level2 = props.students.filter(student => student.level === 2)
-  // let level3 = props.students.filter(student => student.level === 3)
-  // let teacher1students = props.students.filter(student => student.teacher_id === 1)
-  // let teacher2students = props.students.filter(student => student.teacher_id === 2)
-  // let teacher3students = props.students.filter(student => student.teacher_id === 3)
-  // let teacher4students = props.students.filter(student => student.teacher_id === 4)
+  let level2 = props.students.filter(student => student.level === 2)
+  level2 = level2.map(student => {
+    return (
+      <div className={classes.StudentStats} key={student.id}>
+        <NavLink to={'/students/' + student.id} >{student.lastname}</NavLink>
+      </div>
+    )
+  })
 
+  let level3 = props.students.filter(student => student.level === 3)
+  level3 = level3.map(student => {
+    return (
+      <div className={classes.StudentStats} key={student.id}>
+        <NavLink to={'/students/' + student.id}>{student.lastname}</NavLink>
+      </div>
+    )
+  })
 
   return (
     <Aux>
       <div>
         <h4>Students at level 1: </h4>
         {level1}
+        <h4>Students at level 2: </h4>
+        {level2}
+        <h4>Students at level 3: </h4>
+        {level3}
       </div>
       <Switch>
-        <Route path='/students/:id' component={Student} />
+        {/* <Route path='/students/:id' component={StudentDetail} /> */}
+        <Route path='/students/:id' render={() => <h3>Student details here ...</h3>} />
+        {/* <Route path='/students/:id' component={StudentDetail} /> */}
       </Switch>
     </Aux>
   )
@@ -39,4 +57,4 @@ const studentStats = (props) => {
 
 
 
-export default studentStats 
+export default withRouter(studentStats) 

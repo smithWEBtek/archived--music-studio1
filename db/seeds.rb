@@ -32,7 +32,7 @@ DATA_students = {
     [1, 3, 'Sue', 'Morrow', 'smorrow@student.com'],
     [1, 3, 'Andrea', 'McPhail', 'amcphail@student.com'],
     [3, 4, 'Orin', 'Keepnews', 'okeepnews@student.com'],
-    [1, 4, 'Will', 'Marron', 'wmarron@student.com'],
+    [3, 4, 'Will', 'Marron', 'wmarron@student.com'],
     [1, 5, 'Penny', 'Clump', 'pclump@student.com'],
     [1, 5, 'Babu', 'Aadou', 'babadoo@student.com']
   ]
