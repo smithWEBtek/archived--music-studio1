@@ -20,7 +20,7 @@ REQUIREMENTS
 [X] client-side application should handle the display of data with minimal data manipulation
 [X] app should have some minimal styling: feel free to stick to a framework (like react-bootstrap), 
 [X] write (additional) CSS yourself if you wish
-----[]  use Redux middleware to respond to and modify state change
+[X]  use Redux middleware to respond to and modify state change
 ==================================================================================
 TODO
 []  add lesson, DATE

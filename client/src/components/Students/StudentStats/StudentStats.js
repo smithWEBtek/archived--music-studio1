@@ -2,7 +2,6 @@ import React from 'react'
 import { Route, NavLink, Switch, withRouter } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.css'
 import classes from './StudentStats.css'
-import Student from '../Student/Student'
 import StudentDetail from '../Student/StudentDetail'
 import Aux from '../../../hoc/Aux/Aux'
 
@@ -12,8 +11,9 @@ const studentStats = (props) => {
   level1 = level1.map(student => {
     return (
       <div className={classes.StudentStats} key={student.id}>
-        <NavLink to={'/students/' + student.id} >{student.lastname}</NavLink>
-
+        <NavLink
+          to={'/students/' + student.id}
+        >{student.lastname}</NavLink>
       </div>
     )
   })
@@ -38,7 +38,7 @@ const studentStats = (props) => {
 
   return (
     <Aux>
-      <div>
+      <div className={classes.StudentStats}>
         <h4>Students at level 1: </h4>
         {level1}
         <h4>Students at level 2: </h4>
@@ -47,9 +47,10 @@ const studentStats = (props) => {
         {level3}
       </div>
       <Switch>
-        {/* <Route path='/students/:id' component={StudentDetail} /> */}
-        <Route path='/students/:id' render={() => <h3>Student details here ...</h3>} />
-        {/* <Route path='/students/:id' component={StudentDetail} /> */}
+        <Route path='/students/:id' component={StudentDetail} />
+        {/* <Route path='/students/:id' render={() => <h3>Student details here ...</h3>} /> */}
+        {/* <Route path='/students/:id' component={() => <StudentDetail {...props} />} /> */}
+        {/* <Route path='/students/:id' component={() => <StudentDetail />} /> */}
       </Switch>
     </Aux>
   )
