@@ -1,7 +1,16 @@
 import * as actionTypes from './actionTypes'
 import StudentService from '../../components/Students/StudentService'
 
-//-----CREATE_STUDENT ACTIONS-----------------------------
+//-----CREATE STUDENT ACTIONS-----------------------------
+export const createStudentStart = () => {
+  return { type: actionTypes.CREATE_STUDENT_START }
+}
+export const createStudentSuccess = () => {
+  return { type: actionTypes.CREATE_STUDENT_SUCCESS }
+}
+export const createStudentFail = (error) => {
+  return { type: actionTypes.CREATE_STUDENT_FAIL, error: error }
+}
 export const createStudent = (data) => {
   return dispatch => {
     dispatch(createStudentStart())
@@ -15,24 +24,8 @@ export const createStudent = (data) => {
       })
   }
 }
-export const createStudentStart = () => {
-  return { type: actionTypes.CREATE_STUDENT_START }
-}
-export const createStudentSuccess = () => {
-  return { type: actionTypes.CREATE_STUDENT_SUCCESS }
-}
-export const createStudentFail = (error) => {
-  return { type: actionTypes.CREATE_STUDENT_FAIL, error: error }
-}
 
-//-----DELETE_STUDENT ACTIONS-----------------------------
-export const deleteStudent = (id) => {
-  return {
-    type: actionTypes.DELETE_STUDENT,
-    id: id
-  }
-}
-
+//-----DELETE STUDENT ACTIONS-----------------------------
 export const deleteStudentStart = () => {
   return { type: actionTypes.DELETE_STUDENT_START }
 }
@@ -42,25 +35,37 @@ export const deleteStudentSuccess = () => {
 export const deleteStudentFail = (error) => {
   return { type: actionTypes.DELETE_STUDENT_FAIL, error: error }
 }
-// UPDATE //////////////////////////////////////// 
+export const deleteStudent = (id) => {
+  return dispatch => {
+    dispatch(deleteStudentStart())
+    StudentService.deleteStudent(id)
+      .then(response => {
+        dispatch({ type: actionTypes.DELETE_STUDENT, id: id })
+        dispatch({ type: actionTypes.DELETE_STUDENT_SUCCESS, message: response })
+      })
+      .catch(error => {
+        dispatch({ type: actionTypes.DELETE_STUDENT_FAIL, error: error })
+      })
+  }
+}
 
+
+//-----UPDATE STUDENT ACTIONS-----------------------------
 export const updateStudentStart = () => {
   return { type: actionTypes.UPDATE_STUDENT_START }
 }
-
-export const updateStudentSuccess = (data) => {
-  return { type: actionTypes.UPDATE_STUDENT_SUCCESS, updatedStudentData: data }
+export const updateStudentSuccess = () => {
+  return { type: actionTypes.UPDATE_STUDENT_SUCCESS }
 }
-
 export const updateStudentFail = (error) => {
   return { type: actionTypes.UPDATE_STUDENT_FAIL, error: error }
 }
-
 export const updateStudent = (data) => {
   return dispatch => {
     dispatch(updateStudentStart())
     StudentService.updateStudent(data.id, data)
       .then(response => {
+        dispatch({ type: actionTypes.UPDATE_STUDENT_SUCCESS })
         dispatch(updateStudentSuccess(response))
         dispatch(fetchStudents())
       })
@@ -70,14 +75,17 @@ export const updateStudent = (data) => {
   }
 }
 
-// SHOW //////////////////////////////////////// 
-// export const updateStudent = (id) => {
-//   return { type: actionTypes.REMOVE_STUDENT, id: id }
-// }
 
-
-
-// FETCH STUDENT ///////////////////////////////////////
+//-----FETCH STUDENT ACTIONS-----------------------------
+export const fetchStudentStart = () => {
+  return { type: actionTypes.FETCH_STUDENT_START }
+}
+export const fetchStudentSuccess = (student) => {
+  return { type: actionTypes.FETCH_STUDENT_SUCCESS, studentData: student }
+}
+export const fetchStudentFail = (error) => {
+  return { type: actionTypes.FETCH_STUDENT_FAIL, error: error }
+}
 export const fetchStudent = (id) => {
   return dispatch => {
     dispatch(fetchStudentStart())
@@ -91,20 +99,7 @@ export const fetchStudent = (id) => {
   }
 }
 
-export const fetchStudentStart = () => {
-  return { type: actionTypes.FETCH_STUDENT_START }
-}
-
-export const fetchStudentSuccess = (student) => {
-  return { type: actionTypes.FETCH_STUDENT_SUCCESS, studentData: student }
-}
-
-export const fetchStudentFail = (error) => {
-  return { type: actionTypes.FETCH_STUDENT_FAIL, error: error }
-}
-
-
-// INDEX ///////////////////////////////////////
+//-----INDEX STUDENTS ACTIONS-----------------------------
 export const fetchStudents = () => {
   return dispatch => {
     dispatch(fetchStudentsStart())

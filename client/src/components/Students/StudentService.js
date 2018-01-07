@@ -24,13 +24,21 @@ const StudentService = {
       body: JSON.stringify({ student: data }),
       headers: { 'Content-Type': 'application/json' }
     }
-    return fetch(`${API_URL}/students/${id}`, request)
+    return fetch(`${API_URL}/students/${id}`, request, { method: 'PATCH' })
       .then(response => {
-        console.log('[updateStudent]response:', response.json())
+        console.log('[StudentService][updateStudent]response:', response.json())
       })
   },
   deleteStudent(id) {
-    fetch(`${API_URL}/students/${id}`, { method: 'DELETE' });
+    const request = {
+      method: 'DELETE',
+      body: JSON.stringify({ id: id }),
+      headers: { 'Content-Type': 'application/json' }
+    }
+    return fetch(`${API_URL}/students/${id}`, request, { method: 'DELETE' })
+      .then(response => {
+        console.log('[StudentService][deleteStudent]response:', response)
+      })
   }
 }
 

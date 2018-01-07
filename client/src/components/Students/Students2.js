@@ -14,19 +14,27 @@ import EditStudent from './EditStudent/EditStudent'
 import StudentStats from './StudentStats/StudentStats'
 
 class Students extends Component {
-  state = {
-    student: null,
-    showStudent: false,
+  constructor(props) {
+    super(props)
 
-    studentDetail: null,
-    showStudentDetail: false,
+    this.state = {
+      students: [],
+      student: null,
+      showStudent: false,
 
-    createStudent: false,
-    editStudent: false
+      studentDetail: null,
+      showStudentDetail: false,
+
+      createStudent: false,
+      editStudent: false
+    }
   }
 
   componentDidMount() {
     this.props.onFetchStudents()
+    // this.setState({ students: this.props.students })
+    // console.log('this.state.students', this.state.students);
+
   }
 
   //********CREATE_STUDENT form handling **************************
@@ -59,17 +67,17 @@ class Students extends Component {
 
 
   //********SHOW_STUDENT DETAIL form handling**************************
-  showStudentDetail = (id) => {
-    let student = this.props.students.filter(student => student.id === id)[0]
-    this.setState({
-      studentDetail: student,
-      showStudentDetail: true
-    })
-  }
+  // showStudentDetail = (id) => {
+  //   let student = this.props.students.filter(student => student.id === id)[0]
+  //   this.setState({
+  //     studentDetail: student,
+  //     showStudentDetail: true
+  //   })
+  // }
 
-  showStudentDetailClose = () => {
-    this.setState({ showStudentDetail: false })
-  }
+  // showStudentDetailClose = () => {
+  //   this.setState({ showStudentDetail: false })
+  // }
 
 
   //********EDIT_STUDENT form handling**************************
@@ -150,7 +158,7 @@ class Students extends Component {
           </Modal>
 
           {/**********SHOW STUDENT DETAIL MODAL**********************************************/}
-          <Modal
+          {/* <Modal
             show={this.state.showStudentDetail}
             modalClosed={this.showStudentDetailClose}>
             <Aux>
@@ -164,7 +172,7 @@ class Students extends Component {
                 close={this.showStudentDetailClose}
               /> : <p> No data for student detail</p>}
             </Aux>
-          </Modal>
+          </Modal> */}
 
           {/**********EDIT STUDENT MODAL**********************************************/}
           <Modal
@@ -203,7 +211,7 @@ class Students extends Component {
           </Table>
         </div>
         {/**********STUDENTS StudentStats*************************************/}
-        <StudentStats students={this.props.students} />
+        <StudentStats students={this.state.students} />
       </Aux>
     )
   }
@@ -211,7 +219,8 @@ class Students extends Component {
 
 const mapStateToProps = state => {
   return {
-    students: state.stu.students
+    students: state.stu.students,
+    loading: state.stu.loading
   }
 }
 

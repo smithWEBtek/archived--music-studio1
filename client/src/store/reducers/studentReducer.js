@@ -4,13 +4,14 @@ import StudentService from '../../components/Students/StudentService';
 const initialState = {
   students: [],
   loading: false,
-  error: false
+  error: false,
+  message: ''
 };
 
 const updateObject = (oldObject, updatedValues) => { return { ...oldObject, ...updatedValues } }
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    //create---------------------------------------------------------------------
+    //-----CREATE STUDENT-----------------------------
     case actionTypes.CREATE_STUDENT:
       const newStudent = action.data
       return updateObject(state, { students: state.students.concat(newStudent) })
@@ -22,26 +23,38 @@ const reducer = (state = initialState, action) => {
       return updateObject(state, { loading: false })
 
     case actionTypes.CREATE_STUDENT_FAIL:
-      return updateObject(state, { error: action.error, loading: false })
+      return updateObject(state, {
+        error: action.error,
+        loading: false,
+        message: action.response
+      })
 
 
-    //delete  ---------------------------------------------------------------------
+    //-----DELETE STUDENT-----------------------------
     case actionTypes.DELETE_STUDENT:
       const updatedStudentsArray = state.students.filter(student => student.id !== action.id);
-      StudentService.deleteStudent(action.id)
-      return updateObject(state, { students: updatedStudentsArray })
+      return updateObject(state, { students: updatedStudentsArray, loading: false })
+
+    case actionTypes.DELETE_STUDENT_SUCCESS:
+      return updateObject(state, { loading: false })
 
     case actionTypes.DELETE_STUDENT_FAIL:
       return updateObject(state, { error: action.error, loading: false })
 
 
-    //update  ---------------------------------------------------------------------
+    //-----UPDATE STUDENT-----------------------------
     case actionTypes.UPDATE_STUDENT:
       const studentData = action.updatedStudentData
       return StudentService.updateStudent(studentData.id, studentData)
 
+    case actionTypes.UPDATE_STUDENT_SUCCESS:
+      return updateObject(state, { loading: false })
 
-    //fetch student----------------------------------------------------------------
+    case actionTypes.UPDATE_STUDENT_FAIL:
+      return updateObject(state, { error: action.error, loading: false })
+
+
+    //-----FETCH STUDENT-----------------------------
     case actionTypes.FETCH_STUDENT_START:
       return updateObject(state, { loading: true })
 
@@ -52,7 +65,7 @@ const reducer = (state = initialState, action) => {
       return updateObject(state, { error: action.error })
 
 
-    //fetch students----------------------------------------------------------------
+    //-----FETCH STUDENTS-----------------------------
     case actionTypes.FETCH_STUDENTS_START:
       return updateObject(state, { loading: true })
 
