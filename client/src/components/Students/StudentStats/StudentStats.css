@@ -1,0 +1,14 @@
+.StudentStats {
+  height: 100%;
+}
+
+.StudentStats td {
+  color: black;
+  padding: 4px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.StudentStats:hover {
+  background-color: aqua;
+}
+

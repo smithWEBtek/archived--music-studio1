@@ -10,6 +10,7 @@ import Modal from '../UI/Modal/Modal'
 import Student from './Student/Student'
 import CreateStudent from './CreateStudent/CreateStudent'
 import EditStudent from './EditStudent/EditStudent'
+import StudentStats from './StudentStats/StudentStats'
 
 class Students extends Component {
   state = {
@@ -159,7 +160,8 @@ class Students extends Component {
             </tbody>
           </Table>
         </div>
-
+        {/**********STUDENTS StudentStats*************************************/}
+        <StudentStats students={this.props.students} />
       </Aux>
     )
   }

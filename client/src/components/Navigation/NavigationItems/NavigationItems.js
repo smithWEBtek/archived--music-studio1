@@ -1,13 +1,13 @@
-import React from 'react';
-import classes from './NavigationItems.css';
-import NavigationItem from './NavigationItem/NavigationItem';
-import Aux from '../../../hoc/Aux/Aux';
+import React from 'react'
+import classes from './NavigationItems.css'
+import NavigationItem from './NavigationItem/NavigationItem'
+import Aux from '../../../hoc/Aux/Aux'
 
-import { Route } from 'react-router-dom';
-import Students from '../../Students/Students';
-import Teachers from '../../Teachers/Teachers';
-import Lessons from '../../../containers/Lessons/Lessons';
-import Resources from '../../Resources/Resources';
+import { Route } from 'react-router-dom'
+import Students from '../../Students/Students'
+import Teachers from '../../Teachers/Teachers'
+import Lessons from '../../../containers/Lessons/Lessons'
+import Resources from '../../Resources/Resources'
 
 const navigationItems = () => (
   <Aux>
@@ -28,4 +28,4 @@ const navigationItems = () => (
   </Aux>
 
 )
-export default navigationItems;
+export default navigationItems
