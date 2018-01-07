@@ -2,12 +2,16 @@ import React, { Component } from 'react';
 import classes from './AddResource.css';
 
 class AddResource extends Component {
-  state = {
-    title: '',
-    category: '',
-    description: '',
-    format: '',
-    location: ''
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      title: '',
+      category: '',
+      description: '',
+      format: '',
+      location: ''
+    }
   }
 
   handleOnChange = (event) => {

@@ -6,17 +6,21 @@ import classes from './AddLesson.css';
 
 
 class AddLesson extends Component {
-  state = {
-    date: '',
-    teacher: '',
-    student: '',
-    notes: '',
-    resource: '',
+  constructor(props) {
+    super(props)
 
-    teachers: [],
-    students: [],
-    resources: [],
-    lessons: []
+    this.state = {
+      date: '',
+      teacher: '',
+      student: '',
+      notes: '',
+      resource: '',
+
+      teachers: [],
+      students: [],
+      resources: [],
+      lessons: []
+    }
   }
 
   // componentDidMount() {

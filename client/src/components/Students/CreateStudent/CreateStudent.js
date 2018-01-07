@@ -2,12 +2,16 @@ import React, { Component } from 'react';
 import classes from './CreateStudent.css';
 
 class CreateStudent extends Component {
-  state = {
-    firstname: '',
-    lastname: '',
-    email: '',
-    level: '',
-    teacher_id: ''
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      firstname: '',
+      lastname: '',
+      email: '',
+      level: '',
+      teacher_id: ''
+    }
   }
 
   handleOnChange = (event) => {

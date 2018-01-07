@@ -11,10 +11,14 @@ import Aux from '../../hoc/Aux/Aux';
 import Modal from '../UI/Modal/Modal';
 
 class Teachers extends Component {
-  state = {
-    teacher: null,
-    showTeacher: false,
-    addingTeacher: false,
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      teacher: null,
+      showTeacher: false,
+      addingTeacher: false,
+    }
   }
 
   // addTeacherHandler = teacher => {

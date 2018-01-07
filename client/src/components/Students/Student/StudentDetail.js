@@ -3,48 +3,52 @@ import StudentService from '../StudentService'
 import classes from './StudentDetail.css';
 
 class StudentDetail extends Component {
-
-  state = {
-    student: {}
+  constructor(props) {
+    super(props)
+    this.state = {
+      student: {
+        id: null,
+        firstname: 'joe'
+      }
+    }
   }
 
-  componentDidMount() {
-    debugger;
+  // componentDidMount() {
 
-    StudentService.get('/students/' + this.props.id)
-      .then(response => {
-        this.setState({ student: response.data })
-      })
-  }
+  //   StudentService.get('/students/' + this.props.id)
+  //     .then(response => {
+  //       this.setState({ student: response.data })
+  //     })
+  // }
 
-  closeStudentHandler = () => {
-    this.setState({ student: null })
-  }
+  // closeStudentHandler = () => {
+  //   this.setState({ student: null })
+  // }
 
   render() {
-    let student = <p style={{ textAlign: 'center' }}>When do we eat?</p>;
     // debugger;
+    // let studentDetail = <p style={{ textAlign: 'center' }}>When do we eat?</p>;
 
-    if (this.props.id) {
-      student = <p style={{ textAlign: 'center' }}>Loading...!</p>;
-    }
-    if (this.state.student) {
-      student = (
-        <div className="StudentDetail">
-          <h3>{this.state.student.firstname}</h3>
-          <p>Content</p>
-          <div className="Edit">
-            <button
-              className="Delete"
-              onClick={this.closeStudentHandler}>Delete</button>
-          </div>
-        </div>
-      )
-    }
+    // if (!this.state.student.id) {
+    //   studentDetail = <p style={{ textAlign: 'center' }}>Loading...!</p>;
+    // } else {
+    //   studentDetail = (
+    //     <div className={classes.StudentDetail}>
+    //       <h3>{this.state.student.firstname}</h3>
+    //       <p>Content</p>
+    //       <div className="Edit">
+    //         <button
+    //           className="Delete"
+    //           onClick={this.closeStudentHandler}>Delete</button>
+    //       </div>
+    //     </div>
+    //   )
+    // }
 
     return (
       <div>
-        {student}
+        <p>hello world</p>
+        {/* {studentDetail} */}
       </div>
     )
   }

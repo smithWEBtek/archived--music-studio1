@@ -11,11 +11,15 @@ import Aux from '../../hoc/Aux/Aux';
 import Modal from '../UI/Modal/Modal';
 
 class Resources extends Component {
-  state = {
-    resource: null,
-    addedResource: null,
-    addingResource: false,
-    showResource: false
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      resource: null,
+      addedResource: null,
+      addingResource: false,
+      showResource: false
+    }
   }
 
   // addResourceHandler = (resource) => {

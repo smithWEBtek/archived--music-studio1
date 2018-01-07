@@ -14,15 +14,19 @@ import EditStudent from './EditStudent/EditStudent'
 import StudentStats from './StudentStats/StudentStats'
 
 class Students extends Component {
-  state = {
-    student: null,
-    showStudent: false,
+  constructor(props) {
+    super(props)
 
-    studentDetail: null,
-    showStudentDetail: false,
+    this.state = {
+      student: null,
+      showStudent: false,
 
-    createStudent: false,
-    editStudent: false
+      studentDetail: null,
+      showStudentDetail: false,
+
+      createStudent: false,
+      editStudent: false
+    }
   }
 
   componentDidMount() {
@@ -211,7 +215,8 @@ class Students extends Component {
 
 const mapStateToProps = state => {
   return {
-    students: state.stu.students
+    students: state.stu.students,
+    loading: state.stu.loading
   }
 }
 

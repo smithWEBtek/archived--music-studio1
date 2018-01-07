@@ -11,11 +11,15 @@ import Aux from '../../hoc/Aux/Aux';
 import Modal from '../../components/UI/Modal/Modal';
 
 class Lessons extends Component {
-  state = {
-    lesson: null,
-    addedLesson: null,
-    addingLesson: false,
-    showLesson: false
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      lesson: null,
+      addedLesson: null,
+      addingLesson: false,
+      showLesson: false
+    }
   }
 
   addLessonHandler = (lesson) => {

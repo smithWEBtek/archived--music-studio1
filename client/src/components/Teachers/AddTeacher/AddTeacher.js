@@ -2,10 +2,14 @@ import React, { Component } from 'react';
 import classes from './AddTeacher.css';
 
 class AddTeacher extends Component {
-  state = {
-    firstname: '',
-    lastname: '',
-    email: ''
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      firstname: '',
+      lastname: '',
+      email: ''
+    }
   }
 
   handleOnChange = (event) => {
