@@ -1,14 +1,15 @@
-import React, { Component } from 'react';
-import * as actionCreators from '../../store/actions/index';
-import { connect } from 'react-redux';
+import React, { Component } from 'react'
+import * as actionCreators from '../../store/actions/index'
+import { connect } from 'react-redux'
 
-import { Table } from 'reactstrap';
-import CreateStudent from './CreateStudent/CreateStudent';
-import Student from './Student/Student';
-import classes from './Students.css';
-import Aux from '../../hoc/Aux/Aux';
-import Modal from '../UI/Modal/Modal';
-import EditStudent from './EditStudent/EditStudent';
+import { Table } from 'reactstrap'
+import classes from './Students.css'
+import Aux from '../../hoc/Aux/Aux'
+import Modal from '../UI/Modal/Modal'
+
+import Student from './Student/Student'
+import CreateStudent from './CreateStudent/CreateStudent'
+import EditStudent from './EditStudent/EditStudent'
 
 class Students extends Component {
   state = {
@@ -20,43 +21,54 @@ class Students extends Component {
 
   componentDidMount() {
     this.props.onFetchStudents()
-  };
+  }
 
+  //********CREATE_STUDENT form handling **************************
   createStudentForm = () => {
     this.setState({ createStudent: true })
-  };
+  }
+
   createStudentFormCancel = () => {
     this.setState({ createStudent: false })
-  };
+  }
+
   createStudent = (newStudentData) => {
     this.props.onStudentCreate(newStudentData)
     this.setState({ createStudent: false })
-  };
+  }
 
 
+  //********SHOW_STUDENT form handling**************************
   showStudent = (id) => {
     alert('you need to add FETCH_STUDENT action in studentReducer.js')
-  };
+  }
+
   showStudentCancelHandler = () => {
     this.setState({ showStudent: false })
-  };
+  }
 
 
+  //********EDIT_STUDENT form handling**************************
   showEditStudentForm = (id) => {
     let student = this.props.students.filter(student => student.id === id)[0]
     this.setState({
       student: student,
       editStudent: true
     })
-  };
+  }
 
   editStudentFalse = () => {
     this.setState({ editStudent: false })
-  };
+  }
 
   editStudentUpdate = (data) => {
     this.props.onStudentUpdate(data)
     this.setState({ student: null, editStudent: false })
+  }
+
+  //********DELETE_STUDENT**************************
+  deleteStudent = () => {
+    // be gone!
   }
 
   render() {
@@ -70,16 +82,17 @@ class Students extends Component {
             <td>{student.email}</td>
             <td><button onClick={() => this.Detail(student.id)}>Show</button></td>
             <td><button onClick={() => this.showEditStudentForm(student.id)}>Edit</button></td>
-            <td><button onClick={() => this.props.onStudentRemoved(student.id)}>X</button></td>
+            <td><button onClick={() => this.props.onStudentDelete(student.id)}>X</button></td>
           </tr>
         </Aux>
       )
-    });
+    })
 
     return (
       <Aux>
         <div style={{ margin: '30px' }}>
 
+          {/*********CREATE STUDENT MODAL********************************************/}
           <button onClick={this.createStudentForm}>Add Student</button>
           <Modal
             show={this.state.createStudent}
@@ -89,6 +102,7 @@ class Students extends Component {
               createStudentCancel={this.createStudentFormCancel} />
           </Modal>
 
+          {/**********EDIT STUDENT MODAL**********************************************/}
           <Modal
             show={this.state.editStudent}
             modalClosed={this.editStudentCancelHandler}>
@@ -106,6 +120,24 @@ class Students extends Component {
             </Aux>
           </Modal>
 
+          {/***********SHOW STUDENT MODAL*********************************************************/}
+          <Modal
+            show={this.state.showStudent}
+            modalClosed={this.showStudentCancelHandler}>
+            <Aux>
+              {this.state.student ?
+                <Student
+                  firstname={this.state.student.firstname}
+                  lastname={this.state.student.lastname}
+                  email={this.state.student.email}
+                  level={this.state.student.level}
+                  teacher_id={this.state.student.teacher_id}
+                  close={this.showStudentCancelHandler}
+                /> : null}
+            </Aux>
+          </Modal>
+
+          {/**********STUDENTS INDEX TABLE*************************************/}
           <Table className={classes.Students}>
             <thead>
               <tr>
@@ -123,21 +155,7 @@ class Students extends Component {
             </tbody>
           </Table>
         </div>
-        <Modal
-          show={this.state.showStudent}
-          modalClosed={this.showStudentCancelHandler}>
-          <Aux>
-            {this.state.student ?
-              <Student
-                firstname={this.state.student.firstname}
-                lastname={this.state.student.lastname}
-                email={this.state.student.email}
-                level={this.state.student.level}
-                teacher_id={this.state.student.teacher_id}
-                close={this.showStudentCancelHandler}
-              /> : null}
-          </Aux>
-        </Modal>
+
       </Aux>
     )
   }
@@ -153,10 +171,10 @@ const mapDispatchToProps = dispatch => {
   return {
     onStudentCreate: (newStudentData) => dispatch(actionCreators.createStudent(newStudentData)),
     onStudentUpdate: (data) => dispatch(actionCreators.updateStudent(data)),
-    onStudentRemoved: (id) => dispatch(actionCreators.removeStudent(id)),
+    onStudentDelete: (id) => dispatch(actionCreators.deleteStudent(id)),
     onFetchStudent: (id) => dispatch(actionCreators.fetchStudent(id)),
     onFetchStudents: () => dispatch(actionCreators.fetchStudents())
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Students);
+export default connect(mapStateToProps, mapDispatchToProps)(Students)

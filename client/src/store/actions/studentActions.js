@@ -1,10 +1,10 @@
-import * as actionTypes from './actionTypes';
-import StudentService from '../../components/Students/StudentService';
+import * as actionTypes from './actionTypes'
+import StudentService from '../../components/Students/StudentService'
 
-//--CREATE_STUDENT ------------------------- 
+//-----CREATE_STUDENT ACTIONS-----------------------------
 export const createStudent = (data) => {
   return dispatch => {
-    dispatch(createStudentStart());
+    dispatch(createStudentStart())
     StudentService.createStudent(data)
       .then(response => {
         dispatch(createStudentSuccess(response))
@@ -25,12 +25,23 @@ export const createStudentFail = (error) => {
   return { type: actionTypes.CREATE_STUDENT_FAIL, error: error }
 }
 
-
-//--DESTROY_STUDENT ------------------------- 
-export const removeStudent = (id) => {
-  return { type: actionTypes.REMOVE_STUDENT, id: id }
+//-----DELETE_STUDENT ACTIONS-----------------------------
+export const deleteStudent = (id) => {
+  return {
+    type: actionTypes.DELETE_STUDENT,
+    id: id
+  }
 }
 
+export const deleteStudentStart = () => {
+  return { type: actionTypes.DELETE_STUDENT_START }
+}
+export const deleteStudentSuccess = () => {
+  return { type: actionTypes.DELETE_STUDENT_SUCCESS }
+}
+export const deleteStudentFail = (error) => {
+  return { type: actionTypes.DELETE_STUDENT_FAIL, error: error }
+}
 // UPDATE //////////////////////////////////////// 
 
 export const updateStudentStart = () => {
@@ -47,11 +58,11 @@ export const updateStudentFail = (error) => {
 
 export const updateStudent = (data) => {
   return dispatch => {
-    dispatch(updateStudentStart());
+    dispatch(updateStudentStart())
     StudentService.updateStudent(data.id, data)
       .then(response => {
         dispatch(updateStudentSuccess(response))
-        dispatch(fetchStudents());
+        dispatch(fetchStudents())
       })
       .catch(error => {
         dispatch(updateStudentFail(error))
@@ -69,7 +80,7 @@ export const updateStudent = (data) => {
 // FETCH STUDENT ///////////////////////////////////////
 export const fetchStudent = (id) => {
   return dispatch => {
-    dispatch(fetchStudentStart());
+    dispatch(fetchStudentStart())
     StudentService.fetchStudent(id)
       .then(response => {
         dispatch(fetchStudentSuccess(response))
@@ -96,7 +107,7 @@ export const fetchStudentFail = (error) => {
 // INDEX ///////////////////////////////////////
 export const fetchStudents = () => {
   return dispatch => {
-    dispatch(fetchStudentsStart());
+    dispatch(fetchStudentsStart())
     StudentService.fetchStudents()
       .then(response => {
         dispatch(fetchStudentsSuccess(response))

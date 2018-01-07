@@ -9,6 +9,7 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+
     case actionTypes.CREATE_STUDENT:
       const newStudent = action.data
       StudentService.createStudent(newStudent)
@@ -32,17 +33,34 @@ const reducer = (state = initialState, action) => {
         error: action.error,
         loading: false
       }
+    case actionTypes.DELETE_STUDENT:
+      const updatedStudentsArray = state.students.filter(student => student.id !== action.id);
+      StudentService.deleteStudent(action.id)
+      return {
+        ...state,
+        students: updatedStudentsArray
+      }
+    case actionTypes.DELETE_STUDENT_FAIL:
+      return {
+        ...state,
+        error: action.error,
+        loading: false
+      }
+
+
+
+
+
+
+
+
 
     case actionTypes.UPDATE_STUDENT:
       const studentData = action.updatedStudentData
       return StudentService.updateStudent(studentData.id, studentData)
 
-    case actionTypes.REMOVE_STUDENT:
-      const updatedStudentsArray = state.students.filter(student => student.id !== action.id);
-      return {
-        ...state,
-        students: updatedStudentsArray
-      }
+
+
     case actionTypes.FETCH_STUDENT_START:
       return {
         ...state,
