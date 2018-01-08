@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './Teacher.css';
 
-const teacher = (props) => {
+const Teacher = (props) => {
   let teacherStudents = <p>no students assigned</p>
   if (props.students.length > 0) {
     teacherStudents = (
@@ -28,4 +28,4 @@ const teacher = (props) => {
   )
 }
 
-export default teacher;
+export default Teacher;

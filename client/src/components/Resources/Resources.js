@@ -8,9 +8,9 @@ import Aux from '../../hoc/Aux/Aux'
 import Modal from '../UI/Modal/Modal'
 
 import Resource from './Resource/Resource'
-import CreateResource from './CreateResource/CreateResource'
-import EditResource from '../Resources/EditResource/EditResource'
-import ResourceStats from './ResourceStats/ResourceStats'
+// import CreateResource from './CreateResource/CreateResource'
+// import EditResource from '../Resources/EditResource/EditResource'
+// import ResourceStats from './ResourceStats/ResourceStats'
 
 class Resources extends Component {
   state = {
@@ -73,11 +73,6 @@ class Resources extends Component {
     this.setState({ resource: null, editResource: false })
   }
 
-  //********DELETE_RESOURCE**************************
-  deleteResource = () => {
-    // be gone!
-  }
-
   render() {
     let resourcesList = this.props.resources.map(resource => {
       return (
@@ -103,19 +98,33 @@ class Resources extends Component {
       )
     })
 
+    let showResourceData = <p>show resource data </p>
+    if (this.state.resource) {
+      showResourceData = (
+        <Resource
+          id={this.state.resource.id}
+          title={this.state.resource.title}
+          category={this.state.resource.category}
+          description={this.state.resource.description}
+          format={this.state.resource.format}
+          location={this.state.resource.location}
+          close={this.showResourceClose}
+        />
+      )
+    }
     return (
       <Aux>
         <div style={{ margin: '30px' }}>
 
           {/*********CREATE RESOURCE MODAL********************************************/}
-          <button onClick={this.createResourceForm}>Add Resource</button>
+          {/* <button onClick={this.createResourceForm}>Add Resource</button>
           <Modal
             show={this.state.createResource}
             modalClosed={this.createResourceFormCancel}>
             <CreateResource
               createResource={(newResourceData) => this.createResource(newResourceData)}
               createResourceCancel={this.createResourceFormCancel} />
-          </Modal>
+          </Modal> */}
 
           {/**********SHOW RESOURCE MODAL**********************************************/}
           <Modal
@@ -124,33 +133,33 @@ class Resources extends Component {
             <Aux>
               {this.state.resource ? <Resource
                 id={this.state.resource.id}
-                firstname={this.state.resource.firstname}
-                lastname={this.state.resource.lastname}
-                email={this.state.resource.email}
-                level={this.state.resource.level}
-                teacher_id={this.state.resource.teacher_id}
+                title={this.state.resource.title}
+                category={this.state.resource.category}
+                description={this.state.resource.description}
+                format={this.state.resource.format}
+                location={this.state.resource.location}
                 close={this.showResourceClose}
               /> : <p> No data for resource show</p>}
             </Aux>
           </Modal>
 
           {/**********EDIT RESOURCE MODAL**********************************************/}
-          <Modal
+          {/* <Modal
             show={this.state.editResource}
             modalClosed={this.editResourceCancelHandler}>
             <Aux>
               {this.state.resource ? <EditResource
                 id={this.state.resource.id}
-                firstname={this.state.resource.firstname}
-                lastname={this.state.resource.lastname}
-                email={this.state.resource.email}
-                level={this.state.resource.level}
-                teacher_id={this.state.resource.teacher_id}
+                title={this.state.resource.title}
+                category={this.state.resource.category}
+                description={this.state.resource.description}
+                format={this.state.resource.format}
+                location={this.state.resource.location}
                 close={this.editResourceFalse}
                 updateResource={(data) => this.editResourceUpdate(data)}
               /> : <p>no resource data yet...</p>}
             </Aux>
-          </Modal>
+          </Modal> */}
 
           {/**********RESOURCES INDEX TABLE*************************************/}
           <legend>All Resources</legend>
@@ -174,7 +183,7 @@ class Resources extends Component {
           </Table>
         </div>
         {/**********RESOURCES ResourceStats*************************************/}
-        <ResourceStats resources={this.props.resources} />
+        {/* <ResourceStats resources={this.props.resources} /> */}
       </Aux>
     )
   }
@@ -182,7 +191,7 @@ class Resources extends Component {
 
 const mapStateToProps = state => {
   return {
-    resources: state.stu.resources
+    resources: state.res.resources
   }
 }
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './Student.css';
 
-const student = (props) => (
+const Student = (props) => (
   <div>
     <fieldset className={classes.Student}>
       <p>Name: {props.firstname} {props.lastname}</p>
@@ -13,4 +13,4 @@ const student = (props) => (
   </div>
 )
 
-export default student;
+export default Student;

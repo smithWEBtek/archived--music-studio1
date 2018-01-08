@@ -73,11 +73,6 @@ class Students extends Component {
     this.setState({ student: null, editStudent: false })
   }
 
-  //********DELETE_STUDENT**************************
-  deleteStudent = () => {
-    // be gone!
-  }
-
   render() {
     let studentsList = this.props.students.map(student => {
       return (

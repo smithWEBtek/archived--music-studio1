@@ -87,11 +87,6 @@ class Teachers extends Component {
     this.setState({ teacher: null, editTeacher: false })
   }
 
-  //********DELETE_TEACHER**************************
-  deleteTeacher = () => {
-    // be gone!
-  }
-
   render() {
     let teachersList = this.props.teachers.map(teacher => {
       return (
