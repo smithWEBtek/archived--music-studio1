@@ -8,7 +8,7 @@ import Aux from '../../hoc/Aux/Aux'
 import Modal from '../UI/Modal/Modal'
 
 import Student from './Student/Student'
-import StudentDetail from './Student/StudentDetail'
+import StudentDetail from './StudentDetail/StudentDetail'
 import CreateStudent from './CreateStudent/CreateStudent'
 import EditStudent from './EditStudent/EditStudent'
 import StudentStats from './StudentStats/StudentStats'
@@ -185,6 +185,7 @@ class Students extends Component {
           </Modal>
 
           {/**********STUDENTS INDEX TABLE*************************************/}
+          <legend>All Students</legend>
           <Table className={classes.Students}>
             <thead>
               <tr>

@@ -1,0 +1,35 @@
+.StudentDetail {
+    width: 200px;
+    margin: 20px auto;
+    border: 1px solid #eee;
+    box-shadow: 0 2px 3px #ccc;
+    text-align: center;
+    background-color: #d6dffa;
+}
+
+.Close label {
+    display: inherit;
+    color: grey;
+}
+
+.Close button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    outline: none;
+    color: #fa923f;
+}
+
+.Close button:hover,
+.Close button:active {
+    color: #521751;
+}
+
+.Close button.Delete {
+    color: red;
+}
+
+.Close button.Delete:hover,
+.Close button.Delete:active {
+    color: darkred;
+}
