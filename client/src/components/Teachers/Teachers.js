@@ -1,61 +1,102 @@
-import React, { Component } from 'react';
-import * as actionTypes from '../../store/actions/actionTypes';
-import { connect } from 'react-redux';
+import React, { Component } from 'react'
+import * as actionCreators from '../../store/actions/index'
+import { connect } from 'react-redux'
 
-import { Table } from 'reactstrap';
-import Teacher from './Teacher/Teacher';
-import TeacherService from './TeacherService';
-import CreateTeacher from './CreateTeacher/CreateTeacher';
-import classes from './Teachers.css';
-import Aux from '../../hoc/Aux/Aux';
-import Modal from '../UI/Modal/Modal';
+import { Table } from 'reactstrap'
+import classes from './Teachers.css'
+import Aux from '../../hoc/Aux/Aux'
+import Modal from '../UI/Modal/Modal'
+
+import Teacher from './Teacher/Teacher'
+import TeacherDetail from './TeacherDetail/TeacherDetail'
+import CreateTeacher from './CreateTeacher/CreateTeacher'
+// import EditTeacher from './EditTeacher/EditTeacher'
+import TeacherStats from './TeacherStats/TeacherStats'
 
 class Teachers extends Component {
-  constructor(props) {
-    super(props)
+  state = {
+    teacher: null,
+    showTeacher: false,
 
-    this.state = {
-      teacher: null,
-      showTeacher: false,
-      addingTeacher: false,
-    }
+    teacherDetail: null,
+    showTeacherDetail: false,
+
+    createTeacher: false,
+    editTeacher: false
   }
 
-  // createTeacherHandler = teacher => {
-  //   if (teacher.lastname !== "") {
-  //     this.setState({ addingTeacher: true })
-  //     TeacherService.createTeacher(teacher)
-  //       .then(teacher => this.setState({
-  //         teachers: this.props.tch.concat(teacher)
-  //       })
-  //       )
-  //   }
-  //   this.setState({ addingTeacher: false })
-  // }
-
-  createTeacherCancelHandler = () => {
-    this.setState({ addingTeacher: false });
+  componentDidMount() {
+    this.props.onFetchTeachers()
   }
 
-  showCreateTeacherModal = () => {
-    this.setState({ addingTeacher: true });
+  //********CREATE_TEACHER form handling **************************
+  createTeacherForm = () => {
+    this.setState({ createTeacher: true })
   }
 
-  showTeacherHandler = (id) => {
-    TeacherService.fetchTeacher(id)
-      .then(response => this.setState({
-        teacher: response,
-        showTeacher: true
-      })
-      );
+  createTeacherFormCancel = () => {
+    this.setState({ createTeacher: false })
   }
 
-  showTeacherCancelHandler = () => {
-    this.setState({ showTeacher: false });
+  createTeacher = (newTeacherData) => {
+    this.props.onTeacherCreate(newTeacherData)
+    this.setState({ createTeacher: false })
+  }
+
+
+  //********SHOW_TEACHER form handling**************************
+  showTeacher = (id) => {
+    let teacher = this.props.teachers.filter(teacher => teacher.id === id)[0]
+    this.setState({
+      teacher: teacher,
+      showTeacher: true
+    })
+  }
+
+  showTeacherClose = () => {
+    this.setState({ showTeacher: false })
+  }
+
+
+  //********SHOW_TEACHER DETAIL form handling**************************
+  showTeacherDetail = (id) => {
+    let teacher = this.props.teachers.filter(teacher => teacher.id === id)[0]
+    this.setState({
+      teacherDetail: teacher,
+      showTeacherDetail: true
+    })
+  }
+
+  showTeacherDetailClose = () => {
+    this.setState({ showTeacherDetail: false })
+  }
+
+
+  //********EDIT_TEACHER form handling**************************
+  showEditTeacherForm = (id) => {
+    let teacher = this.props.teachers.filter(teacher => teacher.id === id)[0]
+    this.setState({
+      teacher: teacher,
+      editTeacher: true
+    })
+  }
+
+  editTeacherFalse = () => {
+    this.setState({ editTeacher: false })
+  }
+
+  editTeacherUpdate = (data) => {
+    this.props.onTeacherUpdate(data)
+    this.setState({ teacher: null, editTeacher: false })
+  }
+
+  //********DELETE_TEACHER**************************
+  deleteTeacher = () => {
+    // be gone!
   }
 
   render() {
-    const teachersList = this.props.tch.map(teacher => {
+    let teachersList = this.props.teachers.map(teacher => {
       return (
         <Aux key={teacher.id}>
           <tr>
@@ -63,26 +104,82 @@ class Teachers extends Component {
             <td>{teacher.firstname}</td>
             <td>{teacher.lastname}</td>
             <td>{teacher.email}</td>
-            {/* <td>{teacher.students.length}</td> */}
-            <td><button onClick={() => this.showTeacherHandler(teacher.id)}>Show</button></td>
-            <td><button>Edit</button></td>
-            <td><button onClick={() => this.props.onTeacherDelete(teacher.id)}>X</button></td>
+            <td><button
+              onClick={() => this.showTeacher(teacher.id)}
+              className={classes.Success}>Show</button></td>
+            <td><button
+              onClick={() => this.showEditTeacherForm(teacher.id)}
+              className={classes.Edit}>Edit</button></td>
+            <td><button
+              onClick={() => this.props.onTeacherDelete(teacher.id)}
+              className={classes.Danger}>X</button></td>
           </tr>
         </Aux>
       )
-    });
+    })
 
     return (
       <Aux>
         <div style={{ margin: '30px' }}>
-          <button onClick={this.showCreateTeacherModal}>CreateTeacher</button>
+
+          {/*********CREATE TEACHER MODAL********************************************/}
+          <button onClick={this.createTeacherForm}>Add Teacher</button>
           <Modal
-            show={this.state.addingTeacher}
-            modalClosed={this.createTeacherCancelHandler}>
+            show={this.state.createTeacher}
+            modalClosed={this.createTeacherFormCancel}>
             <CreateTeacher
-              createTeacher={this.props.onTeacherCreate}
-              createTeacherCancel={this.createTeacherCancelHandler} />
+              createTeacher={(newTeacherData) => this.createTeacher(newTeacherData)}
+              createTeacherCancel={this.createTeacherFormCancel} />
           </Modal>
+
+          {/**********SHOW TEACHER MODAL**********************************************/}
+          <Modal
+            show={this.state.showTeacher}
+            modalClosed={this.showTeacherClose}>
+            <Aux>
+              {this.state.teacher ? <Teacher
+                id={this.state.teacher.id}
+                firstname={this.state.teacher.firstname}
+                lastname={this.state.teacher.lastname}
+                email={this.state.teacher.email}
+                close={this.showTeacherClose}
+              /> : <p> No data for teacher show</p>}
+            </Aux>
+          </Modal>
+
+          {/**********SHOW TEACHER DETAIL MODAL**********************************************/}
+          <Modal
+            show={this.state.showTeacherDetail}
+            modalClosed={this.showTeacherDetailClose}>
+            <Aux>
+              {this.state.teacherDetail ? <TeacherDetail
+                id={this.state.teacher.id}
+                firstname={this.state.teacherDetail.firstname}
+                lastname={this.state.teacherDetail.lastname}
+                email={this.state.teacherDetail.email}
+                close={this.showTeacherDetailClose}
+              /> : <p> No data for teacher detail</p>}
+            </Aux>
+          </Modal>
+
+          {/**********EDIT TEACHER MODAL**********************************************/}
+          {/* <Modal
+            show={this.state.editTeacher}
+            modalClosed={this.editTeacherCancelHandler}>
+            <Aux>
+              {this.state.teacher ? <EditTeacher
+                id={this.state.teacher.id}
+                firstname={this.state.teacher.firstname}
+                lastname={this.state.teacher.lastname}
+                email={this.state.teacher.email}
+                close={this.editTeacherFalse}
+                updateTeacher={(data) => this.editTeacherUpdate(data)}
+              /> : <p>no teacher data yet...</p>}
+            </Aux>
+          </Modal> */}
+
+          {/**********TEACHERS INDEX TABLE*************************************/}
+          <legend>All Teachers</legend>
           <Table className={classes.Teachers}>
             <thead>
               <tr>
@@ -90,7 +187,6 @@ class Teachers extends Component {
                 <th>First</th>
                 <th>Last</th>
                 <th>Email</th>
-                {/* <th>#Students</th> */}
                 <th>Show</th>
                 <th>Edit</th>
                 <th>Del</th>
@@ -101,19 +197,8 @@ class Teachers extends Component {
             </tbody>
           </Table>
         </div>
-        <Modal
-          show={this.state.showTeacher}
-          modalClosed={this.showTeacherCancelHandler}>
-          <Aux>
-            {this.state.teacher ? <Teacher
-              firstname={this.state.teacher.firstname}
-              lastname={this.state.teacher.lastname}
-              email={this.state.teacher.email}
-              students={this.state.teacher.students}
-              close={this.showTeacherCancelHandler}
-            /> : null}
-          </Aux>
-        </Modal>
+        {/**********TEACHERS TeacherStats*************************************/}
+        <TeacherStats />
       </Aux>
     )
   }
@@ -121,15 +206,18 @@ class Teachers extends Component {
 
 const mapStateToProps = state => {
   return {
-    tch: state.tch.teachers
+    teachers: state.tch.teachers
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    onTeacherCreate: (data) => dispatch({ type: actionTypes.CREATE_TEACHER, teacherData: data }),
-    onTeacherDelete: (id) => dispatch({ type: actionTypes.DELETE_TEACHER, teacherId: id })
+    onTeacherCreate: (newTeacherData) => dispatch(actionCreators.createTeacher(newTeacherData)),
+    onTeacherUpdate: (data) => dispatch(actionCreators.updateTeacher(data)),
+    onTeacherDelete: (id) => dispatch(actionCreators.deleteTeacher(id)),
+    onFetchTeacher: (id) => dispatch(actionCreators.fetchTeacher(id)),
+    onFetchTeachers: () => dispatch(actionCreators.fetchTeachers())
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Teachers);
+export default connect(mapStateToProps, mapDispatchToProps)(Teachers)

@@ -20,23 +20,19 @@ REQUIREMENTS
 [X]  use Redux middleware to respond to and modify state change
 ==================================================================================
 TODO
-[]  teacher main admin page
+[]  teacher main admin page, CRUD with modal working
 []  teacher stats page
-[]  teacher CRUD
-[] use Modal for Add forms Teacher
 
-[]  resource main admin page
+[]  resource main admin page, CRUD with modal working
 []  resource stats page
 []  resource viewers PDF, DOC, AUD, VID
-[]  resource CRUD
-[] use Modal for Add forms Resource
 
-[]  lesson main admin page
+[]  lesson main admin page, CRUD with modal working
 []  lesson in progress view
 []  add Lesson, does not save resource or date
 []  edit & update student, teacher, resource, lesson
 []  add multiple resources to new or existing lesson
-[]  lesson CRUD
+
 [] use Modal for Add forms Lesson
 []  show lesson:
   [.]should showcase video, pdf, audio and lesson experience
@@ -50,6 +46,7 @@ TODO
 []  refactor some stateful components to stateless with props only (if poss?)
 
 
+NICE TO HAVES------------------------------------------------------
 []  show student
   []  should have complete list of lessons and resources assigned
   []  should have a chart showing practice progress on assigned resources
