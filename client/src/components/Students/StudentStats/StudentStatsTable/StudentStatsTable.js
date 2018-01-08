@@ -4,7 +4,7 @@ import { Table } from 'reactstrap'
 import classes from './StudentStatsTable.css'
 import Aux from '../../../../hoc/Aux/Aux'
 
-class MyTable extends Component {
+class StudentStatsTable extends Component {
   state = {
     students: {}
   }
@@ -31,7 +31,7 @@ class MyTable extends Component {
     return (
       <Aux>
         <div style={{ margin: '30px' }}>
-          <Table className={classes.MyTable}>
+          <Table className={classes.StudentStatsTable}>
             <thead>
               <tr>
                 <th>ID</th>
@@ -51,4 +51,4 @@ class MyTable extends Component {
   }
 }
 
-export default MyTable
+export default StudentStatsTable

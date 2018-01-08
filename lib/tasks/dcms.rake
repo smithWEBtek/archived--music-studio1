@@ -17,4 +17,3 @@ namespace :db do
     exec('rake start')    
   end
 end
-

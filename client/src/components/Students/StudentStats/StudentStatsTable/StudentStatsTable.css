@@ -1,4 +1,4 @@
-.MyTable {
+.StudentStatsTable {
   height: 100%;
   margin: 10px;
   padding: 10px;
@@ -7,7 +7,7 @@
   float: left;
 }
 
-.MyTable td {
+.StudentStatsTable td {
   color: black;
   padding: 4px;
   font-family: 'Open Sans', sans-serif;

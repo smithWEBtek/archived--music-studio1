@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from './StudentDetail.css';
+// import classes from './StudentDetail.css';
 import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button } from 'reactstrap';
 
 const studentDetail = (props) => {

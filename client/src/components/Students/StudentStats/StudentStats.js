@@ -1,7 +1,7 @@
 import React from 'react'
 import classes from './StudentStats.css'
-
 import StudentStatsTable from '../StudentStats/StudentStatsTable/StudentStatsTable'
+
 import Aux from '../../../hoc/Aux/Aux'
 
 const studentStats = (props) => {

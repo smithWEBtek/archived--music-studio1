@@ -40,10 +40,9 @@ const reducer = (state = initialState, action) => {
         message: action.response
       })
 
-
     //-----DELETE TEACHER-----------------------------
     case actionTypes.DELETE_TEACHER:
-      const updatedTeachersArray = state.teachers.filter(student => student.id !== action.id);
+      const updatedTeachersArray = state.teachers.filter(teacher => teacher.id !== action.id);
       return updateObject(state, { teachers: updatedTeachersArray, loading: false })
 
     case actionTypes.DELETE_TEACHER_SUCCESS:
