@@ -1,5 +1,3 @@
-
-
 ==================================================================================
 REQUIREMENTS
 [X] The code should be written in ES6 as much as possible
@@ -7,10 +5,9 @@ REQUIREMENTS
 [X] Follow the instructions on this repo to setup the generator: create-react-app
 [X] Your app should have one HTML page to render your react-redux application
 [X] There should be 2 container components
-    Stateful: <Layout />, <Lesson />, <AddLesson />, <Students />, <Teachers />, <Resources />
+    CONTAINERS: Layout, Lesson, AddLesson, Students, Teachers, Resources
 [X] There should be 5 stateless components
-    Stateless: <Student />, <Teacher />, <Resource />, <StudentService />, <TeacherService />, <ResourceService />, <LessonService />
-
+    STATELESS FUNCTIONAL: Student, Teacher, Resource, StudentService, TeacherService, ResourceService, LessonService
 [X] There should be 3 routes
 [X] use react-router and proper RESTful routing
 [X] use async actions to send data to and receive data from a server
@@ -23,23 +20,35 @@ REQUIREMENTS
 [X]  use Redux middleware to respond to and modify state change
 ==================================================================================
 TODO
-[]  add lesson, DATE
-[]  enforce active record delete related objects
+[]  teacher main admin page
+[]  teacher stats page
+[]  teacher CRUD
+[] use Modal for Add forms Teacher
+
+[]  resource main admin page
+[]  resource stats page
+[]  resource viewers PDF, DOC, AUD, VID
+[]  resource CRUD
+[] use Modal for Add forms Resource
+
+[]  lesson main admin page
+[]  lesson in progress view
 []  add Lesson, does not save resource or date
 []  edit & update student, teacher, resource, lesson
 []  add multiple resources to new or existing lesson
-[]  use Modal(s) timed 3 seconds after clicking 'show' 
-[X] use Modal for Add forms, Student, Teacher, Resource, Lesson
-[]  hovering over 'X', changes background color and tooltip, has confirmation msg on del;
-[]  user authentication
-[]  constrain views for admin, teacher, student
-[]  needs more style (steal css from udemy-react-blog)
-[]  determine if you can refactor some stateful components to stateless with props only
-
+[]  lesson CRUD
+[] use Modal for Add forms Lesson
 []  show lesson:
   [.]should showcase video, pdf, audio and lesson experience
   [ ]should have easy ways for teacher to add resources
   [ ]should have easy way for teacher to create resource on the fly
+ 
+
+[]  user authentication
+[]  constrain views for admin, teacher, student
+[]  needs more style (steal css from udemy-react-blog)
+[]  refactor some stateful components to stateless with props only (if poss?)
+
 
 []  show student
   []  should have complete list of lessons and resources assigned
@@ -58,11 +67,11 @@ TODO
   
 TODO DONE------------------------------------------------------
 [X]  show teacher shows all students assigned
-[X] move teachers, students, resources and lessons code out of layout, leaving just <ComponentName />
+[X] move teachers, students, resources and lessons code out of layout, leaving just ComponentName
 [X] buttons to toggle Students, Teachers, Resources, Lessons
 [X] connect toolbar links to show indexes for students, teachers, resources and lessons
  
-[]  plan the redux parts
+[X]  plan the redux parts
 [X] plan the application 
 [X]  -plan the data model
 [X] build the database 
@@ -211,10 +220,6 @@ use Pundit to control dropdown list for genre, level and format
       time required
   
     the time required tallies according to calculation of the resource assigned and the students age, current ability and current practice agreement
-
-
-
-
     Difference between a Resource and a Research:  
       Resource is in the Libary, approved/categorized by Admin
       Research might be a one time recommendation for this particular student, context and time (could also be submitted as a Resource by the Teacher, but not by default)
