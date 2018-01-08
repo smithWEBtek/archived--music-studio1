@@ -19,3 +19,9 @@
 .Success:hover {
   background-color: rgb(100, 214, 72);
 }
+
+.Stats {
+  border-style: 2px solid black; 
+  background-color: azure;
+  height: 100%;
+}

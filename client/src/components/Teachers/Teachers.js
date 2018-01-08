@@ -188,7 +188,9 @@ class Teachers extends Component {
           </Table>
         </div>
         {/**********TEACHERS TeacherStats*************************************/}
-        <TeacherStats teachers={this.props.teachers} />
+        <div className={classes.Stats}>
+          <TeacherStats teachers={this.props.teachers} />
+        </div>
       </Aux>
     )
   }

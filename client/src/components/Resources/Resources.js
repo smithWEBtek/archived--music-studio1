@@ -1,70 +1,85 @@
-import React, { Component } from 'react';
-import * as actionTypes from '../../store/actions/actionTypes';
-import { connect } from 'react-redux';
+import React, { Component } from 'react'
+import * as actionCreators from '../../store/actions/index'
+import { connect } from 'react-redux'
 
-import { Table } from 'reactstrap';
-import AddResource from '../../components/Resources/AddResource/AddResource';
-import ResourceView from './Resource/ResourceView';
-import ResourceService from './ResourceService';
-import classes from './Resources.css';
-import Aux from '../../hoc/Aux/Aux';
-import Modal from '../UI/Modal/Modal';
+import { Table } from 'reactstrap'
+import classes from './Resources.css'
+import Aux from '../../hoc/Aux/Aux'
+import Modal from '../UI/Modal/Modal'
+
+import Resource from './Resource/Resource'
+import CreateResource from './CreateResource/CreateResource'
+import EditResource from '../Resources/EditResource/EditResource'
+import ResourceStats from './ResourceStats/ResourceStats'
 
 class Resources extends Component {
-  constructor(props) {
-    super(props)
+  state = {
+    resource: null,
+    showResource: false,
 
-    this.state = {
-      resource: null,
-      addedResource: null,
-      addingResource: false,
-      showResource: false
-    }
+    resourceDetail: null,
+    showResourceDetail: false,
+
+    createResource: false,
+    editResource: false
   }
 
-  // addResourceHandler = (resource) => {
-  //   if (resource.title !== "") {
-  //     this.setState({ addingResource: true })
-  //     ResourceService.createResource(resource)
-  //       .then(resource => this.setState({
-  //         resources: this.state.resources.concat(resource)
-  //       })
-  //       )
-  //   }
-  //   this.setState({ addingResource: false });
-  // }
-
-  addResourceHandler = () => {
-    this.setState({ addingResource: false });
+  componentDidMount() {
+    this.props.onFetchResources()
   }
-  addResourceCancelHandler = () => {
+
+  //********CREATE_RESOURCE form handling **************************
+  createResourceForm = () => {
+    this.setState({ createResource: true })
+  }
+
+  createResourceFormCancel = () => {
+    this.setState({ createResource: false })
+  }
+
+  createResource = (newResourceData) => {
+    this.props.onResourceCreate(newResourceData)
+    this.setState({ createResource: false })
+  }
+
+  //********SHOW_RESOURCE form handling**************************
+  showResource = (id) => {
+    let resource = this.props.resources.filter(resource => resource.id === id)[0]
     this.setState({
-      addingResource: false
-    });
+      resource: resource,
+      showResource: true
+    })
   }
 
-  showAddResourceModal = () => {
-    // this.props.onResourceCreate
-    this.setState({ addingResource: true });
+  showResourceClose = () => {
+    this.setState({ showResource: false })
   }
 
-  showResourceHandler = (id) => {
-    ResourceService.fetchResource(id)
-      .then(response => this.setState({
-        resource: response,
-        showResource: true
-      })
-      );
-  }
-
-  showResourceCancelHandler = () => {
+  //********EDIT_RESOURCE form handling**************************
+  showEditResourceForm = (id) => {
+    let resource = this.props.resources.filter(resource => resource.id === id)[0]
     this.setState({
-      showResource: false
-    });
+      resource: resource,
+      editResource: true
+    })
+  }
+
+  editResourceFalse = () => {
+    this.setState({ editResource: false })
+  }
+
+  editResourceUpdate = (data) => {
+    this.props.onResourceUpdate(data)
+    this.setState({ resource: null, editResource: false })
+  }
+
+  //********DELETE_RESOURCE**************************
+  deleteResource = () => {
+    // be gone!
   }
 
   render() {
-    const resourcesList = this.props.res.map(resource => {
+    let resourcesList = this.props.resources.map(resource => {
       return (
         <Aux key={resource.id}>
           <tr>
@@ -74,25 +89,71 @@ class Resources extends Component {
             <td>{resource.description}</td>
             <td>{resource.format}</td>
             <td>{resource.location}</td>
-            <td><button onClick={() => this.showResourceHandler(resource.id)}>show</button></td>
-            <td><button>Edit</button></td>
-            <td><button onClick={() => this.props.onResourceDelete(resource.id)}>X</button></td>
+            <td><button
+              onClick={() => this.showResource(resource.id)}
+              className={classes.Success}>Show</button></td>
+            <td><button
+              onClick={() => this.showEditResourceForm(resource.id)}
+              className={classes.Edit}>Edit</button></td>
+            <td><button
+              onClick={() => this.props.onResourceDelete(resource.id)}
+              className={classes.Danger}>X</button></td>
           </tr>
         </Aux>
-      );
-    });
+      )
+    })
 
     return (
       <Aux>
         <div style={{ margin: '30px' }}>
-          <button onClick={this.showAddResourceModal}>Add Resource</button>
+
+          {/*********CREATE RESOURCE MODAL********************************************/}
+          <button onClick={this.createResourceForm}>Add Resource</button>
           <Modal
-            show={this.state.addingResource}
-            modalClosed={this.addResourceCancelHandler}>
-            <AddResource
-              addResource={this.props.onResourceCreate}
-              addResourceCancel={this.addResourceCancelHandler} />
+            show={this.state.createResource}
+            modalClosed={this.createResourceFormCancel}>
+            <CreateResource
+              createResource={(newResourceData) => this.createResource(newResourceData)}
+              createResourceCancel={this.createResourceFormCancel} />
           </Modal>
+
+          {/**********SHOW RESOURCE MODAL**********************************************/}
+          <Modal
+            show={this.state.showResource}
+            modalClosed={this.showResourceClose}>
+            <Aux>
+              {this.state.resource ? <Resource
+                id={this.state.resource.id}
+                firstname={this.state.resource.firstname}
+                lastname={this.state.resource.lastname}
+                email={this.state.resource.email}
+                level={this.state.resource.level}
+                teacher_id={this.state.resource.teacher_id}
+                close={this.showResourceClose}
+              /> : <p> No data for resource show</p>}
+            </Aux>
+          </Modal>
+
+          {/**********EDIT RESOURCE MODAL**********************************************/}
+          <Modal
+            show={this.state.editResource}
+            modalClosed={this.editResourceCancelHandler}>
+            <Aux>
+              {this.state.resource ? <EditResource
+                id={this.state.resource.id}
+                firstname={this.state.resource.firstname}
+                lastname={this.state.resource.lastname}
+                email={this.state.resource.email}
+                level={this.state.resource.level}
+                teacher_id={this.state.resource.teacher_id}
+                close={this.editResourceFalse}
+                updateResource={(data) => this.editResourceUpdate(data)}
+              /> : <p>no resource data yet...</p>}
+            </Aux>
+          </Modal>
+
+          {/**********RESOURCES INDEX TABLE*************************************/}
+          <legend>All Resources</legend>
           <Table className={classes.Resources}>
             <thead>
               <tr>
@@ -112,19 +173,8 @@ class Resources extends Component {
             </tbody>
           </Table>
         </div>
-        <Modal
-          show={this.state.showResource}
-          modalClosed={this.showResourceCancelHandler}>
-          <Aux>
-            {this.state.resource ? <ResourceView
-              title={this.state.resource.title}
-              category={this.state.resource.category}
-              description={this.state.resource.description}
-              format={this.state.resource.format}
-              location={this.state.resource.location}
-              close={this.showResourceCancelHandler} /> : null}
-          </Aux>
-        </Modal>
+        {/**********RESOURCES ResourceStats*************************************/}
+        <ResourceStats resources={this.props.resources} />
       </Aux>
     )
   }
@@ -132,16 +182,17 @@ class Resources extends Component {
 
 const mapStateToProps = state => {
   return {
-    res: state.res.resources
+    resources: state.stu.resources
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    onResourceCreate: (data) => dispatch({ type: actionTypes.CREATE_RESOURCE, resourceData: data }),
-    onResourceDelete: (id) => dispatch({ type: actionTypes.DELETE_RESOURCE, resourceId: id })
+    onResourceCreate: (newResourceData) => dispatch(actionCreators.createResource(newResourceData)),
+    onResourceUpdate: (data) => dispatch(actionCreators.updateResource(data)),
+    onResourceDelete: (id) => dispatch(actionCreators.deleteResource(id)),
+    onFetchResources: () => dispatch(actionCreators.fetchResources())
   }
 }
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(Resources);
+export default connect(mapStateToProps, mapDispatchToProps)(Resources)

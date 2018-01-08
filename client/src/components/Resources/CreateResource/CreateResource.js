@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import classes from './AddResource.css';
+import classes from './CreateResource.css';
 
-class AddResource extends Component {
+class CreateResource extends Component {
   constructor(props) {
     super(props)
 
@@ -94,4 +94,4 @@ class AddResource extends Component {
   }
 }
 
-export default AddResource;
+export default CreateResource;
