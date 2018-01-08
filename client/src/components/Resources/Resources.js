@@ -44,7 +44,7 @@ class Resources extends Component {
   }
 
   showAddResourceModal = () => {
-    // this.props.onResourceAdded
+    // this.props.onResourceCreate
     this.setState({ addingResource: true });
   }
 
@@ -76,7 +76,7 @@ class Resources extends Component {
             <td>{resource.location}</td>
             <td><button onClick={() => this.showResourceHandler(resource.id)}>show</button></td>
             <td><button>Edit</button></td>
-            <td><button onClick={() => this.props.onResourceRemoved(resource.id)}>X</button></td>
+            <td><button onClick={() => this.props.onResourceDelete(resource.id)}>X</button></td>
           </tr>
         </Aux>
       );
@@ -90,7 +90,7 @@ class Resources extends Component {
             show={this.state.addingResource}
             modalClosed={this.addResourceCancelHandler}>
             <AddResource
-              addResource={this.props.onResourceAdded}
+              addResource={this.props.onResourceCreate}
               addResourceCancel={this.addResourceCancelHandler} />
           </Modal>
           <Table className={classes.Resources}>
@@ -138,8 +138,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onResourceAdded: (data) => dispatch({ type: actionTypes.ADD_RESOURCE, resourceData: data }),
-    onResourceRemoved: (id) => dispatch({ type: actionTypes.REMOVE_RESOURCE, resourceId: id })
+    onResourceCreate: (data) => dispatch({ type: actionTypes.CREATE_RESOURCE, resourceData: data }),
+    onResourceDelete: (id) => dispatch({ type: actionTypes.DELETE_RESOURCE, resourceId: id })
   }
 }
 

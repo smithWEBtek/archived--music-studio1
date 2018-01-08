@@ -14,7 +14,7 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.ADD_TEACHER:
+    case actionTypes.CREATE_TEACHER:
 
       const newTeacher = action.teacherData
       newTeacher.id = state.teachers[state.teachers.length - 1].id + 1;
@@ -23,7 +23,7 @@ const reducer = (state = initialState, action) => {
         teachers: state.teachers.concat(newTeacher)
       }
 
-    case actionTypes.REMOVE_TEACHER:
+    case actionTypes.DELETE_TEACHER:
       const updatedTeachersArray = state.teachers.filter(teacher => teacher.id !== action.teacherId);
       return {
         ...state,

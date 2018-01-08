@@ -19,7 +19,7 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.ADD_LESSON:
+    case actionTypes.CREATE_LESSON:
       const newLesson = action.lessonData
       newLesson.id = state.lessons[state.lessons.length - 1].id + 1;
       // newLesson.date = moment().format('MMMM Do YYYY, h:mm:ss a');
@@ -28,7 +28,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         lessons: state.lessons.concat(newLesson)
       }
-    case actionTypes.REMOVE_LESSON:
+    case actionTypes.DELETE_LESSON:
       const updatedLessonsArray = state.lessons.filter(lesson => lesson.id !== action.lessonId);
       return {
         ...state,

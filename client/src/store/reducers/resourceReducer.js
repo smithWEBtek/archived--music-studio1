@@ -19,14 +19,14 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.ADD_RESOURCE:
+    case actionTypes.CREATE_RESOURCE:
       const newResource = action.resourceData
       newResource.id = state.resources[state.resources.length - 1].id + 1;
       return {
         ...state,
         resources: state.resources.concat(newResource)
       }
-    case actionTypes.REMOVE_RESOURCE:
+    case actionTypes.DELETE_RESOURCE:
       const updatedResourcesArray = state.resources.filter(resource => resource.id !== action.resourceId);
       return {
         ...state,

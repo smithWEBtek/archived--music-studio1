@@ -1,13 +1,13 @@
 import React from 'react';
 import { Table } from 'reactstrap';
-import classes from './TeacherStudents.css';
+import classes from './TeacherStats.css';
 import Aux from '../../../hoc/Aux/Aux';
 
-const teacherStudents = (props) => {
+const teacherStats = (props) => {
   let studentsDisplay = <p style={{ fontStyle: 'italic' }}>No students assigned to this teacher.</p>
 
-  if (props.teacherStudents.length > 0) {
-    let studentsBody = props.teacherStudents.map((student, index) => {
+  if (props.teacherStats.length > 0) {
+    let studentsBody = props.teacherStats.map((student, index) => {
       return (
         <Aux key={index}>
           <tr>
@@ -45,4 +45,4 @@ const teacherStudents = (props) => {
   );
 }
 
-export default teacherStudents;
+export default teacherStats;
