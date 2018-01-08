@@ -1,10 +1,9 @@
 import React from 'react';
 import classes from './Teacher.css';
-// import TeacherStats from '../TeacherStats/TeacherStats';
 
 const teacher = (props) => {
   let teacherStudents = <p>no students assigned</p>
-  if (props.students) {
+  if (props.students.length > 0) {
     teacherStudents = (
       props.students.map((student, index) => {
         return (

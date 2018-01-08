@@ -6,10 +6,11 @@ const TeacherService = {
       .then(response => response.json())
   },
 
-  fetchTeacher: (id) => {
-    return fetch(`${API_URL}/teachers/${id}`)
-      .then(response => response.json())
-  },
+  // fetchTeacher: (id) => {
+  //   return fetch(`${API_URL}/teachers/${id}`)
+  //     .then(response => response.json())
+  // },
+  // not used currently; getting invidual teacher from local state after //loading 'onfetchTeachers()'
 
   createTeacher(teacher) {
     const request = {
@@ -23,6 +24,18 @@ const TeacherService = {
     }
     return fetch(`${API_URL}/teachers`, request)
       .then(response => response.json())
+  },
+
+  updateTeacher(id, data) {
+    const request = {
+      method: 'PATCH',
+      body: JSON.stringify({ teacher: data }),
+      headers: { 'Content-Type': 'application/json' }
+    }
+    return fetch(`${API_URL}/teachers/${id}`, request, { method: 'PATCH' })
+      .then(response => {
+        console.log('[TeacherService][updateTeacher]response:', response)
+      })
   },
 
   deleteTeacher(id) {

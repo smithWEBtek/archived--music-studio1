@@ -9,7 +9,7 @@ import Modal from '../UI/Modal/Modal'
 
 import Teacher from './Teacher/Teacher'
 import CreateTeacher from './CreateTeacher/CreateTeacher'
-// import EditTeacher from './EditTeacher/EditTeacher'
+import EditTeacher from './EditTeacher/EditTeacher'
 import TeacherStats from './TeacherStats/TeacherStats'
 
 class Teachers extends Component {
@@ -153,7 +153,7 @@ class Teachers extends Component {
           </Modal>
 
           {/**********EDIT TEACHER MODAL**********************************************/}
-          {/* <Modal
+          <Modal
             show={this.state.editTeacher}
             modalClosed={this.editTeacherCancelHandler}>
             <Aux>
@@ -166,7 +166,7 @@ class Teachers extends Component {
                 updateTeacher={(data) => this.editTeacherUpdate(data)}
               /> : <p>no teacher data yet...</p>}
             </Aux>
-          </Modal> */}
+          </Modal>
 
           {/**********TEACHERS INDEX TABLE*************************************/}
           <legend>All Teachers</legend>

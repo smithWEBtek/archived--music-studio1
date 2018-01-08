@@ -75,7 +75,6 @@ export const updateTeacher = (data) => {
   }
 }
 
-
 //-----FETCH TEACHER ACTIONS-----------------------------
 export const fetchTeacherStart = () => {
   return { type: actionTypes.FETCH_TEACHER_START }
