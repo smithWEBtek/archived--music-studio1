@@ -8,7 +8,6 @@ import Aux from '../../hoc/Aux/Aux'
 import Modal from '../UI/Modal/Modal'
 
 import Student from './Student/Student'
-import StudentDetail from './StudentDetail/StudentDetail'
 import CreateStudent from './CreateStudent/CreateStudent'
 import EditStudent from './EditStudent/EditStudent'
 import StudentStats from './StudentStats/StudentStats'
@@ -43,7 +42,6 @@ class Students extends Component {
     this.setState({ createStudent: false })
   }
 
-
   //********SHOW_STUDENT form handling**************************
   showStudent = (id) => {
     let student = this.props.students.filter(student => student.id === id)[0]
@@ -56,21 +54,6 @@ class Students extends Component {
   showStudentClose = () => {
     this.setState({ showStudent: false })
   }
-
-
-  //********SHOW_STUDENT DETAIL form handling**************************
-  showStudentDetail = (id) => {
-    let student = this.props.students.filter(student => student.id === id)[0]
-    this.setState({
-      studentDetail: student,
-      showStudentDetail: true
-    })
-  }
-
-  showStudentDetailClose = () => {
-    this.setState({ showStudentDetail: false })
-  }
-
 
   //********EDIT_STUDENT form handling**************************
   showEditStudentForm = (id) => {
@@ -149,23 +132,6 @@ class Students extends Component {
             </Aux>
           </Modal>
 
-          {/**********SHOW STUDENT DETAIL MODAL**********************************************/}
-          <Modal
-            show={this.state.showStudentDetail}
-            modalClosed={this.showStudentDetailClose}>
-            <Aux>
-              {this.state.studentDetail ? <StudentDetail
-                id={this.state.student.id}
-                firstname={this.state.studentDetail.firstname}
-                lastname={this.state.studentDetail.lastname}
-                email={this.state.studentDetail.email}
-                level={this.state.studentDetail.level}
-                teacher_id={this.state.studentDetail.teacher_id}
-                close={this.showStudentDetailClose}
-              /> : <p> No data for student detail</p>}
-            </Aux>
-          </Modal>
-
           {/**********EDIT STUDENT MODAL**********************************************/}
           <Modal
             show={this.state.editStudent}
@@ -221,7 +187,6 @@ const mapDispatchToProps = dispatch => {
     onStudentCreate: (newStudentData) => dispatch(actionCreators.createStudent(newStudentData)),
     onStudentUpdate: (data) => dispatch(actionCreators.updateStudent(data)),
     onStudentDelete: (id) => dispatch(actionCreators.deleteStudent(id)),
-    onFetchStudent: (id) => dispatch(actionCreators.fetchStudent(id)),
     onFetchStudents: () => dispatch(actionCreators.fetchStudents())
   }
 }
