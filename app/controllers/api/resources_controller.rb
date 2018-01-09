@@ -5,7 +5,7 @@ class Api::ResourcesController < ApplicationController
     render json: @resources
   end
 
-  def show 
+  def show
     @resource = Resource.find(params[:id])
     render json: @resource
   end
@@ -19,7 +19,17 @@ class Api::ResourcesController < ApplicationController
     end
   end
 
-  def destroy 
+  def update
+    @resource = Resource.find(params[:id])
+    @resource.update(resource_params)
+    if @resource.save
+      render json: @resource
+    else
+      render json: { errors: { message: 'resource NOT updated' }}
+    end
+  end
+
+  def destroy
     @resource = Resource.find(params[:id])
     @resource.delete
   end

@@ -9,7 +9,7 @@ import Modal from '../UI/Modal/Modal'
 
 import Resource from './Resource/Resource'
 import CreateResource from './CreateResource/CreateResource'
-// import EditResource from '../Resources/EditResource/EditResource'
+import EditResource from '../Resources/EditResource/EditResource'
 // import ResourceStats from './ResourceStats/ResourceStats'
 
 class Resources extends Component {
@@ -144,7 +144,7 @@ class Resources extends Component {
           </Modal>
 
           {/**********EDIT RESOURCE MODAL**********************************************/}
-          {/* <Modal
+          <Modal
             show={this.state.editResource}
             modalClosed={this.editResourceCancelHandler}>
             <Aux>
@@ -159,7 +159,7 @@ class Resources extends Component {
                 updateResource={(data) => this.editResourceUpdate(data)}
               /> : <p>no resource data yet...</p>}
             </Aux>
-          </Modal> */}
+          </Modal>
 
           {/**********RESOURCES INDEX TABLE*************************************/}
           <legend>All Resources</legend>

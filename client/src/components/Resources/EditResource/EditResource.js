@@ -70,15 +70,15 @@ class EditResource extends Component {
           <p><label>Format</label>
             <input
               type="text"
-              name="description"
-              value={this.state.description}
+              name="format"
+              value={this.state.format}
               onChange={(event) => this.handleOnChange(event)}
             /></p>
           <p><label>Location</label>
             <input
               type="text"
-              name="description"
-              value={this.state.description}
+              name="location"
+              value={this.state.location}
               onChange={(event) => this.handleOnChange(event)}
             /></p>
           <button
