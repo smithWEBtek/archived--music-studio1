@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import classes from './AddLesson.css';
-// import TeacherService from '../../../components/Teachers/TeacherService';
-// import StudentService from '../../../components/Students/StudentService';
-// import ResourceService from '../../../components/Resources/ResourceService';
+import classes from './CreateLesson.css';
+import TeacherService from '../../../components/Teachers/TeacherService';
+import StudentService from '../../../components/Students/StudentService';
+import ResourceService from '../../../components/Resources/ResourceService';
 
 
-class AddLesson extends Component {
+class CreateLesson extends Component {
   constructor(props) {
     super(props)
 
@@ -75,7 +75,7 @@ class AddLesson extends Component {
       resources: [],
       lessons: []
     });
-    this.props.addLessonCancel()
+    this.props.createLessonCancel()
   }
 
   render() {
@@ -92,9 +92,9 @@ class AddLesson extends Component {
     });
 
     return (
-      <div className={classes.AddLesson}>
-        <p className={classes.FormInstructions}>Complete form and click 'Add Lesson'</p>
-        <form onSubmit={(event) => this.handleSubmit(event)} className={classes.AddForm}>
+      <div className={classes.CreateLesson}>
+        <p className={classes.FormInstructions}>Complete form and click 'Create Lesson'</p>
+        <form onSubmit={(event) => this.handleSubmit(event)} className={classes.Form}>
           <p>
             <label>TeacherSelector</label>
             <select value={this.state.teacher.lastname} onChange={(event) => this.handleTeacherSelect(event)}>
@@ -127,13 +127,13 @@ class AddLesson extends Component {
           </p>
           <button
             type="button"
-            onClick={this.props.addLessonCancel}
+            onClick={this.props.createLessonCancel}
             className={classes.Danger}>CANCEL</button>
-          <button className={classes.Success}>ADD Lesson</button>
+          <button className={classes.Success}>CREATE Lesson</button>
         </form>
       </div>
     )
   }
 }
 
-export default AddLesson;
+export default CreateLesson;

@@ -1,76 +1,126 @@
-// // import * as actionTypes from './actionTypes';
-// // import StudentService from '../../components/Students/StudentService';
+import * as actionTypes from './actionTypes'
+import LessonService from '../../containers/Lessons/LessonService'
 
-// export const addStudent = (studentData) => {
-//   return dispatch => {
-//     // dispatch(addStudentStart());
-//     StudentService.createStudent(studentData)
-//       .then(response => {
-//         // dispatch(addStudentSuccess(response))
-//         dispatch(fetchStudents())
-//       })
-//       .catch(error => {
-//         dispatch(addStudentFail(error))
-//       })
-//   }
-// }
+//-----CREATE LESSON ACTIONS-----------------------------
+export const createLessonStart = () => {
+  return { type: actionTypes.CREATE_LESSON_START }
+}
+export const createLessonSuccess = () => {
+  return { type: actionTypes.CREATE_LESSON_SUCCESS }
+}
+export const createLessonFail = (error) => {
+  return { type: actionTypes.CREATE_LESSON_FAIL, error: error }
+}
+export const createLesson = (data) => {
+  return dispatch => {
+    dispatch(createLessonStart())
+    LessonService.createLesson(data)
+      .then(response => {
+        dispatch({ type: actionTypes.CREATE_LESSON, data: response })
+        dispatch(createLessonSuccess())
+      })
+      .catch(error => {
+        dispatch(createLessonFail(error))
+      })
+  }
+}
 
-// // export const addStudentStart = () => {
-// //   return {
-// //     type: actionTypes.ADD_STUDENT_START
-// //   }
-// // }
+//-----DELETE LESSON ACTIONS-----------------------------
+export const deleteLessonStart = () => {
+  return { type: actionTypes.DELETE_LESSON_START }
+}
+export const deleteLessonSuccess = () => {
+  return { type: actionTypes.DELETE_LESSON_SUCCESS }
+}
+export const deleteLessonFail = (error) => {
+  return { type: actionTypes.DELETE_LESSON_FAIL, error: error }
+}
+export const deleteLesson = (id) => {
+  return dispatch => {
+    dispatch(deleteLessonStart())
+    LessonService.deleteLesson(id)
+      .then(response => {
+        dispatch({ type: actionTypes.DELETE_LESSON, id: id })
+        dispatch({ type: actionTypes.DELETE_LESSON_SUCCESS, message: response })
+      })
+      .catch(error => {
+        dispatch({ type: actionTypes.DELETE_LESSON_FAIL, error: error })
+      })
+  }
+}
 
-// // export const addStudentSuccess = (students) => {
-// //   return {
-// //     type: actionTypes.ADD_STUDENT_SUCCESS,
-// //     studentsList: students
-// //   }
-// // }
 
-// export const addStudentFail = (error) => {
-//   return {
-//     type: actionTypes.ADD_STUDENT_FAIL,
-//     error: error
-//   }
-// }
+//-----UPDATE LESSON ACTIONS-----------------------------
+export const updateLessonStart = () => {
+  return { type: actionTypes.UPDATE_LESSON_START }
+}
+export const updateLessonSuccess = () => {
+  return { type: actionTypes.UPDATE_LESSON_SUCCESS }
+}
+export const updateLessonFail = (error) => {
+  return { type: actionTypes.UPDATE_LESSON_FAIL, error: error }
+}
+export const updateLesson = (data) => {
+  return dispatch => {
+    dispatch(updateLessonStart())
+    LessonService.updateLesson(data.id, data)
+      .then(response => {
+        dispatch({ type: actionTypes.UPDATE_LESSON_SUCCESS })
+        dispatch(updateLessonSuccess(response))
+        dispatch(fetchLessons())
+      })
+      .catch(error => {
+        dispatch(updateLessonFail(error))
+      })
+  }
+}
 
-// export const removeStudent = (id) => {
-//   return {
-//     type: actionTypes.REMOVE_STUDENT,
-//     id: id
-//   }
-// }
 
-// export const fetchStudentsSuccess = (students) => {
-//   return {
-//     type: actionTypes.FETCH_STUDENTS_SUCCESS,
-//     studentsList: students
-//   }
-// }
+//-----FETCH LESSON ACTIONS-----------------------------
+export const fetchLessonStart = () => {
+  return { type: actionTypes.FETCH_LESSON_START }
+}
+export const fetchLessonSuccess = (lesson) => {
+  return { type: actionTypes.FETCH_LESSON_SUCCESS, lessonData: lesson }
+}
+export const fetchLessonFail = (error) => {
+  return { type: actionTypes.FETCH_LESSON_FAIL, error: error }
+}
+export const fetchLesson = (id) => {
+  return dispatch => {
+    dispatch(fetchLessonStart())
+    LessonService.fetchLesson(id)
+      .then(response => {
+        dispatch(fetchLessonSuccess(response))
+      })
+      .catch(error => {
+        dispatch(fetchLessonFail(error))
+      })
+  }
+}
 
-// export const fetchStudentsFail = (error) => {
-//   return {
-//     type: actionTypes.FETCH_STUDENTS_FAIL,
-//     error: error
-//   }
-// }
+//-----INDEX LESSONS ACTIONS-----------------------------
+export const fetchLessons = () => {
+  return dispatch => {
+    dispatch(fetchLessonsStart())
+    LessonService.fetchLessons()
+      .then(response => {
+        dispatch(fetchLessonsSuccess(response))
+      })
+      .catch(error => {
+        dispatch(fetchLessonsFail(error))
+      })
+  }
+}
 
-// export const fetchStudentsStart = () => {
-//   return {
-//     type: actionTypes.FETCH_STUDENTS_START
-//   }
-// }
+export const fetchLessonsStart = () => {
+  return { type: actionTypes.FETCH_LESSONS_START }
+}
 
-// export const fetchStudents = () => {
-//   return dispatch => {
-//     dispatch(fetchStudentsStart());
-//     StudentService.fetchStudents()
-//       .then(response => {
-//         dispatch(fetchStudentsSuccess(response))
-//       })
-//       .catch(error => {
-//         dispatch(fetchStudentsFail(error))
-//       })
-//   }
-// }
+export const fetchLessonsSuccess = (lessons) => {
+  return { type: actionTypes.FETCH_LESSONS_SUCCESS, lessonsList: lessons }
+}
+
+export const fetchLessonsFail = (error) => {
+  return { type: actionTypes.FETCH_LESSONS_FAIL, error: error }
+}

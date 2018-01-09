@@ -20,10 +20,10 @@ REQUIREMENTS
 [X]  use Redux middleware to respond to and modify state change
 ==================================================================================
 TODO
-[]  teacher main admin page, CRUD with modal working
-[]  teacher stats page
+[X]  teacher main admin page, CRUD with modal working
+[X]  teacher stats page
 
-[]  resource main admin page, CRUD with modal working
+[X]  resource main admin page, CRUD with modal working
 []  resource stats page
 []  resource viewers PDF, DOC, AUD, VID
 
@@ -34,6 +34,8 @@ TODO
 []  add multiple resources to new or existing lesson
 
 [] use Modal for Add forms Lesson
+
+
 []  show lesson:
   [.]should showcase video, pdf, audio and lesson experience
   [ ]should have easy ways for teacher to add resources

@@ -1,39 +1,80 @@
 import * as actionTypes from '../actions/actionTypes';
-import moment from 'moment';
-
-const LESSONS = [
-  { id: 1, date: '2017-10-01', notes: 'initial meet and greet', teacher_id: 1, student_id: 1 },
-  { id: 2, date: '2017-10-01', notes: 'initial meet and greet', teacher_id: 1, student_id: 2 },
-  { id: 3, date: '2017-10-01', notes: 'initial meet and greet', teacher_id: 1, student_id: 3 },
-  { id: 4, date: '2017-10-01', notes: 'initial meet and greet', teacher_id: 2, student_id: 4 },
-  { id: 5, date: '2017-10-01', notes: 'initial meet and greet', teacher_id: 2, student_id: 5 },
-  { id: 6, date: '2017-10-01', notes: 'initial meet and greet', teacher_id: 2, student_id: 6 },
-  { id: 7, date: '2017-10-01', notes: 'initial meet and greet', teacher_id: 3, student_id: 7 },
-  { id: 8, date: '2017-10-01', notes: 'initial meet and greet', teacher_id: 3, student_id: 8 },
-  { id: 9, date: '2017-10-01', notes: 'initial meet or greet', teacher_id: 3, student_id: 9 }
-]
+import LessonService from '../../containers/Lessons/LessonService';
 
 const initialState = {
-  lessons: LESSONS
+  lessons: [],
+  loading: false,
+  error: false,
+  message: ''
 };
 
+const updateObject = (oldObject, updatedValues) => { return { ...oldObject, ...updatedValues } }
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    //-----CREATE LESSON-----------------------------
     case actionTypes.CREATE_LESSON:
-      const newLesson = action.lessonData
-      newLesson.id = state.lessons[state.lessons.length - 1].id + 1;
-      // newLesson.date = moment().format('MMMM Do YYYY, h:mm:ss a');
-      newLesson.date = moment().format('MMMM Do YYYY');
-      return {
-        ...state,
-        lessons: state.lessons.concat(newLesson)
-      }
+      const newLesson = action.data
+      return updateObject(state, { lessons: state.lessons.concat(newLesson) })
+
+    case actionTypes.CREATE_LESSON_START:
+      return updateObject(state, { loading: true })
+
+    case actionTypes.CREATE_LESSON_SUCCESS:
+      return updateObject(state, { loading: false })
+
+    case actionTypes.CREATE_LESSON_FAIL:
+      return updateObject(state, {
+        error: action.error,
+        loading: false,
+        message: action.response
+      })
+
+
+    //-----DELETE LESSON-----------------------------
     case actionTypes.DELETE_LESSON:
-      const updatedLessonsArray = state.lessons.filter(lesson => lesson.id !== action.lessonId);
-      return {
-        ...state,
-        lessons: updatedLessonsArray
-      };
+      const updatedLessonsArray = state.lessons.filter(lesson => lesson.id !== action.id);
+      return updateObject(state, { lessons: updatedLessonsArray, loading: false })
+
+    case actionTypes.DELETE_LESSON_SUCCESS:
+      return updateObject(state, { loading: false })
+
+    case actionTypes.DELETE_LESSON_FAIL:
+      return updateObject(state, { error: action.error, loading: false })
+
+
+    //-----UPDATE LESSON-----------------------------
+    case actionTypes.UPDATE_LESSON:
+      const lessonData = action.updatedLessonData
+      return LessonService.updateLesson(lessonData.id, lessonData)
+
+    case actionTypes.UPDATE_LESSON_SUCCESS:
+      return updateObject(state, { loading: false })
+
+    case actionTypes.UPDATE_LESSON_FAIL:
+      return updateObject(state, { error: action.error, loading: false })
+
+
+    //-----FETCH LESSON-----------------------------
+    case actionTypes.FETCH_LESSON_START:
+      return updateObject(state, { loading: true })
+
+    case actionTypes.FETCH_LESSON_SUCCESS:
+      return updateObject(state, { lessons: action.lessonData })
+
+    case actionTypes.FETCH_LESSON_FAIL:
+      return updateObject(state, { error: action.error })
+
+
+    //-----FETCH LESSONS-----------------------------
+    case actionTypes.FETCH_LESSONS_START:
+      return updateObject(state, { loading: true })
+
+    case actionTypes.FETCH_LESSONS_SUCCESS:
+      return updateObject(state, { lessons: action.lessonsList.sort((a, b) => (a.id) - (b.id)) })
+
+    case actionTypes.FETCH_LESSONS_FAIL:
+      return updateObject(state, { error: action.error })
+
     default:
       return state;
   }
