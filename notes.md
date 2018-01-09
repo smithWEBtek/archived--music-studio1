@@ -32,7 +32,7 @@ TODO
 []  add Lesson, does not save resource or date
 []  edit & update student, teacher, resource, lesson
 []  add multiple resources to new or existing lesson
-
+[]  lesson MUST have teacher and student to be valid lesson
 [] use Modal for Add forms Lesson
 
 

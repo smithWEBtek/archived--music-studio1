@@ -1,30 +1,18 @@
-import React from 'react';
-import { Table } from 'reactstrap';
-import classes from './LessonResources.css';
-import Aux from '../../../hoc/Aux/Aux';
+import React from 'react'
+import { Table } from 'reactstrap'
+import classes from './LessonResources.css'
+import Aux from '../../../hoc/Aux/Aux'
 
-const lessonResources = (props) => {
+const LessonResources = (props) => {
+  let resourcesList = (
+    <div>
+      <p style={{ fontStyle: 'italic' }}>No resources assigned to this lesson.</p>
+    </div>
+  )
 
-  let resourcesDisplay = <p style={{ fontStyle: 'italic' }}>No resources assigned to this lesson.</p>
-
-  if (props.resources.length > 0) {
-    let resourcesBody = props.resources.map((resource, index) => {
+  if (props.resources) {
+    resourcesList = props.resources.map((resource, index) => {
       return (
-        <Aux key={index}>
-          <tr>
-            <td>{resource.id}</td>
-            <td>{resource.title}</td>
-            <td>{resource.category}</td>
-            <td>{resource.description}</td>
-            <td>{resource.format}</td>
-            <td>{resource.location}</td>
-          </tr>
-        </Aux>
-      )
-    })
-
-    let resourcesTable =
-      <div>
         <Table className={classes.LessonResources}>
           <thead>
             <tr>
@@ -37,18 +25,27 @@ const lessonResources = (props) => {
             </tr>
           </thead>
           <tbody>
-            {resourcesBody}
+            <Aux key={index}>
+              <tr>
+                <td>{resource.id}</td>
+                <td>{resource.title}</td>
+                <td>{resource.category}</td>
+                <td>{resource.description}</td>
+                <td>{resource.format}</td>
+                <td>{resource.location}</td>
+              </tr>
+            </Aux>
           </tbody>
         </Table>
-      </div>
-    resourcesDisplay = resourcesTable;
+      )
+    })
   }
 
   return (
-    <div style={{ margin: '30px' }}>
-      {resourcesDisplay}
-    </div>
-  );
+    <Aux>
+      {resourcesList}
+    </Aux>
+  )
 }
 
-export default lessonResources;
+export default LessonResources

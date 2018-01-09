@@ -112,6 +112,7 @@ class Resources extends Component {
         />
       )
     }
+
     return (
       <Aux>
         <div style={{ margin: '30px' }}>
@@ -131,15 +132,7 @@ class Resources extends Component {
             show={this.state.showResource}
             modalClosed={this.showResourceClose}>
             <Aux>
-              {this.state.resource ? <Resource
-                id={this.state.resource.id}
-                title={this.state.resource.title}
-                category={this.state.resource.category}
-                description={this.state.resource.description}
-                format={this.state.resource.format}
-                location={this.state.resource.location}
-                close={this.showResourceClose}
-              /> : <p> No data for resource show</p>}
+              {showResourceData}
             </Aux>
           </Modal>
 

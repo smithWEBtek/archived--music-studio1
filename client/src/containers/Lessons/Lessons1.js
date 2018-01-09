@@ -6,7 +6,7 @@ import { Table } from 'reactstrap';
 import classes from './Lessons.css';
 import LessonService from './LessonService';
 import Lesson from './Lesson/Lesson';
-import AddLesson from './AddLesson/AddLesson';
+import CreateLesson from './CreateLesson/CreateLesson';
 import Aux from '../../hoc/Aux/Aux';
 import Modal from '../../components/UI/Modal/Modal';
 
@@ -44,7 +44,7 @@ class Lessons extends Component {
     });
   }
 
-  showAddLessonModal = () => {
+  showCreateLessonModal = () => {
     // this.props.onLessonCreate
     this.setState({ addingLesson: true })
   }
@@ -86,11 +86,11 @@ class Lessons extends Component {
     return (
       <Aux>
         <div style={{ margin: '30px' }}>
-          <button onClick={this.showAddLessonModal}>AddLesson</button>
+          <button onClick={this.showCreateLessonModal}>CreateLesson</button>
           <Modal
             show={this.state.addingLesson}
             modalClosed={this.addLessonCancelHandler}>
-            <AddLesson
+            <CreateLesson
               addLesson={this.props.onLessonCreate}
               addLessonCancel={this.addLessonCancelHandler} />
           </Modal>

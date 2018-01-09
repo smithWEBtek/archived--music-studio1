@@ -20,3 +20,15 @@
   font-style: italic;
   font-weight: 600;
 }
+
+.Danger:hover {
+  background-color: red; 
+}
+
+.Edit:hover {
+  background-color: rgb(250, 233, 77);
+}
+
+.Success:hover {
+  background-color: rgb(100, 214, 72);
+}

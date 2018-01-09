@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import ToolBar from './components/Navigation/ToolBar/ToolBar';
+import ToolBarMain from './components/Navigation/ToolBar/ToolBarMain';
 
 class App extends Component {
   render() {
     return (
       <div>
-        <ToolBar /><br />
+        <ToolBarMain /><br />
       </div>
     );
   }

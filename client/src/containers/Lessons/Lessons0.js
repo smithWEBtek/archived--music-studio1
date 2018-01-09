@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import * as actionCreators from '../../store/actions/index'
 import { connect } from 'react-redux'
-// import { Route, NavLink } from 'react-router-dom'
+import { Route, NavLink } from 'react-router-dom'
 
 import { Table } from 'reactstrap'
 import classes from './Lessons.css'
@@ -33,12 +33,12 @@ class Lessons extends Component {
     }
   }
 
-  componentWillMount() {
-    this.props.onFetchLessons()
-    // this.props.onFetchResources()
-    // this.props.onFetchTeachers()
-    // this.props.onFetchStudents()
-  }
+  // componentDidMount() {
+  //   this.props.onFetchLessons()
+  //   this.props.onFetchResources()
+  //   this.props.onFetchTeachers()
+  //   this.props.onFetchStudents()
+  // }
 
   //********CREATE_LESSON form handling **************************
   // createLessonForm = () => {
@@ -55,17 +55,17 @@ class Lessons extends Component {
   // }
 
   //********SHOW_LESSON form handling**************************
-  showLesson = (id) => {
-    let lesson = this.props.lessons.filter(lesson => lesson.id === id)[0]
-    this.setState({
-      lesson: lesson,
-      showLesson: true
-    })
-  }
+  // showLesson = (id) => {
+  //   let lesson = this.props.lessons.filter(lesson => lesson.id === id)[0]
+  //   this.setState({
+  //     lesson: lesson,
+  //     showLesson: true
+  //   })
+  // }
 
-  showLessonClose = () => {
-    this.setState({ showLesson: false })
-  }
+  // showLessonClose = () => {
+  //   this.setState({ showLesson: false })
+  // }
 
   //********EDIT_LESSON form handling**************************
   // showEditLessonForm = (id) => {
@@ -86,33 +86,48 @@ class Lessons extends Component {
   // }
 
   render() {
+    // debugger;
 
-    let lessonsList = this.props.lessons.map(lesson => {
-      console.log(lesson)
+    // let lessonsList = this.props.lessons.map(lesson => {
+    //   return (
+    //     <Aux key={lesson.id}>
+    //       <tr>
+    //         <td>{lesson.id}</td>
+    //         <td>{lesson.date}</td>
+    //         <td>{lesson.teacher.lastname}</td>
+    //         <td>{lesson.student.lastname}</td>
+    //         <td>{lesson.notes}</td>
+    //         <td>{lesson.resources.length}</td>
 
-      return (
-        <Aux key={lesson.id}>
-          <tr>
-            <td>{lesson.id}</td>
-            <td>{lesson.date}</td>
-            <td>{lesson.teacher_id}</td>
-            <td>{lesson.student_id}</td>
-            <td>{lesson.notes}</td>
-            <td>{lesson.resources.length}</td>
+    //         <td><button
+    //           onClick={() => this.showLesson(lesson.id)}
+    //           className={classes.Success}>Show</button></td>
+    //         <td><button
+    //           onClick={() => this.showEditLessonForm(lesson.id)}
+    //           className={classes.Edit}>Edit</button></td>
+    //         <td><button
+    //           onClick={() => this.props.onLessonDelete(lesson.id)}
+    //           className={classes.Danger} >X</button></td>
+    //       </tr>
+    //     </Aux>
+    //   )
+    // })
 
-            <td><button
-              onClick={() => this.showLesson(lesson.id)}
-              className={classes.Success}>Show</button></td>
-            <td><button
-              onClick={() => this.showEditLessonForm(lesson.id)}
-              className={classes.Edit}>Edit</button></td>
-            <td><button
-              onClick={() => this.props.onLessonDelete(lesson.id)}
-              className={classes.Danger} >X</button></td>
-          </tr>
-        </Aux>
-      )
-    })
+    // let editLessonInfo = <p>[Lessons.js] line 107, no lesson info </p>
+
+    // if (this.state.lesson) {
+    //   editLessonInfo = (
+    //     <EditLesson
+    //       id={this.state.lesson.id}
+    //       teacher={this.state.lesson.teacher}
+    //       student={this.state.lesson.student}
+    //       resources={this.state.lesson.resources}
+    //       notes={this.state.lesson.notes}
+    //       close={this.editLessonFalse}
+    //       updateLesson={(data) => this.editLessonUpdate(data)}
+    //     />
+    //   )
+    // }
 
     return (
       <Aux>
@@ -120,9 +135,8 @@ class Lessons extends Component {
 
           {/*********CREATE LESSON MODAL********************************************/}
           {/* <button onClick={this.createLessonForm}>Add Lesson</button> */}
-
-
-          {/* <NavLink
+          {/* 
+          <NavLink
             to={{ pathname: '/lessons/new' }}
             exact
             activeClassName="my-active"
@@ -143,7 +157,7 @@ class Lessons extends Component {
           </Modal> */}
 
           {/**********SHOW LESSON MODAL**********************************************/}
-          <Modal
+          {/* <Modal
             show={this.state.showLesson}
             modalClosed={this.showLessonClose}>
             <Aux>
@@ -157,22 +171,14 @@ class Lessons extends Component {
                 close={this.showLessonClose}
               /> : <p> No data for lesson show</p>}
             </Aux>
-          </Modal>
+          </Modal> */}
 
           {/**********EDIT LESSON MODAL**********************************************/}
           {/* <Modal
             show={this.state.editLesson}
             modalClosed={this.editLessonCancelHandler}>
             <Aux>
-              <EditLesson
-                id={this.state.lesson.id}
-                teacher={this.state.lesson.teacher}
-                student={this.state.lesson.student}
-                resources={this.state.lesson.resources}
-                notes={this.state.lesson.notes}
-                close={this.editLessonFalse}
-                updateLesson={(data) => this.editLessonUpdate(data)}
-              />
+              {editLessonInfo}
             </Aux>
           </Modal> */}
 
@@ -193,7 +199,7 @@ class Lessons extends Component {
               </tr>
             </thead>
             <tbody>
-              {lessonsList}
+              {/* {lessonsList} */}
             </tbody>
           </Table>
         </div>
@@ -206,10 +212,10 @@ class Lessons extends Component {
 
 const mapStateToProps = state => {
   return {
-    students: state.stu.students,
-    teachers: state.tch.teachers,
-    lessons: state.les.lessons,
-    resources: state.res.resources
+    // students: state.stu.students,
+    // teachers: state.tch.teachers,
+    lessons: state.les.lessons
+    // resources: state.res.resources
   }
 }
 
@@ -218,9 +224,9 @@ const mapDispatchToProps = dispatch => {
     onLessonCreate: (newLessonData) => dispatch(actionCreators.createLesson(newLessonData)),
     onLessonUpdate: (data) => dispatch(actionCreators.updateLesson(data)),
     onLessonDelete: (id) => dispatch(actionCreators.deleteLesson(id)),
-    onFetchLessons: () => dispatch(actionCreators.fetchLessons())
     // onFetchStudents: () => dispatch(actionCreators.fetchStudents()),
     // onFetchTeachers: () => dispatch(actionCreators.fetchTeachers()),
+    onFetchLessons: () => dispatch(actionCreators.fetchLessons())
     // onFetchResources: () => dispatch(actionCreators.fetchResources())
   }
 }

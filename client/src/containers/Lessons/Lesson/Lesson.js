@@ -7,7 +7,7 @@ import LessonResources from '../Lesson/LessonResources';
 
 const lesson = (props) => {
   return (
-    <div className={classes.Form}>
+    <div className={classes.Lesson}>
       <p>Date: {props.date}</p>
       <p>Student: {props.student}</p>
       <p>Teacher: {props.teacher}</p>

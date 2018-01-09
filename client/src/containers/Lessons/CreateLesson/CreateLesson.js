@@ -1,67 +1,63 @@
-import React, { Component } from 'react';
-import classes from './CreateLesson.css';
-import TeacherService from '../../../components/Teachers/TeacherService';
-import StudentService from '../../../components/Students/StudentService';
-import ResourceService from '../../../components/Resources/ResourceService';
-
+import React, { Component } from 'react'
+import * as actionCreators from '../../../store/actions/index'
+import { connect } from 'react-redux'
+import classes from './CreateLesson.css'
 
 class CreateLesson extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      date: '',
-      teacher: '',
-      student: '',
+      teacher: {},
+      student: {},
       notes: '',
-      resource: '',
-
-      teachers: [],
-      students: [],
-      resources: [],
-      lessons: []
+      lessonResources: [],
+      createLesson: false
     }
   }
 
-  // componentDidMount() {
-  //   // TeacherService.fetchTeachers()
-  //   //   .then(teachers => this.setState({ teachers: teachers }))
+  //********CREATE_LESSON form handling **************************
+  createLessonForm = () => {
+    this.setState({ createLesson: true })
+  }
 
-  //   // StudentService.fetchStudents()
-  //   //   .then(students => this.setState({ students: students }))
+  createLessonFormCancel = () => {
+    this.setState({ createLesson: false })
+  }
 
-  //   // ResourceService.fetchResources()
-  //   //   .then(resources => this.setState({ resources: resources }))
-  // }
+  createLesson = (newLessonData) => {
+    this.props.onLessonCreate(newLessonData)
+    this.setState({ createLesson: false })
+  }
 
-  handleTeacherSelect = (event) => {
+  handleLessonSelect = (event) => {
     this.setState({
-      teacher: this.state.teachers.find(teacher => teacher.lastname === event.target.value)
+      teacher: this.props.teachers.find(teacher => teacher.lastname === event.target.value)
     })
-  };
+  }
 
-  handleStudentSelect = (event) => {
+  handleLessonSelect = (event) => {
     this.setState({
-      student: this.state.students.find(student => student.lastname === event.target.value)
+      student: this.props.students.find(student => student.lastname === event.target.value)
     })
-  };
+  }
 
   handleResourceSelect = (event) => {
     this.setState({
-      resource: this.state.resources.find(resource => resource.title === event.target.value)
+      resource: this.props.resources.find(resource => resource.title === event.target.value)
     })
-  };
+  }
 
   handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     const lessonData = {
       date: this.state.date,
-      teacher_id: this.state.teacher.id,
-      student_id: this.state.student.id,
-      resource_id: this.state.resource.id,
+      teacher: this.state.teacher,
+      student: this.state.student,
+      resources: this.state.resources,
       notes: this.state.notes
     }
-    this.props.addLesson(lessonData)
+    this.props.createLesson(lessonData)
     this.setState({
       formVisible: false,
       date: '',
@@ -74,37 +70,37 @@ class CreateLesson extends Component {
       students: [],
       resources: [],
       lessons: []
-    });
+    })
     this.props.createLessonCancel()
   }
 
   render() {
     const teacherOptions = this.state.teachers.map(teacher => {
       return <option value={teacher.lastname} id={teacher.id} key={teacher.id}>{teacher.lastname}</option>
-    });
+    })
 
     const studentOptions = this.state.students.map(student => {
       return <option value={student.lastname} id={student.id} key={student.id}>{student.lastname}</option>
-    });
+    })
 
     const resourceOptions = this.state.resources.map(resource => {
       return <option value={resource.title} id={resource.id} key={resource.id}>{resource.title}</option>
-    });
+    })
 
     return (
       <div className={classes.CreateLesson}>
         <p className={classes.FormInstructions}>Complete form and click 'Create Lesson'</p>
         <form onSubmit={(event) => this.handleSubmit(event)} className={classes.Form}>
           <p>
-            <label>TeacherSelector</label>
-            <select value={this.state.teacher.lastname} onChange={(event) => this.handleTeacherSelect(event)}>
+            <label>LessonSelector</label>
+            <select value={this.state.teacher.lastname} onChange={(event) => this.handleLessonSelect(event)}>
               {teacherOptions}
             </select>
           </p>
 
           <p>
-            <label>StudentSelector</label>
-            <select value={this.state.student.lastname} onChange={(event) => this.handleStudentSelect(event)}>
+            <label>LessonSelector</label>
+            <select value={this.state.student.lastname} onChange={(event) => this.handleLessonSelect(event)}>
               {studentOptions}
             </select>
           </p>
@@ -136,4 +132,19 @@ class CreateLesson extends Component {
   }
 }
 
-export default CreateLesson;
+const mapStateToProps = state => {
+  return {
+    students: state.stu.students,
+    teachers: state.tch.teachers,
+    resources: state.res.resources,
+    lessons: state.les.lessons
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onLessonCreate: (newLessonData) => dispatch(actionCreators.createLesson(newLessonData))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreateLesson)
