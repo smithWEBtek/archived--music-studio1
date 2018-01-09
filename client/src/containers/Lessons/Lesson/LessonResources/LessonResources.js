@@ -2,7 +2,7 @@ import React from 'react'
 import 'bootstrap/dist/css/bootstrap.css';
 import { Table } from 'reactstrap'
 import classes from './LessonResources.css'
-import Aux from '../../../hoc/Aux/Aux'
+// import Aux from '../../../../hoc/Aux/Aux'
 
 const LessonResources = (props) => {
   let resourcesList = (

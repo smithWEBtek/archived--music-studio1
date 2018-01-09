@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import * as actionCreators from '../../store/actions/index'
 import { connect } from 'react-redux'
-import { Route, NavLink } from 'react-router-dom'
+import { Route, Link } from 'react-router-dom'
 
 import { Table } from 'reactstrap'
 import classes from './Lessons.css'
 import Aux from '../../hoc/Aux/Aux'
-import Modal from '../../components/UI/Modal/Modal'
-
+// import Modal from '../../components/UI/Modal/Modal'
 import Lesson from './Lesson/Lesson'
+// import LessonNav from './LessonNav/LessonNav'
 
 class Lessons extends Component {
   constructor(props) {
@@ -23,12 +23,6 @@ class Lessons extends Component {
   }
 
   render() {
-    <Aux>
-      <NavLink link="/lessons/:id" active>LessonLink</NavLink>
-      <Route path="/lessons/:id" exact component={Lesson} />
-    </Aux>
-
-
     let lessonsList = this.props.lessons.map(lesson => {
       return (
         <Aux key={lesson.id}>
@@ -49,6 +43,9 @@ class Lessons extends Component {
             <td><button
               onClick={() => this.props.onLessonDelete(lesson.id)}
               className={classes.Danger} >X</button></td>
+            <td><button>
+              <Link to={"/lessons/" + lesson.id}>LessonLink</Link>
+              <Route exact path="/lessons/:id" component={Lesson} /></button></td>
           </tr>
         </Aux>
       )
@@ -57,7 +54,9 @@ class Lessons extends Component {
     return (
       <Aux>
         <div>
-          {/**********LESSONS INDEX TABLE*************************************/}
+
+          {/* <LessonNav /> */}
+
           <legend>All Lessons</legend>
           <Table className={classes.Lessons}>
             <thead>
@@ -71,6 +70,7 @@ class Lessons extends Component {
                 <th>Show</th>
                 <th>Edit</th>
                 <th>Del</th>
+                <th>LessonLink</th>
               </tr>
             </thead>
             <tbody>
