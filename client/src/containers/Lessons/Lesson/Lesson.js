@@ -1,5 +1,6 @@
 import React from 'react';
 import classes from './Lesson.css';
+import 'bootstrap/dist/css/bootstrap.css';
 import Aux from '../../../hoc/Aux/Aux';
 import LessonResources from '../Lesson/LessonResources';
 // import { Route, NavLink, Switch } from 'react-router-dom';
@@ -7,7 +8,7 @@ import LessonResources from '../Lesson/LessonResources';
 
 const lesson = (props) => {
   return (
-    <div className={classes.Lesson}>
+    <div className={classes.Lesson} style={{ backgroundColor: 'Primary' }}>
       <p>Date: {props.date}</p>
       <p>Student: {props.student}</p>
       <p>Teacher: {props.teacher}</p>

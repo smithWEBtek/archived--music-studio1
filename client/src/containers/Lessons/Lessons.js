@@ -116,7 +116,8 @@ class Lessons extends Component {
 
     return (
       <Aux>
-        <div style={{ margin: '30px' }}>
+        {/* <div style={{ margin: '30px' }}> */}
+        <div>
 
           {/*********CREATE LESSON MODAL********************************************/}
           {/* <button onClick={this.createLessonForm}>Add Lesson</button> */}

@@ -1,7 +1,7 @@
 .LessonResources {
-  height: 100%;
-  width: 80%;
-  margin: 0;
+  width: 100%;
+  color: rgb(75, 67, 67);
+  font-family: 'Open Sans', sans-serif;
 }
 
 .LessonResources td {
