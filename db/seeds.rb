@@ -54,15 +54,15 @@ DATA_lessons = {
   :lesson_keys =>
     ["date", "notes", "teacher_id", "student_id"],
   :lessons => [
-    ['2017-10-01', 'initial meet and greet', 1, 1],
-    ['2017-10-01', 'initial meet and greet', 1, 2],
-    ['2017-10-01', 'initial meet and greet', 1, 3],
-    ['2017-10-01', 'initial meet and greet', 2, 4],
-    ['2017-10-01', 'initial meet and greet', 2, 5],
-    ['2017-10-01', 'initial meet and greet', 2, 6],
-    ['2017-10-01', 'initial meet and greet', 3, 7],
-    ['2017-10-01', 'initial meet and greet', 3, 8],
-    ['2017-10-01', 'initial meet and greet', 3, 9]
+    ['2017-10-01', 'discuss Beethoven', 1, 1],
+    ['2017-10-01', 'practice techniques and plans', 1, 2],
+    ['2017-10-01', 'meet with parents about new piano', 1, 3],
+    ['2017-10-01', 'initial meeting', 2, 4],
+    ['2017-10-01', 'review new book', 2, 5],
+    ['2017-10-01', 'initial meeting, both parents attending', 2, 6],
+    ['2017-10-01', 'complete questionaire', 3, 7],
+    ['2017-10-01', 'plan out summer practice', 3, 8],
+    ['2017-10-01', 'final prep before recital', 3, 9]
   ]
 }
 

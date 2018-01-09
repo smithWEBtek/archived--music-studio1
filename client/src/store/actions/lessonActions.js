@@ -61,9 +61,6 @@ export const updateLessonFail = (error) => {
   return { type: actionTypes.UPDATE_LESSON_FAIL, error: error }
 }
 export const updateLesson = (data) => {
-
-  debugger;
-
   return dispatch => {
     dispatch(updateLessonStart())
     LessonService.updateLesson(data.id, data)
