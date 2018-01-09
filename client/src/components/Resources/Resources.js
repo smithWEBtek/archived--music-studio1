@@ -8,7 +8,7 @@ import Aux from '../../hoc/Aux/Aux'
 import Modal from '../UI/Modal/Modal'
 
 import Resource from './Resource/Resource'
-// import CreateResource from './CreateResource/CreateResource'
+import CreateResource from './CreateResource/CreateResource'
 // import EditResource from '../Resources/EditResource/EditResource'
 // import ResourceStats from './ResourceStats/ResourceStats'
 
@@ -117,14 +117,14 @@ class Resources extends Component {
         <div style={{ margin: '30px' }}>
 
           {/*********CREATE RESOURCE MODAL********************************************/}
-          {/* <button onClick={this.createResourceForm}>Add Resource</button>
+          <button onClick={this.createResourceForm}>Add Resource</button>
           <Modal
             show={this.state.createResource}
             modalClosed={this.createResourceFormCancel}>
             <CreateResource
               createResource={(newResourceData) => this.createResource(newResourceData)}
               createResourceCancel={this.createResourceFormCancel} />
-          </Modal> */}
+          </Modal>
 
           {/**********SHOW RESOURCE MODAL**********************************************/}
           <Modal
