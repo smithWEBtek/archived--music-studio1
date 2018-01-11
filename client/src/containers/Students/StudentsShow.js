@@ -1,51 +1,68 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Resources from '../../components/Resources/Resources'
+import ResourcesList from './ResourcesList'
+import LessonsList from './LessonsList'
+import Aux from '../../hoc/Aux/Aux'
+
 const StudentsShow = (props) => {
-
-  console.log('[StudentsShow] props', props)
-  // debugger;
-
+  console.log('[StudentsShow] props.students', props)
   const student = props.students.find(student => student.id === +props.match.params.id)
-  let studentDisplay = (
-    <div>
-      <p>StudentsShow component is rendering...</p>
-      <h1>{props.match.params.id}</h1>
-    </div >
-  )
 
-  const studentResources = student
-
-
+  let studentDisplayHeader = <div><p>StudentsShow component is rendering...</p></div>
   if (student) {
-    studentDisplay = (
+    studentDisplayHeader = (
       <div>
+        <hr />
         <h1>{student.firstname} {student.lastname}</h1>
-        <p>Teacher: {student.teacher.lastname}</p>
-        <p>Level: {student.level}</p>
-        <p>Last lesson date: {student.lessons[student.lessons.length - 1].date}</p>
-        <p>Current resources {student.firstname} is working on: </p>
-
-        <p>Chooose resources for {student.firstname}</p>
-        <Resources resources={studentResources} />
-
+        <p>Level: <strong>{student.level}</strong></p>
+        <p>Teacher: <strong>{student.teacher.lastname}</strong></p>
+        <p>Last lesson date: <strong>{student.lessons.length !== 0 ? student.lessons[student.lessons.length - 1].date : 'no lessons on record for this student'}</strong></p>
       </div>
+    )
+  }
+
+  let studentDisplayLessons = <div><p>No lessons recorded</p></div>
+  if (student && student.lessons) {
+    studentDisplayLessons = (
+      <div>
+        <hr />
+        <p>LESSONS recorded for <strong>{student.firstname}</strong></p>
+        <div>{student.lessons ? <LessonsList lessons={student.lessons} /> : 'no lessons recorded'} </div>
+      </div>
+    )
+  }
+
+  let studentDisplayResources = <div><p>No resources assigned</p></div>
+  if (student && student.resources) {
+    studentDisplayResources = (
+      <div>
+        <hr />
+        <p>RESOURCES assigned to <strong>{student.firstname}</strong></p>
+        <div>{student.resources ? <ResourcesList resources={student.resources} /> : 'no resources assigned'} </div>
+      </div >
     )
   }
 
   return (
     <div>
-      {studentDisplay}
+
+      {studentDisplayHeader}
+
+      {studentDisplayLessons}
+      <hr />
+      {studentDisplayResources}
     </div>
   )
 }
 
 const mapStateToProps = state => {
   return {
-    students: state.stu.students
+    students: state.stu.students,
+    lessons: state.les.lessons,
+    resources: state.res.resources,
+    teacers: state.tch.teachers
   }
 }
-
-
 
 export default connect(mapStateToProps, null)(StudentsShow);

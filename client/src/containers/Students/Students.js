@@ -21,26 +21,16 @@ class Students extends Component {
 
     return (
       <div>
-        <h1>Students Page</h1>
-        <StudentsList students={students} />
-        <div>
-          <hr />
-          <Link to={`${match.url}/new`}>Create New Student</Link>
-          <hr />
-          <h5>Clicked student should show up here...so let's put our Route under here.</h5>
-          <Switch>
-            <Route path={`${match.url}/new`} component={CreateStudent} />
-            <Route path={`${match.url}/:id`} component={StudentsShow} />
-            {/* <Route path={`${match.url}/new`} component={StudentsNew} /> */}
-            {/* <Route path={`${match.url}/:id`} component={StudentsShow} /> */}
-            {/* <Route path={match.url} component={StudentsShow} /> */}
-            <Route path={match.url} exact render={() => (<h3>Please select a Student from the list.</h3>)} />
-
-          </Switch>
-          <hr />
-        </div>
-
         <hr />
+        <hr />
+        <h4>Students Page</h4>
+        <StudentsList students={students} />
+        <Link to={`${match.url}/new`}>Create New Student</Link>
+        <Switch>
+          <Route path={`${match.url}/new`} component={CreateStudent} />
+          <Route path={`${match.url}/:id`} component={StudentsShow} />
+          <Route path={match.url} exact render={() => (<h5>Please select a Student from the list.</h5>)} />
+        </Switch>
       </div>
     )
   }

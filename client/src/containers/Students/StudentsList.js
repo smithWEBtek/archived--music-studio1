@@ -10,11 +10,7 @@ const StudentsList = ({ match, students }) => {
     <Link
       to={`/students/${student.id}`}
       style={{ marginRight: '12px' }}
-      key={student.id}
-    > {student.lastname}</Link >
-
-    // <Link style={{ marginRight: '12px' }} key={pet.id} to={`/pets/${pet.id}`}>{pet.name}</Link>
-
+      key={student.id}> {student.lastname}</Link >
   );
 
   return (

@@ -35,8 +35,6 @@ class Api::StudentsController < ApplicationController
   end
   
   def resources
-    raise params.inspect
-
     @resources = @student.resources
     if @resources
       render json: @resources

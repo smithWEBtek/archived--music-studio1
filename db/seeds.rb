@@ -55,14 +55,23 @@ DATA_lessons = {
     ["date", "notes", "teacher_id", "student_id"],
   :lessons => [
     ['2017-10-01', 'discuss Beethoven', 1, 1],
-    ['2017-10-01', 'practice techniques and plans', 1, 2],
-    ['2017-10-01', 'meet with parents about new piano', 1, 3],
-    ['2017-10-01', 'initial meeting', 2, 4],
-    ['2017-10-01', 'review new book', 2, 5],
+    ['2017-10-08', 'review Bach pieces', 1, 1],
+    ['2017-10-15', 'move to new book on technique', 1, 1],
+    ['2017-10-21', 'practice on slow deliberate playing', 1, 1],
+    ['2017-10-07', 'practice techniques and plans', 1, 2],
+    ['2017-10-14', 'meet with parents about new piano', 1, 3],
+    ['2017-10-21', 'initial meeting', 2, 4],
+    ['2017-10-31', 'review new book', 2, 5],
     ['2017-10-01', 'initial meeting, both parents attending', 2, 6],
     ['2017-10-01', 'complete questionaire', 3, 7],
     ['2017-10-01', 'plan out summer practice', 3, 8],
-    ['2017-10-01', 'final prep before recital', 3, 9]
+    ['2017-10-01', 'final prep before recital', 3, 9],
+    ['2017-11-01', 'proposing, learn to play her song', 3, 4],
+    ['2017-12-01', 'final prep before recital', 3, 5],
+    ['2018-01-05', 'final prep before recital', 4, 6],
+    ['2018-01-12', 'find favorite tunes', 5, 2],
+    ['2018-01-06', 'learn Grandmothers favorite song', 3, 3],
+    ['2018-01-04', 'final prep before recital', 3, 9]
   ]
 }
 
