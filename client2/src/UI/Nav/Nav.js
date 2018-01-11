@@ -13,6 +13,13 @@ import {
   DropdownItem
 } from 'reactstrap';
 
+import { Route } from 'react-router-dom'
+import Students from '../../../containers/Students/Students'
+import Teachers from '../../Teachers/Teachers'
+import Lessons from '../../../containers/Lessons/Lessons'
+import Resources from '../../Resources/Resources'
+
+
 export default class Example extends React.Component {
   constructor(props) {
     super(props);
@@ -31,30 +38,36 @@ export default class Example extends React.Component {
     return (
       <div>
         <Navbar color="faded" light expand="md">
-          <NavbarBrand href="/">reactstrap</NavbarBrand>
+          <NavbarBrand link="/">pianoStudent</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="/components/">Components</NavLink>
+                <NavLink link="/students/">Students</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="https://github.com/reactstrap/reactstrap">Github</NavLink>
+                <NavLink link="/teachers/">Teachers</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink link="/resources/">Resources</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink link="/lessons/">Lessons</NavLink>
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
-                  Options
+                  START
                 </DropdownToggle>
                 <DropdownMenu >
                   <DropdownItem>
-                    Option 1
+                    Login
                   </DropdownItem>
                   <DropdownItem>
-                    Option 2
+                    Register
                   </DropdownItem>
                   <DropdownItem divider />
                   <DropdownItem>
-                    Reset
+                    Donate
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
