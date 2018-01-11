@@ -20,6 +20,7 @@ REQUIREMENTS
 [X]  use Redux middleware to respond to and modify state change
 ==================================================================================
 TODO
+[]  practice reactstrap and build an empty, styled framework first
 []  Teacher CRUD (index, show, new/create, edit/update, delete), add links for: MyLessons, MyStudents, AllResources
 []  Student CRUD (index, show, new/create, edit/update, delete), add for: MyLessons, MyTeacher, MyResources, PracticeLog
 []  Resource CRUD (index, show, new/create, edit/update, delete), add modal via hover, for the 4 types of viewer (PDF, DOC, AUD, VID))
