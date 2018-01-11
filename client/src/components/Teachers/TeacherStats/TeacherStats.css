@@ -1,0 +1,9 @@
+.TeacherStats {
+  height: 100%;
+}
+
+.TeacherStats td {
+  color: black;
+  padding: 4px;
+  font-family: 'Open Sans', sans-serif;
+}

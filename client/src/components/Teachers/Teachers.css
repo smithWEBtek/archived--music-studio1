@@ -1,0 +1,27 @@
+.Teachers {
+  height: 100%;
+}
+
+.Teachers td {
+  color: black;
+  padding: 4px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.Danger:hover {
+  background-color: red; 
+}
+
+.Edit:hover {
+  background-color: rgb(250, 233, 77);
+}
+
+.Success:hover {
+  background-color: rgb(100, 214, 72);
+}
+
+.Stats {
+  border-style: 2px solid black; 
+  background-color: azure;
+  height: 100%;
+}
