@@ -20,27 +20,18 @@ REQUIREMENTS
 [X]  use Redux middleware to respond to and modify state change
 ==================================================================================
 TODO
-[X]  teacher main admin page, CRUD with modal working
-[X]  teacher stats page
-
-[X]  resource main admin page, CRUD with modal working
-[]  resource stats page
-[]  resource viewers PDF, DOC, AUD, VID
-
-[]  lesson main admin page, CRUD with modal working
-[]  lesson in progress view
-[]  add Lesson, does not save resource or date
-[]  edit & update student, teacher, resource, lesson
-[]  add multiple resources to new or existing lesson
-[]  lesson MUST have teacher and student to be valid lesson
-[] use Modal for Add forms Lesson
+[]  Teacher CRUD (index, show, new/create, edit/update, delete), add links for: MyLessons, MyStudents, AllResources
+[]  Student CRUD (index, show, new/create, edit/update, delete), add for: MyLessons, MyTeacher, MyResources, PracticeLog
+[]  Resource CRUD (index, show, new/create, edit/update, delete), add modal via hover, for the 4 types of viewer (PDF, DOC, AUD, VID))
+[]  Lesson  Resource CRUD (index, show, new/create, edit/update, delete)
+[]  LessonInProgress: add TeachLesson function ( live editing of notes and adding of resources in a new or existing Lesson)
+[]  button in index, to "ADD TO CURRENT LESSON", to add multiple resources to new or existing lesson
+[]  validation: lesson MUST have teacher and student to be valid lesson
+ 
 
 
 []  show lesson:
-  [.]should showcase video, pdf, audio and lesson experience
-  [ ]should have easy ways for teacher to add resources
-  [ ]should have easy way for teacher to create resource on the fly
- 
+[]  ResourcesList view based on resources assigned to this Lesson (slimmed down version of <Resources /> component w/o CRUD)
 
 []  user authentication
 []  constrain views for admin, teacher, student
@@ -50,10 +41,10 @@ TODO
 
 NICE TO HAVES------------------------------------------------------
 []  show student
-  []  should have complete list of lessons and resources assigned
+  [x]  should have complete list of lessons and resources assigned
   []  should have a chart showing practice progress on assigned resources
-  []  should have a way to submit new resource ideas back to the teacher, favorite tunes
-  []  should have a student practice log
+  []  practicing via MIDI keyboard, could track how many times a student has played a piece and how accurate they did it
+  []  should have a way to submit new notes back to the teacher, favorite tunes, PracticeLog object will hold this
 
 []  show resource
   [X]  should be more elaborate view of resource
@@ -62,7 +53,6 @@ NICE TO HAVES------------------------------------------------------
   []  if pdf: view the pdf in a small window
   []  if video: show YouTube small video window
   []  should have feedback mechanism for students to comment on progress, difficulty, improvements, etc.
-  []  button in index, to "ADD TO CURRENT LESSON"
   
 TODO DONE------------------------------------------------------
 [X]  show teacher shows all students assigned
