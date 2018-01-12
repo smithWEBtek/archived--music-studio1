@@ -2,18 +2,22 @@ import React, { Component } from 'react';
 import { Route, Switch, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actionCreators from '../../store/actions/index'
+// import { Container, Row, Col } from 'reactstrap'
 
+import Modal from '../../UI/Modal/Modal'
 import ShowStudent from './ShowStudent/ShowStudent'
 import CreateStudent from './CreateStudent/CreateStudent'
 import StudentsList from './StudentsList/StudentsList'
 
 class Students extends Component {
   state = {
-    showIndex: false
+    showIndex: false,
+    createStudent: false,
+    editStudent: false
   }
 
   componentDidMount() {
-    console.log('[Students] DidMount, this.props', this.props)
+    // console.log('[Students] DidMount, this.props', this.props)
     this.props.onFetchStudents();
     this.setState({ showIndex: false })
   }
@@ -21,6 +25,21 @@ class Students extends Component {
   showIndexToggler = () => {
     let toggle = this.state.showIndex
     this.setState({ showIndex: !toggle })
+  }
+
+
+  //********CREATE_STUDENT form handling **************************
+  createStudentForm = () => {
+    this.setState({ createStudent: true })
+  }
+
+  createStudentFormCancel = () => {
+    this.setState({ createStudent: false })
+  }
+
+  createStudent = (newStudentData) => {
+    this.props.onCreateStudent(newStudentData)
+    this.setState({ createStudent: false })
   }
 
   render() {
@@ -34,14 +53,22 @@ class Students extends Component {
     return (
       <div>
         <hr />
-        <hr />
         <h4>Students Index</h4>
-        <button onClick={this.showIndexToggler}>show/hide all students</button><br />
+        <button onClick={this.showIndexToggler}>Toggle All students</button>
+        {/*********CREATE STUDENT MODAL********************************************/}
+        <button onClick={this.createStudentForm}>Add Student</button>
+        <Modal
+          show={this.state.createStudent}
+          modalClosed={this.createStudentFormCancel}>
+          <CreateStudent
+            createStudent={(newStudentData) => this.createStudent(newStudentData)}
+            createStudentCancel={this.createStudentFormCancel} />
+        </Modal>
+
+
+        <hr />
         {clickableNames}
         {this.state.showIndex ? <StudentsList students={students} /> : null}
-        {/* <Link to={`${match.url}/new`}>Create New Student</Link> */}
-        <hr />
-        <hr />
         <Switch>
           <Route path={`${match.url}/new`} exact component={CreateStudent} />
           <Route path={`${match.url}/:id`} component={ShowStudent} />

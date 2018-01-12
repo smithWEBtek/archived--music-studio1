@@ -12,14 +12,8 @@ class LessonsList extends Component {
   }
 
   render() {
-
-    console.log('[Lessons] DidMount, this.props', this.props)
-
-
     let renderLessons = <td>no lessons on record</td>
-
     let studentLessons = this.props.lessons.filter(les => les.student_id === this.props.student_id)
-
     renderLessons = studentLessons.map((lesson, index) => {
       return (
         <Aux key={index} >

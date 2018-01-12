@@ -1,15 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
-
-// import Resources from '../../Resources/Resources'
 import ResourcesList from '../../Resources/ResourcesList/ResourcesList'
 import LessonsList from '../../Lessons/LessonsList/LessonsList'
-// import Aux from '../../../hoc/Aux/Aux'
 
 const ShowStudent = (props) => {
-  // console.log('[ShowStudent] props.students', props)
-  const student = props.students.find(student => student.id === +props.match.params.id)
 
+  const student = props.students.find(student => student.id === +props.match.params.id)
   let studentDisplayHeader = <div><p>ShowStudent component is loading...</p></div>
   if (student) {
     studentDisplayHeader = (
@@ -25,11 +21,10 @@ const ShowStudent = (props) => {
 
   let studentDisplayLessons = <div><p>No lessons recorded</p></div>
   if (student && student.lessons) {
-    // debugger;
     studentDisplayLessons = (
       <div>
         <hr />
-        <p>LESSONS recorded for <strong>{student.firstname}</strong></p>
+        <p><strong>LESSONS</strong> recorded for <strong>{student.firstname}</strong></p>
         <div>{student.lessons ? <LessonsList student_id={student.id} /> : 'no lessons recorded'} </div>
       </div>
     )
@@ -38,12 +33,9 @@ const ShowStudent = (props) => {
   let studentDisplayResources = <div><p>No resources assigned</p></div>
 
   if (student && student.resources) {
-    // console.log('[ShowStudent] student.lastname', student.lastname)
-    // debugger;
     studentDisplayResources = (
       <div>
-        <hr />
-        <p>RESOURCES assigned to <strong>{student.firstname}</strong></p>
+        <p><strong>RESOURCES</strong> assigned to <strong>{student.firstname}</strong></p>
         <div>{student.resources ? <ResourcesList resources={student.resources} /> : 'no resources assigned'} </div>
       </div >
     )

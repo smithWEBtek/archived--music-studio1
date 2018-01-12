@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route, NavLink } from 'react-router-dom'
 import styles from './MainNav.css'
-import Logo from '../../assets/images/logo.png';
+import Logo from '../../assets/images/logo2.png';
 import {
   Collapse,
   Navbar,
@@ -39,10 +39,10 @@ class MainNav extends Component {
     return (
       <div>
         <Navbar className={styles.MainNav} light expand="md">
-          <NavbarBrand>pianoStudent</NavbarBrand>
           <div>
-            <img src={Logo} height="50px" className={styles.Logo} alt="app-logo" />
+            <img src={Logo} height="60px" className={styles.Logo} alt="app-logo" />
           </div>
+          <NavbarBrand>pianoStudent</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>

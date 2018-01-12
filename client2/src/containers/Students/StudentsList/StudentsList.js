@@ -4,7 +4,7 @@ import { Table } from 'reactstrap'
 
 
 const StudentsList = ({ match, students }) => {
-  console.log('[StudentsList] students', students)
+  // console.log('[StudentsList] students', students)
 
   const renderStudents = students.map((student, index) => {
     return (
@@ -13,7 +13,6 @@ const StudentsList = ({ match, students }) => {
         <td><Link to={`/students/${student.id}`}
           style={{ marginRight: '12px' }}
           key={student.id}>{student.lastname}</Link></td>
-
         <td>{student.teacher.lastname}</td>
         <td>{student.level}</td>
         <td>{student.lessons.length > 0 ? student.lessons[student.lessons.length - 1].date : 'no lessons yet'}</td>

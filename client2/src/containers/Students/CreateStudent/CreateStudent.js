@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import styles from './CreateStudent.css'
 
 class CreateStudent extends Component {
   constructor(props) {
@@ -12,11 +13,6 @@ class CreateStudent extends Component {
       teacher_id: ''
     }
   }
-
-  componentDidMount() {
-    console.log('[CreateStudent] DidMount this.props', this.props)
-  }
-
 
   handleOnChange = (event) => {
     const { name, value } = event.target;
@@ -82,7 +78,13 @@ class CreateStudent extends Component {
               onChange={(event) => this.handleOnChange(event)}
               placeholder="teacher_id"
               required /></p>
-          <button>CREATE Student</button>
+          <button
+            type="button"
+            onClick={this.props.createStudentCancel}
+            className={styles.Danger}
+          >CANCEL</button>
+          <button className={styles.Success}
+          >CREATE Student</button>
         </form>
       </div>
     )
