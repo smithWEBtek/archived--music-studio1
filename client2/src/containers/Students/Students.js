@@ -20,7 +20,8 @@ class Students extends Component {
       <div>
         <hr />
         <hr />
-        <h4>Students Page</h4>
+        <h4>Students Index</h4>
+        <p>(click lastname, scroll down to details)</p>
         <StudentsList students={students} />
         {/* <Link to={`${match.url}/new`}>Create New Student</Link> */}
         <hr />
