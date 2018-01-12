@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Table } from 'reactstrap'
-import styles from './ResourcesList.css'
 import Aux from '../../../hoc/Aux/Aux'
 
 const ResourcesList = (props) => {
@@ -10,6 +9,7 @@ const ResourcesList = (props) => {
     return (
       <Aux key={index} >
         <tr>
+          <th scope="row">{index}</th>
           <td>{resource.id}</td>
           <td>{resource.title}</td>
           <td>{resource.category}</td>
@@ -21,25 +21,21 @@ const ResourcesList = (props) => {
     )
   })
   return (
-    <Aux>
-      <div style={{ margin: '30px' }}>
-        <Table className={styles.ResourcesList}>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Title</th>
-              <th>Category</th>
-              <th>Description</th>
-              <th>Format</th>
-              <th>Location</th>
-            </tr>
-          </thead>
-          <tbody>
-            {list}
-          </tbody>
-        </Table>
-      </div>
-    </Aux>
+    <Table striped>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Title</th>
+          <th>Category</th>
+          <th>Description</th>
+          <th>Format</th>
+          <th>Location</th>
+        </tr>
+      </thead>
+      <tbody>
+        {list}
+      </tbody>
+    </Table>
   )
 }
 

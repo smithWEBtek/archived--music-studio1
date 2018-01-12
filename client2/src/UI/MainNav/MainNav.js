@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Link } from 'react-router-dom'
+import { Route, NavLink } from 'react-router-dom'
 import styles from './MainNav.css'
 import Logo from '../../assets/images/logo.png';
 import {
@@ -39,7 +39,7 @@ class MainNav extends Component {
     return (
       <div>
         <Navbar className={styles.MainNav} light expand="md">
-          <NavbarBrand link="/">CLIENT 2</NavbarBrand>
+          <NavbarBrand>pianoStudent</NavbarBrand>
           <div>
             <img src={Logo} height="50px" className={styles.Logo} alt="app-logo" />
           </div>
@@ -48,21 +48,20 @@ class MainNav extends Component {
             <Nav className="ml-auto" navbar>
 
               <NavItem>
-                <Link to='/students/' className={[styles.Item, 'text-white'].join(' ')}>students</Link>
+                <NavLink to='/students/' className={[styles.Item, 'text-white'].join(' ')}>students_</NavLink>
               </NavItem>
 
               <NavItem>
-                <Link to='/teachers/' className={[styles.Item, 'text-white'].join(' ')}>teachers</Link>
+                <NavLink to='/teachers/' className={[styles.Item, 'text-white'].join(' ')}>_teachers_</NavLink>
               </NavItem>
 
               <NavItem>
-                <Link to='/resources/' className={[styles.Item, 'text-white'].join(' ')}>resources</Link>
+                <NavLink to='/resources/' className={[styles.Item, 'text-white'].join(' ')}>_resources_</NavLink>
               </NavItem>
 
               <NavItem>
-                <Link to='/lessons/' className={[styles.Item, 'text-white'].join(' ')}>lessons</Link>
+                <NavLink to='/lessons/' className={[styles.Item, 'text-white'].join(' ')}>_lessons</NavLink>
               </NavItem>
-
 
               <UncontrolledDropdown nav innavbar="true">
                 <DropdownToggle nav caret className={[styles.Item, 'text-white'].join(' ')}>
@@ -82,10 +81,16 @@ class MainNav extends Component {
                 </DropdownMenu>
               </UncontrolledDropdown>
             </Nav>
-          </Collapse>
-        </Navbar>
+          </Collapse >
+        </Navbar >
         <div>
-          <Route path="/" exact render={() => <div><h5>Welcome Dorothy, have you been practicing?</h5><p>...and where is Toto?</p></div>} />
+          <Route path="/" exact render={() => (
+            <div>
+              <hr /><hr /><hr /><hr /><hr />
+              <h5>Welcome, how is your practice going this week?</h5>
+              <hr /><hr /><hr /><hr /><hr />
+            </div>
+          )} />
           <Route path="/students" component={Students} />
           <Route path="/teachers" component={Teachers} />
           <Route path="/lessons" component={Lessons} />

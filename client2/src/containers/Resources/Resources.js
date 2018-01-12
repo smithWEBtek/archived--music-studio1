@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import { Route, Switch, NavLink, withRouter } from 'react-router-dom';
-import { Route, Switch, NavLink, Link } from 'react-router-dom';
-// import { fetchResources } from '../../store/actions/index'
-// import ResourcesNew from './ResourcesNew';
+import { Route, Switch, Link } from 'react-router-dom';
 import * as actionCreators from '../../store/actions/index'
 import ShowResource from './ShowResource/ShowResource'
 import CreateResource from './CreateResource/CreateResource'
@@ -23,9 +20,8 @@ class Resources extends Component {
     return (
       <div>
         <hr />
-
         <hr />
-        <h4>Resources Page</h4>
+        <h5>Resources Page</h5>
         <ResourcesList resources={resources} />
         <Link to={`${match.url}/new`}>Create New Resource</Link>
         <Switch>
@@ -51,5 +47,4 @@ const mapDispatchToProps = dispatch => {
   };
 }
 
-// export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Resources));
 export default connect(mapStateToProps, mapDispatchToProps)(Resources);

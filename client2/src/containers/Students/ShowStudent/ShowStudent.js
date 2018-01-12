@@ -7,11 +7,6 @@ import LessonsList from '../../Lessons/LessonsList/LessonsList'
 import Aux from '../../../hoc/Aux/Aux'
 
 const ShowStudent = (props) => {
-
-  alert('you have rendered ShowStudent!')
-  debugger
-
-
   console.log('[ShowStudent] props.students', props)
   const student = props.students.find(student => student.id === +props.match.params.id)
 
@@ -52,9 +47,8 @@ const ShowStudent = (props) => {
 
   return (
     <div>
-
       {studentDisplayHeader}
-
+      <hr />
       {studentDisplayLessons}
       <hr />
       {studentDisplayResources}

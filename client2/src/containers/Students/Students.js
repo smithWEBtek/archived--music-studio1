@@ -3,7 +3,7 @@ import { Route, Switch, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actionCreators from '../../store/actions/index'
 
-import StudentsShow from './StudentsShow'
+import ShowStudent from './ShowStudent/ShowStudent'
 import CreateStudent from './CreateStudent/CreateStudent'
 import StudentsList from './StudentsList/StudentsList'
 
@@ -26,7 +26,7 @@ class Students extends Component {
         <hr />
         <Switch>
           <Route path={`${match.url}/new`} exact component={CreateStudent} />
-          <Route path={`${match.url}/:id`} component={StudentsShow} />
+          <Route path={`${match.url}/:id`} component={ShowStudent} />
           <Route path={match.url} exact render={() => (<h5>Please select a Student from the list.</h5>)} />
         </Switch>
       </div>
