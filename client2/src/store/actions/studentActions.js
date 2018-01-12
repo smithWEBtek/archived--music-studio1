@@ -1,5 +1,5 @@
 import * as actionTypes from './actionTypes'
-import StudentService from '../../components/Students/StudentService'
+import StudentService from '../../containers/Students/StudentService'
 
 //-----CREATE STUDENT ACTIONS-----------------------------
 export const createStudentStart = () => {

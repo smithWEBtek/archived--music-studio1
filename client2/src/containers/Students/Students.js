@@ -7,10 +7,10 @@ import styles from './Students.css'
 import Aux from '../../hoc/Aux/Aux'
 import Modal from '../../UI/Modal/Modal'
 
-import Student from './Student/Student'
-import CreateStudent from './CreateStudent/CreateStudent'
-import EditStudent from './EditStudent/EditStudent'
-import StudentStats from './StudentStats/StudentStats'
+import Student from './Student'
+import CreateStudent from './CreateStudent'
+import EditStudent from './EditStudent'
+// import StudentStats from './StudentStats/StudentStats'
 
 class Students extends Component {
   state = {
@@ -165,7 +165,7 @@ class Students extends Component {
           </Table>
         </div>
         {/**********STUDENTS StudentStats*************************************/}
-        <StudentStats students={this.props.students} />
+        {/* <StudentStats students={this.props.students} /> */}
       </Aux>
     )
   }
