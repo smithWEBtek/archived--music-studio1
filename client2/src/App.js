@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import MainNav from './UI/MainNav/MainNav'
 import 'bootstrap/dist/css/bootstrap.css';
-import Layout from './UI/Layout/Layout'
+// import Layout from './UI/Layout/Layout'
 import { Container } from 'reactstrap';
 
 class App extends Component {
@@ -9,7 +9,7 @@ class App extends Component {
     return (
       <Container>
         <MainNav />
-        <Layout />
+        {/* <Layout /> */}
       </Container>);
   }
 }

@@ -8,22 +8,39 @@ import CreateStudent from './CreateStudent/CreateStudent'
 import StudentsList from './StudentsList/StudentsList'
 
 class Students extends Component {
+  state = {
+    showIndex: false
+  }
+
   componentDidMount() {
     console.log('[Students] DidMount, this.props', this.props)
     this.props.onFetchStudents();
+    this.setState({ showIndex: false })
+  }
+
+  showIndexToggler = () => {
+    let toggle = this.state.showIndex
+    this.setState({ showIndex: !toggle })
   }
 
   render() {
     const { match, students } = this.props;
+    let clickableNames = students.map((student, index) => {
+      return <Link to={`/students/${student.id}`}
+        style={{ marginRight: '12px' }}
+        key={student.id}>{student.lastname}</Link>
+    })
 
     return (
       <div>
         <hr />
         <hr />
         <h4>Students Index</h4>
-        <p>(click lastname, scroll down to details)</p>
-        <StudentsList students={students} />
+        {clickableNames}
+        <button onClick={this.showIndexToggler}>show/hide all students</button>
+        {this.state.showIndex ? <StudentsList students={students} /> : null}
         {/* <Link to={`${match.url}/new`}>Create New Student</Link> */}
+        <hr />
         <hr />
         <Switch>
           <Route path={`${match.url}/new`} exact component={CreateStudent} />

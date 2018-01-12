@@ -1,9 +1,7 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-// import { Route, Switch, NavLink, withRouter } from 'react-router-dom';
-import { Route, Switch, NavLink, Link } from 'react-router-dom';
-// import { fetchTeachers } from '../../store/actions/index'
-// import TeachersNew from './TeachersNew';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+
+import { Route, Switch, Link } from 'react-router-dom'
 import * as actionCreators from '../../store/actions/index'
 import ShowTeacher from './ShowTeacher/ShowTeacher'
 import CreateTeacher from './CreateTeacher/CreateTeacher'
@@ -14,11 +12,11 @@ class Teachers extends Component {
 
   componentDidMount() {
     console.log('[Teachers] DidMount, this.props', this.props)
-    this.props.onFetchTeachers();
+    this.props.onFetchTeachers()
   }
 
   render() {
-    const { match, teachers } = this.props;
+    const { match, teachers } = this.props
 
     return (
       <div>
@@ -36,20 +34,20 @@ class Teachers extends Component {
       </div>
     )
   }
-};
+}
 
 const mapStateToProps = state => {
   return {
     teachers: state.tch.teachers
-  };
+  }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
     onCreateTeacher: (data) => dispatch(actionCreators.createTeacher(data)),
     onFetchTeachers: () => dispatch(actionCreators.fetchTeachers())
-  };
+  }
 }
 
-// export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Teachers));
-export default connect(mapStateToProps, mapDispatchToProps)(Teachers);
+// export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Teachers))
+export default connect(mapStateToProps, mapDispatchToProps)(Teachers)

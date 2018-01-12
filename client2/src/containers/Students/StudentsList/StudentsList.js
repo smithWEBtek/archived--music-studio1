@@ -1,6 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import Aux from '../../../hoc/Aux/Aux'
+import React from 'react'
+import { Link } from 'react-router-dom'
 import { Table } from 'reactstrap'
 
 
@@ -39,12 +38,6 @@ const StudentsList = ({ match, students }) => {
       </tbody>
     </Table>
   )
-
-  return (
-    <Aux>
-      {renderStudents}
-    </Aux>
-  );
-};
+}
 
 export default StudentsList

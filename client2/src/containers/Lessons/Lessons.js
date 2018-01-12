@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import { Route, Switch, NavLink, withRouter } from 'react-router-dom';
-import { Route, Switch, NavLink, Link } from 'react-router-dom';
-// import { fetchLessons } from '../../store/actions/index'
-// import LessonsNew from './LessonsNew';
+import { Route, Switch, Link } from 'react-router-dom';
 import * as actionCreators from '../../store/actions/index'
 import ShowLesson from './ShowLesson/ShowLesson'
 import CreateLesson from './CreateLesson/CreateLesson'
 import LessonsList from './LessonsList/LessonsList'
-
 
 class Lessons extends Component {
 

@@ -22,7 +22,7 @@ class Resources extends Component {
         <hr />
         <hr />
         <h4>Resources Page</h4>
-        {/* <ResourcesList resources={resources} /> */}
+        <ResourcesList resources={resources} />
         <Link to={`${match.url}/new`}>Create New Resource</Link>
         <Switch>
           <Route path={`${match.url}/new`} component={CreateResource} />
