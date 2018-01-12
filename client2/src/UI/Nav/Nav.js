@@ -17,7 +17,7 @@ import {
 } from 'reactstrap';
 
 import { Route } from 'react-router-dom'
-// import Students from '../../../containers/Students/Students'
+import Students from '../../containers/Students/Students'
 // import Teachers from '../../Teachers/Teachers'
 // import Lessons from '../../../containers/Lessons/Lessons'
 // import Resources from '../../Resources/Resources'
@@ -41,24 +41,24 @@ export default class Example extends React.Component {
     return (
       <div>
         <Navbar className={styles.Nav} light expand="md">
-          <NavbarBrand link="/">pianoStudent</NavbarBrand>
+          <NavbarBrand link="/">piano-student</NavbarBrand>
           <div>
-            <img src={Logo} height="50px" alt="app-logo" />
+            <img src={Logo} height="50px" className={styles.Logo} alt="app-logo" />
           </div>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink link="/students/" className={[styles.Item, 'text-white'].join(' ')}>Students</NavLink>
+                <NavLink link="/students/" className={[styles.Item, 'text-white'].join(' ')}>students</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink link="/teachers/" className={[styles.Item, 'text-white'].join(' ')}>Teachers</NavLink>
+                <NavLink link="/teachers/" className={[styles.Item, 'text-white'].join(' ')}>teachers</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink link="/resources/" className={[styles.Item, 'text-white'].join(' ')}>Resources</NavLink>
+                <NavLink link="/resources/" className={[styles.Item, 'text-white'].join(' ')}>resources</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink link="/lessons/" className={[styles.Item, 'text-white'].join(' ')}>Lessons</NavLink>
+                <NavLink link="/lessons/" className={[styles.Item, 'text-white'].join(' ')}>lessons</NavLink>
               </NavItem>
               <UncontrolledDropdown nav innavbar="true">
                 <DropdownToggle nav caret className={[styles.Item, 'text-white'].join(' ')}>
@@ -80,6 +80,14 @@ export default class Example extends React.Component {
             </Nav>
           </Collapse>
         </Navbar>
+        <div>
+          <Route path="/" exact render={() => <div><h5>Welcome Dorothy, have you been practicing?</h5><p>...and where is Toto?</p></div>} />
+          {/* <Route path="/students" exact component={Students} /> */}
+          <Route path="/students" component={Students} />
+          {/* <Route path="/teachers" exact component={Teachers} />
+          <Route path="/lessons" exact component={Lessons} />
+          <Route path="/resources" exact component={Resources} /> */}
+        </div>
       </div >
     );
   }

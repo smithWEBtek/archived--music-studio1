@@ -5,21 +5,21 @@ export default class Example extends React.Component {
   render() {
     return (
       <Container>
-        <Row>
+        {/* <Row>
           <Col>.col</Col>
-        </Row>
-        <Row>
-          <Col>.col</Col>
-          <Col>.col</Col>
+        </Row> */}
+        {/* <Row>
           <Col>.col</Col>
           <Col>.col</Col>
-        </Row>
+          <Col>.col</Col>
+          <Col>.col</Col>
+        </Row> */}
         <Row>
           <Col xs="3">.col-3</Col>
           <Col xs="auto">.col-auto - variable width content</Col>
           <Col xs="3">.col-3</Col>
         </Row>
-        <Row>
+        {/* <Row>
           <Col xs="6">.col-6</Col>
           <Col xs="6">.col-6</Col>
         </Row>
@@ -37,7 +37,7 @@ export default class Example extends React.Component {
         <Row>
           <Col sm={{ size: 'auto', offset: 1 }}>.col .col-sm .col-sm-offset-1</Col>
           <Col sm={{ size: 'auto', offset: 1 }}>.col .col-sm .col-sm-offset-1</Col>
-        </Row>
+        </Row> */}
       </Container>
     );
   }
