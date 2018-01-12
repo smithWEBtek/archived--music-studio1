@@ -38,7 +38,7 @@ const ShowLesson = (props) => {
 
 const mapStateToProps = state => {
   return {
-    lessons: state.stu.lessons,
+    students: state.stu.students,
     lessons: state.les.lessons,
     resources: state.res.resources,
     teacers: state.tch.teachers

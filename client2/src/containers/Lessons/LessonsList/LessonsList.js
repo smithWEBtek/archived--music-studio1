@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 
 const LessonsList = ({ lessons }) => {
   const renderLessons = lessons.map((lesson, index) =>
-    <div>
-      <Link style={{ marginRight: '12px' }} key={index} to={`/lessons/${lesson.id}`}>Lesson {lesson.id}</Link>
+    <div key={lesson.id}>
+      <Link style={{ marginRight: '12px' }} to={`/lessons/${lesson.id}`}>Lesson {lesson.id}</Link>
     </div>
   );
 

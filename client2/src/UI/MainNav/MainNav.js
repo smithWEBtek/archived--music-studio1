@@ -39,7 +39,7 @@ class MainNav extends Component {
     return (
       <div>
         <Navbar className={styles.MainNav} light expand="md">
-          <NavbarBrand link="/">piano-student</NavbarBrand>
+          <NavbarBrand link="/">CLIENT 2</NavbarBrand>
           <div>
             <img src={Logo} height="50px" className={styles.Logo} alt="app-logo" />
           </div>
@@ -86,10 +86,10 @@ class MainNav extends Component {
         </Navbar>
         <div>
           <Route path="/" exact render={() => <div><h5>Welcome Dorothy, have you been practicing?</h5><p>...and where is Toto?</p></div>} />
-          <Route path="/students" exact component={Students} />
-          <Route path="/teachers" exact component={Teachers} />
-          <Route path="/lessons" exact component={Lessons} />
-          <Route path="/resources" exact component={Resources} />
+          <Route path="/students" component={Students} />
+          <Route path="/teachers" component={Teachers} />
+          <Route path="/lessons" component={Lessons} />
+          <Route path="/resources" component={Resources} />
         </div>
       </div >
     );

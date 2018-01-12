@@ -1,21 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import Resources from '../../Resources/Resources'
-import ResourcesList from '../../Resources/ResourcesList/ResourcesList'
-import LessonsList from '../../Lessons/LessonsList/LessonsList'
-import Aux from '../../../hoc/Aux/Aux'
+import Resources from '../Resources/Resources'
+import ResourcesList from '../Resources/ResourcesList/ResourcesList'
+import LessonsList from '../Lessons/LessonsList/LessonsList'
+import Aux from '../../hoc/Aux/Aux'
 
-const ShowStudent = (props) => {
-
-  alert('you have rendered ShowStudent!')
-  debugger
-
-
-  console.log('[ShowStudent] props.students', props)
+const StudentsShow = (props) => {
+  alert('you hit StudentsSHOW')
+  console.log('[StudentsShow] props.students', props)
   const student = props.students.find(student => student.id === +props.match.params.id)
 
-  let studentDisplayHeader = <div><p>ShowStudent component is rendering...</p></div>
+  let studentDisplayHeader = <div><p>StudentsShow component is rendering...</p></div>
   if (student) {
     studentDisplayHeader = (
       <div>
@@ -71,4 +67,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, null)(ShowStudent)
+export default connect(mapStateToProps, null)(StudentsShow);

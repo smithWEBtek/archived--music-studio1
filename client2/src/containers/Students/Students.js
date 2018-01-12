@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-// import { Route, Switch, NavLink, withRouter } from 'react-router-dom';
 import { Route, Switch, Link } from 'react-router-dom';
-// import { fetchStudents } from '../../store/actions/index'
-// import StudentsNew from './StudentsNew';
+import { connect } from 'react-redux';
 import * as actionCreators from '../../store/actions/index'
-import ShowStudent from './ShowStudent/ShowStudent'
+
+import StudentsShow from './StudentsShow'
 import CreateStudent from './CreateStudent/CreateStudent'
 import StudentsList from './StudentsList/StudentsList'
 
 class Students extends Component {
-
   componentDidMount() {
     console.log('[Students] DidMount, this.props', this.props)
     this.props.onFetchStudents();
@@ -22,14 +19,14 @@ class Students extends Component {
     return (
       <div>
         <hr />
-
         <hr />
         <h4>Students Page</h4>
         <StudentsList students={students} />
-        <Link to={`${match.url}/new`}>Create New Student</Link>
+        {/* <Link to={`${match.url}/new`}>Create New Student</Link> */}
+        <hr />
         <Switch>
-          <Route path={`${match.url}/new`} component={CreateStudent} />
-          <Route path={`${match.url}/:id`} component={ShowStudent} />
+          <Route path={`${match.url}/new`} exact component={CreateStudent} />
+          <Route path={`${match.url}/:id`} component={StudentsShow} />
           <Route path={match.url} exact render={() => (<h5>Please select a Student from the list.</h5>)} />
         </Switch>
       </div>
@@ -50,5 +47,4 @@ const mapDispatchToProps = dispatch => {
   };
 }
 
-// export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Students));
 export default connect(mapStateToProps, mapDispatchToProps)(Students);
