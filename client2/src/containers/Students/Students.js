@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { Route, Redirect, Switch, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actionCreators from '../../store/actions/index'
-// import { Container, Row, Col } from 'reactstrap'
-// import styles from './Students.css'
+
+import { Container, Row, Col } from 'reactstrap'
+import styles from './Students.css'
 import Modal from '../../UI/Modal/Modal'
 import Aux from '../../hoc/Aux/Aux'
 
@@ -121,7 +122,11 @@ class Students extends Component {
         </Modal>
 
         <hr />
-        {clickableNames}
+        <Container>
+          <Row>
+            {clickableNames}
+          </Row>
+        </Container>
 
         {this.state.showIndexToggler ? <StudentsList
           students={students}
