@@ -54,8 +54,8 @@ DATA_lessons = {
   :lesson_keys =>
     ["date", "notes", "teacher_id", "student_id"],
   :lessons => [
-    ['2017-10-01', 'discuss Beethoven', 1, 1],
-    ['2017-10-08', 'review Bach pieces', 1, 1],
+    ['2017-10-01', 'discuss Beethoven', 1, 7],
+    ['2017-10-08', 'review Bach pieces', 1, 8],
     ['2017-10-15', 'move to new book on technique', 1, 1],
     ['2017-10-21', 'practice on slow deliberate playing', 1, 1],
     ['2017-10-07', 'practice techniques and plans', 1, 2],
@@ -71,7 +71,27 @@ DATA_lessons = {
     ['2018-01-05', 'final prep before recital', 4, 6],
     ['2018-01-12', 'find favorite tunes', 5, 2],
     ['2018-01-06', 'learn Grandmothers favorite song', 3, 3],
-    ['2018-01-04', 'final prep before recital', 3, 9]
+    ['2018-01-04', 'final prep before recital', 3, 9],
+    ['2018-01-02', 'practic slower',	2, 	7	],
+    ['2018-01-04', 'go watch some live music',	5, 	5	],
+    ['2018-01-06', 'go watch some live music',	3, 	9	],
+    ['2018-01-09', 'study hard',	2, 	7	],
+    ['2018-01-03', 'go watch some live music',	4, 	6	],
+    ['2018-01-02', 'have shorter sessions, but daily',	3, 	2	],
+    ['2018-01-02', 'have shorter sessions, but daily',	4, 	2	],
+    ['2018-01-02', 'have shorter sessions, but daily',	5, 	7	],
+    ['2018-01-02', 'go watch some live music',	1, 	6	],
+    ['2018-01-02', 'study hard',	3, 	9	],
+    ['2018-01-02', 'study hard',	4, 	4	],
+    ['2018-01-07' , 'practic slower',	1, 	7	],
+    ['2018-01-02', 'go watch some live music',	3, 	5	],
+    ['2018-01-06', 'have shorter sessions, but daily',	1, 	5	],
+    ['2018-01-15', 'go watch some live music',	2, 	5	],
+    ['2018-01-12', 'review Beethoven left hand',	4, 	8	],
+    ['2018-01-02', 'review Beethoven left hand',	3, 	7	],
+    ['2018-01-03', 'review Beethoven left hand',	2, 	6	],
+    ['2018-01-02', 'study hard',	4, 	9	],
+    ['2018-01-02', 'study hard',	3, 	9	]
   ]
 }
 
@@ -148,7 +168,18 @@ DATA_lesson_resources = {
     [5,7],
     [6,7],
     [6,8],
-    [6,9]
+    [6,9],
+    [7,6],
+    [7,8],
+    [7,11],
+    [8,6],
+    [8,2],
+    [8,8],
+    [8,5],
+    [9,1],
+    [9,2],
+    [9,3],
+    [9,5]
   ]
 }
 

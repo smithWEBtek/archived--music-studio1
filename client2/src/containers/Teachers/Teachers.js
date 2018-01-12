@@ -21,7 +21,6 @@ class Teachers extends Component {
     return (
       <div>
         <hr />
-
         <hr />
         <h4>Teachers Page</h4>
         <TeachersList teachers={teachers} />

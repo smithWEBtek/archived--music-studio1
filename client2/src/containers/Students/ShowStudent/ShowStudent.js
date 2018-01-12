@@ -7,7 +7,7 @@ import LessonsList from '../../Lessons/LessonsList/LessonsList'
 // import Aux from '../../../hoc/Aux/Aux'
 
 const ShowStudent = (props) => {
-  console.log('[ShowStudent] props.students', props)
+  // console.log('[ShowStudent] props.students', props)
   const student = props.students.find(student => student.id === +props.match.params.id)
 
   let studentDisplayHeader = <div><p>ShowStudent component is loading...</p></div>
@@ -25,13 +25,12 @@ const ShowStudent = (props) => {
 
   let studentDisplayLessons = <div><p>No lessons recorded</p></div>
   if (student && student.lessons) {
-    // console.log('[ShowStudent] student.lastname', student.lastname)
     // debugger;
     studentDisplayLessons = (
       <div>
         <hr />
         <p>LESSONS recorded for <strong>{student.firstname}</strong></p>
-        <div>{student.lessons ? <LessonsList lessons={student.lessons} /> : 'no lessons recorded'} </div>
+        <div>{student.lessons ? <LessonsList student_id={student.id} /> : 'no lessons recorded'} </div>
       </div>
     )
   }
@@ -39,6 +38,8 @@ const ShowStudent = (props) => {
   let studentDisplayResources = <div><p>No resources assigned</p></div>
 
   if (student && student.resources) {
+    // console.log('[ShowStudent] student.lastname', student.lastname)
+    // debugger;
     studentDisplayResources = (
       <div>
         <hr />

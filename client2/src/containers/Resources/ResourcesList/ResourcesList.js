@@ -1,5 +1,5 @@
 import React from 'react'
-import { connect } from 'react-redux'
+// import { connect } from 'react-redux'
 import { Table } from 'reactstrap'
 import Aux from '../../../hoc/Aux/Aux'
 
@@ -39,13 +39,14 @@ const ResourcesList = (props) => {
   )
 }
 
-const mapStateToProps = state => {
-  return {
-    students: state.stu.students,
-    lessons: state.les.lessons,
-    resources: state.res.resources,
-    teacers: state.tch.teachers
-  }
-}
+// const mapStateToProps = state => {
+//   return {
+//     students: state.stu.students,
+//     lessons: state.les.lessons,
+//     resources: state.res.resources,
+//     teacers: state.tch.teachers
+//   }
+// }
 
-export default connect(mapStateToProps)(ResourcesList)
+// export default connect(mapStateToProps)(ResourcesList)
+export default ResourcesList

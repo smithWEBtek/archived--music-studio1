@@ -36,8 +36,8 @@ class Students extends Component {
         <hr />
         <hr />
         <h4>Students Index</h4>
+        <button onClick={this.showIndexToggler}>show/hide all students</button><br />
         {clickableNames}
-        <button onClick={this.showIndexToggler}>show/hide all students</button>
         {this.state.showIndex ? <StudentsList students={students} /> : null}
         {/* <Link to={`${match.url}/new`}>Create New Student</Link> */}
         <hr />
