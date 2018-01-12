@@ -21,13 +21,13 @@ class Resources extends Component {
       <div>
         <hr />
         <hr />
-        <h5>Resources Page</h5>
-        <ResourcesList resources={resources} />
+        <h4>Resources Page</h4>
+        {/* <ResourcesList resources={resources} /> */}
         <Link to={`${match.url}/new`}>Create New Resource</Link>
         <Switch>
           <Route path={`${match.url}/new`} component={CreateResource} />
           <Route path={`${match.url}/:id`} component={ShowResource} />
-          <Route path={match.url} exact render={() => (<h5>Please select a Resource from the list.</h5>)} />
+          <Route path={match.url} exact render={() => (<h4>Please select a Resource from the list.</h4>)} />
         </Switch>
       </div>
     )

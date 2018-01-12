@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Table } from 'reactstrap'
+import { Container, Table } from 'reactstrap'
 import Aux from '../../../hoc/Aux/Aux'
 
 const ResourcesList = (props) => {
@@ -21,21 +21,23 @@ const ResourcesList = (props) => {
     )
   })
   return (
-    <Table striped>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Title</th>
-          <th>Category</th>
-          <th>Description</th>
-          <th>Format</th>
-          <th>Location</th>
-        </tr>
-      </thead>
-      <tbody>
-        {list}
-      </tbody>
-    </Table>
+    <Container>
+      <Table striped>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Description</th>
+            <th>Format</th>
+            <th>Location</th>
+          </tr>
+        </thead>
+        <tbody>
+          {list}
+        </tbody>
+      </Table>
+    </Container>
   )
 }
 

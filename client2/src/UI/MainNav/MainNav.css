@@ -1,6 +1,10 @@
 :local(.MainNav) {
   color: rgb(139, 105, 131);
   background-color: rgb(180, 180, 189);
+  margin-top: 5px; 
+  border-radius: 15%;
+  /* border-top-left-radius: 15%; */
+  /* border-top-right-radius: 15%; */
 }
 
 :local(.Item:hover) {
