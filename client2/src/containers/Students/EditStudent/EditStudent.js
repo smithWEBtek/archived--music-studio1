@@ -96,12 +96,8 @@ class EditStudent extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onUpdateStudent: (data) => dispatch(actionCreators.updateStudent, (data))
+    onUpdateStudent: (data) => dispatch(actionCreators.updateStudent(data))
   }
 }
 
 export default connect(null, mapDispatchToProps)(EditStudent);
-
-
-
-

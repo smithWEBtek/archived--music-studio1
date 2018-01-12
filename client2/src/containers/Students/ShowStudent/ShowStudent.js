@@ -2,6 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import ResourcesList from '../../Resources/ResourcesList/ResourcesList'
 import LessonsList from '../../Lessons/LessonsList/LessonsList'
+import { Container, Row, Col } from 'reactstrap'
+import styles from './ShowStudent.css'
 
 const ShowStudent = (props) => {
 
@@ -9,13 +11,15 @@ const ShowStudent = (props) => {
   let studentDisplayHeader = <div><p>ShowStudent component is loading...</p></div>
   if (student) {
     studentDisplayHeader = (
-      <div>
-        <hr />
-        <h1>{student.firstname} {student.lastname}</h1>
-        <p>Level: <strong>{student.level}</strong></p>
-        <p>Teacher: <strong>{student.teacher.lastname}</strong></p>
-        <p>Last lesson date: <strong>{student.lessons.length !== 0 ? student.lessons[student.lessons.length - 1].date : 'no lessons on record for this student'}</strong></p>
-      </div>
+      <Container>
+        <Row className={styles.RowHeaderBackground}>
+          <hr />
+          <Col xs="3"><h4>{student.firstname} {student.lastname}</h4></Col>
+          <Col xs="3">Level: <strong>{student.level}</strong></Col>
+          <Col xs="3">Teacher: <strong>{student.teacher.lastname}</strong></Col>
+          <Col xs="3">Last lesson date: <strong>{student.lessons.length !== 0 ? student.lessons[student.lessons.length - 1].date : 'no lessons on record for this student'}</strong></Col>
+        </Row>
+      </Container>
     )
   }
 
@@ -43,10 +47,9 @@ const ShowStudent = (props) => {
 
   return (
     <div>
+      <hr />
       {studentDisplayHeader}
-      <hr />
       {studentDisplayLessons}
-      <hr />
       {studentDisplayResources}
     </div>
   )
