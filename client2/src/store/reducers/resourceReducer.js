@@ -1,5 +1,5 @@
 import * as actionTypes from '../actions/actionTypes';
-import ResourceService from '../../components/Resources/ResourceService';
+import ResourceService from '../../containers/Resources/ResourceService';
 
 const initialState = {
   resources: []

@@ -1,5 +1,5 @@
 import * as actionTypes from '../actions/actionTypes';
-import TeacherService from '../../components/Teachers/TeacherService';
+import TeacherService from '../../containers/Teachers/TeacherService';
 
 // const TEACHERS = [
 //   { id: 1, firstname: 'Not', lastname: 'Assigned', email: 'unassigned@music.com' },

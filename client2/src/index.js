@@ -5,20 +5,19 @@ import { Provider } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 
-// import studentReducer from './store/reducers/studentReducer';
-// import teacherReducer from './store/reducers/teacherReducer';
-// import resourceReducer from './store/reducers/resourceReducer';
-// import lessonReducer from './store/reducers/lessonReducer';
+import studentReducer from './store/reducers/studentReducer';
+import teacherReducer from './store/reducers/teacherReducer';
+import resourceReducer from './store/reducers/resourceReducer';
+import lessonReducer from './store/reducers/lessonReducer';
 
 import App from './App';
 import classes from './index.css';
 
-
 const rootReducer = combineReducers({
-  // stu: studentReducer,
-  // tch: teacherReducer,
-  // les: lessonReducer,
-  // res: resourceReducer
+  stu: studentReducer,
+  tch: teacherReducer,
+  les: lessonReducer,
+  res: resourceReducer
 });
 
 const logger = store => {

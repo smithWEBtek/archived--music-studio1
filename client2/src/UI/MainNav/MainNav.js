@@ -1,7 +1,7 @@
-import React from 'react';
-import styles from './Nav.css'
+import React, { Component } from 'react';
+import { Route, Link } from 'react-router-dom'
+import styles from './MainNav.css'
 import Logo from '../../assets/images/logo.png';
-import Aux from '../../hoc/Aux/Aux'
 import {
   Collapse,
   Navbar,
@@ -9,21 +9,20 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
+  // NavLink,
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
   DropdownItem
 } from 'reactstrap';
 
-import { Route } from 'react-router-dom'
 import Students from '../../containers/Students/Students'
 // import Teachers from '../../Teachers/Teachers'
 // import Lessons from '../../../containers/Lessons/Lessons'
 // import Resources from '../../Resources/Resources'
 
 
-export default class Example extends React.Component {
+class MainNav extends Component {
   constructor(props) {
     super(props);
 
@@ -40,7 +39,7 @@ export default class Example extends React.Component {
   render() {
     return (
       <div>
-        <Navbar className={styles.Nav} light expand="md">
+        <Navbar className={styles.MainNav} light expand="md">
           <NavbarBrand link="/">piano-student</NavbarBrand>
           <div>
             <img src={Logo} height="50px" className={styles.Logo} alt="app-logo" />
@@ -48,18 +47,24 @@ export default class Example extends React.Component {
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
+            
               <NavItem>
-                <NavLink link="/students/" className={[styles.Item, 'text-white'].join(' ')}>students</NavLink>
+                <Link to='/students/' className={[styles.Item, 'text-white'].join(' ')}>students</Link>
               </NavItem>
+              
               <NavItem>
-                <NavLink link="/teachers/" className={[styles.Item, 'text-white'].join(' ')}>teachers</NavLink>
+                <Link to='/teachers/' className={[styles.Item, 'text-white'].join(' ')}>teachers</Link>
               </NavItem>
+            
               <NavItem>
-                <NavLink link="/resources/" className={[styles.Item, 'text-white'].join(' ')}>resources</NavLink>
+                <Link to='/resources/' className={[styles.Item, 'text-white'].join(' ')}>resources</Link>
               </NavItem>
+            
               <NavItem>
-                <NavLink link="/lessons/" className={[styles.Item, 'text-white'].join(' ')}>lessons</NavLink>
+                <Link to='/lessons/' className={[styles.Item, 'text-white'].join(' ')}>lessons</Link>
               </NavItem>
+    
+ 
               <UncontrolledDropdown nav innavbar="true">
                 <DropdownToggle nav caret className={[styles.Item, 'text-white'].join(' ')}>
                   START
@@ -82,8 +87,8 @@ export default class Example extends React.Component {
         </Navbar>
         <div>
           <Route path="/" exact render={() => <div><h5>Welcome Dorothy, have you been practicing?</h5><p>...and where is Toto?</p></div>} />
-          {/* <Route path="/students" exact component={Students} /> */}
-          <Route path="/students" component={Students} />
+          <Route path="/students" exact component={Students} />
+
           {/* <Route path="/teachers" exact component={Teachers} />
           <Route path="/lessons" exact component={Lessons} />
           <Route path="/resources" exact component={Resources} /> */}
@@ -92,3 +97,5 @@ export default class Example extends React.Component {
     );
   }
 }
+
+export default MainNav
