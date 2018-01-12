@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import * as actionCreators from '../../../store/actions/index'
 import { connect } from 'react-redux'
-import classes from './CreateLesson.css'
+import styles from './CreateLesson.css'
 
 class CreateLesson extends Component {
   constructor(props) {
@@ -88,9 +88,9 @@ class CreateLesson extends Component {
     })
 
     return (
-      <div className={classes.CreateLesson}>
-        <p className={classes.FormInstructions}>Complete form and click 'Create Lesson'</p>
-        <form onSubmit={(event) => this.handleSubmit(event)} className={classes.Form}>
+      <div className={styles.CreateLesson}>
+        <p className={styles.FormInstructions}>Complete form and click 'Create Lesson'</p>
+        <form onSubmit={(event) => this.handleSubmit(event)} className={styles.Form}>
           <p>
             <label>LessonSelector</label>
             <select value={this.state.teacher.lastname} onChange={(event) => this.handleLessonSelect(event)}>
@@ -124,8 +124,8 @@ class CreateLesson extends Component {
           <button
             type="button"
             onClick={this.props.createLessonCancel}
-            className={classes.Danger}>CANCEL</button>
-          <button className={classes.Success}>CREATE Lesson</button>
+            className={styles.Danger}>CANCEL</button>
+          <button className={styles.Success}>CREATE Lesson</button>
         </form>
       </div>
     )
