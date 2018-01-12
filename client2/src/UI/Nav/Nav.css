@@ -1,0 +1,7 @@
+:local(.Nav) {
+  color: rgb(214, 232, 240);
+  background-color: rgb(123, 123, 146);
+}
+:local(.Item:hover) {
+  font-style: italic;
+}
