@@ -6,7 +6,6 @@ import * as actionCreators from '../../store/actions/index'
 import { Container, Row, Col } from 'reactstrap'
 // import styles from './Students.css'
 import Modal from '../../UI/Modal/Modal'
-import Aux from '../../hoc/Aux/Aux'
 
 import Student from './Student/Student'
 import CreateStudent from './CreateStudent/CreateStudent'

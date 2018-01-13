@@ -22,6 +22,6 @@
   font-weight: 600;
 }
 
-:local(.RowHeaderBackground) {
-  background-color: rgb(238, 247, 208);
+:local(.SectionHeaderBackground) {
+  background-color: rgb(221, 220, 181);
 }

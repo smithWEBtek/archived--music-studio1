@@ -36,7 +36,7 @@ const StudentsList = (props) => {
 
         <td><button
           onClick={() => props.delete(student.id)}
-          className={styles.Danger}>DELETE</button></td>
+          className={styles.Danger}>X</button></td>
       </tr>
     )
   })
