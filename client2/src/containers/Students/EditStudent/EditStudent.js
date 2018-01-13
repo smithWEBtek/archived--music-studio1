@@ -1,23 +1,21 @@
 import React, { Component } from 'react';
-import classes from './EditStudent.css';
+import styles from './EditStudent.css';
 import * as actionCreators from '../../../store/actions/index'
 import { connect } from 'react-redux';
 
 class EditStudent extends Component {
-  constructor(props) {
-    super(props)
 
-    this.state = {
-      id: '',
-      firstname: '',
-      lastname: '',
-      email: '',
-      level: '',
-      teacher_id: ''
-    }
+  state = {
+    id: '',
+    firstname: '',
+    lastname: '',
+    email: '',
+    level: '',
+    teacher_id: ''
   }
 
   componentDidMount() {
+    console.log('[EditStudent] DidMount this.props', this.props)
     this.setState({
       id: this.props.id,
       firstname: this.props.firstname,
@@ -28,65 +26,68 @@ class EditStudent extends Component {
     })
   }
 
-  handleOnChange = (e) => {
-    e.preventDefault()
+  handleChange = (e) => {
     const { name, value } = e.target;
     this.setState({ [name]: value });
+    e.preventDefault()
   }
 
   handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('[EditStudent][handleSubmit] this.state', this.state)
+    // console.log('[EditStudent][handleSubmit] this.state', this.state)
     let data = this.state;
     this.props.updateStudent(data)
+    e.preventDefault();
   }
 
   render() {
     return (
       <div>
-        <p className={classes.FormInstructions}>Edit form and click 'Update Student'</p>
-        <form onSubmit={this.handleSubmit} className={classes.Form}>
+        <p className={styles.FormInstructions}>Edit form and click 'Update Student'</p>
+        <form onSubmit={this.handleSubmit} className={styles.Form}>
           <p><label htmlFor="student_name">First name </label>
             <input
               type="text"
               name="firstname"
               value={this.state.firstname}
-              onChange={(event) => this.handleOnChange(event)}
+              onChange={this.handleChange}
             /></p>
           <p><label>Last name </label>
             <input
               type="text"
               name="lastname"
               value={this.state.lastname}
-              onChange={(event) => this.handleOnChange(event)}
+              onChange={this.handleChange}
             /></p>
           <p><label>Email </label>
             <input
               type="text"
               name="email"
               value={this.state.email}
-              onChange={(event) => this.handleOnChange(event)}
+              onChange={this.handleChange}
             /></p>
           <p><label>Level </label>
             <input
               type="text"
               name="level"
               value={this.state.level}
-              onChange={(event) => this.handleOnChange(event)}
+              onChange={this.handleChange}
             /></p>
           <p><label>Teacher ID </label>
             <input
               type="text"
               name="teacher_id"
               value={this.state.teacher_id}
-              onChange={(event) => this.handleOnChange(event)}
+              onChange={this.handleChange}
             /></p>
           <button
             type="button"
+            name="cancel"
             onClick={this.props.close}
-            className={classes.Danger}
+            className={styles.Danger}
           >CANCEL</button>
-          <button className={classes.Success}
+          <button
+            type='button'
+            className={styles.Success}
           >SAVE</button>
         </form>
       </div>

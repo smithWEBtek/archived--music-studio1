@@ -29,7 +29,7 @@ TODO
 []  button in index, to "ADD TO CURRENT LESSON", to add multiple resources to new or existing lesson
 []  validation: lesson MUST have teacher and student to be valid lesson
  
-
+[] StudentsList table, Lastname does not redirect to ShowStudent url   /students/:id
 
 []  show lesson:
 []  ResourcesList view based on resources assigned to this Lesson (slimmed down version of <Resources /> component w/o CRUD)

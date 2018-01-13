@@ -13,7 +13,7 @@
   background-color: rgb(238, 84, 84);
 }
 
-.Edit:hover {
+:local(.Edit:hover) {
   background-color: rgb(250, 233, 77);
 }
 

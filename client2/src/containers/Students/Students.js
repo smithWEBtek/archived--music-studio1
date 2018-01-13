@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Redirect, Switch, Link } from 'react-router-dom';
+import { Route, Switch, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actionCreators from '../../store/actions/index'
 
@@ -8,7 +8,7 @@ import styles from './Students.css'
 import Modal from '../../UI/Modal/Modal'
 import Aux from '../../hoc/Aux/Aux'
 
-import ShowStudent from './ShowStudent/ShowStudent'
+import Student from './Student/Student'
 import CreateStudent from './CreateStudent/CreateStudent'
 import EditStudent from './EditStudent/EditStudent'
 import StudentsList from './StudentsList/StudentsList'
@@ -16,13 +16,13 @@ import StudentsList from './StudentsList/StudentsList'
 class Students extends Component {
   state = {
     student: {},
+    showStudent: false,
+    createStudent: false,
     editStudent: false,
-    showIndexToggler: false,
-    createStudent: false
+    showIndexToggler: false
   }
 
   componentDidMount() {
-    // console.log('[Students] DidMount, this.props', this.props)
     this.props.onFetchStudents();
     this.setState({ showIndexToggler: false })
   }
@@ -33,8 +33,6 @@ class Students extends Component {
   }
 
   //********SHOW_STUDENT form handling**************************
-
-
   showStudentClose = () => {
     this.setState({ showStudent: false })
   }
@@ -55,8 +53,7 @@ class Students extends Component {
 
   //********EDIT_STUDENT form handling**************************
   showEditStudentForm = (id) => {
-    // let student = this.props.students.filter(student => student.id === id)[0]
-    let student = this.props.students.find(student => student.id === id)
+    let student = this.props.students.filter(student => student.id === id)[0]
     this.setState({
       student: student,
       editStudent: true
@@ -92,10 +89,8 @@ class Students extends Component {
         <h4>Students</h4>
         <button onClick={this.showIndexToggler}>Toggle ALL</button>
 
-
         {/*********CREATE STUDENT MODAL********************************************/}
         <button onClick={this.createStudentForm}>Add Student</button>
-        <button onClick={this.editStudentForm}>Edit Student</button>
         <Modal
           show={this.state.createStudent}
           modalClosed={this.createStudentFormCancel}>
@@ -117,6 +112,7 @@ class Students extends Component {
               level={this.state.student.level}
               teacher_id={this.state.student.teacher_id}
               close={this.editStudentFalse}
+              updateStudent={(data) => this.editStudentUpdate(data)}
             /> : <p>no student data yet...</p>}
           </Aux>
         </Modal>
@@ -124,7 +120,9 @@ class Students extends Component {
         <hr />
         <Container>
           <Row>
-            {clickableNames}
+            <Col>
+              {clickableNames}
+            </Col>
           </Row>
         </Container>
 
@@ -133,16 +131,15 @@ class Students extends Component {
           show={(id) => this.showStudent(id)}
           edit={(id) => this.showEditStudentForm(id)}
           close={(id) => this.showIndexToggler()}
-
           delete={(id) => this.props.onDeleteStudent(id)}
         /> : null}
 
         <Switch>
           <Route path={`${match.url}/new`} exact component={CreateStudent} />
-          <Route path={`${match.url}/:id`} component={ShowStudent} />
-
-          <Route path={match.url} exact render={() => (<h5>Please select a Student from the list.</h5>)} />
+          <Route path={`${match.url}/:id`} component={Student} />
+          <Route path={match.url} exact render={() => (<p>Toggle ALL or click a Student from the list.</p>)} />
         </Switch>
+        <hr />
       </div>
     )
   }
