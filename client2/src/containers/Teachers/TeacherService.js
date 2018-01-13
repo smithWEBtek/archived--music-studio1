@@ -6,12 +6,6 @@ const TeacherService = {
       .then(response => response.json())
   },
 
-  // fetchTeacher: (id) => {
-  //   return fetch(`${API_URL}/teachers/${id}`)
-  //     .then(response => response.json())
-  // },
-  // not used currently; getting invidual teacher from local state after //loading 'onfetchTeachers()'
-
   createTeacher(teacher) {
     const request = {
       method: 'POST',

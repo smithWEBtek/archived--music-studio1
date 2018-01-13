@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
+// import Aux from '../../../hoc/Aux/Aux'
 
 import { Link } from 'react-router-dom';
 import { Table } from 'reactstrap'
-import Aux from '../../../hoc/Aux/Aux'
 
 const LessonsList = (props) => {
 

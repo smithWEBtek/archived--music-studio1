@@ -1,7 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import styles from './Teacher.css'
+// import styles from './Teacher.css'
+import appstyles from '../../../App.css'
 // import { Container, Row, Col } from 'reactstrap'
 import StudentsList from '../../Students/StudentsList/StudentsList'
 import LessonsList from '../../Lessons/LessonsList/LessonsList'
@@ -13,11 +14,13 @@ const Teacher = (props) => {
   let teacherLessons = <div><h5>No lessons recorded</h5></div>
   let teacherStudents = <div><h5>No students assigned</h5></div>
 
+  console.log('[Teacher] teacher', teacher)
+
   if (teacher) {
     teacherHeader = (
       <div>
         <hr />
-        <h1 className={styles.TeacherHeaderBackground}>{teacher.firstname} {teacher.lastname}</h1>
+        <h1 className={appstyles.TeacherHeaderBackground}>{teacher.firstname} {teacher.lastname}</h1>
         <p>Email: {teacher.email} </p>
       </div>
     )
@@ -27,7 +30,7 @@ const Teacher = (props) => {
     teacherLessons = (
       <div>
         <hr />
-        <h5 className={styles.LessonHeaderBackground}>LESSONS recorded for <strong>{teacher.firstname}</strong></h5>
+        <h5 className={appstyles.LessonHeaderBackground}>LESSONS recorded for <strong>{teacher.firstname}</strong></h5>
         <div><LessonsList teacherLessons={teacher.lessons} /></div>
       </div>
     )
@@ -37,7 +40,7 @@ const Teacher = (props) => {
     teacherStudents = (
       <div>
         <hr />
-        <h5 className={styles.StudentHeaderBackground}>STUDENTS assigned to <strong>{teacher.firstname}</strong></h5>
+        <h5 className={appstyles.StudentHeaderBackground}>STUDENTS assigned to <strong>{teacher.firstname}</strong></h5>
         <div><StudentsList students={teacher.students} /></div>
       </div >
     )

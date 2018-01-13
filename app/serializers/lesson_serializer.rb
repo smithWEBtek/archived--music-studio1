@@ -1,6 +1,7 @@
 class LessonSerializer < ActiveModel::Serializer
   attributes :id, :date, :notes, :teacher_id, :student_id
-  belongs_to :student
   belongs_to :teacher
-  has_many :resources
+  belongs_to :student
+  has_many :lesson_resources
+  has_many :resources, through: :lesson_resources
 end
