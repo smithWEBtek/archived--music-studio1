@@ -15,7 +15,7 @@ import StudentsList from './StudentsList/StudentsList'
 
 class Students extends Component {
   state = {
-    student: {},
+    student: null,
     showStudent: false,
     showStudentsList: false,
     createStudent: false,
@@ -52,10 +52,9 @@ class Students extends Component {
 
   //********EDIT_STUDENT form handling**************************
   showEditStudentForm = (id) => {
-    debugger;
-    let student = this.props.students.find(student => student.id === id)
+    let studentData = this.props.students.filter(student => student.id === id)[0]
     this.setState({
-      student: student,
+      student: studentData,
       editStudent: true
     })
   }
@@ -67,9 +66,14 @@ class Students extends Component {
     })
   }
 
+  closeEditStudentForm = () => {
+    this.setState({
+      editStudent: false
+    })
+  }
+
   render() {
     const { match, students } = this.props;
-
     let clickableNames = students.map((student, index) => {
       return (
         <Link to={`/students/${student.id}`}
@@ -101,18 +105,16 @@ class Students extends Component {
         <Modal
           show={this.state.editStudent}
           modalClosed={this.editStudentCancelHandler}>
-          <Aux>
-            <EditStudent
-              id={this.state.student.id}
-              firstname={this.state.student.firstname}
-              lastname={this.state.student.lastname}
-              email={this.state.student.email}
-              level={this.state.student.level}
-              teacher_id={this.state.student.teacher_id}
-              close={this.editStudentFalse}
-              updateStudent={(data) => this.editStudentUpdate(data)}
-            />
-          </Aux>
+          {this.state.student ? <EditStudent
+            id={this.state.student.id}
+            firstname={this.state.student.firstname}
+            lastname={this.state.student.lastname}
+            email={this.state.student.email}
+            level={this.state.student.level}
+            teacher_id={this.state.student.teacher_id}
+            close={() => this.closeEditStudentForm()}
+            updateStudent={(data) => this.editStudentUpdate(data)}
+          /> : null}
         </Modal>
 
         {/**********CLICKABLE NAMES**********************************************/}

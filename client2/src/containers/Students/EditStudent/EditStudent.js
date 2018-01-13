@@ -11,6 +11,17 @@ class EditStudent extends Component {
     teacher_id: ''
   }
 
+  componentDidMount() {
+    this.setState({
+      id: this.props.id,
+      firstname: this.props.firstname,
+      lastname: this.props.lastname,
+      email: this.props.email,
+      level: this.props.level,
+      teacher_id: this.props.teacher_id
+    })
+  }
+
   handleChange = (e) => {
     const { name, value } = e.target;
     this.setState({ [name]: value });
@@ -18,7 +29,6 @@ class EditStudent extends Component {
   }
 
   handleSubmit = (e) => {
-    // console.log('[EditStudent][handleSubmit] this.state', this.state)
     let data = this.state;
     this.props.updateStudent(data)
     e.preventDefault();
@@ -28,7 +38,7 @@ class EditStudent extends Component {
     return (
       <div>
         <p className={styles.FormInstructions}>Edit form and click 'Update Student'</p>
-        <form onSubmit={this.handleSubmit} className={styles.Form}>
+        <form className={styles.Form}>
           <p><label htmlFor="student_name">First name </label>
             <input
               type="text"
@@ -73,6 +83,7 @@ class EditStudent extends Component {
           <button
             type='button'
             className={styles.Success}
+            onClick={(e) => this.handleSubmit(e)}
           >SAVE</button>
         </form>
       </div>

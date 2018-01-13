@@ -9,9 +9,6 @@ import LessonsList from '../../Lessons/LessonsList/LessonsList'
 const Student = (props) => {
 
   const student = props.students.filter(student => student.id === +props.match.params.id)[0]
-
-  // debugger;
-
   let studentDisplayHeader = <div><p>Student component is loading...</p></div>
   let studentDisplayLessons = <div><h3>No lessons recorded</h3></div>
 
@@ -50,9 +47,7 @@ const Student = (props) => {
 
   return (
     <div>
-
       {studentDisplayHeader}
-
       {studentDisplayLessons}
       <hr />
       {studentDisplayResources}
@@ -68,4 +63,5 @@ const mapStateToProps = state => {
     lessons: state.les.lessons
   }
 }
+
 export default connect(mapStateToProps)(Student)

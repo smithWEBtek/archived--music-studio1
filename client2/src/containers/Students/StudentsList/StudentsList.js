@@ -13,10 +13,9 @@ const StudentsList = (props) => {
           style={{ marginRight: '12px' }}
           key={student.id}>{student.lastname}</Link></td>
         <td>{student.email}</td>
-        {/* <td>{student.teacher.lastname}</td> */}
+        <td>{student.teacher.lastname}</td>
         <td>{student.level}</td>
-        {/* <td>{student.lessons.length > 0 ? student.lessons[student.lessons.length - 1].date : 'no lessons yet'}</td> */}
-
+        <td>{student.lessons.length > 0 ? student.lessons[student.lessons.length - 1].date : 'no lessons yet'}</td>
 
         <td><button
           type='button'
