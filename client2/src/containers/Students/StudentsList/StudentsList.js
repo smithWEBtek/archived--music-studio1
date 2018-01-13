@@ -4,8 +4,8 @@ import { Table } from 'reactstrap'
 import styles from './StudentsList.css'
 
 const StudentsList = (props) => {
-  const renderStudents = props.students.map((student, index) => {
 
+  const renderStudents = props.students.map((student, index) => {
     return (
       <tr key={index}>
         <th scope="row">{student.id}</th>
@@ -17,26 +17,27 @@ const StudentsList = (props) => {
         <td>{student.level}</td>
         {/* <td>{student.lessons.length > 0 ? student.lessons[student.lessons.length - 1].date : 'no lessons yet'}</td> */}
 
+
         <td><button
           type='button'
           className={styles.Success}
           onClick={props.close}>
-          <Link to={`/students/${student.id}`}
-            style={{ marginRight: '12px' }}
+          <Link
+            to={`/students/${student.id}`}
+            params={{ id: student.id }}
             key={student.id}
-          >Show</Link>
+          >SHOW</Link>
         </button></td>
 
         <td><button
           type='button'
           className={styles.Edit}
-          onClick={props.edit}
-        >Edit</button></td>
+          onClick={() => props.edit(student.id)}>EDIT
+        </button></td>
 
         <td><button
           onClick={() => props.delete(student.id)}
-          className={styles.Danger}
-        >X</button></td>
+          className={styles.Danger}>DELETE</button></td>
       </tr>
     )
   })
@@ -62,5 +63,6 @@ const StudentsList = (props) => {
     </div>
   )
 }
+
 
 export default StudentsList

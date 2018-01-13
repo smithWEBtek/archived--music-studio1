@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import * as actionCreators from '../../store/actions/index'
 
 import { Container, Row, Col } from 'reactstrap'
-import styles from './Students.css'
+// import styles from './Students.css'
 import Modal from '../../UI/Modal/Modal'
 import Aux from '../../hoc/Aux/Aux'
 
@@ -17,19 +17,18 @@ class Students extends Component {
   state = {
     student: {},
     showStudent: false,
+    showStudentsList: false,
     createStudent: false,
-    editStudent: false,
-    showIndexToggler: false
+    editStudent: false
   }
 
   componentDidMount() {
     this.props.onFetchStudents();
-    this.setState({ showIndexToggler: false })
   }
 
-  showIndexToggler = () => {
-    let toggle = this.state.showIndexToggler
-    this.setState({ showIndexToggler: !toggle })
+  showStudentsListToggler = () => {
+    let toggle = this.state.showStudentsList
+    this.setState({ showStudentsList: !toggle })
   }
 
   //********SHOW_STUDENT form handling**************************
@@ -53,20 +52,19 @@ class Students extends Component {
 
   //********EDIT_STUDENT form handling**************************
   showEditStudentForm = (id) => {
-    let student = this.props.students.filter(student => student.id === id)[0]
+    debugger;
+    let student = this.props.students.find(student => student.id === id)
     this.setState({
       student: student,
       editStudent: true
     })
   }
 
-  editStudentFalse = () => {
-    this.setState({ editStudent: false })
-  }
-
   editStudentUpdate = (data) => {
-    this.props.onStudentUpdate(data)
-    this.setState({ student: null, editStudent: false })
+    this.props.onUpdateStudent(data)
+    this.setState({
+      editStudent: false
+    })
   }
 
   render() {
@@ -77,7 +75,7 @@ class Students extends Component {
         <Link to={`/students/${student.id}`}
           style={{ marginRight: '12px' }}
           key={student.id}
-          onClick={() => this.showIndexToggler()}
+          onClick={() => this.showStudentsListToggler()}
         >{student.lastname}
         </Link>
       )
@@ -87,7 +85,7 @@ class Students extends Component {
       <div>
         <hr />
         <h4>Students</h4>
-        <button onClick={this.showIndexToggler}>Toggle ALL</button>
+        <button onClick={() => this.showStudentsListToggler()}>Toggle ALL</button>
 
         {/*********CREATE STUDENT MODAL********************************************/}
         <button onClick={this.createStudentForm}>Add Student</button>
@@ -104,7 +102,7 @@ class Students extends Component {
           show={this.state.editStudent}
           modalClosed={this.editStudentCancelHandler}>
           <Aux>
-            {this.state.student ? <EditStudent
+            <EditStudent
               id={this.state.student.id}
               firstname={this.state.student.firstname}
               lastname={this.state.student.lastname}
@@ -113,11 +111,11 @@ class Students extends Component {
               teacher_id={this.state.student.teacher_id}
               close={this.editStudentFalse}
               updateStudent={(data) => this.editStudentUpdate(data)}
-            /> : <p>no student data yet...</p>}
+            />
           </Aux>
         </Modal>
 
-        <hr />
+        {/**********CLICKABLE NAMES**********************************************/}
         <Container>
           <Row>
             <Col>
@@ -126,15 +124,19 @@ class Students extends Component {
           </Row>
         </Container>
 
-        {this.state.showIndexToggler ? <StudentsList
-          students={students}
-          show={(id) => this.showStudent(id)}
-          edit={(id) => this.showEditStudentForm(id)}
-          close={(id) => this.showIndexToggler()}
-          delete={(id) => this.props.onDeleteStudent(id)}
-        /> : null}
+        {/**********STUDENTS LIST**********************************************/}
+        <div>
+          {this.state.showStudentsList ? <StudentsList
+            students={students}
+            show={(id) => this.state.showStudent(id)}
+            edit={(id) => this.showEditStudentForm(id)}
+            delete={(id) => this.props.onDeleteStudent(id)}
+            close={() => this.showStudentsListToggler()}
+          /> : null}
+        </div>
 
         <Switch>
+          <Route path={`${match.url}/:id/edit`} component={EditStudent} />
           <Route path={`${match.url}/new`} exact component={CreateStudent} />
           <Route path={`${match.url}/:id`} component={Student} />
           <Route path={match.url} exact render={() => (<p>Toggle ALL or click a Student from the list.</p>)} />

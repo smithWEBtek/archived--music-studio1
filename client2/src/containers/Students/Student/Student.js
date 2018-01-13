@@ -1,20 +1,21 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
-import * as actionCreators from '../../../store/actions/index'
 
-import styles from './Student.css'
-import { Container, Row, Col } from 'reactstrap'
-import Aux from '../../../hoc/Aux/Aux'
-import Modal from '../../../UI/Modal/Modal'
+// import styles from './Student.css'
+// import { Container, Row, Col } from 'reactstrap'
 import ResourcesList from '../../Resources/ResourcesList/ResourcesList'
 import LessonsList from '../../Lessons/LessonsList/LessonsList'
-import EditStudent from '../EditStudent/EditStudent'
-
 
 const Student = (props) => {
-  const student = props.students.find(student => student.id === +props.match.params.id)
+
+  const student = props.students.filter(student => student.id === +props.match.params.id)[0]
+
+  // debugger;
 
   let studentDisplayHeader = <div><p>Student component is loading...</p></div>
+  let studentDisplayLessons = <div><h3>No lessons recorded</h3></div>
+
+  let studentDisplayResources = <div><h3>No resources assigned</h3></div>
   if (student) {
     studentDisplayHeader = (
       <div>
@@ -27,24 +28,22 @@ const Student = (props) => {
     )
   }
 
-  let studentDisplayLessons = <div><p>No lessons recorded</p></div>
   if (student && student.lessons) {
     studentDisplayLessons = (
       <div>
         <hr />
         <p>LESSONS recorded for <strong>{student.firstname}</strong></p>
-        <div>{student.lessons ? <LessonsList lessons={student.lessons} /> : 'no lessons recorded'} </div>
+        <div><LessonsList lessons={student.lessons} /></div>
       </div>
     )
   }
 
-  let studentDisplayResources = <div><p>No resources assigned</p></div>
   if (student && student.resources) {
     studentDisplayResources = (
       <div>
         <hr />
         <p>RESOURCES assigned to <strong>{student.firstname}</strong></p>
-        <div>{student.resources ? <ResourcesList resources={student.resources} /> : 'no resources assigned'} </div>
+        <div><ResourcesList resources={student.resources} /></div>
       </div >
     )
   }
@@ -61,14 +60,12 @@ const Student = (props) => {
   )
 }
 
-
 const mapStateToProps = state => {
   return {
     students: state.stu.students,
-    lessons: state.les.lessons,
+    teachers: state.tch.teachers,
     resources: state.res.resources,
-    teacers: state.tch.teachers
+    lessons: state.les.lessons
   }
 }
-
-export default connect(mapStateToProps, null)(Student);
+export default connect(mapStateToProps)(Student)
