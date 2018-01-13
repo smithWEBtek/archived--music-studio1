@@ -61,13 +61,15 @@ class Students extends Component {
   editStudentUpdate = (data) => {
     this.props.onUpdateStudent(data)
     this.setState({
-      editStudent: false
+      editStudent: false,
+      student: null
     })
   }
 
   closeEditStudentForm = () => {
     this.setState({
-      editStudent: false
+      editStudent: false,
+      student: null
     })
   }
 
@@ -103,7 +105,7 @@ class Students extends Component {
         {/**********EDIT STUDENT MODAL**********************************************/}
         <Modal
           show={this.state.editStudent}
-          modalClosed={this.editStudentCancelHandler}>
+          modalClosed={this.closeEditStudentForm}>
           {this.state.student ? <EditStudent
             id={this.state.student.id}
             firstname={this.state.student.firstname}

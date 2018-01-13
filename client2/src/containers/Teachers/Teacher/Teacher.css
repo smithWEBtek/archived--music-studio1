@@ -1,0 +1,39 @@
+
+:local(.Form) {
+  float: left;
+  text-align: left;
+  padding: 15px;
+  width: 60%;
+  height: 100%;
+  color: rgb(75, 67, 67);
+  font-family: 'Open Sans', sans-serif;
+}
+
+:local(.Danger:hover) {
+  background-color: rgb(238, 84, 84);
+}
+
+:local(.Success:hover) {
+  background-color: rgb(92, 243, 150);
+}
+
+:local(.FormInstructions) {
+  font-style: italic;
+  font-weight: 600;
+}
+
+:local(.TeacherHeaderBackground) {
+  background-color: rgb(221, 165, 165);
+}
+
+:local(.StudentHeaderBackground) {
+  background-color: rgb(221, 220, 181);
+}
+
+:local(.ResourceHeaderBackground) {
+  background-color: rgb(165, 219, 221);
+}
+
+:local(.LessonHeaderBackground) {
+  background-color: rgb(119, 182, 130);
+}

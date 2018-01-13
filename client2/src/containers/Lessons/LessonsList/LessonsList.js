@@ -8,7 +8,7 @@ const LessonsList = (props) => {
 
   console.log('[LessonsList] props', props)
 
-  let studentLessons = props.studentLessons.map((lesson, index) => {
+  let studentLessons = props.lessons.map((lesson, index) => {
     return (
       <tr key={index}>
         <th scope="row">{index}</th>

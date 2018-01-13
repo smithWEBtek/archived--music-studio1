@@ -20,7 +20,7 @@ REQUIREMENTS
 [X]  use Redux middleware to respond to and modify state change
 ==================================================================================
 TODO
-[]  practice reactstrap and build an empty, styled framework first
+[X]  practice reactstrap and build an empty, styled framework first
 []  Teacher CRUD (index, show, new/create, edit/update, delete), add links for: MyLessons, MyStudents, AllResources
 []  Student CRUD (index, show, new/create, edit/update, delete), add for: MyLessons, MyTeacher, MyResources, PracticeLog
 []  Resource CRUD (index, show, new/create, edit/update, delete), add modal via hover, for the 4 types of viewer (PDF, DOC, AUD, VID))
@@ -30,7 +30,7 @@ TODO
 []  validation: lesson MUST have teacher and student to be valid lesson
  
 [] StudentsList table, Lastname does not redirect to ShowStudent url   /students/:id
-
+[] Backdrop onClick, should close whatever <Modal /> is open
 []  show lesson:
 []  ResourcesList view based on resources assigned to this Lesson (slimmed down version of <Resources /> component w/o CRUD)
 

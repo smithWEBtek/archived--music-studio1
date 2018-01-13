@@ -1,3 +1,19 @@
 :local(.Resource) {
   color: black;
 }
+
+:local(.TeacherHeaderBackground) {
+  background-color: rgb(221, 165, 165);
+}
+
+:local(.StudentHeaderBackground) {
+  background-color: rgb(221, 220, 181);
+}
+
+:local(.ResourceHeaderBackground) {
+  background-color: rgb(165, 219, 221);
+}
+
+:local(.LessonHeaderBackground) {
+  background-color: rgb(119, 182, 130);
+}
