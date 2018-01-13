@@ -14,8 +14,6 @@ const Teacher = (props) => {
   let teacherLessons = <div><h5>No lessons recorded</h5></div>
   let teacherStudents = <div><h5>No students assigned</h5></div>
 
-  console.log('[Teacher] teacher', teacher)
-
   if (teacher) {
     teacherHeader = (
       <div>
@@ -31,7 +29,7 @@ const Teacher = (props) => {
       <div>
         <hr />
         <h5 className={appstyles.LessonHeaderBackground}>LESSONS recorded for <strong>{teacher.firstname}</strong></h5>
-        <div><LessonsList teacherLessons={teacher.lessons} /></div>
+        <div><LessonsList lessons={teacher.lessons} /></div>
       </div>
     )
   }

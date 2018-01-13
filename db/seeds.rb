@@ -3,12 +3,13 @@ DATA_teachers = {
     ["firstname", "lastname", "email"],
   :teachers => [
   ['Not', 'Assigned', 'unassigned@music.com'],
-  ['Joe', 'Pepper', 'jpepper@music.com' ],
-  ['Mila', 'Filatova', 'mfilatova@music.com'],
-  ['Barry', 'Gendron', 'bgendron@music.com'],
+  ['Art', 'Pepper', 'jpepper@music.com' ],
+  ['Milas', 'Filatova', 'mfilatova@music.com'],
+  ['Barry', 'Harris', 'bgendron@music.com'],
   ['James', 'Brown', 'jb@getfunky1.com'],
   ['Sonny', 'Stitt', 'sonny@swing.com'],
-  ['Lester', 'Parker', 'lenny@swing.com']
+  ['Lester', 'Parker', 'lenny@swing.com'],
+  ['Betty', 'Carter', 'betty@swing.com']
   ]
 }
 

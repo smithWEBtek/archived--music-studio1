@@ -139,9 +139,9 @@ class Students extends Component {
         </div>
 
         <Switch>
-          <Route path={`${match.url}/:id/edit`} component={EditStudent} />
+          <Route path={`${match.url}/:id/edit`} exact component={EditStudent} />
           <Route path={`${match.url}/new`} exact component={CreateStudent} />
-          <Route path={`${match.url}/:id`} component={Student} />
+          <Route path={`${match.url}/:id`} exact component={Student} />
           <Route path={match.url} exact render={() => (<p>Toggle ALL or click a Student from the list.</p>)} />
         </Switch>
         <hr />

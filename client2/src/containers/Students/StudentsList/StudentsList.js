@@ -11,7 +11,7 @@ const StudentsList = (props) => {
         <th scope="row">{student.id}</th>
         <td><Link to={`/students/${student.id}`}
           style={{ marginRight: '12px' }}
-          key={student.id}>{student.lastname}</Link></td>
+          key={student.id}>{student.firstname} {student.lastname}</Link></td>
         <td>{student.email}</td>
         <td>{student.teacher_id}</td>
         <td>{student.level}</td>
