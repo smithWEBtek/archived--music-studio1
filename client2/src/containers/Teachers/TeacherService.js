@@ -5,7 +5,10 @@ const TeacherService = {
     return fetch(`${API_URL}/teachers`)
       .then(response => response.json())
   },
-
+  fetchTeacher: (id) => {
+    return fetch(`${API_URL}/teachers/${id}`)
+      .then(response => response.json())
+  },
   createTeacher(teacher) {
     const request = {
       method: 'POST',

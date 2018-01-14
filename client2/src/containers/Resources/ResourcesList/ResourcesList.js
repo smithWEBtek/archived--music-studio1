@@ -1,7 +1,9 @@
 import React from 'react'
 // import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { Table } from 'reactstrap'
 import Aux from '../../../hoc/Aux/Aux'
+import Pdf from '../ResourceViewer/Pdf'
 
 const ResourcesList = (props) => {
 
@@ -10,7 +12,6 @@ const ResourcesList = (props) => {
       <Aux key={index} >
         <tr>
           <th scope="row">{index}</th>
-          <td>{resource.id}</td>
           <td>{resource.title}</td>
           <td>{resource.category}</td>
           <td>{resource.description}</td>
@@ -21,32 +22,25 @@ const ResourcesList = (props) => {
     )
   })
   return (
-    <Table striped>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Title</th>
-          <th>Category</th>
-          <th>Description</th>
-          <th>Format</th>
-          <th>Location</th>
-        </tr>
-      </thead>
-      <tbody>
-        {list}
-      </tbody>
-    </Table>
+    <div>
+      <Pdf />
+      <Table striped>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Description</th>
+            <th>Format</th>
+            <th>Location</th>
+          </tr>
+        </thead>
+        <tbody>
+          {list}
+        </tbody>
+      </Table>
+    </div>
   )
 }
 
-// const mapStateToProps = state => {
-//   return {
-//     students: state.stu.students,
-//     lessons: state.les.lessons,
-//     resources: state.res.resources,
-//     teacers: state.tch.teachers
-//   }
-// }
-
-// export default connect(mapStateToProps)(ResourcesList)
 export default ResourcesList

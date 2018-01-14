@@ -1,3 +1,7 @@
-:local(.Resources) {
-  color: black;
+:local(.ListGroup) {
+  width: 20%;
+}
+
+:local(.ClickableNames) {
+  align-items: stretch;
 }
