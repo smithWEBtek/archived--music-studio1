@@ -1,6 +1,7 @@
 import React from 'react'
 import Pdf from './Pdf'
 import Vid from './Vid'
+import Aud from './Aud/Aud'
 
 const ResourceViewer = (props) => {
 
@@ -15,9 +16,9 @@ const ResourceViewer = (props) => {
     renderResource = <Vid url={props.resource.url} />
   }
 
-  // if (props.resource.format === 'aud') {
-  //   return myResource
-  // }
+  if (props.resource.format === 'aud') {
+    renderResource = <Aud resource={props.resource} />
+  }
 
   // if (props.resource.format === 'doc') {
   //   return myResource
