@@ -8,20 +8,23 @@ class CreateLesson extends Component {
     super(props)
 
     this.state = {
-      teacher: {},
-      student: {},
+      formVisible: false,
+      date: '',
+      teacher: '',
+      student: '',
       notes: '',
-      lessonResources: [],
-      createLesson: false
+      resources: [],
+      createLesson: false,
+      editLesson: false
     }
   }
 
   //********CREATE_LESSON form handling **************************
-  createLessonForm = () => {
+  showCreateLessonForm = () => {
     this.setState({ createLesson: true })
   }
 
-  createLessonFormCancel = () => {
+  closeCreateLessonForm = () => {
     this.setState({ createLesson: false })
   }
 
@@ -30,13 +33,19 @@ class CreateLesson extends Component {
     this.setState({ createLesson: false })
   }
 
-  handleLessonSelect = (event) => {
+  handleDateSelect = (event) => {
+    this.setState({
+      date: event.target.data
+    })
+  }
+
+  handleTeacherSelect = (event) => {
     this.setState({
       teacher: this.props.teachers.find(teacher => teacher.lastname === event.target.value)
     })
   }
 
-  handleLessonSelect = (event) => {
+  handleStudentSelect = (event) => {
     this.setState({
       student: this.props.students.find(student => student.lastname === event.target.value)
     })
@@ -75,15 +84,15 @@ class CreateLesson extends Component {
   }
 
   render() {
-    const teacherOptions = this.state.teachers.map(teacher => {
+    const teacherOptions = this.props.teachers.map(teacher => {
       return <option value={teacher.lastname} id={teacher.id} key={teacher.id}>{teacher.lastname}</option>
     })
 
-    const studentOptions = this.state.students.map(student => {
+    const studentOptions = this.props.students.map(student => {
       return <option value={student.lastname} id={student.id} key={student.id}>{student.lastname}</option>
     })
 
-    const resourceOptions = this.state.resources.map(resource => {
+    const resourceOptions = this.props.resources.map(resource => {
       return <option value={resource.title} id={resource.id} key={resource.id}>{resource.title}</option>
     })
 
@@ -92,30 +101,33 @@ class CreateLesson extends Component {
         <p className={styles.FormInstructions}>Complete form and click 'Create Lesson'</p>
         <form onSubmit={(event) => this.handleSubmit(event)} className={styles.Form}>
           <p>
-            <label>LessonSelector</label>
-            <select value={this.state.teacher.lastname} onChange={(event) => this.handleLessonSelect(event)}>
+            <label>DateSelector</label>
+            <select value={this.state.date} onChange={(event) => this.handleDateSelect(event)}>
+              {/* ...................................date select........................ */}
+            </select>
+          </p>
+          <p>
+            <label>TeacherSelector</label>
+            <select value={this.state.teacher.lastname} onChange={(event) => this.handleTeacherSelect(event)}>
               {teacherOptions}
             </select>
           </p>
-
           <p>
-            <label>LessonSelector</label>
-            <select value={this.state.student.lastname} onChange={(event) => this.handleLessonSelect(event)}>
+            <label>StudentSelector</label>
+            <select value={this.state.student.lastname} onChange={(event) => this.handleStudentSelect(event)}>
               {studentOptions}
             </select>
           </p>
-
           <p>
             <label>ResourceSelector</label>
-            <select value={this.state.resource.title} onChange={(event) => this.handleResourceSelect(event)}>
+            <select value={this.state.resources} onChange={(event) => this.handleResourceSelect(event)}>
               {resourceOptions}
             </select>
           </p>
-
           <p>
             <label>Notes</label>
             <input
-              type="text"
+              type="textarea"
               value={this.state.notes}
               onChange={(event) => this.setState({ notes: event.target.value })}
               placeholder="notes"

@@ -1,34 +1,148 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { Route, Switch, Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import * as actionCreators from '../../store/actions/index'
-import ShowLesson from './ShowLesson/ShowLesson'
+
+import { Container, Row, Col } from 'reactstrap'
+// import styles from './Lessons.css'
+import Modal from '../../UI/Modal/Modal'
+
+import Lesson from './Lesson/Lesson'
 import CreateLesson from './CreateLesson/CreateLesson'
+import EditLesson from './EditLesson/EditLesson'
 import LessonsList from './LessonsList/LessonsList'
 
 class Lessons extends Component {
+  state = {
+    lesson: null,
+    showLesson: false,
+    showLessonsList: false,
+    createLesson: false,
+    editLesson: false
+  }
 
   componentDidMount() {
-    console.log('[Lessons] DidMount, this.props', this.props)
     this.props.onFetchLessons();
+  }
+
+  showLessonsListToggler = () => {
+    let toggle = this.state.showLessonsList
+    this.setState({ showLessonsList: !toggle })
+  }
+
+  //********SHOW_LESSON form handling**************************
+  showLessonClose = () => {
+    this.setState({ showLesson: false })
+  }
+
+  //********CREATE_LESSON form handling **************************
+  createLessonForm = () => {
+    this.setState({ createLesson: true })
+  }
+
+  closeCreateLessonForm = () => {
+    this.setState({ createLesson: false })
+  }
+
+  createLesson = (newLessonData) => {
+    this.props.onCreateLesson(newLessonData)
+    this.setState({ createLesson: false })
+  }
+
+  //********EDIT_LESSON form handling**************************
+  showEditLessonForm = (id) => {
+    let lessonData = this.props.lessons.filter(lesson => lesson.id === id)[0]
+    this.setState({
+      lesson: lessonData,
+      editLesson: true
+    })
+  }
+
+  editLessonUpdate = (data) => {
+    this.props.onUpdateLesson(data)
+    this.setState({
+      editLesson: false,
+      lesson: null
+    })
+  }
+
+  closeEditLessonForm = () => {
+    this.setState({
+      editLesson: false,
+      lesson: null
+    })
   }
 
   render() {
     const { match, lessons } = this.props;
+    let clickableNames = lessons.map((lesson, index) => {
+      return (
+        <Link to={`/lessons/${lesson.id}`}
+          style={{ marginRight: '12px' }}
+          key={lesson.id}
+          onClick={() => this.showLessonsListToggler()}
+        >{lesson.date}
+        </Link>
+      )
+    })
 
     return (
       <div>
         <hr />
+        <h4>Lessons</h4>
+        <button onClick={() => this.showLessonsListToggler()}>Toggle ALL</button>
 
-        <hr />
-        <h4>Lessons Page</h4>
-        <LessonsList lessons={lessons} />
-        <Link to={`${match.url}/new`}>Create New Lesson</Link>
+        {/*********CREATE LESSON MODAL********************************************/}
+        <button onClick={this.createLessonForm}>Add Lesson</button>
+        <Modal
+          show={this.state.createLesson}
+          modalClosed={this.closeCreateLessonForm}>
+          <CreateLesson
+            createLesson={(newLessonData) => this.createLesson(newLessonData)}
+            createLessonCancel={this.closeCreateLessonForm} />
+        </Modal>
+
+        {/**********EDIT LESSON MODAL**********************************************/}
+        <Modal
+          show={this.state.editLesson}
+          modalClosed={this.closeEditLessonForm}>
+          {this.state.lesson ? <EditLesson
+            id={this.state.lesson.id}
+            date={this.state.lesson.date}
+            teacher_id={this.state.lesson.teacher_id}
+            student_id={this.state.lesson.student_id}
+            close={() => this.closeEditLessonForm()}
+            updateLesson={(data) => this.editLessonUpdate(data)}
+          /> : null}
+        </Modal>
+
+        {/**********CLICKABLE NAMES**********************************************/}
+        <Container>
+          <Row>
+            <Col>
+              {clickableNames}
+            </Col>
+          </Row>
+        </Container>
+
+        {/**********LESSONS LIST**********************************************/}
+        <div>
+          {this.state.showLessonsList ? <LessonsList
+            lessons={lessons}
+            show={(id) => this.state.showLesson(id)}
+            edit={(id) => this.showEditLessonForm(id)}
+            delete={(id) => this.props.onDeleteLesson(id)}
+            close={() => this.showLessonsListToggler()}
+          /> : null}
+        </div>
+
         <Switch>
-          <Route path={`${match.url}/new`} component={CreateLesson} />
-          <Route path={`${match.url}/:id`} component={ShowLesson} />
-          <Route path={match.url} exact render={() => (<h5>Please select a Lesson from the list.</h5>)} />
+          <Route path={`${match.url}/:id/edit`} exact component={EditLesson} />
+          <Route path={`${match.url}/new`} exact component={CreateLesson} />
+          <Route path={`${match.url}/:id`} exact component={Lesson} />
+          <Route path={match.url} exact render={() => (<p>Toggle ALL or click a Lesson from the list.</p>)} />
         </Switch>
+        <hr />
       </div>
     )
   }
@@ -42,10 +156,11 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    onFetchLessons: () => dispatch(actionCreators.fetchLessons()),
     onCreateLesson: (data) => dispatch(actionCreators.createLesson(data)),
-    onFetchLessons: () => dispatch(actionCreators.fetchLessons())
+    onUpdateLesson: (data) => dispatch(actionCreators.updateLesson(data)),
+    onDeleteLesson: (id) => dispatch(actionCreators.deleteLesson(id))
   };
 }
 
-// export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Lessons));
 export default connect(mapStateToProps, mapDispatchToProps)(Lessons);

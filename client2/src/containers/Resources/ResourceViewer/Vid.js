@@ -5,9 +5,9 @@ const Vid = (props) => {
     <div>
       <iframe width="560" height="315"
         src={props.url}
-        frameborder="0"
+        frameBorder="0"
         allow="autoplay; encrypted-media"
-        allowfullscreen="true">
+        allowFullScreen="true">
       </iframe>
     </div>
   )

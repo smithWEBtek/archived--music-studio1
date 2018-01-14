@@ -22,7 +22,7 @@ class CreateResource extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const resourceData = this.state;
-    this.props.addResource(resourceData)
+    this.props.createResource(resourceData)
     this.setState({
       title: '',
       category: '',
@@ -30,7 +30,7 @@ class CreateResource extends Component {
       format: '',
       location: ''
     });
-    this.props.addResourceCancel()
+    this.props.createResourceCancel()
   }
 
   render() {
