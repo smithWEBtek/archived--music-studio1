@@ -49,10 +49,10 @@ NICE TO HAVES------------------------------------------------------
 
 []  show resource
   [X]  should be more elaborate view of resource
-  []  should take advantage of serialization data, to show "Students Assigned To This Resource"
+  [X]  should take advantage of serialization data, to show "Students Assigned To This Resource"
   []  should have a chart showing students practice frequency for this resource
-  []  if pdf: view the pdf in a small window
-  []  if video: show YouTube small video window
+  [X]  if pdf: view the pdf in a small window
+  [X]  if video: show YouTube small video window
   []  should have feedback mechanism for students to comment on progress, difficulty, improvements, etc.
   
 TODO DONE------------------------------------------------------

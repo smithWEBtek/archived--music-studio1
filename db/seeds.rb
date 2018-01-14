@@ -125,26 +125,21 @@ DATA_resources = {
     ['blues in F', 'blues', '12 bar blues', 'doc', 'cloud', 'no_url_given'],
     ['II-V-I 4bar', 'improv', '4 bar phrases', 'aud', 'cloud', 'no_url_given'],
     ['maj triad', 'chords', 'major triad inversions', 'doc', 'cloud', 'no_url_given'],
-    ['min triad', 'chords', 'minor triad inversions', 'vid', 'cloud', 'no_url_given'],
-    ['dom7', 'chords', 'dom7 inversions', 'doc', 'cloud', 'no_url_given'],
-    ['min7', 'chords', 'min7 inversions', 'doc', 'cloud', 'no_url_given'],
-    ['min7b5', 'chords', 'min7b5 inversions', 'doc', 'cloud', 'no_url_given'],
-    ['maj7', 'chords', 'maj7 inversions', 'doc', 'cloud', 'no_url_given'],
+    ['min triad', 'chords', 'minor triad inversions', 'doc', 'cloud', 'no_url_given'],
     ['major scales', 'scales', 'major scales', 'aud', 'cloud', 'no_url_given'],
-    ['minor scales', 'scales', 'minor scales', 'doc', 'cloud', 'no_url_given'],
-    ['modal scales', 'scales', 'modal scales', 'vid', 'cloud', 'no_url_given'],
-    ['alt scales', 'scales', 'alt scales', 'doc', 'cloud', 'no_url_given'],
-    ['chord tones', 'improv', 'chord tones', 'vid', 'cloud', 'no_url_given'],
     ['approach notes', 'improv', 'approach notes', 'doc', 'cloud', 'no_url_given'],
     ['bi chords', 'improv', 'bi chords', 'doc', 'cloud', 'no_url_given'],
     ['Autumn Leaves', 'tune', 'standard', 'doc', 'cloud', 'no_url_given'],
-    ['Blue Bossa', 'tune', 'standard', 'vid', 'cloud', 'no_url_given'],
+    ['Blue Bossa', 'tune', 'standard', 'doc', 'cloud', 'no_url_given'],
     ['All The Things', 'tune', 'standard', 'doc', 'cloud', 'no_url_given'],
     ['I Got Rhythm', 'tune', 'standard', 'doc', 'cloud', 'no_url_given'],
-    ['Bill Evans - Universal Mind', 'documentary', 'philosophy of music', 'vid', 'youtube', 'no_url_given'],
-    ['Gary Burton - Improvisation', 'master class', 'philosophy of improv', 'vid', 'youtube', 'no_url_given'],
-    ['Kenny Werner - Effortless Mastery', 'master class', 'psychology of playing', 'vid', 'youtube', 'no_url_given'],
-    ['Kurt Elling - Role of Band Leader', 'master class', 'leading a gig', 'vid', 'youtube', 'no_url_given']
+    ["Ven Morena Montuno", "Salsa", "basic piano montuno", "vid", "youtube", "https://www.youtube.com/embed/JntdJkawVF4?rel=0"],
+    ["Montuno Lesson 1", "Salsa", "basic piano montuno", "vid", "youtube", "https://www.youtube.com/embed/CVX7-eZReqs?rel=0"],
+    ["Salsa 1", "Salsa", "basic piano montuno", "vid", "youtube", "https://www.youtube.com/embed/-2mu-Hrr838"],
+    ['Bill Evans - Universal Mind', 'documentary', 'philosophy of music', 'vid', 'youtube', 'https://www.youtube.com/embed/QwXAqIaUahI?rel=0'],
+    ['Gary Burton - Improvisation', 'master class', 'philosophy of improv', 'vid', 'youtube', 'https://www.youtube.com/embed/t2txO_u2eNg?rel=0'],
+    ['Kenny Werner - Effortless Mastery', 'master class', 'psychology of playing', 'vid', 'youtube', 'https://www.youtube.com/embed/CBnYgcmSJG8?rel=0'],
+    ['Kurt Elling - Role of Band Leader', 'master class', 'leading a gig', 'vid', 'youtube', 'https://www.youtube.com/embed/stbmhcSLXXw?rel=0']
   ]
 }
 
@@ -174,24 +169,7 @@ DATA_lesson_resources = {
     [4,3],
     [4,4],
     [4,5],
-    [4,6],
-    # [5,5],
-    # [5,6],
-    # [5,7],
-    # [6,7],
-    # [6,8],
-    # [6,9],
-    [7,6],
-    [7,8],
-    [7,11]
-    # [8,6],
-    # [8,2],
-    # [8,8],
-    # [8,5],
-    # [9,1],
-    # [9,2],
-    # [9,3],
-    # [9,5]
+    [4,6]
   ]
 }
 

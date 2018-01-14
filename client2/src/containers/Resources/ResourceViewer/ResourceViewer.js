@@ -1,30 +1,27 @@
 import React from 'react'
 import Pdf from './Pdf'
+import Vid from './Vid'
 
 const ResourceViewer = (props) => {
 
 
   let renderResource = <p>loading resource ... </p>
 
-  // if (props.format === 'aud') {
-  //   return myResource
-
-  // }
-
-  // if (props.format === 'vid') {
-  //   return myResource
-
-  // }
-
-  // if (props.format === 'doc') {
-  //   return myResource
-
-  // }
-
-  if (props.format === 'pdf') {
-    renderResource = <Pdf location={props.location} />
+  if (props.resource.format === 'pdf') {
+    renderResource = <Pdf url={props.resource.url} />
   }
 
+  if (props.resource.format === 'vid') {
+    renderResource = <Vid url={props.resource.url} />
+  }
+
+  // if (props.resource.format === 'aud') {
+  //   return myResource
+  // }
+
+  // if (props.resource.format === 'doc') {
+  //   return myResource
+  // }
 
   return (
     <div>
