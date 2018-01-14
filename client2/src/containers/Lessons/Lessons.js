@@ -3,7 +3,6 @@ import { Route, Switch, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actionCreators from '../../store/actions/index'
 
-import { Container, Row, Col } from 'reactstrap'
 // import styles from './Lessons.css'
 import Modal from '../../UI/Modal/Modal'
 
@@ -14,9 +13,8 @@ import LessonsList from './LessonsList/LessonsList'
 
 class Lessons extends Component {
   state = {
-    lesson: null,
+    lesson: {},
     showLesson: false,
-    showLessonsList: false,
     createLesson: false,
     editLesson: false
   }
@@ -25,18 +23,13 @@ class Lessons extends Component {
     this.props.onFetchLessons();
   }
 
-  showLessonsListToggler = () => {
-    let toggle = this.state.showLessonsList
-    this.setState({ showLessonsList: !toggle })
-  }
-
   //********SHOW_LESSON form handling**************************
   showLessonClose = () => {
     this.setState({ showLesson: false })
   }
 
   //********CREATE_LESSON form handling **************************
-  createLessonForm = () => {
+  showCreateLessonForm = () => {
     this.setState({ createLesson: true })
   }
 
@@ -75,25 +68,14 @@ class Lessons extends Component {
 
   render() {
     const { match, lessons } = this.props;
-    let clickableNames = lessons.map((lesson, index) => {
-      return (
-        <Link to={`/lessons/${lesson.id}`}
-          style={{ marginRight: '12px' }}
-          key={lesson.id}
-          onClick={() => this.showLessonsListToggler()}
-        >{lesson.date}
-        </Link>
-      )
-    })
 
     return (
       <div>
         <hr />
         <h4>Lessons</h4>
-        <button onClick={() => this.showLessonsListToggler()}>Toggle ALL</button>
 
         {/*********CREATE LESSON MODAL********************************************/}
-        <button onClick={this.createLessonForm}>Add Lesson</button>
+        <button onClick={this.showCreateLessonForm}>Add Lesson</button>
         <Modal
           show={this.state.createLesson}
           modalClosed={this.closeCreateLessonForm}>
@@ -102,8 +84,8 @@ class Lessons extends Component {
             createLessonCancel={this.closeCreateLessonForm} />
         </Modal>
 
-        {/**********EDIT LESSON MODAL**********************************************/}
-        <Modal
+        {/**********EDIT LESSON MODAL  >>>>>  LESSON BUILDER ? ********************/}
+        {/* <Modal
           show={this.state.editLesson}
           modalClosed={this.closeEditLessonForm}>
           {this.state.lesson ? <EditLesson
@@ -114,27 +96,18 @@ class Lessons extends Component {
             close={() => this.closeEditLessonForm()}
             updateLesson={(data) => this.editLessonUpdate(data)}
           /> : null}
-        </Modal>
-
-        {/**********CLICKABLE NAMES**********************************************/}
-        <Container>
-          <Row>
-            <Col>
-              {clickableNames}
-            </Col>
-          </Row>
-        </Container>
+        </Modal> */}
 
         {/**********LESSONS LIST**********************************************/}
-        <div>
-          {this.state.showLessonsList ? <LessonsList
+        < div >
+          <LessonsList
             lessons={lessons}
             show={(id) => this.state.showLesson(id)}
             edit={(id) => this.showEditLessonForm(id)}
             delete={(id) => this.props.onDeleteLesson(id)}
             close={() => this.showLessonsListToggler()}
-          /> : null}
-        </div>
+          />
+        </div >
 
         <Switch>
           <Route path={`${match.url}/:id/edit`} exact component={EditLesson} />
@@ -143,7 +116,7 @@ class Lessons extends Component {
           <Route path={match.url} exact render={() => (<p>Toggle ALL or click a Lesson from the list.</p>)} />
         </Switch>
         <hr />
-      </div>
+      </div >
     )
   }
 };

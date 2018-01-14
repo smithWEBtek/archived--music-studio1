@@ -16,13 +16,13 @@ const LessonsList = (props) => {
         <td>{lesson.date}</td>
         <td>{lesson.teacher_id}</td>
         <td>{lesson.student_id}</td>
-        {/* <td>{lesson.resources.length}</td> */}
+        <td>{lesson.resources.length}</td>
       </tr>
     )
   })
 
   return (
-    <Table striped >
+    <Table striped size="sm" >
       <thead>
         <tr>
           <th>ID</th>
@@ -30,7 +30,7 @@ const LessonsList = (props) => {
           <th>Date</th>
           <th>TeacherID</th>
           <th>StudentID</th>
-          {/* <th>#Resources</th> */}
+          <th>#Resources</th>
         </tr>
       </thead>
       <tbody>

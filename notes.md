@@ -21,6 +21,7 @@ REQUIREMENTS
 
 
 []  Finish Lesson CRUD and Lesson Builder
+[]  Implement more 'reactstrap' components
 []  Blog outline, topics, points, plans
 []  Video walkthrough, outline
 []  Publish blog
