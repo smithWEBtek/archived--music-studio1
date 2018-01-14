@@ -6,7 +6,7 @@ class CreateResources < ActiveRecord::Migration[5.1]
       t.string :description
       t.string :format
       t.string :location
-      t.string :url
+      t.string :url, default: 'no_url_given'
 
       t.timestamps
     end

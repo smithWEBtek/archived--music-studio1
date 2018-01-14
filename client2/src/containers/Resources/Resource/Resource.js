@@ -2,19 +2,19 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 // import styles from './Resource.css'
-import { Container, Row, Col, Table } from 'reactstrap'
+import { Container, Row, Col } from 'reactstrap'
 import ResourceViewer from '../ResourceViewer/ResourceViewer'
 // import Pdf from '../ResourceViewer/Pdf'
 import appstyles from '../../../App.css'
-import ResourcesList from '../../Resources/ResourcesList/ResourcesList'
-import LessonsList from '../../Lessons/LessonsList/LessonsList'
+// import ResourcesList from '../../Resources/ResourcesList/ResourcesList'
+// import LessonsList from '../../Lessons/LessonsList/LessonsList'
 
 const Resource = (props) => {
   const renderResource = props.resources.filter(resource => resource.id === +props.match.params.id)[0]
 
   let resourceData = <div><p>Resource component is loading...</p></div>
   let resourceView = <div><p> this is not a PDF format </p></div>
-  console.log('[Resource.js] renderResource', renderResource)
+  // console.log('[Resource.js] renderResource', renderResource)
 
   if (renderResource) {
     resourceData = (

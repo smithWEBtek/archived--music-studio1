@@ -14,7 +14,7 @@ import ResourcesList from './ResourcesList/ResourcesList'
 
 class Resources extends Component {
   state = {
-    resource: null,
+    resource: '',
     showResource: false,
     showResourcesList: false,
     createResource: false,

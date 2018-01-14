@@ -6,15 +6,15 @@ import { connect } from 'react-redux'
 
 import appstyles from '../../../App.css'
 import ResourcesList from '../../Resources/ResourcesList/ResourcesList'
-import LessonsList from '../../Lessons/LessonsList/LessonsList'
-import StudentsList from '../../Students/StudentsList/StudentsList'
+// import LessonsList from '../../Lessons/LessonsList/LessonsList'
+// import StudentsList from '../../Students/StudentsList/StudentsList'
 
 const Lesson = (props) => {
 
   const lesson = props.lessons.filter(lesson => lesson.id === +props.match.params.id)[0]
   let lessonHeader = <div><p>Lesson component is loading...</p></div>
-  let lessonTeacher = <div><h5>No teacher assigned</h5></div>
-  let lessonStudent = <div><h5>No student assigned</h5></div>
+  // let lessonTeacher = <div><h5>No teacher assigned</h5></div>
+  // let lessonStudent = <div><h5>No student assigned</h5></div>
   let lessonResources = <div><h5>No resources assigned</h5></div>
 
   if (lesson) {

@@ -10,7 +10,8 @@ class CreateResource extends Component {
       category: '',
       description: '',
       format: '',
-      location: ''
+      location: '',
+      url: ''
     }
   }
 
@@ -28,7 +29,8 @@ class CreateResource extends Component {
       category: '',
       description: '',
       format: '',
-      location: ''
+      location: '',
+      url: ''
     });
     this.props.createResourceCancel()
   }
@@ -37,7 +39,7 @@ class CreateResource extends Component {
     return (
       <div>
         <p className={styles.FormInstructions}>Complete form and click 'Add Resource'</p>
-        <form onSubmit={this.handleSubmit} className={styles.AddForm}>
+        <form onSubmit={this.handleSubmit}>
           <p><label htmlFor="resource_name">Title
             </label>
             <input
@@ -83,11 +85,21 @@ class CreateResource extends Component {
               onChange={(event) => this.handleOnChange(event)}
               placeholder="location"
               required /></p>
+          <p><label htmlFor="resource_name">URL
+            </label>
+            <input
+              type="text"
+              name="url"
+              value={this.state.url}
+              onChange={(event) => this.handleOnChange(event)}
+              placeholder="url"
+              required /></p>
           <button
             type="button"
             onClick={this.props.addResourceCancel}
             className={styles.Danger}>CANCEL</button>
-          <button className={styles.Success}>ADD Resource</button>
+          <button className={styles.Success}
+          >CREATE Resource</button>
         </form>
       </div>
     )

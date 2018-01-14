@@ -18,8 +18,8 @@ class Api::ResourcesController < ApplicationController
       render json: { errors: { message: 'resource NOT created' }}
     end
   end
-
-  def update
+  
+  def update    
     @resource = Resource.find(params[:id])
     @resource.update(resource_params)
     if @resource.save
@@ -36,7 +36,7 @@ class Api::ResourcesController < ApplicationController
 
   private
   def resource_params
-    params.require(:resource).permit(:title, :category, :description, :format, :location)
+    params.require(:resource).permit(:title, :category, :description, :format, :location, :url)
   end
 
 end
