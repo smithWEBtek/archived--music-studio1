@@ -17,7 +17,13 @@ const ResourceViewer = (props) => {
   }
 
   if (props.resource.format === 'aud') {
-    renderResource = <Aud resource={props.resource} />
+    renderResource = (
+      <div>
+        <hr />
+        <h4>{props.resource.title}</h4>
+        <Aud resource={props.resource} />
+      </div>
+    )
   }
 
   // if (props.resource.format === 'doc') {
