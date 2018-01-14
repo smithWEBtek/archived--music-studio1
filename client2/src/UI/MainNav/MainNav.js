@@ -63,9 +63,9 @@ class MainNav extends Component {
                 <NavLink to='/lessons/' className={[styles.Item, 'text-white'].join(' ')}>_lessons</NavLink>
               </NavItem>
 
-              <NavItem>
+              {/* <NavItem>
                 <NavLink to='/lessons/' className={[styles.Item, 'text-white'].join(' ')}>_login</NavLink>
-              </NavItem>
+              </NavItem> */}
               {/* 
               <UncontrolledDropdown nav innavbar="true">
                 <DropdownToggle nav caret className={[styles.Item, 'text-white'].join(' ')}>

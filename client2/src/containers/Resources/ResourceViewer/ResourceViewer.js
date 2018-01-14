@@ -1,7 +1,7 @@
 import React from 'react'
 import Pdf from './Pdf'
 import Vid from './Vid'
-import Aud from './Aud/Aud'
+import Aud from './Aud'
 
 const ResourceViewer = (props) => {
 
@@ -25,10 +25,6 @@ const ResourceViewer = (props) => {
       </div>
     )
   }
-
-  // if (props.resource.format === 'doc') {
-  //   return myResource
-  // }
 
   return (
     <div>

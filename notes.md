@@ -18,44 +18,55 @@ REQUIREMENTS
 [X] app should have some minimal styling: feel free to stick to a framework (like react-bootstrap), 
 [X] write (additional) CSS yourself if you wish
 [X]  use Redux middleware to respond to and modify state change
+
+
+[]  Finish Lesson CRUD and Lesson Builder
+[]  Blog outline, topics, points, plans
+[]  Video walkthrough, outline
+[]  Publish blog
+[]  Record Video
+[]  Submit project, schedule assessment
+
+
+
 ==================================================================================
 TODO
-[X]  practice reactstrap and build an empty, styled framework first
-[]  Teacher CRUD (index, show, new/create, edit/update, delete), add links for: MyLessons, MyStudents, AllResources
-[]  Student CRUD (index, show, new/create, edit/update, delete), add for: MyLessons, MyTeacher, MyResources, PracticeLog
-[]  Resource CRUD (index, show, new/create, edit/update, delete), add modal via hover, for the 4 types of viewer (PDF, DOC, AUD, VID))
 []  Lesson  Resource CRUD (index, show, new/create, edit/update, delete)
 []  LessonInProgress: add TeachLesson function ( live editing of notes and adding of resources in a new or existing Lesson)
-[]  button in index, to "ADD TO CURRENT LESSON", to add multiple resources to new or existing lesson
-[]  validation: lesson MUST have teacher and student to be valid lesson
+[]  button in Lessons index, to "ADD RESOURCE TO CURRENT LESSON", to add multiple resources to new or existing lesson
+[]  validation: lesson MUST have teacher and student to be valid lesson, use Rails api for validation
  
-[] StudentsList table, Lastname does not redirect to ShowStudent url   /students/:id
+[] Students change toggling from index to show, it is not ideal
 [] Backdrop onClick, should close whatever <Modal /> is open
-[]  show lesson:
-[]  ResourcesList view based on resources assigned to this Lesson (slimmed down version of <Resources /> component w/o CRUD)
+ 
+NICE TO HAVES------------------------------------------------------
+[]  show student
+  [x] should have complete list of lessons, resources assigned and a practice log
+  []  should have a chart showing practice progress on assigned resources
+  []  practicing via MIDI keyboard, could track how many times a student has played a piece and how accurate they did it
+  []  should have a way to submit new notes back to the teacher, favorite tunes, PracticeLog object will hold this
+
+[] in show resource: a chart showing students practice frequency for this resource
+[]  should have feedback mechanism for students to comment on progress, difficulty, improvements, etc.
 
 []  user authentication
 []  constrain views for admin, teacher, student
 []  needs more style (steal css from udemy-react-blog)
 []  refactor some stateful components to stateless with props only (if poss?)
 
+TODO DONE------------------------------------------------------
 
-NICE TO HAVES------------------------------------------------------
-[]  show student
-  [x]  should have complete list of lessons and resources assigned
-  []  should have a chart showing practice progress on assigned resources
-  []  practicing via MIDI keyboard, could track how many times a student has played a piece and how accurate they did it
-  []  should have a way to submit new notes back to the teacher, favorite tunes, PracticeLog object will hold this
-
-[]  show resource
-  [X]  should be more elaborate view of resource
+[X] Resource:
   [X]  should take advantage of serialization data, to show "Students Assigned To This Resource"
-  []  should have a chart showing students practice frequency for this resource
   [X]  if pdf: view the pdf in a small window
   [X]  if video: show YouTube small video window
-  []  should have feedback mechanism for students to comment on progress, difficulty, improvements, etc.
-  
-TODO DONE------------------------------------------------------
+  [X]  if audio: show SoundCloud embedded player in small window
+
+[X]  ResourcesList view based on resources assigned to this Lesson (slimmed down version of <Resources /> component w/o CRUD)
+[]  Resource CRUD (index, show, new/create, edit/update, delete), add modal via hover, for 3 types of viewer (PDF, AUD, VID))
+[X] Student CRUD (index, show, new/create, edit/update, delete), add for: MyLessons, MyTeacher, MyResource
+[X]  Teacher CRUD (index, show, new/create, edit/update, delete), add links for: MyLessons, MyStudents
+[X]  practice reactstrap and build an empty, styled framework first
 [X]  show teacher shows all students assigned
 [X] move teachers, students, resources and lessons code out of layout, leaving just ComponentName
 [X] buttons to toggle Students, Teachers, Resources, Lessons
