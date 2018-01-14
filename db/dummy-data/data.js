@@ -46,3 +46,14 @@ const TEACHERS = [
   { id: 4, firstname: 'Barry', lastname: 'Gendron', email: 'bgendron@music.com' },
   { id: 5, firstname: 'James', lastname: 'Brown', email: 'jb@getfunky1.com' }
 ]
+
+
+
+#<Resource id: 13, title: "II-V-I 4bar", category: "improv", description: "4 bar phrases", format: "aud", location: "cloud", url: "no_url_given", created_at: "2018-01-14 18:05:25", updated_at: "2018-01-14 18:05:25" >,
+
+#<Resource id: 16, title: "major scales", category: "scales", description: "major scales", format: "aud", location: "cloud", url: "no_url_given", created_at: "2018-01-14 18:05:25", updated_at: "2018-01-14 18:05:25" >,
+
+#<Resource id: 35, title: "Vereno audio", category: "salsa", description: "exercise salsa montuno", format: "aud", location: "cloud", url: "383625701", created_at: "2018-01-14 20:00:34", updated_at: "2018-01-14 22:14:25" >,
+
+#<Resource id: 36, title: "Misty-salsa", category: "latin jazz", description: "latin jazz trio", format: "aud", location: "soundcloud", url: "253001471", created_at: "2018-01-14 22:33:02", updated_at: "2018-01-14 22:33:02" >] >
+  2.3.0 : 003 > 
