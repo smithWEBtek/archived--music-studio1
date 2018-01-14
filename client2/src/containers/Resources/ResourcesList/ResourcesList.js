@@ -3,16 +3,25 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Table } from 'reactstrap'
 import Aux from '../../../hoc/Aux/Aux'
-import Pdf from '../ResourceViewer/Pdf'
 
 const ResourcesList = (props) => {
 
   let list = props.resources.map((resource, index) => {
+
     return (
       <Aux key={index} >
         <tr>
-          <th scope="row">{index}</th>
-          <td>{resource.title}</td>
+          <th scope="row">{index + 1}</th>
+
+          <td><button>
+            <Link
+              to={`/resources/${resource.id}`}
+              params={{ id: resource.id }}
+              key={resource.id}
+            >{resource.title}</Link>
+          </button></td>
+
+
           <td>{resource.category}</td>
           <td>{resource.description}</td>
           <td>{resource.format}</td>
@@ -23,7 +32,6 @@ const ResourcesList = (props) => {
   })
   return (
     <div>
-      <Pdf />
       <Table striped>
         <thead>
           <tr>

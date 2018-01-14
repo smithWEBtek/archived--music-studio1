@@ -1,34 +1,36 @@
-import React from 'react';
+import React from 'react'
+import Pdf from './Pdf'
 
 const ResourceViewer = (props) => {
 
-  let viewResource = props.resource
 
-  if (props.format === 'aud') {
-    return viewResource
+  let renderResource = <p>loading resource ... </p>
 
-  }
+  // if (props.format === 'aud') {
+  //   return myResource
 
-  if (props.format === 'vid') {
-    return viewResource
+  // }
 
-  }
+  // if (props.format === 'vid') {
+  //   return myResource
 
-  if (props.format === 'doc') {
-    return viewResource
+  // }
 
-  }
+  // if (props.format === 'doc') {
+  //   return myResource
+
+  // }
 
   if (props.format === 'pdf') {
-    return viewResource
-
+    renderResource = <Pdf location={props.location} />
   }
+
 
   return (
     <div>
-      {viewResource}
+      {renderResource}
     </div>
-  );
-};
+  )
+}
 
-export default ResourceViewer;
+export default ResourceViewer

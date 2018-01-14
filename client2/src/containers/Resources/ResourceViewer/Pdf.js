@@ -17,7 +17,7 @@ class Pdf extends Component {
     return (
       <div>
         <Document
-          file={this.props.pdf}
+          file={this.props.resource.location}
           onLoadSuccess={this.onDocumentLoad}
         >
           <Page pageNumber={pageNumber} />

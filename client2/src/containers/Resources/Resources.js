@@ -30,12 +30,12 @@ class Resources extends Component {
     this.setState({ showResourcesList: !toggle })
   }
 
-  //********SHOW_RESOURCE form handling**************************
+  //********SHOW_STUDENT form handling**************************
   showResourceClose = () => {
     this.setState({ showResource: false })
   }
 
-  //********CREATE_RESOURCE form handling **************************
+  //********CREATE_STUDENT form handling **************************
   createResourceForm = () => {
     this.setState({ createResource: true })
   }
@@ -49,7 +49,7 @@ class Resources extends Component {
     this.setState({ createResource: false })
   }
 
-  //********EDIT_RESOURCE form handling**************************
+  //********EDIT_STUDENT form handling**************************
   showEditResourceForm = (id) => {
     let resourceData = this.props.resources.filter(resource => resource.id === id)[0]
     this.setState({
@@ -81,7 +81,7 @@ class Resources extends Component {
           style={{ marginRight: '12px' }}
           key={resource.id}
           onClick={() => this.showResourcesListToggler()}
-        >{resource.lastname}
+        >{resource.title}
         </Link>
       )
     })
@@ -92,7 +92,7 @@ class Resources extends Component {
         <h4>Resources</h4>
         <button onClick={() => this.showResourcesListToggler()}>Toggle ALL</button>
 
-        {/*********CREATE RESOURCE MODAL********************************************/}
+        {/*********CREATE STUDENT MODAL********************************************/}
         <button onClick={this.createResourceForm}>Add Resource</button>
         <Modal
           show={this.state.createResource}
@@ -102,7 +102,7 @@ class Resources extends Component {
             createResourceCancel={this.createResourceFormCancel} />
         </Modal>
 
-        {/**********EDIT RESOURCE MODAL**********************************************/}
+        {/**********EDIT STUDENT MODAL**********************************************/}
         <Modal
           show={this.state.editResource}
           modalClosed={this.closeEditResourceForm}>
@@ -127,7 +127,7 @@ class Resources extends Component {
           </Row>
         </Container>
 
-        {/**********RESOURCES LIST**********************************************/}
+        {/**********STUDENTS LIST**********************************************/}
         <div>
           {this.state.showResourcesList ? <ResourcesList
             resources={resources}
@@ -139,7 +139,7 @@ class Resources extends Component {
         </div>
 
         <Switch>
-          {/* <Route path={`${match.url}/:id/edit`} exact component={EditResource} /> */}
+          <Route path={`${match.url}/:id/edit`} exact component={EditResource} />
           <Route path={`${match.url}/new`} exact component={CreateResource} />
           <Route path={`${match.url}/:id`} exact component={Resource} />
           <Route path={match.url} exact render={() => (<p>Toggle ALL or click a Resource from the list.</p>)} />
