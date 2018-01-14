@@ -30,12 +30,12 @@ class Resources extends Component {
     this.setState({ showResourcesList: !toggle })
   }
 
-  //********SHOW_STUDENT form handling**************************
+  //********SHOW_RESOURCE form handling**************************
   showResourceClose = () => {
     this.setState({ showResource: false })
   }
 
-  //********CREATE_STUDENT form handling **************************
+  //********CREATE_RESOURCE form handling **************************
   createResourceForm = () => {
     this.setState({ createResource: true })
   }
@@ -49,7 +49,7 @@ class Resources extends Component {
     this.setState({ createResource: false })
   }
 
-  //********EDIT_STUDENT form handling**************************
+  //********EDIT_RESOURCE form handling**************************
   showEditResourceForm = (id) => {
     let resourceData = this.props.resources.filter(resource => resource.id === id)[0]
     this.setState({
@@ -92,7 +92,7 @@ class Resources extends Component {
         <h4>Resources</h4>
         <button onClick={() => this.showResourcesListToggler()}>Toggle ALL</button>
 
-        {/*********CREATE STUDENT MODAL********************************************/}
+        {/*********CREATE RESOURCE MODAL********************************************/}
         <button onClick={this.createResourceForm}>Add Resource</button>
         <Modal
           show={this.state.createResource}
@@ -102,17 +102,18 @@ class Resources extends Component {
             createResourceCancel={this.createResourceFormCancel} />
         </Modal>
 
-        {/**********EDIT STUDENT MODAL**********************************************/}
+        {/**********EDIT RESOURCE MODAL**********************************************/}
         <Modal
           show={this.state.editResource}
           modalClosed={this.closeEditResourceForm}>
           {this.state.resource ? <EditResource
             id={this.state.resource.id}
-            firstname={this.state.resource.firstname}
-            lastname={this.state.resource.lastname}
-            email={this.state.resource.email}
-            level={this.state.resource.level}
-            teacher_id={this.state.resource.teacher_id}
+            title={this.state.resource.title}
+            category={this.state.resource.category}
+            description={this.state.resource.description}
+            format={this.state.resource.format}
+            location={this.state.resource.location}
+            url={this.state.resource.url}
             close={() => this.closeEditResourceForm()}
             updateResource={(data) => this.editResourceUpdate(data)}
           /> : null}
@@ -127,7 +128,7 @@ class Resources extends Component {
           </Row>
         </Container>
 
-        {/**********STUDENTS LIST**********************************************/}
+        {/**********RESOURCES LIST**********************************************/}
         <div>
           {this.state.showResourcesList ? <ResourcesList
             resources={resources}

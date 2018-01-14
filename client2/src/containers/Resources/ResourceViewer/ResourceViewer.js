@@ -5,7 +5,7 @@ import Vid from './Vid'
 const ResourceViewer = (props) => {
 
 
-  let renderResource = <p>loading resource ... </p>
+  let renderResource = <p>This resource has not been created yet. </p>
 
   if (props.resource.format === 'pdf') {
     renderResource = <Pdf url={props.resource.url} />
