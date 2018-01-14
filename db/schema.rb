@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20171203033537) do
     t.string "description"
     t.string "format"
     t.string "location"
+    t.string "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
