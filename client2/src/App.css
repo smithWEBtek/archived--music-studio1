@@ -28,6 +28,10 @@
 }
 
 
+:local(.Banner) {
+  background-color: rgb(245, 255, 253);
+}
+
 :local(.TeacherHeaderBackground) {
   background-color: rgb(221, 165, 165);
   border-radius: 15%;

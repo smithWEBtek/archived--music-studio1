@@ -129,6 +129,14 @@ class Students extends Component {
 
         {/**********STUDENTS LIST**********************************************/}
         <div>
+          <Switch>
+            <Route path={`${match.url}/:id/edit`} exact component={EditStudent} />
+            <Route path={`${match.url}/new`} exact component={CreateStudent} />
+            <Route path={`${match.url}/:id`} exact component={Student} />
+            <Route path={match.url} exact render={() => (<p>Toggle ALL or click a Student from the list.</p>)} />
+          </Switch>
+        </div>
+        <div>
           {this.state.showStudentsList ? <StudentsList
             students={students}
             show={(id) => this.state.showStudent(id)}
@@ -137,13 +145,6 @@ class Students extends Component {
             close={() => this.showStudentsListToggler()}
           /> : null}
         </div>
-
-        <Switch>
-          <Route path={`${match.url}/:id/edit`} exact component={EditStudent} />
-          <Route path={`${match.url}/new`} exact component={CreateStudent} />
-          <Route path={`${match.url}/:id`} exact component={Student} />
-          <Route path={match.url} exact render={() => (<p>Toggle ALL or click a Student from the list.</p>)} />
-        </Switch>
         <hr />
       </Container>
     )

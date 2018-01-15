@@ -55,7 +55,7 @@ const ResourcesList = (props) => {
   })
   return (
     <div>
-      <Table striped>
+      <Table striped size="sm">
         <thead>
           <tr>
             <th>ID</th>
