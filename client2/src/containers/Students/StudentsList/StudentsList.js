@@ -46,7 +46,7 @@ const StudentsList = (props) => {
 
   return (
     <div>
-      <Table striped size="sm">
+      <Table striped size="sm" className={styles.StudentsList}>
         <thead>
           <tr>
             <th>ID</th>

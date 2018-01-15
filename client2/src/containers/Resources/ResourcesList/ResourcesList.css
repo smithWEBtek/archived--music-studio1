@@ -1,5 +1,6 @@
 :local(.ResourcesList) {
   color: black;
+  width: 100%;
 }
 
 :local(.Form) {

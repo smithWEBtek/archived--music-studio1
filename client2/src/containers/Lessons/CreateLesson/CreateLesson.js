@@ -2,7 +2,12 @@ import React, { Component } from 'react'
 import * as actionCreators from '../../../store/actions/index'
 import { connect } from 'react-redux'
 import classes from './CreateLesson.css'
-import { Button, Container, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import PropTypes from 'prop-types'
+
+import 'react-dates/initialize';
+import 'react-dates/lib/css/_datepicker.css';
+import { SingleDatePicker } from 'react-dates';
+import datestyles from './react-dates-override.css'
 
 class CreateLesson extends Component {
   constructor(props) {
@@ -11,7 +16,7 @@ class CreateLesson extends Component {
     this.state = {
       createLesson: false,
       formVisible: false,
-      date: '',
+      date: null,
       teacher: '',
       student: '',
       notes: '',
@@ -48,6 +53,12 @@ class CreateLesson extends Component {
   createLesson = (newLessonData) => {
     this.props.onLessonCreate(newLessonData)
     this.setState({ createLesson: false })
+  }
+
+  handleDateSelect = (event) => {
+    this.setState({
+      date: event.target
+    })
   }
 
   handleTeacherSelect = (event) => {
@@ -107,15 +118,18 @@ class CreateLesson extends Component {
       return <option value={resource.title} id={resource.id} key={resource.id}>{resource.title}</option>
     })
 
+
     return (
       <div className={classes.CreateLesson}>
         <p className={classes.FormInstructions}>Complete form and click 'Create Lesson'</p>
         <form onSubmit={(event) => this.handleSubmit(event)} className={classes.Form}>
 
-
-          <label>Date</label>
-          <Label for="exampleDate">Date</Label>
-          <Input type="date" name="date" id="date" value={this.state.date} id='date' onChange={(event) => this.handleDateSelect(event)}></Input>
+          <SingleDatePicker
+            date={null} // momentPropTypes.momentObj or null
+            onDateChange={date => this.handleDateSelect({ date })} // PropTypes.func.isRequired
+            focused={this.state.focused} // PropTypes.bool
+            onFocusChange={({ focused }) => this.setState({ focused })} // PropTypes.func.isRequired
+          />
 
 
           <p>
@@ -166,6 +180,14 @@ const mapStateToProps = state => {
     resources: state.res.resources,
     lessons: state.les.lessons
   }
+  SingleDatePicker.propTypes = {
+    // date: PropTypes.momentPropTypes.momentObj.isRequired,
+    // date: PropTypes.momentObj.isRequired,
+    // date: PropTypes.momentPropTypes.isRequired,
+    onDateChange: PropTypes.func.isRequired,
+    focused: PropTypes.bool,
+    onFocusChange: PropTypes.func.isRequired
+  }
 }
 
 const mapDispatchToProps = dispatch => {
@@ -177,6 +199,7 @@ const mapDispatchToProps = dispatch => {
     onDeleteLesson: (id) => dispatch(actionCreators.deleteLesson(id))
   };
 }
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateLesson)
 // export default connect(mapStateToProps)(CreateLesson)

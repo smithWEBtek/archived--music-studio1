@@ -1,3 +1,7 @@
+:local(.StudentsList) {
+  color: black;
+  width: 100%;
+}
 
 :local(.Form) {
   float: left;

@@ -13,6 +13,9 @@ import lessonReducer from './store/reducers/lessonReducer';
 import App from './App';
 import classes from './index.css';
 
+import 'react-dates/initialize';
+import 'react-dates/lib/css/_datepicker.css';
+
 const rootReducer = combineReducers({
   stu: studentReducer,
   tch: teacherReducer,

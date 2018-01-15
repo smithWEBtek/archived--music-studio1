@@ -1,6 +1,6 @@
 import React from 'react';
 // import Aux from '../../../hoc/Aux/Aux'
-
+import styles from './LessonsList.css'
 import { Link } from 'react-router-dom';
 import { Table } from 'reactstrap'
 
@@ -19,7 +19,7 @@ const LessonsList = (props) => {
   })
 
   return (
-    <Table striped size="sm" >
+    <Table striped size="sm" className={styles.LessonsList} >
       <thead>
         <tr>
           <th>ID</th>

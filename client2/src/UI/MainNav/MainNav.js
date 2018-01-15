@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, NavLink } from 'react-router-dom'
+import { Route, NavLink, Link } from 'react-router-dom'
 import styles from './MainNav.css'
 import Logo from '../../assets/images/logo2.png';
 import {
@@ -41,7 +41,7 @@ class MainNav extends Component {
       <Container>
         <Navbar className={styles.MainNav} light expand="md">
           <div>
-            <img src={Logo} height="60px" className={styles.Logo} alt="app-logo" />
+            <Link to='/'><img src={Logo} height="60px" className={styles.Logo} alt="app-logo" /></Link>
           </div>
           <NavbarBrand>pianoStudent</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
