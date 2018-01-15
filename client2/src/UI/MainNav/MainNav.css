@@ -15,9 +15,15 @@
   border-radius: 30%;
 }
 
-:local(.Logo) {
+:local(.LogoSpin) {
   border-radius: 50%;
   animation: Logo-spin infinite 30s linear;
+  height: 100 px;
+}
+
+:local(.Logo) {
+  border-radius: 50%;
+  /* animation: Logo-spin infinite 30s linear; */
   height: 100 px;
 }
 
