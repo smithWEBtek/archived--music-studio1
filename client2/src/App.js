@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import MainNav from './UI/MainNav/MainNav'
 import 'bootstrap/dist/css/bootstrap.css';
 // import Layout from './UI/Layout/Layout'
-import { Container } from 'reactstrap';
+import { Container, Row } from 'reactstrap';
 
 class App extends Component {
   render() {
     return (
-      <Container>
+      <div>
         <MainNav />
         {/* <Layout /> */}
-      </Container>);
+      </div>);
   }
 }
 

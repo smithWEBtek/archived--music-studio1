@@ -3,6 +3,7 @@ import { Route, NavLink } from 'react-router-dom'
 import styles from './MainNav.css'
 import Logo from '../../assets/images/logo2.png';
 import {
+  Container,
   Collapse,
   Navbar,
   NavbarToggler,
@@ -37,7 +38,7 @@ class MainNav extends Component {
   }
   render() {
     return (
-      <div>
+      <Container>
         <Navbar className={styles.MainNav} light expand="md">
           <div>
             <img src={Logo} height="60px" className={styles.Logo} alt="app-logo" />
@@ -100,7 +101,7 @@ class MainNav extends Component {
           <Route path="/lessons" component={Lessons} />
           <Route path="/resources" component={Resources} />
         </div>
-      </div >
+      </Container >
     );
   }
 }

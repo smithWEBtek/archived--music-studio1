@@ -16,7 +16,7 @@ class Teachers extends Component {
   state = {
     teacher: null,
     showTeacher: false,
-    showTeachersList: false,
+    showTeachersList: true,
     createTeacher: false,
     editTeacher: false
   }
@@ -80,14 +80,14 @@ class Teachers extends Component {
         <Link to={`/teachers/${teacher.id}`}
           style={{ marginRight: '12px' }}
           key={teacher.id}
-          onClick={() => this.showTeachersListToggler()}
+          onClick={() => this.setState({ showTeachersList: false })}
         >{teacher.lastname}
         </Link>
       )
     })
 
     return (
-      <div>
+      <Container>
         <hr />
         <h4>Teachers</h4>
         <button onClick={() => this.showTeachersListToggler()}>Toggle ALL</button>
@@ -143,7 +143,7 @@ class Teachers extends Component {
           <Route path={match.url} exact render={() => (<p>Toggle ALL or click a Teacher from the list.</p>)} />
         </Switch>
         <hr />
-      </div>
+      </Container>
     )
   }
 };

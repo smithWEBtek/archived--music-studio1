@@ -66,7 +66,7 @@ const ResourcesList = (props) => {
             <th>Location</th>
             <th>Show</th>
             <th>Edit</th>
-            <th>X</th>
+            <th>Delete</th>
           </tr>
         </thead>
         <tbody>

@@ -16,7 +16,7 @@ class Students extends Component {
   state = {
     student: null,
     showStudent: false,
-    showStudentsList: false,
+    showStudentsList: true,
     createStudent: false,
     editStudent: false
   }
@@ -80,14 +80,14 @@ class Students extends Component {
         <Link to={`/students/${student.id}`}
           style={{ marginRight: '12px' }}
           key={student.id}
-          onClick={() => this.showStudentsListToggler()}
+          onClick={() => this.setState({ showStudentsList: false })}
         >{student.lastname}
         </Link>
       )
     })
 
     return (
-      <div>
+      <Container>
         <hr />
         <h4>Students</h4>
         <button onClick={() => this.showStudentsListToggler()}>Toggle ALL</button>
@@ -145,7 +145,7 @@ class Students extends Component {
           <Route path={match.url} exact render={() => (<p>Toggle ALL or click a Student from the list.</p>)} />
         </Switch>
         <hr />
-      </div>
+      </Container>
     )
   }
 };

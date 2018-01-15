@@ -18,7 +18,7 @@ const Teacher = (props) => {
     teacherHeader = (
       <div>
         <hr />
-        <h1 className={appstyles.TeacherHeaderBackground}>{teacher.firstname} {teacher.lastname}</h1>
+        <h5 className={appstyles.TeacherHeaderBackground}>{teacher.firstname} {teacher.lastname}</h5>
         <p>Email: {teacher.email} </p>
       </div>
     )
@@ -28,7 +28,7 @@ const Teacher = (props) => {
     teacherLessons = (
       <div>
         <hr />
-        <h5 className={appstyles.LessonHeaderBackground}>LESSONS recorded for <strong>{teacher.firstname}</strong></h5>
+        <h6 className={appstyles.LessonHeaderBackground}>LESSONS recorded for <strong>{teacher.firstname}</strong></h6>
         <div><LessonsList lessons={teacher.lessons} /></div>
       </div>
     )
@@ -38,7 +38,7 @@ const Teacher = (props) => {
     teacherStudents = (
       <div>
         <hr />
-        <h5 className={appstyles.StudentHeaderBackground}>STUDENTS assigned to <strong>{teacher.firstname}</strong></h5>
+        <h6 className={appstyles.StudentHeaderBackground}>STUDENTS assigned to <strong>{teacher.firstname}</strong></h6>
         <div><StudentsList students={teacher.students} /></div>
       </div >
     )

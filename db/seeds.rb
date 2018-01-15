@@ -133,6 +133,8 @@ DATA_resources = {
     ['Blue Bossa', 'tune', 'standard', 'doc', 'cloud', 'no_url_given'],
     ['All The Things', 'tune', 'standard', 'doc', 'cloud', 'no_url_given'],
     ['I Got Rhythm', 'tune', 'standard', 'doc', 'cloud', 'no_url_given'],
+    ["Vereno audio", "salsa", "exercise salsa montuno", "aud", "soundcloud", "383625701"],
+    ["Misty-salsa", "latin jazz", "latin jazz trio", "aud", "soundcloud", "253001471"],
     ["Ven Morena Montuno", "Salsa", "basic piano montuno", "vid", "youtube", "https://www.youtube.com/embed/JntdJkawVF4?rel=0"],
     ["Montuno Lesson 1", "Salsa", "basic piano montuno", "vid", "youtube", "https://www.youtube.com/embed/CVX7-eZReqs?rel=0"],
     ["Salsa 1", "Salsa", "basic piano montuno", "vid", "youtube", "https://www.youtube.com/embed/-2mu-Hrr838"],

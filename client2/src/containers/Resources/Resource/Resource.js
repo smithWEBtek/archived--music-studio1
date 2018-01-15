@@ -20,7 +20,7 @@ const Resource = (props) => {
     resourceData = (
       <div>
         <hr />
-        <h1 className={appstyles.ResourceHeaderBackground}>{renderResource.title}</h1>
+        <h5 className={appstyles.ResourceHeaderBackground}>{renderResource.title}</h5>
         <p>Category: <strong>{renderResource.category}</strong></p>
         <p>Description: <strong>{renderResource.description}</strong></p>
         <p>Format: <strong>{renderResource.format}</strong></p>
@@ -37,10 +37,10 @@ const Resource = (props) => {
   return (
     <Container>
       <Row>
-        <Col xs="6">
+        <Col xs="3">
           {resourceData}
         </Col>
-        <Col xs="6">
+        <Col xs="9">
           {resourceView}
         </Col>
       </Row>

@@ -2,6 +2,7 @@ import React from 'react'
 import Pdf from './Pdf'
 import Vid from './Vid'
 import Aud from './Aud'
+import Aux from '../../../hoc/Aux/Aux'
 
 const ResourceViewer = (props) => {
 
@@ -18,11 +19,11 @@ const ResourceViewer = (props) => {
 
   if (props.resource.format === 'aud') {
     renderResource = (
-      <div>
+      <Aux>
         <hr />
         <h4>{props.resource.title}</h4>
         <Aud resource={props.resource} />
-      </div>
+      </Aux>
     )
   }
 

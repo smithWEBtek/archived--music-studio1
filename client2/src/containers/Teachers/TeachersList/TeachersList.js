@@ -38,7 +38,6 @@ const TeachersList = (props) => {
 
   return (
     <div>
-      <h4>All Teachers</h4>
       <Table striped>
         <thead>
           <tr>
@@ -46,6 +45,9 @@ const TeachersList = (props) => {
             <th>Firstname</th>
             <th>Lastname</th>
             <th>Email</th>
+            <th>Show</th>
+            <th>Edit</th>
+            <th>Delete</th>
           </tr>
         </thead>
         <tbody>

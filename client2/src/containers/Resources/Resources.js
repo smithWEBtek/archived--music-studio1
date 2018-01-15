@@ -16,7 +16,7 @@ class Resources extends Component {
   state = {
     resource: '',
     showResource: false,
-    showResourcesList: false,
+    showResourcesList: true,
     createResource: false,
     editResource: false
   }
@@ -80,14 +80,14 @@ class Resources extends Component {
         <Link to={`/resources/${resource.id}`}
           style={{ marginRight: '12px' }}
           key={resource.id}
-          onClick={() => this.showResourcesListToggler()}
+          onClick={() => this.setState({ showResourcesList: false })}
         >{resource.title}
         </Link>
       )
     })
 
     return (
-      <div>
+      <Container>
         <hr />
         <h4>Resources</h4>
         <button onClick={() => this.showResourcesListToggler()}>Toggle ALL</button>
@@ -146,7 +146,7 @@ class Resources extends Component {
           <Route path={match.url} exact render={() => (<p>Toggle ALL or click a Resource from the list.</p>)} />
         </Switch>
         <hr />
-      </div>
+      </Container>
     )
   }
 };

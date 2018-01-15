@@ -54,6 +54,9 @@ const StudentsList = (props) => {
             <th>Email</th>
             <th>TeacherID</th>
             <th>Level</th>
+            <th>Show</th>
+            <th>Edit</th>
+            <th>Delete</th>
           </tr>
         </thead>
         <tbody>
