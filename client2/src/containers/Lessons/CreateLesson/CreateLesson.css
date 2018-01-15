@@ -1,3 +1,7 @@
 :local(.ResourcesList) {
   color: black;
 }
+
+:local(.FormBorder) {
+  margin: 25px;
+}

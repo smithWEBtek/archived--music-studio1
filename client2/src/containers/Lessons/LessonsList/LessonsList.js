@@ -5,9 +5,6 @@ import { Link } from 'react-router-dom';
 import { Table } from 'reactstrap'
 
 const LessonsList = (props) => {
-
-  console.log('[LessonsList] props', props)
-
   let studentLessons = props.lessons.map((lesson, index) => {
     return (
       <tr key={index}>

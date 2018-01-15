@@ -21,9 +21,11 @@ const Lesson = (props) => {
     lessonHeader = (
       <div>
         <hr />
-        <h1 className={appstyles.LessonHeaderBackground}>Date: {lesson.date}</h1>
+        <h5 className={appstyles.LessonHeaderBackground}>Date: {lesson.date}</h5>
+        <p>Date: <strong>{lesson.date}</strong></p>
         <p>Teacher: <strong>{lesson.teacher.lastname}</strong></p>
         <p>Student: <strong>{lesson.student.lastname}</strong></p>
+        <p>Notes: <strong>{lesson.notes}</strong></p>
       </div>
     )
   }

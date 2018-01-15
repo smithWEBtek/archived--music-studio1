@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import * as actionCreators from '../../../store/actions/index'
 import { connect } from 'react-redux'
 import styles from './CreateLesson.css'
+import * as actionCreators from '../../../store/actions/index'
 
 class CreateLesson extends Component {
   constructor(props) {
@@ -13,14 +13,27 @@ class CreateLesson extends Component {
       teacher: '',
       student: '',
       notes: '',
+      teachers: [],
+      students: [],
       resources: [],
       createLesson: false,
       editLesson: false
     }
   }
 
-  //********CREATE_LESSON form handling **************************
+  componentDidMount() {
+    this.props.onFetchStudents()
+    this.props.onFetchTeachers()
+    this.props.onFetchResources()
+    this.setState({
+      students: this.props.students,
+      teachers: this.props.teachers,
+      resources: this.props.resources
+    })
+  }
 
+
+  //********CREATE_LESSON form handling **************************
   handleDateSelect = (event) => {
     this.setState({
       date: event.target.data
@@ -29,24 +42,27 @@ class CreateLesson extends Component {
 
   handleTeacherSelect = (event) => {
     this.setState({
-      teacher: this.props.teachers.find(teacher => teacher.lastname === event.target.value)
+      teacher: this.props.teachers.filter(teacher => teacher.lastname === event.target.value)[0]
     })
   }
 
   handleStudentSelect = (event) => {
     this.setState({
-      student: this.props.students.find(student => student.lastname === event.target.value)
+      student: this.props.students.filter(student => student.lastname === event.target.value)[0]
     })
   }
 
   handleResourceSelect = (event) => {
     this.setState({
-      resource: this.props.resources.find(resource => resource.title === event.target.value)
+      resource: this.props.resources.filter(resource => resource.title === event.target.value)[0]
     })
   }
 
   handleSubmit = (e) => {
     e.preventDefault()
+
+    debugger;
+
     const lessonData = {
       date: this.state.date,
       teacher: this.state.teacher,
@@ -61,12 +77,9 @@ class CreateLesson extends Component {
       teacher: '',
       student: '',
       notes: '',
-      resource: '',
-
-      teachers: [],
-      students: [],
       resources: [],
-      lessons: []
+      createLesson: false,
+      editLesson: false
     })
     this.props.createLessonCancel()
   }
@@ -81,21 +94,21 @@ class CreateLesson extends Component {
     })
 
     const resourceOptions = this.props.resources.map((resource, index) => {
-      return <option value={resource.title} id={resource.id} key={resource.index}>{resource.title}</option>
+      return <option value={resource.title} id={resource.id} key={resource.id}>{resource.title}</option>
       // return <option component="select" multiple={true} value={[]} id={resource.id} key={resource.id}>{resource.title}</option>
     })
 
     return (
       <div className={styles.CreateLesson}>
         <p className={styles.FormInstructions}>Complete form and click 'Create Lesson'</p>
-        <form onSubmit={(event) => this.handleSubmit(event)} className={styles.Form}>
-          <p><label>DateSelector</label>
+        <form className={styles.Form}>
+          {/* <p><label>DateSelector</label>
             <select
               type='date'
               value={this.state.date}
               onChange={(event) => this.handleDateSelect(event)}>
             </select>
-          </p>
+          </p> */}
           <p><label>TeacherSelector</label>
             <select
               type='select'
@@ -132,7 +145,10 @@ class CreateLesson extends Component {
             type="button"
             onClick={this.props.createLessonCancel}
             className={styles.Danger}>CANCEL</button>
-          <button className={styles.Success}>CREATE Lesson</button>
+          <button
+            type='button'
+            className={styles.Success}
+            onSubmit={(event) => this.handleSubmit(event)}>CREATE Lesson</button>
         </form>
       </div>
     )
@@ -148,4 +164,14 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(CreateLesson)
+const mapDispatchToProps = dispatch => {
+  return {
+    onFetchStudents: () => dispatch(actionCreators.fetchStudents()),
+    onFetchTeachers: () => dispatch(actionCreators.fetchTeachers()),
+    onFetchResources: () => dispatch(actionCreators.fetchResources()),
+    onUpdateLesson: (data) => dispatch(actionCreators.updateLesson(data)),
+    onDeleteLesson: (id) => dispatch(actionCreators.deleteLesson(id))
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreateLesson);
