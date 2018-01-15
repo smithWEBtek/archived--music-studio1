@@ -1,16 +1,20 @@
 import React, { Component } from 'react';
-import { Route, NavLink, Link } from 'react-router-dom'
+import { Route, Link } from 'react-router-dom'
+import Aux from '../../hoc/Aux/Aux'
 import styles from './MainNav.css'
 import LogoSpin from '../../assets/images/LogoSpin.png';
 import Logo from '../../assets/images/Logo.png';
 import {
   Container,
+  Col,
   Collapse,
   Navbar,
   NavbarToggler,
   NavbarBrand,
   Nav,
-  NavItem
+  NavItem,
+  NavLink,
+  Row
 } from 'reactstrap';
 
 import Students from '../../containers/Students/Students'
@@ -39,36 +43,24 @@ class MainNav extends Component {
           <div>
             <Link to='/'><img src={LogoSpin} height="60px" className={styles.LogoSpin} alt="app-logo" /></Link>
           </div>
-          <NavbarBrand>pianoStudent</NavbarBrand>
+          <NavbarBrand><h4>pianoStudent</h4></NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
-
-              <NavItem>
-                <NavLink to='/students/' className={[styles.Item, 'text-white'].join(' ')}>students_</NavLink>
-              </NavItem>
-
-              <NavItem>
-                <NavLink to='/teachers/' className={[styles.Item, 'text-white'].join(' ')}>_teachers_</NavLink>
-              </NavItem>
-
-              <NavItem>
-                <NavLink to='/resources/' className={[styles.Item, 'text-white'].join(' ')}>_resources_</NavLink>
-              </NavItem>
-
-              <NavItem>
-                <NavLink to='/lessons/' className={[styles.Item, 'text-white'].join(' ')}>_lessons</NavLink>
-              </NavItem>
+              <NavItem><NavLink><Link to='/students/' className={[styles.Item, 'text-white'].join(' ')}>students</Link></NavLink></NavItem>
+              <NavItem><NavLink><Link to='/teachers/' className={[styles.Item, 'text-white'].join(' ')}>teachers</Link></NavLink></NavItem>
+              <NavItem><NavLink><Link to='/resources/' className={[styles.Item, 'text-white'].join(' ')}>resources</Link></NavLink></NavItem>
+              <NavItem><NavLink><Link to='/lessons/' className={[styles.Item, 'text-white'].join(' ')}>lessons</Link></NavLink></NavItem>
             </Nav>
-          </Collapse >
+          </Collapse>
         </Navbar >
         <div>
           <Route path="/" exact render={() => (
-            <div>
-              <hr /><hr /><hr /><hr /><hr />
-              <img src={Logo} height="150px" className={styles.Logo} alt="app-logo" />
-              <h5>Welcome, how is your practice going this week?</h5>
-              <hr /><hr /><hr /><hr /><hr />
+            <div className={styles.Center}>
+              <h3>II III II III II III II III II III II III II</h3>
+              <h5>Welcome, how is your practice going?</h5>
+              <img src={Logo} height="150px" className={styles.Logo} alt="app-logo" /><br />
+              <div><hr /> <hr /> <hr /> <hr /> <hr /></div>
             </div>
           )} />
           <Route path="/students" component={Students} />
