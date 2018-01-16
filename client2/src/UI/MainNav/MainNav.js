@@ -1,20 +1,16 @@
 import React, { Component } from 'react';
 import { Route, Link } from 'react-router-dom'
-import Aux from '../../hoc/Aux/Aux'
 import styles from './MainNav.css'
 import LogoSpin from '../../assets/images/LogoSpin.png';
 import Logo from '../../assets/images/Logo.png';
 import {
   Container,
-  Col,
   Collapse,
   Navbar,
   NavbarToggler,
   NavbarBrand,
   Nav,
-  NavItem,
-  NavLink,
-  Row
+  NavItem
 } from 'reactstrap';
 
 import Students from '../../containers/Students/Students'
