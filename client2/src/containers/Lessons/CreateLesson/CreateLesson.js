@@ -15,30 +15,20 @@ class CreateLesson extends Component {
 
     this.state = {
       createLesson: false,
-      formVisible: false,
-      date: null,
+      date: '2011-06-24',
       teacher: '',
       student: '',
-      notes: '',
-      resource: '',
-
-      teachers: [],
-      students: [],
-      resources: [],
-
-      lessonResources: []
+      resource_ids: [],
+      notes: ''
     }
   }
+
+
 
   componentWillMount() {
     this.props.onFetchStudents()
     this.props.onFetchTeachers()
     this.props.onFetchResources()
-    this.setState({
-      students: this.props.students,
-      teachers: this.props.teachers,
-      resources: this.props.resources
-    })
   }
 
   //********CREATE_LESSON form handling **************************
@@ -50,11 +40,49 @@ class CreateLesson extends Component {
     this.setState({ createLesson: false })
   }
 
-  createLesson = (newLessonData) => {
-    this.props.onLessonCreate(newLessonData)
-    this.setState({ createLesson: false })
+  handleSubmit = (e) => {
+    e.preventDefault()
+    const lessonData = {
+      date: this.state.date,
+      teacher_id: this.state.teacher.id,
+      student_id: this.state.student.id,
+      resource_ids: [`${this.state.resource.id}`],
+      notes: this.state.notes
+    }
+    // debugger
+
+    // def lesson_params
+    // params.require(: lesson).permit(: date, : teacher_id, : student_id, : notes, resource_ids: [])
+    // end
+
+    // lesson = {
+    //   date: '2018-2-3',
+    //   teacher_id: '1', 
+    //   student_id: '5',
+    //   notes: 'asdf',
+    //   resource_ids: []
+    // }
+
+
+
+    this.props.createLesson(lessonData)
+
+    this.setState({
+      createLesson: false,
+      formVisible: false,
+      date: null,
+      teacher: '',
+      student: '',
+      resource: '',
+      notes: '',
+      lessonResources: []
+    })
+    this.props.createLessonCancel()
   }
 
+
+
+  //********CREATE_LESSON selector functions **************************
   handleDateSelect = (event) => {
     this.setState({
       date: event.target
@@ -79,32 +107,10 @@ class CreateLesson extends Component {
     })
   }
 
-  handleSubmit = (e) => {
-    e.preventDefault()
-    const lessonData = {
-      date: this.state.date,
-      teacher_id: this.state.teacher.id,
-      student_id: this.state.student.id,
-      resource_id: this.state.resource.id,
-      notes: this.state.notes
-    }
-    this.props.createLesson(lessonData)
-    this.setState({
-      formVisible: false,
-      date: '',
-      teacher: '',
-      student: '',
-      notes: '',
-      resource: '',
-
-      teachers: [],
-      students: [],
-      resources: []
-    })
-    this.props.createLessonCancel()
-  }
 
   render() {
+
+    // console.log('[CreateLesson] at render() this.props:', this.props)
 
     const teacherOptions = this.props.teachers.map(teacher => {
       return <option value={teacher.lastname} id={teacher.id} key={teacher.id}>{teacher.lastname}</option>
@@ -135,20 +141,21 @@ class CreateLesson extends Component {
           <p>
             <label>TeacherSelector</label>
             <select value={this.state.teacher.lastname} onChange={(event) => this.handleTeacherSelect(event)}>
+              console.log('teacherOptions', teacherOptions)
               {teacherOptions}
             </select>
           </p>
 
           <p>
             <label>StudentSelector</label>
-            <select value={this.state.student.lastname} onChange={(event) => this.handleStudentSelect(event)}>
+            <select value={this.state.student_id} onChange={(event) => this.handleStudentSelect(event)}>
               {studentOptions}
             </select>
           </p>
 
           <p>
             <label>ResourceSelector</label>
-            <select value={this.state.resource.title} onChange={(event) => this.handleResourceSelect(event)}>
+            <select value={this.state.resource_id} onChange={(event) => this.handleResourceSelect(event)}>
               {resourceOptions}
             </select>
           </p>
@@ -173,6 +180,15 @@ class CreateLesson extends Component {
   }
 }
 
+SingleDatePicker.propTypes = {
+  // date: PropTypes.momentPropTypes.momentObj.isRequired,
+  // date: PropTypes.momentObj.isRequired,
+  // date: PropTypes.momentPropTypes.isRequired,
+  onDateChange: PropTypes.func.isRequired,
+  focused: PropTypes.bool,
+  onFocusChange: PropTypes.func.isRequired
+}
+
 const mapStateToProps = state => {
   return {
     students: state.stu.students,
@@ -180,23 +196,13 @@ const mapStateToProps = state => {
     resources: state.res.resources,
     lessons: state.les.lessons
   }
-  SingleDatePicker.propTypes = {
-    // date: PropTypes.momentPropTypes.momentObj.isRequired,
-    // date: PropTypes.momentObj.isRequired,
-    // date: PropTypes.momentPropTypes.isRequired,
-    onDateChange: PropTypes.func.isRequired,
-    focused: PropTypes.bool,
-    onFocusChange: PropTypes.func.isRequired
-  }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
     onFetchStudents: () => dispatch(actionCreators.fetchStudents()),
     onFetchTeachers: () => dispatch(actionCreators.fetchTeachers()),
-    onFetchResources: () => dispatch(actionCreators.fetchResources()),
-    onUpdateLesson: (data) => dispatch(actionCreators.updateLesson(data)),
-    onDeleteLesson: (id) => dispatch(actionCreators.deleteLesson(id))
+    onFetchResources: () => dispatch(actionCreators.fetchResources())
   };
 }
 

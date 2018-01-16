@@ -1,4 +1,22 @@
 export {
+  fetchLesson,
+  showLesson,
+  createLesson,
+  deleteLesson,
+  updateLesson,
+  fetchLessons
+} from './lessonActions'
+
+export {
+  fetchResource,
+  showResource,
+  createResource,
+  deleteResource,
+  updateResource,
+  fetchResources
+} from './resourceActions'
+
+export {
   fetchStudent,
   showStudent,
   createStudent,
@@ -15,21 +33,3 @@ export {
   updateTeacher,
   fetchTeachers
 } from './teacherActions'
-
-export {
-  fetchResource,
-  showResource,
-  createResource,
-  deleteResource,
-  updateResource,
-  fetchResources
-} from './resourceActions'
-
-export {
-  fetchLesson,
-  showLesson,
-  createLesson,
-  deleteLesson,
-  updateLesson,
-  fetchLessons
-} from './lessonActions'

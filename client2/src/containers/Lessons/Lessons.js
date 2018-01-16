@@ -3,7 +3,7 @@ import { Route, Switch, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actionCreators from '../../store/actions/index'
 
-import { Container, Row, Col } from 'reactstrap'
+import { Container } from 'reactstrap'
 // import styles from './Lessons.css'
 import appstyles from '../../App.css'
 import Modal from '../../UI/Modal/Modal'
@@ -87,7 +87,7 @@ class Lessons extends Component {
         <button onClick={() => this.showLessonsList()}><Link to='/lessons'>ALL lessons</Link></button>
 
         {/*********CREATE LESSON MODAL********************/}
-        <button onClick={this.createLessonForm}>Add Lesson</button>
+        <button onClick={() => this.createLessonForm()}>Add Lesson</button>
         <Modal
           show={this.state.createLesson}
           modalClosed={this.createLessonFormCancel}>

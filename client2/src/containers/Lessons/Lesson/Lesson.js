@@ -6,15 +6,11 @@ import { Link } from 'react-router-dom'
 
 import appstyles from '../../../App.css'
 import ResourcesList from '../../Resources/ResourcesList/ResourcesList'
-import StudentsList from '../../Students/StudentsList/StudentsList'
-import TeachersList from '../../Teachers/TeachersList/TeachersList'
 
 const Lesson = (props) => {
 
   const lesson = props.lessons.filter(lesson => lesson.id === +props.match.params.id)[0]
   let lessonHeader = <div><p>Lesson component is loading...</p></div>
-  let lessonTeacher = <div><h5>No teacher assigned</h5></div>
-  let lessonStudent = <div><h5>No student assigned</h5></div>
   let lessonResources = <div><h5>No resources assigned</h5></div>
 
   if (lesson) {
@@ -53,9 +49,9 @@ const Lesson = (props) => {
 
 const mapStateToProps = state => {
   return {
+    resources: state.res.resources,
     students: state.stu.students,
     teachers: state.tch.teachers,
-    resources: state.res.resources,
     lessons: state.les.lessons
   }
 }
