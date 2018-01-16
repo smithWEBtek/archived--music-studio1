@@ -32,20 +32,20 @@ const ResourcesList = (props) => {
               to={`/resources/${resource.id}`}
               params={{ id: resource.id }}
               key={resource.id}
-            >SHOW</Link></button></td>)}
+            >show</Link></button></td>)}
 
           {props.edit ?
             <td><button
               type='button'
               className="Edit"
-              onClick={() => props.edit(resource.id)}>EDIT
+              onClick={() => props.edit(resource.id)}>edit
         </button></td>
             : null}
 
           {props.delete ?
             <td><button
               onClick={() => props.delete(resource.id)}
-              className="Danger">X</button></td>
+              className="Danger">x</button></td>
             : null}
         </tr>
       </Aux >

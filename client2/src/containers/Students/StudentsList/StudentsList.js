@@ -24,23 +24,22 @@ const StudentsList = (props) => {
           onClick={props.close}>
           <Link
             to={`/students/${student.id}`}
-            // params={{ id: student.id }}
             key={student.id}
-          >SHOW</Link>
+          >show</Link>
         </button></td>
 
         {props.edit ?
           <td><button
             type='button'
             className={styles.Edit}
-            onClick={() => props.edit(student.id)}>EDIT
+            onClick={() => props.edit(student.id)}>edit
         </button></td>
           : null}
 
         {props.delete ?
           <td><button
             onClick={() => props.delete(student.id)}
-            className={styles.Danger}>X</button></td>
+            className={styles.Danger}>x</button></td>
           : null}
       </tr>
     )
@@ -57,8 +56,8 @@ const StudentsList = (props) => {
             <th>TeacherID</th>
             <th>Level</th>
             <th>Show</th>
-            <th>Edit</th>
-            <th>Delete</th>
+            {props.edit ? <th>Edit</th> : null}
+            {props.delete ? <th>Delete</th> : null}
           </tr>
         </thead>
         <tbody>
@@ -68,6 +67,5 @@ const StudentsList = (props) => {
     </div>
   )
 }
-
 
 export default StudentsList

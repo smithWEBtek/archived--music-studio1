@@ -3,13 +3,13 @@ DATA_teachers = {
     ["firstname", "lastname", "email"],
   :teachers => [
   ['Not', 'Assigned', 'unassigned@music.com'],
-  ['Art', 'Pepper', 'jpepper@music.com' ],
-  ['Milas', 'Filatova', 'mfilatova@music.com'],
-  ['Barry', 'Harris', 'bgendron@music.com'],
+  ['John', 'Coltrane', 'trane@music.com' ],
+  ['Art', 'Tatum', 'artful@music.com'],
+  ['Jimi', 'Hendrix', 'jimi@music.com'],
   ['James', 'Brown', 'jb@getfunky1.com'],
   ['Sonny', 'Stitt', 'sonny@swing.com'],
-  ['Lester', 'Parker', 'lenny@swing.com'],
-  ['Betty', 'Carter', 'betty@swing.com']
+  ['Lester', 'Parker', 'lester@swing.com'],
+  ['Charlie', 'Banacos', 'cb@swing.com']
   ]
 }
 
@@ -34,10 +34,10 @@ DATA_students = {
     [3, 2, 'Brian', 'Nadeau', 'bnadeau@student.com'],
     [1, 3, 'Sue', 'Morrow', 'smorrow@student.com'],
     [1, 3, 'Andrea', 'McPhail', 'amcphail@student.com'],
-    [3, 4, 'Orin', 'Keepnews', 'okeepnews@student.com'],
+    [3, 4, 'Orin', 'Franklin', 'okeepnews@student.com'],
     [3, 4, 'Will', 'Marron', 'wmarron@student.com'],
-    [1, 5, 'Penny', 'Clump', 'pclump@student.com'],
-    [1, 5, 'Babu', 'Aadou', 'babadoo@student.com']
+    [1, 5, 'Penny', 'Clooney', 'pclump@student.com'],
+    [1, 5, 'Babu', 'Aadouz', 'babadoo@student.com']
   ]
 }
 

@@ -22,18 +22,22 @@ const TeachersList = (props) => {
             to={`/teachers/${teacher.id}`}
             params={{ id: teacher.id }}
             key={teacher.id}
-          >SHOW</Link>
+          >show</Link>
         </button></td>
 
-        <td><button
-          type='button'
-          className={styles.Edit}
-          onClick={() => props.edit(teacher.id)}>EDIT
+        {props.edit ?
+          <td><button
+            type='button'
+            className={styles.Edit}
+            onClick={() => props.edit(teacher.id)}>edit
         </button></td>
+          : null}
 
-        <td><button
-          onClick={() => props.delete(teacher.id)}
-          className={styles.Danger}>X</button></td>
+        {props.delete ?
+          <td><button
+            onClick={() => props.delete(teacher.id)}
+            className={styles.Danger}>x</button></td>
+          : null}
       </tr>
     )
   })
@@ -47,8 +51,8 @@ const TeachersList = (props) => {
             <th>Name</th>
             <th>Email</th>
             <th>Show</th>
-            <th>Edit</th>
-            <th>Delete</th>
+            {props.edit ? <th>Edit</th> : null}
+            {props.delete ? <th>Delete</th> : null}
           </tr>
         </thead>
         <tbody>

@@ -27,10 +27,6 @@ const Student = (props) => {
   }
 
   if (student && student.lessons) {
-
-    // debugger;
-
-
     studentLessons = (
       <div>
         <hr />
