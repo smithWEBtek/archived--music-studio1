@@ -1,9 +1,8 @@
 import React from 'react'
-// import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Table } from 'reactstrap'
 import Aux from '../../../hoc/Aux/Aux'
-import styles from './ResourcesList.css'
+import './ResourcesList.css'
 
 const ResourcesList = (props) => {
 
@@ -24,11 +23,10 @@ const ResourcesList = (props) => {
           <td>{resource.format}</td>
           <td>{resource.location}</td>
 
-
           {resource.url === 'no_url_given' ? (
             <td><button
               type='button'
-              className={styles.ShowDisabled}
+              className="Disabled"
               onclick="scroll(0,0)"
             >empty</button></td>)
             : (<td><button><Link
@@ -40,7 +38,7 @@ const ResourcesList = (props) => {
           {props.edit ?
             <td><button
               type='button'
-              className={styles.Edit}
+              className="Edit"
               onClick={() => props.edit(resource.id)}>EDIT
         </button></td>
             : null}
@@ -48,7 +46,7 @@ const ResourcesList = (props) => {
           {props.delete ?
             <td><button
               onClick={() => props.delete(resource.id)}
-              className={styles.Danger}>X</button></td>
+              className="Danger">X</button></td>
             : null}
         </tr>
       </Aux >
@@ -56,7 +54,7 @@ const ResourcesList = (props) => {
   })
   return (
     <div>
-      <Table striped size="sm" className={styles.ResourcesList}>
+      <Table striped size="sm" className="ResourcesList">
         <thead>
           <tr>
             <th>ID</th>
