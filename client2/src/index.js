@@ -9,6 +9,7 @@ import studentReducer from './store/reducers/studentReducer';
 import teacherReducer from './store/reducers/teacherReducer';
 import resourceReducer from './store/reducers/resourceReducer';
 import lessonReducer from './store/reducers/lessonReducer';
+import lessonResourceReducer from './store/reducers/lessonResourceReducer';
 
 import App from './App';
 import classes from './index.css';
@@ -20,7 +21,8 @@ const rootReducer = combineReducers({
   stu: studentReducer,
   tch: teacherReducer,
   les: lessonReducer,
-  res: resourceReducer
+  res: resourceReducer,
+  lesres: lessonResourceReducer
 });
 
 const logger = store => {

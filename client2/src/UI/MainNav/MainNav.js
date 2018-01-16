@@ -17,6 +17,7 @@ import Students from '../../containers/Students/Students'
 import Teachers from '../../containers/Teachers/Teachers'
 import Lessons from '../../containers/Lessons/Lessons'
 import Resources from '../../containers/Resources/Resources'
+import LessonResources from '../../containers/LessonResources/LessonResourcesList'
 
 class MainNav extends Component {
   constructor(props) {
@@ -47,6 +48,7 @@ class MainNav extends Component {
               <NavItem><Link to='/teachers/' className={styles.Item}>teachers</Link></NavItem>
               <NavItem><Link to='/resources/' className={styles.Item}>resources</Link></NavItem>
               <NavItem><Link to='/lessons/' className={styles.Item}>lessons</Link></NavItem>
+              <NavItem><Link to='/lesson_resources/' className={styles.Item}>lessonResources</Link></NavItem>
             </Nav>
           </Collapse>
         </Navbar >
@@ -63,6 +65,7 @@ class MainNav extends Component {
           <Route path="/teachers" component={Teachers} />
           <Route path="/lessons" component={Lessons} />
           <Route path="/resources" component={Resources} />
+          <Route path="/lesson_resources" component={LessonResources} />
         </div>
       </Container >
     );

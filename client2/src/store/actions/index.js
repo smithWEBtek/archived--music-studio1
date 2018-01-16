@@ -33,3 +33,12 @@ export {
   updateTeacher,
   fetchTeachers
 } from './teacherActions'
+
+export {
+  fetchLessonResource,
+  showLessonResource,
+  createLessonResource,
+  deleteLessonResource,
+  updateLessonResource,
+  fetchLessonResources
+} from './lessonResourceActions'
