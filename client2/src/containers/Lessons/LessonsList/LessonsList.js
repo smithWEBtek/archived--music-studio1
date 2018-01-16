@@ -16,8 +16,8 @@ const LessonsList = (props) => {
         </Link></td>
 
         <td>{lesson.date}</td>
-        <td>{lesson.teacher_id}</td>
-        <td>{lesson.student_id}</td>
+        <td><Link to={`/teachers/${lesson.teacher_id}`}>{lesson.teacher.firstname} {lesson.teacher.lastname}</Link></td>
+        <td><Link to={`/students/${lesson.student_id}`}>{lesson.student.firstname} {lesson.student.lastname}</Link></td>
         <td>{lesson.resources ? lesson.resources.length : 0}</td>
 
         <td><button
@@ -26,23 +26,22 @@ const LessonsList = (props) => {
           onClick={props.close}>
           <Link
             to={`/lessons/${lesson.id}`}
-            // params={{ id: lesson.id }}
             key={lesson.id}
-          >SHOW</Link>
+          >show</Link>
         </button></td>
 
         {props.edit ?
           <td><button
             type='button'
             className={styles.Edit}
-            onClick={() => props.edit(lesson.id)}>EDIT
+            onClick={() => props.edit(lesson.id)}>edit
         </button></td>
           : null}
 
         {props.delete ?
           <td><button
             onClick={() => props.delete(lesson.id)}
-            className={styles.Danger}>X</button></td>
+            className={styles.Danger}>x</button></td>
           : null}
       </tr>
     )
@@ -55,12 +54,12 @@ const LessonsList = (props) => {
           <th>ID</th>
           <th>Teacher - Student</th>
           <th>Date</th>
-          <th>TeacherID</th>
-          <th>StudentID</th>
+          <th>Teacher</th>
+          <th>Student</th>
           <th>#Resources</th>
           <th>Show</th>
-          <th>Edit</th>
-          <th>Delete</th>
+          {props.edit ? <th>Edit</th> : null}
+          {props.delete ? <th>Delete</th> : null}
         </tr>
       </thead>
       <tbody>
