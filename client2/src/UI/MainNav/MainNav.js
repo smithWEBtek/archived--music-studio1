@@ -47,10 +47,10 @@ class MainNav extends Component {
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
-              <NavItem><NavLink><Link to='/students/' className={[styles.Item, 'text-white'].join(' ')}>students</Link></NavLink></NavItem>
-              <NavItem><NavLink><Link to='/teachers/' className={[styles.Item, 'text-white'].join(' ')}>teachers</Link></NavLink></NavItem>
-              <NavItem><NavLink><Link to='/resources/' className={[styles.Item, 'text-white'].join(' ')}>resources</Link></NavLink></NavItem>
-              <NavItem><NavLink><Link to='/lessons/' className={[styles.Item, 'text-white'].join(' ')}>lessons</Link></NavLink></NavItem>
+              <NavItem><Link to='/students/' className={styles.Item}>students</Link></NavItem>
+              <NavItem><Link to='/teachers/' className={styles.Item}>teachers</Link></NavItem>
+              <NavItem><Link to='/resources/' className={styles.Item}>resources</Link></NavItem>
+              <NavItem><Link to='/lessons/' className={styles.Item}>lessons</Link></NavItem>
             </Nav>
           </Collapse>
         </Navbar >

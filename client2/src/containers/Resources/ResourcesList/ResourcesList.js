@@ -7,19 +7,17 @@ import styles from './ResourcesList.css'
 
 const ResourcesList = (props) => {
 
-  let list = props.resources.map((resource, index) => {
-
+  let renderResources = props.resources.map((resource, index) => {
     return (
       <Aux key={index} >
         <tr>
           <th scope="row">{index + 1}</th>
-          <td><button>
-            <Link
-              to={`/resources/${resource.id}`}
-              params={{ id: resource.id }}
-              key={resource.id}
-            >{resource.title}</Link>
-          </button></td>
+          <td><Link
+            to={`/resources/${resource.id}`}
+            params={{ id: resource.id }}
+            key={resource.id}
+          >{resource.title}</Link></td>
+
           <td>{resource.category}</td>
           <td>{resource.description}</td>
           <td>{resource.format}</td>
@@ -65,12 +63,12 @@ const ResourcesList = (props) => {
             <th>Format</th>
             <th>Location</th>
             <th>Show</th>
-            <th>Edit</th>
-            <th>Delete</th>
+            {props.edit ? <th>Edit</th> : null}
+            {props.delete ? <th>Delete</th> : null}
           </tr>
         </thead>
         <tbody>
-          {list}
+          {renderResources}
         </tbody>
       </Table>
     </div>

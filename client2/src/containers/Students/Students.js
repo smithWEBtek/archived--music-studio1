@@ -5,6 +5,7 @@ import * as actionCreators from '../../store/actions/index'
 
 import { Container, Row, Col } from 'reactstrap'
 // import styles from './Students.css'
+import appstyles from '../../App.css'
 import Modal from '../../UI/Modal/Modal'
 
 import Student from './Student/Student'
@@ -25,17 +26,27 @@ class Students extends Component {
     this.props.onFetchStudents();
   }
 
-  showStudentsListToggler = () => {
-    let toggle = this.state.showStudentsList
-    this.setState({ showStudentsList: !toggle })
+  //********SHOW_STUDENTS_LIST form handling********************
+  showStudentsList = () => {
+    this.setState({
+      showStudentsList: true
+    })
+  }
+
+  closeStudentsList = () => {
+    this.setState({
+      showStudentsList: false
+    })
   }
 
   //********SHOW_STUDENT form handling**************************
   showStudentClose = () => {
-    this.setState({ showStudent: false })
+    this.setState({
+      showStudent: false
+    })
   }
 
-  //********CREATE_STUDENT form handling **************************
+  //********CREATE_STUDENT form handling ***********************
   createStudentForm = () => {
     this.setState({ createStudent: true })
   }
@@ -78,7 +89,7 @@ class Students extends Component {
     let clickableNames = students.map((student, index) => {
       return (
         <Link to={`/students/${student.id}`}
-          style={{ marginRight: '12px' }}
+          style={{ marginRight: '5px' }}
           key={student.id}
           onClick={() => this.setState({ showStudentsList: false })}
         >{student.lastname}
@@ -89,10 +100,9 @@ class Students extends Component {
     return (
       <Container>
         <hr />
-        <h4>Students</h4>
-        <button onClick={() => this.showStudentsListToggler()}>Toggle ALL</button>
+        <button onClick={this.showStudentsList}><Link to='/students'>ALL students</Link></button>
 
-        {/*********CREATE STUDENT MODAL********************************************/}
+        {/*********CREATE STUDENT MODAL********************/}
         <button onClick={this.createStudentForm}>Add Student</button>
         <Modal
           show={this.state.createStudent}
@@ -102,7 +112,7 @@ class Students extends Component {
             createStudentCancel={this.createStudentFormCancel} />
         </Modal>
 
-        {/**********EDIT STUDENT MODAL**********************************************/}
+        {/**********EDIT STUDENT MODAL********************/}
         <Modal
           show={this.state.editStudent}
           modalClosed={this.closeEditStudentForm}>
@@ -118,7 +128,7 @@ class Students extends Component {
           /> : null}
         </Modal>
 
-        {/**********CLICKABLE NAMES**********************************************/}
+        {/**********CLICKABLE NAMES**********************/}
         <Container>
           <Row>
             <Col>
@@ -127,23 +137,24 @@ class Students extends Component {
           </Row>
         </Container>
 
-        {/**********STUDENTS LIST**********************************************/}
+        {/**********STUDENTS LIST************************/}
         <div>
           <Switch>
             <Route path={`${match.url}/:id/edit`} exact component={EditStudent} />
             <Route path={`${match.url}/new`} exact component={CreateStudent} />
             <Route path={`${match.url}/:id`} exact component={Student} />
-            <Route path={match.url} exact render={() => (<p>Toggle ALL or click a Student from the list.</p>)} />
+            <Route path={match.url} exact />
           </Switch>
         </div>
         <div>
-          {this.state.showStudentsList ? <StudentsList
-            students={students}
-            show={(id) => this.state.showStudent(id)}
-            edit={(id) => this.showEditStudentForm(id)}
-            delete={(id) => this.props.onDeleteStudent(id)}
-            close={() => this.showStudentsListToggler()}
-          /> : null}
+          {this.state.showStudentsList ?
+            <div><h5 className={appstyles.IndexHeaderBackground}>ALL students</h5>
+              <StudentsList
+                students={students}
+                edit={(id) => this.showEditStudentForm(id)}
+                delete={(id) => this.props.onDeleteStudent(id)}
+                close={() => this.closeStudentsList()}
+              /></div> : null}
         </div>
         <hr />
       </Container>

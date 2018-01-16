@@ -13,7 +13,10 @@ const LessonsList = (props) => {
         <td>{lesson.date}</td>
         <td>{lesson.teacher_id}</td>
         <td>{lesson.student_id}</td>
-        {/* <td>{lesson.resources.length}</td> */}
+        <td>{lesson.resources ? lesson.resources.length : 0}</td>
+        <td><button className={styles.Success}>Show</button></td>
+        <td><button className={styles.Edit}>Edit</button></td>
+        <td><button className={styles.Danger}>X</button></td>
       </tr>
     )
   })
@@ -27,7 +30,10 @@ const LessonsList = (props) => {
           <th>Date</th>
           <th>TeacherID</th>
           <th>StudentID</th>
-          {/* <th>#Resources</th> */}
+          <th>#Resources</th>
+          <th>Show</th>
+          <th>Edit</th>
+          <th>Delete</th>
         </tr>
       </thead>
       <tbody>

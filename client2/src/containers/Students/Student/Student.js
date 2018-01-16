@@ -18,7 +18,6 @@ const Student = (props) => {
   if (student) {
     studentHeader = (
       <div>
-        <hr />
         <h5 className={appstyles.StudentHeaderBackground}>{student.firstname} {student.lastname}</h5>
         <p>Level: <strong>{student.level}</strong></p>
         <p>Teacher: <strong>{student.teacher.lastname}</strong></p>

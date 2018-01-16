@@ -5,6 +5,7 @@ import * as actionCreators from '../../store/actions/index'
 
 import { Container, Row, Col } from 'reactstrap'
 // import styles from './Resources.css'
+import appstyles from '../../App.css'
 import Modal from '../../UI/Modal/Modal'
 
 import Resource from './Resource/Resource'
@@ -25,9 +26,16 @@ class Resources extends Component {
     this.props.onFetchResources();
   }
 
-  showResourcesListToggler = () => {
-    let toggle = this.state.showResourcesList
-    this.setState({ showResourcesList: !toggle })
+  showResourcesList = () => {
+    this.setState({
+      showResourcesList: true
+    })
+  }
+
+  closeResourcesList = () => {
+    this.setState({
+      showResourcesList: false
+    })
   }
 
   //********SHOW_RESOURCE form handling**************************
@@ -78,7 +86,7 @@ class Resources extends Component {
     let clickableNames = resources.map((resource, index) => {
       return (
         <Link to={`/resources/${resource.id}`}
-          style={{ marginRight: '12px' }}
+          style={{ marginRight: '5px' }}
           key={resource.id}
           onClick={() => this.setState({ showResourcesList: false })}
         >{resource.title}
@@ -90,7 +98,7 @@ class Resources extends Component {
       <Container>
         <hr />
         <h4>Resources</h4>
-        <button onClick={() => this.showResourcesListToggler()}>Toggle ALL</button>
+        <button onClick={() => this.showResourcesList()}>Toggle ALL</button>
 
         {/*********CREATE RESOURCE MODAL********************************************/}
         <button onClick={this.createResourceForm}>Add Resource</button>
@@ -130,23 +138,25 @@ class Resources extends Component {
 
         {/**********RESOURCES LIST**********************************************/}
         <div>
-          {this.state.showResourcesList ? <ResourcesList
-            resources={resources}
-            show={(id) => this.state.showResource(id)}
-            edit={(id) => this.showEditResourceForm(id)}
-            delete={(id) => this.props.onDeleteResource(id)}
-            close={() => this.showResourcesListToggler()}
-          /> : null}
+          <Switch>
+            <Route path={`${match.url}/:id/edit`} exact component={EditResource} />
+            <Route path={`${match.url}/new`} exact component={CreateResource} />
+            <Route path={`${match.url}/:id`} exact component={Resource} />
+            <Route path={match.url} exact render={() => (<p>Toggle ALL or click a Resource from the list.</p>)} />
+          </Switch>
         </div>
-
-        <Switch>
-          <Route path={`${match.url}/:id/edit`} exact component={EditResource} />
-          <Route path={`${match.url}/new`} exact component={CreateResource} />
-          <Route path={`${match.url}/:id`} exact component={Resource} />
-          <Route path={match.url} exact render={() => (<p>Toggle ALL or click a Resource from the list.</p>)} />
-        </Switch>
+        <div>
+          {this.state.showResourcesList ?
+            <div><h5 className={appstyles.IndexHeaderBackground}>ALL resources</h5>
+              <ResourcesList
+                resources={resources}
+                edit={(id) => this.showEditResourceForm(id)}
+                delete={(id) => this.props.onDeleteResource(id)}
+                close={() => this.closeResourcesList()}
+              /></div> : null}
+        </div>
         <hr />
-      </Container>
+      </Container >
     )
   }
 };

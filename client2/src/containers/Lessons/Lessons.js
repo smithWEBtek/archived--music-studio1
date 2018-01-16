@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actionCreators from '../../store/actions/index'
 
+import { Container, Row, Col } from 'reactstrap'
 // import styles from './Lessons.css'
 import Modal from '../../UI/Modal/Modal'
 
@@ -15,6 +16,7 @@ class Lessons extends Component {
   state = {
     lesson: {},
     showLesson: false,
+    showLessonsList: true,
     createLesson: false,
     editLesson: false
   }
@@ -23,17 +25,22 @@ class Lessons extends Component {
     this.props.onFetchLessons();
   }
 
+  showLessonsListToggler = () => {
+    let toggle = this.state.showLessonsList
+    this.setState({ showLessonsList: !toggle })
+  }
+
   //********SHOW_LESSON form handling**************************
   showLessonClose = () => {
     this.setState({ showLesson: false })
   }
 
   //********CREATE_LESSON form handling **************************
-  showCreateLessonForm = () => {
+  createLessonForm = () => {
     this.setState({ createLesson: true })
   }
 
-  closeCreateLessonForm = () => {
+  createLessonFormCancel = () => {
     this.setState({ createLesson: false })
   }
 
@@ -70,21 +77,22 @@ class Lessons extends Component {
     const { match, lessons } = this.props;
 
     return (
-      <div>
+      <Container>
         <hr />
         <h4>Lessons</h4>
+        <button onClick={() => this.showLessonsListToggler()}>Toggle ALL</button>
 
-        {/*********CREATE LESSON MODAL********************************************/}
-        <button onClick={this.showCreateLessonForm}>Add Lesson</button>
+        {/*********CREATE LESSON MODAL********************/}
+        <button onClick={this.createLessonForm}>Add Lesson</button>
         <Modal
           show={this.state.createLesson}
-          modalClosed={this.closeCreateLessonForm}>
+          modalClosed={this.createLessonFormCancel}>
           <CreateLesson
             createLesson={(newLessonData) => this.createLesson(newLessonData)}
-            createLessonCancel={this.closeCreateLessonForm} />
+            createLessonCancel={this.createLessonFormCancel} />
         </Modal>
 
-        {/**********EDIT LESSON MODAL  >>>>>  LESSON BUILDER ? ********************/}
+        {/**********EDIT LESSON MODAL********************/}
         {/* <Modal
           show={this.state.editLesson}
           modalClosed={this.closeEditLessonForm}>
@@ -98,25 +106,24 @@ class Lessons extends Component {
           /> : null}
         </Modal> */}
 
-        {/**********LESSONS LIST**********************************************/}
+        {/**********LESSONS LIST***********************/}
         < div >
-          <LessonsList
+          <Switch>
+            <Route path={`${match.url}/:id/edit`} exact component={EditLesson} />
+            <Route path={`${match.url}/new`} exact component={CreateLesson} />
+            <Route path={`${match.url}/:id`} exact component={Lesson} />
+            <Route path={match.url} exact render={() => (<p>Toggle ALL or click a Lesson from the list.</p>)} />
+          </Switch>
+          {this.state.showLessonsList ? <LessonsList
             lessons={lessons}
             show={(id) => this.state.showLesson(id)}
             edit={(id) => this.showEditLessonForm(id)}
             delete={(id) => this.props.onDeleteLesson(id)}
             close={() => this.showLessonsListToggler()}
-          />
+          /> : null}
         </div >
-
-        <Switch>
-          <Route path={`${match.url}/:id/edit`} exact component={EditLesson} />
-          <Route path={`${match.url}/new`} exact component={CreateLesson} />
-          <Route path={`${match.url}/:id`} exact component={Lesson} />
-          <Route path={match.url} exact render={() => (<p>Toggle ALL or click a Lesson from the list.</p>)} />
-        </Switch>
         <hr />
-      </div >
+      </Container >
     )
   }
 };

@@ -2,8 +2,9 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 // import styles from './Teacher.css'
-import appstyles from '../../../App.css'
 // import { Container, Row, Col } from 'reactstrap'
+
+import appstyles from '../../../App.css'
 import StudentsList from '../../Students/StudentsList/StudentsList'
 import LessonsList from '../../Lessons/LessonsList/LessonsList'
 
@@ -17,7 +18,6 @@ const Teacher = (props) => {
   if (teacher) {
     teacherHeader = (
       <div>
-        <hr />
         <h5 className={appstyles.TeacherHeaderBackground}>{teacher.firstname} {teacher.lastname}</h5>
         <p>Email: {teacher.email} </p>
       </div>

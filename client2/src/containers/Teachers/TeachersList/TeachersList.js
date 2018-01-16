@@ -9,9 +9,11 @@ const TeachersList = (props) => {
     return (
       <tr key={index}>
         <th scope="row">{teacher.id}</th>
-        <td>{teacher.firstname}</td>
-        <td>{teacher.lastname}</td>
+        <td><Link to={`/teachers/${teacher.id}`}
+          style={{ marginRight: '12px' }}
+          key={teacher.id}>{teacher.firstname} {teacher.lastname}</Link></td>
         <td>{teacher.email}</td>
+
         <td><button
           type='button'
           className={styles.Success}
@@ -42,8 +44,7 @@ const TeachersList = (props) => {
         <thead>
           <tr>
             <th>ID</th>
-            <th>Firstname</th>
-            <th>Lastname</th>
+            <th>Name</th>
             <th>Email</th>
             <th>Show</th>
             <th>Edit</th>

@@ -5,6 +5,7 @@ import * as actionCreators from '../../store/actions/index'
 
 import { Container, Row, Col } from 'reactstrap'
 // import styles from './Teachers.css'
+import appstyles from '../../App.css'
 import Modal from '../../UI/Modal/Modal'
 
 import Teacher from './Teacher/Teacher'
@@ -25,17 +26,27 @@ class Teachers extends Component {
     this.props.onFetchTeachers();
   }
 
-  showTeachersListToggler = () => {
-    let toggle = this.state.showTeachersList
-    this.setState({ showTeachersList: !toggle })
+  //********SHOW_TEACHERS_LIST form handling********************
+  showTeachersList = () => {
+    this.setState({
+      showTeachersList: true
+    })
+  }
+
+  closeTeachersList = () => {
+    this.setState({
+      showTeachersList: false
+    })
   }
 
   //********SHOW_TEACHER form handling**************************
   showTeacherClose = () => {
-    this.setState({ showTeacher: false })
+    this.setState({
+      showTeacher: false
+    })
   }
 
-  //********CREATE_TEACHER form handling **************************
+  //********CREATE_TEACHER form handling ***********************
   createTeacherForm = () => {
     this.setState({ createTeacher: true })
   }
@@ -78,7 +89,7 @@ class Teachers extends Component {
     let clickableNames = teachers.map((teacher, index) => {
       return (
         <Link to={`/teachers/${teacher.id}`}
-          style={{ marginRight: '12px' }}
+          style={{ marginRight: '5px' }}
           key={teacher.id}
           onClick={() => this.setState({ showTeachersList: false })}
         >{teacher.lastname}
@@ -89,8 +100,7 @@ class Teachers extends Component {
     return (
       <Container>
         <hr />
-        <h4>Teachers</h4>
-        <button onClick={() => this.showTeachersListToggler()}>Toggle ALL</button>
+        <button onClick={this.showTeachersList}><Link to='/teachers'>ALL teachers</Link></button>
 
         {/*********CREATE TEACHER MODAL********************************************/}
         <button onClick={this.createTeacherForm}>Add Teacher</button>
@@ -127,21 +137,24 @@ class Teachers extends Component {
 
         {/**********TEACHERS LIST**********************************************/}
         <div>
-          {this.state.showTeachersList ? <TeachersList
-            teachers={teachers}
-            show={(id) => this.state.showTeacher(id)}
-            edit={(id) => this.showEditTeacherForm(id)}
-            delete={(id) => this.props.onDeleteTeacher(id)}
-            close={() => this.showTeachersListToggler()}
-          /> : null}
+          <Switch>
+            <Route path={`${match.url}/:id/edit`} component={EditTeacher} />
+            <Route path={`${match.url}/new`} exact component={CreateTeacher} />
+            <Route path={`${match.url}/:id`} component={Teacher} />
+            <Route path={match.url} exact />
+          </Switch>
         </div>
-
-        <Switch>
-          <Route path={`${match.url}/:id/edit`} component={EditTeacher} />
-          <Route path={`${match.url}/new`} exact component={CreateTeacher} />
-          <Route path={`${match.url}/:id`} component={Teacher} />
-          <Route path={match.url} exact render={() => (<p>Toggle ALL or click a Teacher from the list.</p>)} />
-        </Switch>
+        <div>
+          {this.state.showTeachersList ?
+            <div><h5 className={appstyles.IndexHeaderBackground}>ALL teachers</h5>
+              <TeachersList
+                teachers={teachers}
+                show={(id) => this.state.showTeacher(id)}
+                edit={(id) => this.showEditTeacherForm(id)}
+                delete={(id) => this.props.onDeleteTeacher(id)}
+                close={() => this.closeTeachersList()}
+              /></div> : null}
+        </div>
         <hr />
       </Container>
     )

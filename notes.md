@@ -29,9 +29,28 @@ REQUIREMENTS
 []  Submit project, schedule assessment
 
 
+Button for /students
+shows students INDEX
+hides student SHOW
+
+Button for: /students/:id
+hides students INDEX
+shows student SHOW
+
+Button for: /students/:id 
+goes to that student SHOW 
+index remains hidden
+
+both views have to be viewable with ternary connected to state
+both handlers need to setState()
+mainnav button does not set state, unless component is mounting  
+
 
 ==================================================================================
 TODO
+[]  sort clickable names alphabetically
+[]  make a spinner out of Logo
+[]  sort Resources by format, in the clickableNames section
 []  Lesson  Resource CRUD (index, show, new/create, edit/update, delete)
 []  LessonInProgress: add TeachLesson function ( live editing of notes and adding of resources in a new or existing Lesson)
 []  button in Lessons index, to "ADD RESOURCE TO CURRENT LESSON", to add multiple resources to new or existing lesson
