@@ -1,49 +1,48 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 
-// import styles from './Resource.css'
+import styles from './Resource.css'
 import appstyles from '../../../App.css'
 import { Container, Row, Col } from 'reactstrap'
 import ResourceViewer from '../ResourceViewer/ResourceViewer'
 
 const Resource = (props) => {
-  const renderResource = props.resources.filter(resource => resource.id === +props.match.params.id)[0]
+  const resource = props.resources.filter(resource => resource.id === +props.match.params.id)[0]
 
   let resourceData = <div><p>Resource component is loading...</p></div>
   let resourceView = <div><p> this is not a PDF format </p></div>
-
   let resourceTeachers = <p>None yet</p>
 
-  if (renderResource && renderResource.teachers) {
-    resourceTeachers = renderResource.teachers.map((tch, index) => {
+  if (resource && resource.teachers.length > 0) {
+    resourceTeachers = resource.teachers.map((tch, index) => {
       return (
-        <p key={index}>{tch.lastname}</p>
+        <li key={index}><Link to={`/teachers/${tch.id}`}>{tch.lastname}</Link></li>
       )
     })
   }
 
-  if (renderResource) {
+  if (resource) {
     resourceData = (
       <div>
         <hr />
-        <h5 className={appstyles.ResourceHeaderBackground}>{renderResource.title}</h5>
-        <p>Category: <strong>{renderResource.category}</strong></p>
-        <p>Description: <strong>{renderResource.description}</strong></p>
-        <p>Format: <strong>{renderResource.format}</strong></p>
-        <p>Location: <strong>{renderResource.location}</strong></p>
-
+        <h5 className={appstyles.ResourceHeaderBackground}>{resource.title}</h5>
+        <p>Category: <strong>{resource.category}</strong></p>
+        <p>Description: <strong>{resource.description}</strong></p>
+        <p>Format: <strong>{resource.format}</strong></p>
+        <p>Location: <strong>{resource.location}</strong></p>
         <p>Number of students assigned this resource: <strong>
-          {renderResource.students.length}</strong></p>
-        <p>Number of times teachers assigned this resource: <strong>{renderResource.lessons.length}</strong></p>
+          {resource.students.length}</strong></p>
+        <p>Number of times teachers assigned this resource: <strong>{resource.lessons.length}</strong></p>
 
-        <div>
+        <div className={styles.TeacherResources}>
           <p>Teachers who assigned this resource:</p>
-          {resourceTeachers}
+          <ul>{resourceTeachers}</ul>
         </div>
       </div>
     )
     resourceView = (
-      <ResourceViewer resource={renderResource} />
+      <ResourceViewer resource={resource} />
     )
   }
 

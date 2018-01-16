@@ -82,23 +82,13 @@ class Resources extends Component {
   }
 
   render() {
+
     const { match, resources } = this.props;
-    let clickableNames = resources.map((resource, index) => {
-      return (
-        <Link to={`/resources/${resource.id}`}
-          style={{ marginRight: '5px' }}
-          key={resource.id}
-          onClick={() => this.setState({ showResourcesList: false })}
-        >{resource.title}
-        </Link>
-      )
-    })
 
     return (
       <Container>
         <hr />
-        <h4>Resources</h4>
-        <button onClick={() => this.showResourcesList()}>Toggle ALL</button>
+        <button onClick={() => this.showResourcesList()}><Link to='/resources/'>ALL resources</Link></button>
 
         {/*********CREATE RESOURCE MODAL********************************************/}
         <button onClick={this.createResourceForm}>Add Resource</button>
@@ -127,22 +117,14 @@ class Resources extends Component {
           /> : null}
         </Modal>
 
-        {/**********CLICKABLE NAMES**********************************************/}
-        <Container>
-          <Row>
-            <Col>
-              {clickableNames}
-            </Col>
-          </Row>
-        </Container>
-
         {/**********RESOURCES LIST**********************************************/}
         <div>
           <Switch>
             <Route path={`${match.url}/:id/edit`} exact component={EditResource} />
             <Route path={`${match.url}/new`} exact component={CreateResource} />
             <Route path={`${match.url}/:id`} exact component={Resource} />
-            <Route path={match.url} exact render={() => (<p>Toggle ALL or click a Resource from the list.</p>)} />
+            {/* <Route path={match.url} exact /> */}
+            <Route path='/resources' />
           </Switch>
         </div>
         <div>

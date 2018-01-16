@@ -7,7 +7,8 @@ import styles from './ResourcesList.css'
 
 const ResourcesList = (props) => {
 
-  let renderResources = props.resources.map((resource, index) => {
+  let sortedResources = props.resources.sort((a, b) => a.title.toLowerCase() < b.title.toLowerCase() ? -1 : a.title.toLowerCase() > b.title.toLowerCase() ? 1 : 0)
+  let renderResources = sortedResources.map((resource, index) => {
     return (
       <Aux key={index} >
         <tr>
@@ -23,16 +24,18 @@ const ResourcesList = (props) => {
           <td>{resource.format}</td>
           <td>{resource.location}</td>
 
-          <td><button
-            type='button'
-            className={styles.Success}
-            onClick={props.close}>
-            <Link
+
+          {resource.url === 'no_url_given' ? (
+            <td><button
+              type='button'
+              className={styles.ShowDisabled}
+              onclick="scroll(0,0)"
+            >empty</button></td>)
+            : (<td><button><Link
               to={`/resources/${resource.id}`}
               params={{ id: resource.id }}
               key={resource.id}
-            >SHOW</Link>
-          </button></td>
+            >SHOW</Link></button></td>)}
 
           {props.edit ?
             <td><button

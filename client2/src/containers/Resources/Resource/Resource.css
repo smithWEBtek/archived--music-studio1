@@ -2,6 +2,10 @@
   color: black;
 }
 
+:local(.TeacherResources) {
+  background-color: rgb(215, 227, 237)
+}
+
 :local(.TeacherHeaderBackground) {
   background-color: rgb(221, 165, 165);
 }

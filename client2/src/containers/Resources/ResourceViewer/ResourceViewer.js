@@ -3,11 +3,17 @@ import Pdf from './Pdf'
 import Vid from './Vid'
 import Aud from './Aud'
 import Aux from '../../../hoc/Aux/Aux'
+import Spinner from '../../../UI/Spinner/Spinner'
+import styles from './ResourceViewer.css'
 
 const ResourceViewer = (props) => {
 
-
-  let renderResource = <p>This resource has not been created yet. </p>
+  let renderResource = (
+    <div className={styles.Center}>
+      <Spinner />
+      <p>This resource has not been created yet. </p>
+    </div>
+  )
 
   if (props.resource.format === 'pdf') {
     renderResource = <Pdf url={props.resource.url} />
