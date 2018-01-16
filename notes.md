@@ -47,6 +47,47 @@ mainnav button does not set state, unless component is mounting
 
 
 ==================================================================================
+
+to create a lesson with multiple resources
+each resource must end up as a record in LessonResources table
+
+so the Lesson object, has  :id, :date, :teacher_id, :student_id
+even though that same lesson has_many resources, 
+the database row that holds that lesson, does not contain resource(s) data
+outside of rails, we have to manually create the relationships by interacting with the API via 2 different calls. 
+1> CREATE_LESSON
+2> CREATE_LESSON_RESOURCE
+  and whatever rules that implies, (if exists, don't add duplicate)
+  and whatever rules that implies, (if not exist, create)
+  and whatever rules that implies, (if exists, but our version has an update, then update)
+
+for UPDATE_LESSON, we need to revisit BOTH of these API calls.
+1> FETCH_LESSON
+2> Process user input for lesson
+3> FETCH_LESSON_RESOURCES
+4> Process user input for lesson_resources
+5> Update LESSON
+6> Update LESSON_RESOURCE
+
+UNLESS!!!
+There is some way to pass an array of Resource IDs, within the updatedLessonData, to the UPDATE_LESSON API call, but I don't see how to do that(?)
+
+...first I will examine a Rails only app, to see what the controller will accept because I know that we've worked with has_many, and there is precedence for using 'resource_ids:[]' within params
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+==================================================================================
 TODO
 []  sort clickable names alphabetically
 []  make a spinner out of Logo

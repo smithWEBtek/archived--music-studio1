@@ -11,6 +11,8 @@ class Api::LessonsController < ApplicationController
   end
 
   def create
+  binding.pry
+
     @lesson = Lesson.new(lesson_params)
     if @lesson.save
       render json: @lesson
@@ -18,7 +20,7 @@ class Api::LessonsController < ApplicationController
       render json: { errors: { message: 'lesson NOT created' }}
     end
   end
-
+  
   def update
     @lesson = Lesson.find(params[:id])
     @lesson.update

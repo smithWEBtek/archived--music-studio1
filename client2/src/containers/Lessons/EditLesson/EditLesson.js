@@ -8,14 +8,12 @@ class EditLesson extends Component {
     super(props)
 
     this.state = {
-      date: '2011-06-24',
+      id: '',
+      date: '',
       teacher: '',
       student: '',
-      resource: '',
-      resource_id: '',
-      resource_ids: [],
+      // resources: [],
       notes: ''
-
     }
   }
 
@@ -23,16 +21,43 @@ class EditLesson extends Component {
     this.props.onFetchStudents()
     this.props.onFetchTeachers()
     this.props.onFetchResources()
+
+    console.log('[EditLesson.js][componentWillMount] this.props', this.props)
+
+    this.setState({
+      id: this.props.lesson.id,
+      date: this.props.lesson.date,
+      teacher: this.props.lesson.teacher,
+      student: this.props.lesson.student,
+      resources: this.props.lesson.resources,
+      notes: this.props.lesson.notes
+    })
   }
 
-  componentDidMount() {
+
+
+  //********EDIT_LESSON selector functions **************************
+  handleDateSelect = (event) => {
     this.setState({
-      id: this.props.id,
-      date: this.props.date,
-      teacher_id: this.props.teacher_id,
-      student_id: this.props.student_id,
-      // resource_ids: [`${this.props.resource.id}`],
-      notes: this.props.notes
+      date: event.target
+    })
+  }
+
+  handleTeacherSelect = (event) => {
+    this.setState({
+      teacher: this.props.teachers.filter(teacher => teacher.lastname === event.target.value)[0]
+    })
+  }
+
+  handleStudentSelect = (event) => {
+    this.setState({
+      student: this.props.students.filter(student => student.lastname === event.target.value)[0]
+    })
+  }
+
+  handleResourceSelect = (event) => {
+    this.setState({
+      resource: this.props.resources.filter(resource => resource.title === event.target.value)[0]
     })
   }
 
@@ -42,37 +67,20 @@ class EditLesson extends Component {
     e.preventDefault()
   }
 
-
-  //********CREATE_LESSON selector functions **************************
-  handleDateSelect = (event) => {
-    this.setState({
-      date: event.target
-    })
-  }
-
-  handleTeacherSelect = (event) => {
-    this.setState({
-      teacher: this.props.teachers.find(teacher => teacher.lastname === event.target.value)
-    })
-  }
-
-  handleStudentSelect = (event) => {
-    this.setState({
-      student: this.props.students.find(student => student.lastname === event.target.value)
-    })
-  }
-
-  handleResourceSelect = (event) => {
-    this.setState({
-      resource: this.props.resources.find(resource => resource.title === event.target.value)
-    })
-  }
-
-
-
   handleSubmit = (e) => {
-    let data = this.state;
+    let data = {}
     console.log('[EditLesson] handleSubmit: data', data)
+    data = {
+      id: this.state.id,
+      date: this.state.date,
+      teacher_id: this.state.teacher.id,
+      student_id: this.state.student.id,
+      // resource_ids: this.state.resources.map(r => r.id),
+      notes: this.state.notes
+    }
+
+    // debugger
+
     this.props.updateLesson(data)
     e.preventDefault();
   }
@@ -102,7 +110,7 @@ class EditLesson extends Component {
           </p>
           <p>
             <label>TeacherSelector</label>
-            <select value={this.state.teacher.lastname} onChange={(event) => this.handleTeacherSelect(event)}>
+            <select value={this.state.teacher_id} onChange={(event) => this.handleTeacherSelect(event)}>
               console.log('teacherOptions', teacherOptions)
               {teacherOptions}
             </select>
@@ -125,16 +133,21 @@ class EditLesson extends Component {
             <label>Notes</label>
             <input
               type="text"
+              name="notes"
+              id="notes"
               value={this.state.notes}
-              onChange={(event) => this.setState({ notes: event.target.value })}
-              placeholder="notes"
+              onChange={this.handleChange}
+              // onChange={(e) => this.setState({ notes: e.target.value })}
               required />
           </p>
           <button
             type="button"
-            onClick={this.props.createLessonCancel}
-            className={styles.Danger}>CANCEL</button>
-          <button className={styles.Success}>CREATE Lesson</button>
+            onClick={this.props.close}
+            className={styles.Danger}
+          >CANCEL</button>
+          <button
+            className={styles.Success}
+          >Update Lesson</button>
         </form>
       </div>
     )

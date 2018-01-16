@@ -103,13 +103,14 @@ class Lessons extends Component {
         <Modal
           show={this.state.editLesson}
           modalClosed={this.closeEditLessonForm}>
-          {this.state.lesson ? <EditLesson
-            id={this.state.lesson.id}
-            date={this.state.lesson.date}
-            teacher_id={this.state.lesson.teacher_id}
-            student_id={this.state.lesson.student_id}
-            resource_id={this.state.lesson.resource_id}
-            resource={this.state.lesson.resource}
+          {this.state.editLesson ? <EditLesson
+            lesson={this.state.lesson}
+            // id={this.state.lesson.id}
+            // date={this.state.lesson.date}
+            // teacher_id={this.state.lesson.teacher_id}
+            // student_id={this.state.lesson.student_id}
+            // resource_id={this.state.lesson.resource_id}
+            // resource={this.state.lesson.resource}
             notes={this.state.lesson.notes}
             close={() => this.closeEditLessonForm()}
             updateLesson={(data) => this.editLessonUpdate(data)}
