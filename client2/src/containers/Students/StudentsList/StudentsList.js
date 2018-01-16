@@ -9,9 +9,11 @@ const StudentsList = (props) => {
     return (
       <tr key={index}>
         <th scope="row">{student.id}</th>
-        <td><Link to={`/students/${student.id}`}
+        <td><Link
+          to={`/students/${student.id}`}
           style={{ marginRight: '5px' }}
           key={student.id}>{student.firstname} {student.lastname}</Link></td>
+
         <td>{student.email}</td>
         <td>{student.teacher_id}</td>
         <td>{student.level}</td>
@@ -22,7 +24,7 @@ const StudentsList = (props) => {
           onClick={props.close}>
           <Link
             to={`/students/${student.id}`}
-            params={{ id: student.id }}
+            // params={{ id: student.id }}
             key={student.id}
           >SHOW</Link>
         </button></td>

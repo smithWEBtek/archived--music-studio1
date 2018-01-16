@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actionCreators from '../../store/actions/index'
 
 import { Container, Row, Col } from 'reactstrap'
 // import styles from './Lessons.css'
+import appstyles from '../../App.css'
 import Modal from '../../UI/Modal/Modal'
 
 import Lesson from './Lesson/Lesson'
@@ -25,9 +26,13 @@ class Lessons extends Component {
     this.props.onFetchLessons();
   }
 
-  showLessonsListToggler = () => {
-    let toggle = this.state.showLessonsList
-    this.setState({ showLessonsList: !toggle })
+  //********SHOW_LESSONS_LIST form handling********************
+  showLessonsList = () => {
+    this.setState({ showLessonsList: true })
+  }
+
+  closeLessonsList = () => {
+    this.setState({ showLessonsList: false })
   }
 
   //********SHOW_LESSON form handling**************************
@@ -79,8 +84,7 @@ class Lessons extends Component {
     return (
       <Container>
         <hr />
-        <h4>Lessons</h4>
-        <button onClick={() => this.showLessonsListToggler()}>Toggle ALL</button>
+        <button onClick={() => this.showLessonsList()}><Link to='/lessons'>ALL lessons</Link></button>
 
         {/*********CREATE LESSON MODAL********************/}
         <button onClick={this.createLessonForm}>Add Lesson</button>
@@ -112,15 +116,18 @@ class Lessons extends Component {
             <Route path={`${match.url}/:id/edit`} exact component={EditLesson} />
             <Route path={`${match.url}/new`} exact component={CreateLesson} />
             <Route path={`${match.url}/:id`} exact component={Lesson} />
-            <Route path={match.url} exact render={() => (<p>Toggle ALL or click a Lesson from the list.</p>)} />
+            <Route path={match.url} exact />
           </Switch>
-          {this.state.showLessonsList ? <LessonsList
-            lessons={lessons}
-            show={(id) => this.state.showLesson(id)}
-            edit={(id) => this.showEditLessonForm(id)}
-            delete={(id) => this.props.onDeleteLesson(id)}
-            close={() => this.showLessonsListToggler()}
-          /> : null}
+        </div>
+        <div>
+          {this.state.showLessonsList ?
+            <div><h5 className={appstyles.IndexHeaderBackground}>ALL lessons</h5>
+              <LessonsList
+                lessons={lessons}
+                edit={(id) => this.showEditLessonForm(id)}
+                delete={(id) => this.props.onDeleteLesson(id)}
+                close={() => this.showLessonsList()}
+              /></div> : null}
         </div >
         <hr />
       </Container >

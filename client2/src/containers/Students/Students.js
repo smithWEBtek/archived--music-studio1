@@ -28,22 +28,16 @@ class Students extends Component {
 
   //********SHOW_STUDENTS_LIST form handling********************
   showStudentsList = () => {
-    this.setState({
-      showStudentsList: true
-    })
+    this.setState({ showStudentsList: true })
   }
 
   closeStudentsList = () => {
-    this.setState({
-      showStudentsList: false
-    })
+    this.setState({ showStudentsList: false })
   }
 
   //********SHOW_STUDENT form handling**************************
   showStudentClose = () => {
-    this.setState({
-      showStudent: false
-    })
+    this.setState({ showStudent: false })
   }
 
   //********CREATE_STUDENT form handling ***********************

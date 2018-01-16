@@ -27,7 +27,6 @@ const ResourcesList = (props) => {
             <td><button
               type='button'
               className="Disabled"
-              onclick="scroll(0,0)"
             >empty</button></td>)
             : (<td><button><Link
               to={`/resources/${resource.id}`}
