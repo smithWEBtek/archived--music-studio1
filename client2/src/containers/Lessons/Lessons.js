@@ -64,6 +64,9 @@ class Lessons extends Component {
   }
 
   editLessonUpdate = (data) => {
+
+    console.log('[Lessons] editLessonUpdate data', data)
+
     this.props.onUpdateLesson(data)
     this.setState({
       editLesson: false,
@@ -97,7 +100,7 @@ class Lessons extends Component {
         </Modal>
 
         {/**********EDIT LESSON MODAL********************/}
-        {/* <Modal
+        <Modal
           show={this.state.editLesson}
           modalClosed={this.closeEditLessonForm}>
           {this.state.lesson ? <EditLesson
@@ -105,10 +108,13 @@ class Lessons extends Component {
             date={this.state.lesson.date}
             teacher_id={this.state.lesson.teacher_id}
             student_id={this.state.lesson.student_id}
+            resource_id={this.state.lesson.resource_id}
+            resource={this.state.lesson.resource}
+            notes={this.state.lesson.notes}
             close={() => this.closeEditLessonForm()}
             updateLesson={(data) => this.editLessonUpdate(data)}
           /> : null}
-        </Modal> */}
+        </Modal>
 
         {/**********LESSONS LIST***********************/}
         < div >

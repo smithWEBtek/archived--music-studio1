@@ -1,14 +1,28 @@
 import React, { Component } from 'react';
+import * as actionCreators from '../../../store/actions/index'
+import { connect } from 'react-redux'
 import styles from './EditLesson.css';
 
 class EditLesson extends Component {
-  state = {
-    id: null,
-    date: '',
-    teacher_id: '',
-    student_id: '',
-    notes: '',
-    resources: []
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      date: '2011-06-24',
+      teacher: '',
+      student: '',
+      resource: '',
+      resource_id: '',
+      resource_ids: [],
+      notes: ''
+
+    }
+  }
+
+  componentWillMount() {
+    this.props.onFetchStudents()
+    this.props.onFetchTeachers()
+    this.props.onFetchResources()
   }
 
   componentDidMount() {
@@ -17,8 +31,8 @@ class EditLesson extends Component {
       date: this.props.date,
       teacher_id: this.props.teacher_id,
       student_id: this.props.student_id,
-      notes: this.props.notes,
-      resources: this.props.resources
+      // resource_ids: [`${this.props.resource.id}`],
+      notes: this.props.notes
     })
   }
 
@@ -28,8 +42,37 @@ class EditLesson extends Component {
     e.preventDefault()
   }
 
+
+  //********CREATE_LESSON selector functions **************************
+  handleDateSelect = (event) => {
+    this.setState({
+      date: event.target
+    })
+  }
+
+  handleTeacherSelect = (event) => {
+    this.setState({
+      teacher: this.props.teachers.find(teacher => teacher.lastname === event.target.value)
+    })
+  }
+
+  handleStudentSelect = (event) => {
+    this.setState({
+      student: this.props.students.find(student => student.lastname === event.target.value)
+    })
+  }
+
+  handleResourceSelect = (event) => {
+    this.setState({
+      resource: this.props.resources.find(resource => resource.title === event.target.value)
+    })
+  }
+
+
+
   handleSubmit = (e) => {
     let data = this.state;
+    console.log('[EditLesson] handleSubmit: data', data)
     this.props.updateLesson(data)
     e.preventDefault();
   }
@@ -60,25 +103,28 @@ class EditLesson extends Component {
           <p>
             <label>TeacherSelector</label>
             <select value={this.state.teacher.lastname} onChange={(event) => this.handleTeacherSelect(event)}>
+              console.log('teacherOptions', teacherOptions)
               {teacherOptions}
             </select>
           </p>
+
           <p>
             <label>StudentSelector</label>
-            <select value={this.state.student.lastname} onChange={(event) => this.handleStudentSelect(event)}>
+            <select value={this.state.student_id} onChange={(event) => this.handleStudentSelect(event)}>
               {studentOptions}
             </select>
           </p>
+
           <p>
             <label>ResourceSelector</label>
-            <select value={this.state.resource.title} onChange={(event) => this.handleResourceSelect(event)}>
+            <select value={this.state.resource_id} onChange={(event) => this.handleResourceSelect(event)}>
               {resourceOptions}
             </select>
           </p>
           <p>
             <label>Notes</label>
             <input
-              type="textarea"
+              type="text"
               value={this.state.notes}
               onChange={(event) => this.setState({ notes: event.target.value })}
               placeholder="notes"
@@ -95,4 +141,21 @@ class EditLesson extends Component {
   }
 }
 
-export default EditLesson
+const mapStateToProps = state => {
+  return {
+    students: state.stu.students,
+    teachers: state.tch.teachers,
+    resources: state.res.resources,
+    lessons: state.les.lessons
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onFetchStudents: () => dispatch(actionCreators.fetchStudents()),
+    onFetchTeachers: () => dispatch(actionCreators.fetchTeachers()),
+    onFetchResources: () => dispatch(actionCreators.fetchResources())
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditLesson)

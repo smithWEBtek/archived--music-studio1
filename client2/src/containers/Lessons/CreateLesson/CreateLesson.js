@@ -2,12 +2,12 @@ import React, { Component } from 'react'
 import * as actionCreators from '../../../store/actions/index'
 import { connect } from 'react-redux'
 import classes from './CreateLesson.css'
-import PropTypes from 'prop-types'
 
-import 'react-dates/initialize';
-import 'react-dates/lib/css/_datepicker.css';
-import { SingleDatePicker } from 'react-dates';
-import datestyles from './react-dates-override.css'
+// import PropTypes from 'prop-types'
+// import 'react-dates/initialize';
+// import 'react-dates/lib/css/_datepicker.css';
+// import { SingleDatePicker } from 'react-dates';
+// import datestyles from './react-dates-override.css'
 
 class CreateLesson extends Component {
   constructor(props) {
@@ -22,8 +22,6 @@ class CreateLesson extends Component {
       notes: ''
     }
   }
-
-
 
   componentWillMount() {
     this.props.onFetchStudents()
@@ -49,38 +47,19 @@ class CreateLesson extends Component {
       resource_ids: [`${this.state.resource.id}`],
       notes: this.state.notes
     }
-    // debugger
-
-    // def lesson_params
-    // params.require(: lesson).permit(: date, : teacher_id, : student_id, : notes, resource_ids: [])
-    // end
-
-    // lesson = {
-    //   date: '2018-2-3',
-    //   teacher_id: '1', 
-    //   student_id: '5',
-    //   notes: 'asdf',
-    //   resource_ids: []
-    // }
-
-
 
     this.props.createLesson(lessonData)
 
     this.setState({
       createLesson: false,
-      formVisible: false,
-      date: null,
+      date: '2011-06-24',
       teacher: '',
       student: '',
-      resource: '',
-      notes: '',
-      lessonResources: []
+      resource_ids: [],
+      notes: ''
     })
     this.props.createLessonCancel()
   }
-
-
 
   //********CREATE_LESSON selector functions **************************
   handleDateSelect = (event) => {
@@ -130,12 +109,12 @@ class CreateLesson extends Component {
         <p className={classes.FormInstructions}>Complete form and click 'Create Lesson'</p>
         <form onSubmit={(event) => this.handleSubmit(event)} className={classes.Form}>
 
-          <SingleDatePicker
+          {/* <SingleDatePicker
             date={null} // momentPropTypes.momentObj or null
             onDateChange={date => this.handleDateSelect({ date })} // PropTypes.func.isRequired
             focused={this.state.focused} // PropTypes.bool
             onFocusChange={({ focused }) => this.setState({ focused })} // PropTypes.func.isRequired
-          />
+          /> */}
 
 
           <p>
@@ -180,14 +159,14 @@ class CreateLesson extends Component {
   }
 }
 
-SingleDatePicker.propTypes = {
-  // date: PropTypes.momentPropTypes.momentObj.isRequired,
-  // date: PropTypes.momentObj.isRequired,
-  // date: PropTypes.momentPropTypes.isRequired,
-  onDateChange: PropTypes.func.isRequired,
-  focused: PropTypes.bool,
-  onFocusChange: PropTypes.func.isRequired
-}
+// SingleDatePicker.propTypes = {
+//   // date: PropTypes.momentPropTypes.momentObj.isRequired,
+//   // date: PropTypes.momentObj.isRequired,
+//   // date: PropTypes.momentPropTypes.isRequired,
+//   onDateChange: PropTypes.func.isRequired,
+//   focused: PropTypes.bool,
+//   onFocusChange: PropTypes.func.isRequired
+// }
 
 const mapStateToProps = state => {
   return {
