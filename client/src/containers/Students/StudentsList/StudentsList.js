@@ -5,14 +5,16 @@ import styles from './StudentsList.css'
 
 const StudentsList = (props) => {
 
-  const renderStudents = props.students.map((student, index) => {
+  let sortedStudents = props.students.sort((a, b) => a.lastname.toLowerCase() < b.lastname.toLowerCase() ? -1 : a.lastname.toLowerCase() > b.lastname.toLowerCase() ? 1 : 0)
+
+  let renderStudents = sortedStudents.map((student, index) => {
     return (
       <tr key={index}>
         <th scope="row">{student.id}</th>
         <td><Link
           to={`/students/${student.id}`}
           style={{ marginRight: '5px' }}
-          key={student.id}>{student.firstname} {student.lastname}</Link></td>
+          key={student.id}>{student.lastname}, {student.firstname}</Link></td>
 
         <td>{student.email}</td>
         <td>{student.teacher_id}</td>
@@ -51,7 +53,7 @@ const StudentsList = (props) => {
         <thead>
           <tr>
             <th>ID</th>
-            <th>Lastname</th>
+            <th>Last, First</th>
             <th>Email</th>
             <th>TeacherID</th>
             <th>Level</th>

@@ -5,13 +5,15 @@ import styles from './TeachersList.css'
 
 const TeachersList = (props) => {
 
-  const renderTeachers = props.teachers.map((teacher, index) => {
+  let sortedTeachers = props.teachers.sort((a, b) => a.lastname.toLowerCase() < b.lastname.toLowerCase() ? -1 : a.lastname.toLowerCase() > b.lastname.toLowerCase() ? 1 : 0)
+
+  let renderTeachers = sortedTeachers.map((teacher, index) => {
     return (
       <tr key={index}>
         <th scope="row">{teacher.id}</th>
         <td><Link to={`/teachers/${teacher.id}`}
           style={{ marginRight: '12px' }}
-          key={teacher.id}>{teacher.firstname} {teacher.lastname}</Link></td>
+          key={teacher.id}>{teacher.lastname}, {teacher.firstname} </Link></td>
         <td>{teacher.email}</td>
 
         <td><button
@@ -48,7 +50,7 @@ const TeachersList = (props) => {
         <thead>
           <tr>
             <th>ID</th>
-            <th>Name</th>
+            <th>Last, First</th>
             <th>Email</th>
             <th>Show</th>
             {props.edit ? <th>Edit</th> : null}
