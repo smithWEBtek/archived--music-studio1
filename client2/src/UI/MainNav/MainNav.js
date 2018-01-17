@@ -17,7 +17,7 @@ import Students from '../../containers/Students/Students'
 import Teachers from '../../containers/Teachers/Teachers'
 import Lessons from '../../containers/Lessons/Lessons'
 import Resources from '../../containers/Resources/Resources'
-import LessonResources from '../../containers/LessonResources/LessonResourcesList'
+import LessonResources from '../../containers/LessonResources/LessonResources'
 
 class MainNav extends Component {
   constructor(props) {

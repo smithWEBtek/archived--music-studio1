@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Route, Switch, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import * as actionCreators from '../../store/actions/index'
-import { Container, Row, Col, Table } from 'reactstrap'
+import { Container, Table } from 'reactstrap'
 
 class LessonResources extends Component {
 
@@ -11,50 +11,33 @@ class LessonResources extends Component {
   }
 
   render() {
-
-    const lessonResources = this.props.lessonResources
-
-    let clickableNames = lessonResources.map((lesres, index) => {
-      return (
-        <Link to={`/lessonResources/${lesres.id}`}
-          style={{ marginRight: '5px' }}
-          key={lesres.id}
-          onClick={() => this.setState({ showLessonResourcesList: false })}
-        >{lesres.id}
-        </Link>
-      )
-    })
-
     const renderLessonResources = this.props.lessonResources.map((lesres, index) => {
       return (
         <tr key={index}>
           <th scope="row">{lesres.id}</th>
+          <td>{lesres.lesson.date}</td>
           <td><Link
             to={`/lessons/${lesres.lesson_id}`}
             style={{ marginRight: '5px' }}
             key={lesres.id}>{lesres.lesson.teacher.lastname} ~ {lesres.lesson.student.lastname}</Link></td>
-          <td>{lesres.lesson.date}</td>
           <td><Link to={`/teachers/${lesres.lesson.teacher_id}`}>{lesres.lesson.teacher.firstname} {lesres.lesson.teacher.lastname}</Link></td>
           <td><Link to={`/students/${lesres.lesson.student_id}`}>{lesres.lesson.student.firstname} {lesres.lesson.student.lastname}</Link></td>
-        </tr>
+          <td><Link to={`/resources/${lesres.resource_id}`}>{lesres.resource.title}</Link></td>
+        </tr >
       )
     })
 
     return (
       <Container>
-        {/* <Row>
-          <Col>
-            {clickableNames}
-          </Col>
-        </Row> */}
-        <Table striped size="sm">
+        < Table striped size="sm" >
           <thead>
             <tr>
               <th>ID</th>
-              <th>Teacher - Student</th>
               <th>Date</th>
+              <th>LessonLink</th>
               <th>Teacher</th>
               <th>Student</th>
+              <th>Resource</th>
             </tr>
           </thead>
           <tbody>

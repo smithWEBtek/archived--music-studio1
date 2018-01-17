@@ -6,12 +6,17 @@ import { Link } from 'react-router-dom'
 
 import appstyles from '../../../App.css'
 import ResourcesList from '../../Resources/ResourcesList/ResourcesList'
+import LessonResourcesList from '../../LessonResources/LessonResourcesList/LessonResourcesList'
 
 const Lesson = (props) => {
 
-  const lesson = props.lessons.filter(lesson => lesson.id === +props.match.params.id)[0]
+
+
+
+  const lesson = props.lessons.filter(les => les.id === +props.match.params.id)[0]
+
   let lessonHeader = <div><p>Lesson component is loading...</p></div>
-  let lessonResources = <div><h5>No resources assigned</h5></div>
+  let renderLessonResources = <div><h5>No resources assigned</h5></div>
 
   if (lesson) {
     lessonHeader = (
@@ -26,11 +31,11 @@ const Lesson = (props) => {
   }
 
   if (lesson && lesson.resources) {
-    lessonResources = (
+    renderLessonResources = (
       <div>
         <hr />
-        <h5 className={appstyles.ResourceHeaderBackground}>RESOURCES assigned in this lesson:</h5>
-        <div><ResourcesList resources={lesson.resources} /></div>
+        <h5 className={appstyles.ResourceHeaderBackground}>RESOURCES assigned to this lesson:</h5>
+        <LessonResourcesList lesson={lesson} />
       </div >
     )
   }
@@ -41,7 +46,11 @@ const Lesson = (props) => {
         {lessonHeader}
       </div>
       <div>
-        {lessonResources}
+        {renderLessonResources}
+      </div>
+      <div>
+        <h5 className={appstyles.ResourceHeaderBackground}>ALL RESOURCES</h5>
+        <ResourcesList resources={props.resources} />
       </div>
     </div >
   )
@@ -49,10 +58,8 @@ const Lesson = (props) => {
 
 const mapStateToProps = state => {
   return {
-    resources: state.res.resources,
-    students: state.stu.students,
-    teachers: state.tch.teachers,
-    lessons: state.les.lessons
+    lessons: state.les.lessons,
+    resources: state.res.resources
   }
 }
 

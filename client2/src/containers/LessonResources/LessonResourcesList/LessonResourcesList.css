@@ -1,0 +1,7 @@
+.QuickView {
+  visibility: visible;
+}
+
+.QuickView:hover {
+  visibility: hidden
+}

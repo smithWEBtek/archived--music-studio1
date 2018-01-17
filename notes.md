@@ -74,7 +74,13 @@ There is some way to pass an array of Resource IDs, within the updatedLessonData
 
 ...first I will examine a Rails only app, to see what the controller will accept because I know that we've worked with has_many, and there is precedence for using 'resource_ids:[]' within params
 
+update:  I was not able to satisfy this requirement by providing an array of resources to a Lesson, where the Lesson in the database is defined with:  id, teacher_id, student_id and notes
 
+I was able to create a new set of CRUD resources for "lesson_resource", which is my join table for adding multiple resources to a Lesson, and having a Resource be used by multiple lessons. 
+
+So now, I want to use this within the context of Creating, Editing and Updating a "Lesson". 
+The normal Lesson fields will be retrieved via the Lesson CRUD components and API functionality.
+The related LessonResources will be retrieved via their related API calls, and surfaced with dedicated React components, again within the context of a "Lesson" component.
 
 
 
