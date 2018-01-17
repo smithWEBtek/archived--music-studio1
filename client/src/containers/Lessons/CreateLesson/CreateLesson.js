@@ -3,11 +3,11 @@ import * as actionCreators from '../../../store/actions/index'
 import { connect } from 'react-redux'
 import classes from './CreateLesson.css'
 
-// import PropTypes from 'prop-types'
-// import 'react-dates/initialize';
-// import 'react-dates/lib/css/_datepicker.css';
-// import { SingleDatePicker } from 'react-dates';
-// import datestyles from './react-dates-override.css'
+import PropTypes from 'prop-types'
+import 'react-dates/initialize';
+import 'react-dates/lib/css/_datepicker.css';
+import { SingleDatePicker } from 'react-dates';
+import datestyles from './react-dates-override.css'
 
 class CreateLesson extends Component {
   constructor(props) {
@@ -15,10 +15,9 @@ class CreateLesson extends Component {
 
     this.state = {
       createLesson: false,
-      date: '2011-06-24',
+      date: '',
       teacher: '',
       student: '',
-      resource_ids: [],
       notes: ''
     }
   }
@@ -44,7 +43,6 @@ class CreateLesson extends Component {
       date: this.state.date,
       teacher_id: this.state.teacher.id,
       student_id: this.state.student.id,
-      resource_ids: [`${this.state.resource.id}`],
       notes: this.state.notes
     }
 
@@ -55,7 +53,6 @@ class CreateLesson extends Component {
       date: '2011-06-24',
       teacher: '',
       student: '',
-      resource_ids: [],
       notes: ''
     })
     this.props.createLessonCancel()
@@ -80,13 +77,6 @@ class CreateLesson extends Component {
     })
   }
 
-  handleResourceSelect = (event) => {
-    this.setState({
-      resource: this.props.resources.find(resource => resource.title === event.target.value)
-    })
-  }
-
-
   render() {
 
     // console.log('[CreateLesson] at render() this.props:', this.props)
@@ -99,24 +89,17 @@ class CreateLesson extends Component {
       return <option value={student.lastname} id={student.id} key={student.id}>{student.lastname}</option>
     })
 
-    const resourceOptions = this.props.resources.map(resource => {
-      return <option value={resource.title} id={resource.id} key={resource.id}>{resource.title}</option>
-    })
-
-
     return (
       <div className={classes.CreateLesson}>
         <p className={classes.FormInstructions}>Complete form and click 'Create Lesson'</p>
         <form onSubmit={(event) => this.handleSubmit(event)} className={classes.Form}>
 
-          {/* <SingleDatePicker
+          <SingleDatePicker
             date={null} // momentPropTypes.momentObj or null
             onDateChange={date => this.handleDateSelect({ date })} // PropTypes.func.isRequired
             focused={this.state.focused} // PropTypes.bool
             onFocusChange={({ focused }) => this.setState({ focused })} // PropTypes.func.isRequired
-          /> */}
-
-
+          />
           <p>
             <label>TeacherSelector</label>
             <select value={this.state.teacher.lastname} onChange={(event) => this.handleTeacherSelect(event)}>
@@ -124,21 +107,12 @@ class CreateLesson extends Component {
               {teacherOptions}
             </select>
           </p>
-
           <p>
             <label>StudentSelector</label>
             <select value={this.state.student_id} onChange={(event) => this.handleStudentSelect(event)}>
               {studentOptions}
             </select>
           </p>
-
-          <p>
-            <label>ResourceSelector</label>
-            <select value={this.state.resource_id} onChange={(event) => this.handleResourceSelect(event)}>
-              {resourceOptions}
-            </select>
-          </p>
-
           <p>
             <label>Notes</label>
             <input
@@ -159,14 +133,14 @@ class CreateLesson extends Component {
   }
 }
 
-// SingleDatePicker.propTypes = {
-//   // date: PropTypes.momentPropTypes.momentObj.isRequired,
-//   // date: PropTypes.momentObj.isRequired,
-//   // date: PropTypes.momentPropTypes.isRequired,
-//   onDateChange: PropTypes.func.isRequired,
-//   focused: PropTypes.bool,
-//   onFocusChange: PropTypes.func.isRequired
-// }
+SingleDatePicker.propTypes = {
+  // date: PropTypes.momentPropTypes.momentObj.isRequired,
+  // date: PropTypes.momentObj.isRequired,
+  // date: PropTypes.momentPropTypes.isRequired,
+  onDateChange: PropTypes.func.isRequired,
+  focused: PropTypes.bool,
+  onFocusChange: PropTypes.func.isRequired
+}
 
 const mapStateToProps = state => {
   return {

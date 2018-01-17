@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-
+import { Link } from 'react-router-dom'
 // import styles from './Student.css'
 // import { Container, Row, Col } from 'reactstrap'
 
@@ -20,7 +20,7 @@ const Student = (props) => {
       <div>
         <h5 className={appstyles.StudentHeaderBackground}>{student.firstname} {student.lastname}</h5>
         <p>Level: <strong>{student.level}</strong></p>
-        <p>Teacher: <strong>{student.teacher.lastname}</strong></p>
+        <p><Link to={`/teachers/${student.teacher.id}`}>Teacher: <strong>{student.teacher.lastname}</strong></Link></p>
         <p>Last lesson date: <strong>{student.lessons.length !== 0 ? student.lessons[student.lessons.length - 1].date : 'no lessons on record for this student'}</strong></p>
       </div>
     )

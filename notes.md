@@ -20,7 +20,7 @@ REQUIREMENTS
 [X]  use Redux middleware to respond to and modify state change
 
 
-[]  Finish Lesson CRUD and Lesson Builder
+[X]  Finish Lesson CRUD and Lesson Builder
 []  Implement more 'reactstrap' components
 []  Blog outline, topics, points, plans
 []  Video walkthrough, outline
@@ -47,6 +47,7 @@ mainnav button does not set state, unless component is mounting
 
 
 ==================================================================================
+PROBLEM sovled by Active Record: 
 
 to create a lesson with multiple resources
 each resource must end up as a record in LessonResources table
@@ -81,16 +82,9 @@ I was able to create a new set of CRUD resources for "lesson_resource", which is
 So now, I want to use this within the context of Creating, Editing and Updating a "Lesson". 
 The normal Lesson fields will be retrieved via the Lesson CRUD components and API functionality.
 The related LessonResources will be retrieved via their related API calls, and surfaced with dedicated React components, again within the context of a "Lesson" component.
+==================================================================================
 
-
-
-
-
-
-
-
-
-
+ 
 
 
 ==================================================================================

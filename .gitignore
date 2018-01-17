@@ -20,16 +20,16 @@
 .env
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 # dependencies
-/client1/node_modules
-/client2/node_modules
+
+/client/node_modules
 
 # testing
-/client1/coverage
-/client2/coverage
+
+/client/coverage
 
 # production
-/client1/build
-/client2/build
+
+/client/build
 
 # misc
 .DS_Store
