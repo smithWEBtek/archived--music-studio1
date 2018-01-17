@@ -9,10 +9,10 @@ const LessonResourceService = {
     return fetch(`${API_URL}/lesson_resources/${id}`)
       .then(response => response.json())
   },
-  createLessonResource(lessonResource) {
+  createLessonResource(data) {
     const request = {
       method: 'POST',
-      body: JSON.stringify({ lessonResource: lessonResource }),
+      body: JSON.stringify({ lesson_resource: data }),
       headers: { 'Content-Type': 'application/json' }
     }
     return fetch(`${API_URL}/lesson_resources`, request)
@@ -21,7 +21,7 @@ const LessonResourceService = {
   updateLessonResource(id, data) {
     const request = {
       method: 'PATCH',
-      body: JSON.stringify({ lessonResource: data }),
+      body: JSON.stringify({ lesson_resource: data }),
       headers: { 'Content-Type': 'application/json' }
     }
     return fetch(`${API_URL}/lesson_resources/${id}`, request, { method: 'PATCH' })
