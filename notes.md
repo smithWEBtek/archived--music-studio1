@@ -20,7 +20,7 @@ REQUIREMENTS
 [X]  use Redux middleware to respond to and modify state change
 
 
-[]  Finish Lesson CRUD and Lesson Builder
+[X]  Finish Lesson CRUD and Lesson Builder
 []  Implement more 'reactstrap' components
 []  Blog outline, topics, points, plans
 []  Video walkthrough, outline
@@ -45,52 +45,13 @@ both views have to be viewable with ternary connected to state
 both handlers need to setState()
 mainnav button does not set state, unless component is mounting  
 
-
-==================================================================================
-
-to create a lesson with multiple resources
-each resource must end up as a record in LessonResources table
-
-so the Lesson object, has  :id, :date, :teacher_id, :student_id
-even though that same lesson has_many resources, 
-the database row that holds that lesson, does not contain resource(s) data
-outside of rails, we have to manually create the relationships by interacting with the API via 2 different calls. 
-1> CREATE_LESSON
-2> CREATE_LESSON_RESOURCE
-  and whatever rules that implies, (if exists, don't add duplicate)
-  and whatever rules that implies, (if not exist, create)
-  and whatever rules that implies, (if exists, but our version has an update, then update)
-
-for UPDATE_LESSON, we need to revisit BOTH of these API calls.
-1> FETCH_LESSON
-2> Process user input for lesson
-3> FETCH_LESSON_RESOURCES
-4> Process user input for lesson_resources
-5> Update LESSON
-6> Update LESSON_RESOURCE
-
-UNLESS!!!
-There is some way to pass an array of Resource IDs, within the updatedLessonData, to the UPDATE_LESSON API call, but I don't see how to do that(?)
-
-...first I will examine a Rails only app, to see what the controller will accept because I know that we've worked with has_many, and there is precedence for using 'resource_ids:[]' within params
-
-
-
-
-
-
-
-
-
-
-
-
+ 
 
 
 ==================================================================================
 TODO
 []  sort clickable names alphabetically
-[]  make a spinner out of Logo
+[X]  make a spinner out of Logo
 []  sort Resources by format, in the clickableNames section
 []  Lesson  Resource CRUD (index, show, new/create, edit/update, delete)
 []  LessonInProgress: add TeachLesson function ( live editing of notes and adding of resources in a new or existing Lesson)
@@ -124,7 +85,7 @@ TODO DONE------------------------------------------------------
   [X]  if audio: show SoundCloud embedded player in small window
 
 [X]  ResourcesList view based on resources assigned to this Lesson (slimmed down version of <Resources /> component w/o CRUD)
-[]  Resource CRUD (index, show, new/create, edit/update, delete), add modal via hover, for 3 types of viewer (PDF, AUD, VID))
+[X]  Resource CRUD (index, show, new/create, edit/update, delete), add modal via hover, for 3 types of viewer (PDF, AUD, VID))
 [X] Student CRUD (index, show, new/create, edit/update, delete), add for: MyLessons, MyTeacher, MyResource
 [X]  Teacher CRUD (index, show, new/create, edit/update, delete), add links for: MyLessons, MyStudents
 [X]  practice reactstrap and build an empty, styled framework first
@@ -321,3 +282,43 @@ You may serve it with a static server:
   serve -s build
 ==================================================================================
 
+
+==================================================================================
+PROBLEM sovled by Active Record: 
+
+to create a lesson with multiple resources
+each resource must end up as a record in LessonResources table
+
+so the Lesson object, has  :id, :date, :teacher_id, :student_id
+even though that same lesson has_many resources, 
+the database row that holds that lesson, does not contain resource(s) data
+outside of rails, we have to manually create the relationships by interacting with the API via 2 different calls. 
+1> CREATE_LESSON
+2> CREATE_LESSON_RESOURCE
+  and whatever rules that implies, (if exists, don't add duplicate)
+  and whatever rules that implies, (if not exist, create)
+  and whatever rules that implies, (if exists, but our version has an update, then update)
+
+for UPDATE_LESSON, we need to revisit BOTH of these API calls.
+1> FETCH_LESSON
+2> Process user input for lesson
+3> FETCH_LESSON_RESOURCES
+4> Process user input for lesson_resources
+5> Update LESSON
+6> Update LESSON_RESOURCE
+
+UNLESS!!!
+There is some way to pass an array of Resource IDs, within the updatedLessonData, to the UPDATE_LESSON API call, but I don't see how to do that(?)
+
+...first I will examine a Rails only app, to see what the controller will accept because I know that we've worked with has_many, and there is precedence for using 'resource_ids:[]' within params
+
+update:  I was not able to satisfy this requirement by providing an array of resources to a Lesson, where the Lesson in the database is defined with:  id, teacher_id, student_id and notes
+
+I was able to create a new set of CRUD resources for "lesson_resource", which is my join table for adding multiple resources to a Lesson, and having a Resource be used by multiple lessons. 
+
+So now, I want to use this within the context of Creating, Editing and Updating a "Lesson". 
+The normal Lesson fields will be retrieved via the Lesson CRUD components and API functionality.
+The related LessonResources will be retrieved via their related API calls, and surfaced with dedicated React components, again within the context of a "Lesson" component.
+==================================================================================
+
+ 

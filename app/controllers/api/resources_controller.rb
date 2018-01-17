@@ -19,8 +19,7 @@ class Api::ResourcesController < ApplicationController
     end
   end
   
-  def update    
-    binding.pry
+  def update
     @resource = Resource.find(params[:id])
     @resource.update(resource_params)
     if @resource.save
@@ -36,10 +35,7 @@ class Api::ResourcesController < ApplicationController
   end
 
   private
-
-
   def resource_params
     params.require(:resource).permit(:title, :category, :description, :format, :location, :url)
   end
-
 end
