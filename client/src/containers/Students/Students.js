@@ -17,7 +17,7 @@ class Students extends Component {
   state = {
     student: null,
     showStudent: false,
-    showStudentsList: false,
+    // showStudentsList: false,
     createStudent: false,
     editStudent: false
   }
@@ -28,11 +28,11 @@ class Students extends Component {
 
   //********SHOW_STUDENTS_LIST form handling********************
   showStudentsList = () => {
-    this.setState({ showStudentsList: true })
+    this.props.onShowStudentsList()
   }
 
   closeStudentsList = () => {
-    this.setState({ showStudentsList: false })
+    this.props.onHideStudentsList()
   }
 
   //********SHOW_STUDENT form handling**************************
@@ -95,6 +95,7 @@ class Students extends Component {
       <Container>
         <hr />
         <button onClick={this.showStudentsList}><Link to='/students'>ALL students</Link></button>
+        <button onClick={this.showStudentsList}><Link to='/students'>ALL students</Link></button>
 
         {/*********CREATE STUDENT MODAL********************/}
         <button onClick={this.createStudentForm}>Add Student</button>
@@ -141,7 +142,7 @@ class Students extends Component {
           </Switch>
         </div>
         <div>
-          {this.state.showStudentsList ?
+          {this.props.showStudentsList ?
             <div><h5 className={appstyles.IndexHeaderBackground}>ALL students</h5>
               <StudentsList
                 students={students}
@@ -158,7 +159,8 @@ class Students extends Component {
 
 const mapStateToProps = state => {
   return {
-    students: state.stu.students
+    students: state.stu.students,
+    showStudentsList: state.stu.showStudentsList
   };
 }
 
@@ -167,7 +169,9 @@ const mapDispatchToProps = dispatch => {
     onFetchStudents: () => dispatch(actionCreators.fetchStudents()),
     onCreateStudent: (data) => dispatch(actionCreators.createStudent(data)),
     onUpdateStudent: (data) => dispatch(actionCreators.updateStudent(data)),
-    onDeleteStudent: (id) => dispatch(actionCreators.deleteStudent(id))
+    onDeleteStudent: (id) => dispatch(actionCreators.deleteStudent(id)),
+    onShowStudentsList: () => dispatch(actionCreators.showStudentsList()),
+    onHideStudentsList: () => dispatch(actionCreators.hideStudentsList())
   };
 }
 

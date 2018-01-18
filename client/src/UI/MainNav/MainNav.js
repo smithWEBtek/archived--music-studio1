@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { Route, Link } from 'react-router-dom'
 import styles from './MainNav.css'
-import LogoSpin from '../../assets/images/LogoSpin.png';
-import Logo from '../../assets/images/Logo.png';
+import LogoSpin from '../../assets/images/LogoSpin.png'
+import Logo from '../../assets/images/Logo.png'
 // import Aux from '../../hoc/Aux/Aux'
 import {
   Container,
@@ -12,27 +12,29 @@ import {
   // NavbarBrand,
   Nav,
   // NavItem
-} from 'reactstrap';
+} from 'reactstrap'
 
 import Students from '../../containers/Students/Students'
 import Teachers from '../../containers/Teachers/Teachers'
 import Lessons from '../../containers/Lessons/Lessons'
 import Resources from '../../containers/Resources/Resources'
 import LessonResources from '../../containers/LessonResources/LessonResources'
+import * as actionCreators from '../../store/actions/index'
+import { connect } from 'react-redux'
 
 class MainNav extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
-    this.toggle = this.toggle.bind(this);
+    this.toggle = this.toggle.bind(this)
     this.state = {
       isOpen: false
-    };
+    }
   }
   toggle() {
     this.setState({
       isOpen: !this.state.isOpen
-    });
+    })
   }
   render() {
     return (
@@ -40,7 +42,13 @@ class MainNav extends Component {
         <Navbar className={styles.MainNav} light expand="md">
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav navbar>
-              <Link to='/students/' className={styles.Item}>students</Link>
+              <Link
+                to='/students/'
+                className={styles.Item}
+                onClick={() => this.props.onShowStudentsList()}
+              >students</Link>
+
+
               <Link to='/teachers/' className={styles.Item}>teachers</Link>
               <Link to='/resources/' className={styles.Item}>resources</Link>
               <Link to='/lessons/' className={styles.Item}>lessons</Link>
@@ -76,8 +84,20 @@ class MainNav extends Component {
           <Route path="/lesson_resources" component={LessonResources} />
         </div>
       </Container >
-    );
+    )
   }
 }
 
-export default MainNav
+const mapStateToProps = state => {
+  return {
+    showStudentsList: state.stu.showStudentsList
+  };
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onShowStudentsList: () => dispatch(actionCreators.showStudentsList())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MainNav)

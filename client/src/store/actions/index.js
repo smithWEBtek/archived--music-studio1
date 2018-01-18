@@ -17,6 +17,9 @@ export {
 } from './resourceActions'
 
 export {
+  showStudentsList,
+  hideStudentsList,
+
   fetchStudent,
   showStudent,
   createStudent,
