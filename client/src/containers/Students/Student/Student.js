@@ -18,7 +18,7 @@ const Student = (props) => {
   if (student) {
     studentHeader = (
       <div>
-        <h5 className={appstyles.StudentHeaderBackground}>{student.firstname} {student.lastname}</h5>
+        <h5 className={appstyles.StudentHeaderBackground}><strong>{student.firstname} {student.lastname}</strong></h5>
         <p>Level: <strong>{student.level}</strong></p>
         <p><Link to={`/teachers/${student.teacher.id}`}>Teacher: <strong>{student.teacher.lastname}</strong></Link></p>
         <p>Last lesson date: <strong>{student.lessons.length !== 0 ? student.lessons[student.lessons.length - 1].date : 'no lessons on record for this student'}</strong></p>
@@ -30,7 +30,7 @@ const Student = (props) => {
     studentLessons = (
       <div>
         <hr />
-        <h6 className={appstyles.LessonHeaderBackground}>LESSONS recorded for <strong>{student.firstname}</strong></h6>
+        <h6 className={appstyles.LessonHeaderBackground}><strong>{student.firstname}'s LESSONS</strong></h6>
         <div><LessonsList lessons={student.lessons} /></div>
       </div>
     )
@@ -40,7 +40,7 @@ const Student = (props) => {
     studentResources = (
       <div>
         <hr />
-        <h6 className={appstyles.ResourceHeaderBackground}>RESOURCES assigned to <strong>{student.firstname}</strong></h6>
+        <h6 className={appstyles.ResourceHeaderBackground}><strong>{student.firstname}'s assigned RESOURCES</strong> </h6>
         <div><ResourcesList resources={student.resources} /></div>
       </div >
     )

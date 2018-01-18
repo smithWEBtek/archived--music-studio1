@@ -38,5 +38,5 @@ class Api::TeachersController < ApplicationController
     def teacher_params
       params.require(:teacher).permit(:firstname, :lastname, :email)
     end
-  
   end
+  

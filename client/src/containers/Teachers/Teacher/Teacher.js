@@ -18,7 +18,7 @@ const Teacher = (props) => {
   if (teacher) {
     teacherHeader = (
       <div>
-        <h5 className={appstyles.TeacherHeaderBackground}>{teacher.firstname} {teacher.lastname}</h5>
+        <h5 className={appstyles.TeacherHeaderBackground}><strong>{teacher.firstname} {teacher.lastname}</strong></h5>
         <p>Email: {teacher.email} </p>
       </div>
     )
@@ -28,7 +28,7 @@ const Teacher = (props) => {
     teacherLessons = (
       <div>
         <hr />
-        <h6 className={appstyles.LessonHeaderBackground}>LESSONS recorded for <strong>{teacher.firstname}</strong></h6>
+        <h6 className={appstyles.LessonHeaderBackground}><strong>{teacher.firstname}'s LESSONS</strong></h6>
         <div><LessonsList lessons={teacher.lessons} /></div>
       </div>
     )
@@ -38,7 +38,7 @@ const Teacher = (props) => {
     teacherStudents = (
       <div>
         <hr />
-        <h6 className={appstyles.StudentHeaderBackground}>STUDENTS assigned to <strong>{teacher.firstname}</strong></h6>
+        <h6 className={appstyles.StudentHeaderBackground}><strong>{teacher.firstname}'s STUDENTS</strong></h6>
         <div><StudentsList students={teacher.students} /></div>
       </div >
     )
@@ -50,10 +50,10 @@ const Teacher = (props) => {
         {teacherHeader}
       </div>
       <div>
-        {teacherLessons}
+        {teacherStudents}
       </div>
       <div>
-        {teacherStudents}
+        {teacherLessons}
       </div>
     </div >
   )
