@@ -37,9 +37,6 @@ class MainNav extends Component {
     return (
       <Container>
         <Navbar className={styles.MainNav} light expand="md">
-          <div className="center">
-            <Link to='/'><img src={LogoSpin} height="60px" className={styles.LogoSpin} alt="app-logo" /></Link>
-          </div>
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav navbar>
               <Link to='/students/' className={styles.Item}>students</Link>
@@ -49,15 +46,23 @@ class MainNav extends Component {
               {/* <NavItem><Link to='/lesson_resources/' className={styles.Item}>lessonResources</Link></NavItem> */}
             </Nav>
           </Collapse>
-          <NavbarBrand><h4>piano-studio-manager</h4></NavbarBrand>
+          <NavbarBrand>
+            <div className="center">
+              <h4>music
+              <Link to='/'><img src={LogoSpin} height="60px" className={styles.LogoSpin} alt="app-logo" /></Link>
+                studio</h4>
+            </div>
+          </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
         </Navbar >
         <div>
           <Route path="/" exact render={() => (
             <div className={styles.Center}>
-              <h3>II III II III II III II III II III II III II</h3>
-              <h5>Welcome, how is your practice going?</h5>
+              <br />
+              <h5>Welcome!</h5>
+              <h5>Ready to play some music?</h5>
               <img src={Logo} height="150px" className={styles.Logo} alt="app-logo" /><br />
+              <h3>II III II III II III II III II III II III II</h3>
               <div><hr /> <hr /> <hr /> <hr /> <hr /></div>
             </div>
           )} />

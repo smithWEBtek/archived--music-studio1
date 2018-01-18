@@ -2,13 +2,17 @@ import React, { Component } from 'react';
 import styles from './EditStudent.css';
 
 class EditStudent extends Component {
-  state = {
-    id: '',
-    firstname: '',
-    lastname: '',
-    email: '',
-    level: '',
-    teacher_id: ''
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      id: '',
+      firstname: '',
+      lastname: '',
+      email: '',
+      level: '',
+      teacher_id: ''
+    }
   }
 
   componentDidMount() {

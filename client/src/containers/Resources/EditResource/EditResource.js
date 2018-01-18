@@ -2,14 +2,18 @@ import React, { Component } from 'react';
 import styles from './EditResource.css';
 
 class EditResource extends Component {
-  state = {
-    id: '',
-    title: '',
-    category: '',
-    description: '',
-    format: '',
-    location: '',
-    url: ''
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      id: '',
+      title: '',
+      category: '',
+      description: '',
+      format: '',
+      location: '',
+      url: ''
+    }
   }
 
   componentDidMount() {
