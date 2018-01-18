@@ -12,6 +12,7 @@ const initialState = {
 const updateObject = (oldObject, updatedValues) => { return { ...oldObject, ...updatedValues } }
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+
     case actionTypes.SHOW_STUDENTS_LIST:
       return updateObject(state, { showStudentsList: true })
 

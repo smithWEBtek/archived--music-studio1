@@ -17,7 +17,7 @@ class Students extends Component {
   state = {
     student: null,
     showStudent: false,
-    // showStudentsList: false,
+    // showStudentsList: false,  (moved to Redux)
     createStudent: false,
     editStudent: false
   }
@@ -80,21 +80,21 @@ class Students extends Component {
 
   render() {
     const { match, students } = this.props;
-    let clickableNames = students.map((student, index) => {
-      return (
-        <Link to={`/students/${student.id}`}
-          style={{ marginRight: '5px' }}
-          key={student.id}
-          onClick={() => this.setState({ showStudentsList: false })}
-        >{student.lastname}
-        </Link>
-      )
-    })
+
+    // let clickableNames = students.map((student, index) => {
+    //   return (
+    //     <Link to={`/students/${student.id}`}
+    //       style={{ marginRight: '5px' }}
+    //       key={student.id}
+    //     // onClick={this.closeStudentsList}
+    //     >{student.lastname}
+    //     </Link>
+    //   )
+    // })
 
     return (
       <Container>
         <hr />
-        <button onClick={this.showStudentsList}><Link to='/students'>ALL students</Link></button>
         <button onClick={this.showStudentsList}><Link to='/students'>ALL students</Link></button>
 
         {/*********CREATE STUDENT MODAL********************/}
@@ -124,13 +124,13 @@ class Students extends Component {
         </Modal>
 
         {/**********CLICKABLE NAMES**********************/}
-        <Container>
+        {/* <Container>
           <Row>
             <Col>
               {clickableNames}
             </Col>
           </Row>
-        </Container>
+        </Container> */}
 
         {/**********STUDENTS LIST************************/}
         <div>

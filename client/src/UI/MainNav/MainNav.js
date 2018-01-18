@@ -3,24 +3,16 @@ import { Route, Link } from 'react-router-dom'
 import styles from './MainNav.css'
 import LogoSpin from '../../assets/images/LogoSpin.png'
 import Logo from '../../assets/images/Logo.png'
-// import Aux from '../../hoc/Aux/Aux'
-import {
-  Container,
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  // NavbarBrand,
-  Nav,
-  // NavItem
-} from 'reactstrap'
+import { Container, Collapse, Navbar, NavbarToggler, Nav } from 'reactstrap'
 
 import Students from '../../containers/Students/Students'
 import Teachers from '../../containers/Teachers/Teachers'
 import Lessons from '../../containers/Lessons/Lessons'
 import Resources from '../../containers/Resources/Resources'
 import LessonResources from '../../containers/LessonResources/LessonResources'
-import * as actionCreators from '../../store/actions/index'
-import { connect } from 'react-redux'
+
+// import * as actionCreators from '../../store/actions/index'
+// import { connect } from 'react-redux'
 
 class MainNav extends Component {
   constructor(props) {
@@ -36,22 +28,26 @@ class MainNav extends Component {
       isOpen: !this.state.isOpen
     })
   }
+
+
   render() {
     return (
       <Container>
         <Navbar className={styles.MainNav} light expand="md">
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav navbar>
-              <Link
-                to='/students/'
-                className={styles.Item}
-                onClick={() => this.props.onShowStudentsList()}
-              >students</Link>
-
 
               <Link to='/teachers/' className={styles.Item}>teachers</Link>
               <Link to='/resources/' className={styles.Item}>resources</Link>
               <Link to='/lessons/' className={styles.Item}>lessons</Link>
+              <Link to='/students/' className={styles.Item}>students localState</Link>
+
+              <Link
+                to='/students/'
+                className={styles.Item}
+                onClick={() => this.props.onShowStudentsList()}
+              >students ReduxState</Link>
+
               {/* <NavItem><Link to='/lesson_resources/' className={styles.Item}>lessonResources</Link></NavItem> */}
             </Nav>
           </Collapse>
@@ -88,16 +84,18 @@ class MainNav extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    showStudentsList: state.stu.showStudentsList
-  };
-}
+// const mapStateToProps = state => {
+//   return {
+//     showStudentsList: state.stu.showStudentsList
+//   };
+// }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    onShowStudentsList: () => dispatch(actionCreators.showStudentsList())
-  }
-}
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     onShowStudentsList: () => dispatch(actionCreators.showStudentsList())
+//   }
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MainNav)
+// export default connect(mapStateToProps, mapDispatchToProps)(MainNav)
+
+export default MainNav
