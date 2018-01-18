@@ -19,6 +19,7 @@ class LessonResources extends Component {
           <td><Link
             to={`/lessons/${lesres.lesson_id}`}
             style={{ marginRight: '5px' }}
+            onClick={this.props.close}
             key={lesres.id}>{lesres.lesson.teacher.lastname} ~ {lesres.lesson.student.lastname}</Link></td>
           <td><Link to={`/teachers/${lesres.lesson.teacher_id}`}>{lesres.lesson.teacher.firstname} {lesres.lesson.teacher.lastname}</Link></td>
           <td><Link to={`/students/${lesres.lesson.student_id}`}>{lesres.lesson.student.firstname} {lesres.lesson.student.lastname}</Link></td>
