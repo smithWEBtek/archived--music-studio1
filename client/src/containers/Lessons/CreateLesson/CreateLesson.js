@@ -4,17 +4,13 @@ import { connect } from 'react-redux'
 import classes from './CreateLesson.css'
 
 class CreateLesson extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      createLesson: false,
-      date: '',
-      teacher: '',
-      student: '',
-      notes: ''
-    }
+  state = {
+    date: '',
+    teacher: '',
+    student: '',
+    notes: ''
   }
+
 
   componentWillMount() {
     this.props.onFetchStudents()
@@ -23,28 +19,21 @@ class CreateLesson extends Component {
   }
 
   //********CREATE_LESSON form handling **************************
-  createLessonForm = () => {
-    this.setState({ createLesson: true })
-  }
-
-  createLessonFormCancel = () => {
-    this.setState({ createLesson: false })
-  }
-
   handleSubmit = (e) => {
-    e.preventDefault()
     const lessonData = {
       date: this.state.date,
       teacher_id: this.state.teacher.id,
       student_id: this.state.student.id,
       notes: this.state.notes
     }
-
     this.props.createLesson(lessonData)
+    this.clearState()
+  }
 
+  clearState = () => {
     this.setState({
       createLesson: false,
-      date: '2011-06-24',
+      date: '',
       teacher: '',
       student: '',
       notes: ''
@@ -53,14 +42,6 @@ class CreateLesson extends Component {
   }
 
   //********CREATE_LESSON selector functions **************************
-  handleDateSelect = (event) => {
-
-    console.log('[CreateLesson] date field', this.state.date)
-    this.setState({
-      date: event.target
-    })
-  }
-
   handleTeacherSelect = (event) => {
     this.setState({
       teacher: this.props.teachers.find(teacher => teacher.lastname === event.target.value)
@@ -88,7 +69,13 @@ class CreateLesson extends Component {
         <form onSubmit={(event) => this.handleSubmit(event)} className={classes.Form}>
           <p>
             <label>Date</label>
-            <input type="date" value={this.state.date} onChange={(event) => this.handleDateSelect(event)} />
+            <input
+              type="date"
+              value={this.state.date}
+              onChange={(event) => this.setState({ date: event.target.value })}
+              placeholder="date"
+              required
+            />
           </p>
           <p>
             <label>TeacherSelector</label>
@@ -116,7 +103,9 @@ class CreateLesson extends Component {
             type="button"
             onClick={this.props.createLessonCancel}
             className={classes.Danger}>CANCEL</button>
-          <button className={classes.Success}>CREATE Lesson</button>
+
+          <button
+            className={classes.Success}>CREATE Lesson</button>
         </form>
       </div>
     )
