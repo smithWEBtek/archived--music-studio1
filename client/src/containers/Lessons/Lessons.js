@@ -18,7 +18,7 @@ class Lessons extends Component {
     lesson: {},
     showLesson: false,
     showLessonsList: false,
-    createLesson: true,
+    createLesson: false,
     editLesson: false
   }
 

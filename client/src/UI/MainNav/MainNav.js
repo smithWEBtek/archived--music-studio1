@@ -3,6 +3,7 @@ import { Route, Link } from 'react-router-dom'
 import styles from './MainNav.css'
 import LogoSpin from '../../assets/images/LogoSpin.png';
 import Logo from '../../assets/images/Logo.png';
+import Aux from '../../hoc/Aux/Aux'
 import {
   Container,
   Collapse,
@@ -46,13 +47,15 @@ class MainNav extends Component {
               {/* <NavItem><Link to='/lesson_resources/' className={styles.Item}>lessonResources</Link></NavItem> */}
             </Nav>
           </Collapse>
-          <NavbarBrand>
-            <div className="center">
-              <h4>music
-              <Link to='/'><img src={LogoSpin} height="60px" className={styles.LogoSpin} alt="app-logo" /></Link>
-                studio</h4>
-            </div>
-          </NavbarBrand>
+          {/* <NavbarBrand> */}
+          <div className="logo-home">
+            <Link to='/'>
+              music
+                <img src={LogoSpin} height="60px" className={styles.LogoSpin} alt="app-logo" />
+              studio
+              </Link>
+          </div>
+          {/* </NavbarBrand> */}
           <NavbarToggler onClick={this.toggle} />
         </Navbar >
         <div>

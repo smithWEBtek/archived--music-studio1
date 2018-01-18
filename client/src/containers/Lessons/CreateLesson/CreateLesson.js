@@ -54,6 +54,8 @@ class CreateLesson extends Component {
 
   //********CREATE_LESSON selector functions **************************
   handleDateSelect = (event) => {
+
+    console.log('[CreateLesson] date field', this.state.date)
     this.setState({
       date: event.target
     })
@@ -84,7 +86,10 @@ class CreateLesson extends Component {
       <div className={classes.CreateLesson}>
         <p className={classes.FormInstructions}>Complete form and click 'Create Lesson'</p>
         <form onSubmit={(event) => this.handleSubmit(event)} className={classes.Form}>
-
+          <p>
+            <label>Date</label>
+            <input type="date" value={this.state.date} onChange={(event) => this.handleDateSelect(event)} />
+          </p>
           <p>
             <label>TeacherSelector</label>
             <select value={this.state.teacher.lastname} onChange={(event) => this.handleTeacherSelect(event)}>
