@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import * as actionCreators from '../../../store/actions/index'
 import { connect } from 'react-redux'
 import classes from './CreateLesson.css'
-import PropTypes from 'prop-types'
 
 class CreateLesson extends Component {
   constructor(props) {
@@ -73,9 +72,6 @@ class CreateLesson extends Component {
   }
 
   render() {
-
-    // console.log('[CreateLesson] at render() this.props:', this.props)
-
     const teacherOptions = this.props.teachers.map(teacher => {
       return <option value={teacher.lastname} id={teacher.id} key={teacher.id}>{teacher.lastname}</option>
     })
@@ -89,12 +85,6 @@ class CreateLesson extends Component {
         <p className={classes.FormInstructions}>Complete form and click 'Create Lesson'</p>
         <form onSubmit={(event) => this.handleSubmit(event)} className={classes.Form}>
 
-          <SingleDatePicker
-            date={null} // momentPropTypes.momentObj or null
-            onDateChange={date => this.handleDateSelect({ date })} // PropTypes.func.isRequired
-            focused={this.state.focused} // PropTypes.bool
-            onFocusChange={({ focused }) => this.setState({ focused })} // PropTypes.func.isRequired
-          />
           <p>
             <label>TeacherSelector</label>
             <select value={this.state.teacher.lastname} onChange={(event) => this.handleTeacherSelect(event)}>
@@ -128,15 +118,6 @@ class CreateLesson extends Component {
   }
 }
 
-SingleDatePicker.propTypes = {
-  // date: PropTypes.momentPropTypes.momentObj.isRequired,
-  // date: PropTypes.momentObj.isRequired,
-  // date: PropTypes.momentPropTypes.isRequired,
-  onDateChange: PropTypes.func.isRequired,
-  focused: PropTypes.bool,
-  onFocusChange: PropTypes.func.isRequired
-}
-
 const mapStateToProps = state => {
   return {
     students: state.stu.students,
@@ -154,6 +135,4 @@ const mapDispatchToProps = dispatch => {
   };
 }
 
-
 export default connect(mapStateToProps, mapDispatchToProps)(CreateLesson)
-// export default connect(mapStateToProps)(CreateLesson)

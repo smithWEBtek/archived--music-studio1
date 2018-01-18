@@ -10,7 +10,7 @@ import {
   NavbarToggler,
   NavbarBrand,
   Nav,
-  NavItem
+  // NavItem
 } from 'reactstrap';
 
 import Students from '../../containers/Students/Students'
