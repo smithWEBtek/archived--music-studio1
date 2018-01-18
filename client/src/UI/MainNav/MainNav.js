@@ -37,20 +37,20 @@ class MainNav extends Component {
     return (
       <Container>
         <Navbar className={styles.MainNav} light expand="md">
-          <div>
+          <div className="center">
             <Link to='/'><img src={LogoSpin} height="60px" className={styles.LogoSpin} alt="app-logo" /></Link>
           </div>
-          <NavbarBrand><h4>pianoStudent</h4></NavbarBrand>
-          <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
-            <Nav className="ml-auto" navbar>
-              <NavItem><Link to='/students/' className={styles.Item}>students</Link></NavItem>
-              <NavItem><Link to='/teachers/' className={styles.Item}>teachers</Link></NavItem>
-              <NavItem><Link to='/resources/' className={styles.Item}>resources</Link></NavItem>
-              <NavItem><Link to='/lessons/' className={styles.Item}>lessons</Link></NavItem>
+            <Nav navbar>
+              <Link to='/students/' className={styles.Item}>students</Link>
+              <Link to='/teachers/' className={styles.Item}>teachers</Link>
+              <Link to='/resources/' className={styles.Item}>resources</Link>
+              <Link to='/lessons/' className={styles.Item}>lessons</Link>
               {/* <NavItem><Link to='/lesson_resources/' className={styles.Item}>lessonResources</Link></NavItem> */}
             </Nav>
           </Collapse>
+          <NavbarBrand><h4>piano-studio-manager</h4></NavbarBrand>
+          <NavbarToggler onClick={this.toggle} />
         </Navbar >
         <div>
           <Route path="/" exact render={() => (
@@ -63,7 +63,7 @@ class MainNav extends Component {
           )} />
           <Route path="/students" component={Students} />
           <Route path="/teachers" component={Teachers} />
-          <Route path="/lessons" component={Lessons} />
+          <Route path="/lessons/" component={Lessons} />
           <Route path="/resources" component={Resources} />
           <Route path="/lesson_resources" component={LessonResources} />
         </div>
