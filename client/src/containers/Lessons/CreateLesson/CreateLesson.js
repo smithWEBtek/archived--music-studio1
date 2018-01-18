@@ -2,12 +2,7 @@ import React, { Component } from 'react'
 import * as actionCreators from '../../../store/actions/index'
 import { connect } from 'react-redux'
 import classes from './CreateLesson.css'
-
 import PropTypes from 'prop-types'
-import 'react-dates/initialize';
-import 'react-dates/lib/css/_datepicker.css';
-import { SingleDatePicker } from 'react-dates';
-import datestyles from './react-dates-override.css'
 
 class CreateLesson extends Component {
   constructor(props) {
