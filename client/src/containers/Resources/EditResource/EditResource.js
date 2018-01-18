@@ -32,6 +32,10 @@ class EditResource extends Component {
 
   handleSubmit = (e) => {
     let data = this.state;
+    if (data.url === "") {
+      data.url = 'no_url_given'
+    }
+    console.log('[EditResource] this.state', this.state)
     this.props.updateResource(data)
     e.preventDefault();
   }

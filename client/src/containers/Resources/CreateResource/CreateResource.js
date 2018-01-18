@@ -22,6 +22,9 @@ class CreateResource extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
+    if (this.state.url === "") {
+      this.setState({ url: 'no_url_given' })
+    }
     const resourceData = this.state;
     this.props.createResource(resourceData)
     this.setState({
@@ -38,7 +41,7 @@ class CreateResource extends Component {
   render() {
     return (
       <div>
-        <p className={styles.FormInstructions}>Complete form and click 'Add Resource'</p>
+        <p className={styles.FormInstructions}>Complete form and click 'Create Resource'</p>
         <form onSubmit={this.handleSubmit}>
           <p><label htmlFor="resource_name">Title
             </label>
@@ -92,12 +95,12 @@ class CreateResource extends Component {
               name="url"
               value={this.state.url}
               onChange={(event) => this.handleOnChange(event)}
-              placeholder="url"
-              required /></p>
+              placeholder="url" /></p>
           <button
             type="button"
-            onClick={this.props.addResourceCancel}
+            onClick={this.props.createResourceCancel}
             className={styles.Danger}>CANCEL</button>
+
           <button className={styles.Success}
           >CREATE Resource</button>
         </form>
