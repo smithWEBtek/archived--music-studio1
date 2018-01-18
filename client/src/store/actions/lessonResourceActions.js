@@ -1,5 +1,6 @@
 import * as actionTypes from './actionTypes'
 import LessonResourceService from '../../containers/LessonResources/LessonResourceService'
+import { fetchLessons } from './lessonActions';
 
 //-----CREATE LESSON_RESOURCE ACTIONS-----------------------------
 export const createLessonResourceStart = () => {
@@ -18,6 +19,7 @@ export const createLessonResource = (data) => {
       .then(response => {
         dispatch({ type: actionTypes.CREATE_LESSON_RESOURCE, data: response })
         dispatch(createLessonResourceSuccess())
+        dispatch(fetchLessons())
       })
       .catch(error => {
         dispatch(createLessonResourceFail(error))
@@ -42,6 +44,7 @@ export const deleteLessonResource = (id) => {
       .then(response => {
         dispatch({ type: actionTypes.DELETE_LESSON_RESOURCE, id: id })
         dispatch({ type: actionTypes.DELETE_LESSON_RESOURCE_SUCCESS, message: response })
+        dispatch(fetchLessons())
       })
       .catch(error => {
         dispatch({ type: actionTypes.DELETE_LESSON_RESOURCE_FAIL, error: error })

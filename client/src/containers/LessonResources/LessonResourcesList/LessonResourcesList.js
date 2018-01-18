@@ -15,12 +15,14 @@ class LessonResourcesList extends Component {
   }
 
   render() {
+
     const addLessonResource = (lesson_id, resource_id) => {
       let data = {
         lesson_id: lesson_id,
         resource_id: resource_id
       }
       this.props.onCreateLessonResource(data)
+      this.props.onFetchLessonResources()
     }
 
     const removeLessonResource = (id) => {
@@ -57,8 +59,10 @@ class LessonResourcesList extends Component {
           <td>{resource.description}</td>
           <td>{resource.format}</td>
           <td>{resource.location}</td>
-          <td><button type='button' onClick={() => addLessonResource(this.props.lesson.id, resource.id)} className="Success">
-            Add to Lesson</button></td>
+          <td><button
+            type='button'
+            onClick={() => addLessonResource(this.props.lesson.id, resource.id)}
+            className="Success">Add to Lesson</button></td>
         </tr >
       )
     })

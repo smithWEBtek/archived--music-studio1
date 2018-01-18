@@ -5,16 +5,11 @@ import { Link } from 'react-router-dom'
 // import { Container, Row, Col } from 'reactstrap'
 
 import appstyles from '../../../App.css'
-import ResourcesList from '../../Resources/ResourcesList/ResourcesList'
 import LessonResourcesList from '../../LessonResources/LessonResourcesList/LessonResourcesList'
 
 const Lesson = (props) => {
 
-
-
-
   const lesson = props.lessons.filter(les => les.id === +props.match.params.id)[0]
-
   let lessonHeader = <div><p>Lesson component is loading...</p></div>
   let renderLessonResources = <div><h5>No resources assigned</h5></div>
 
@@ -35,7 +30,9 @@ const Lesson = (props) => {
       <div>
         <hr />
         <h5 className={appstyles.ResourceHeaderBackground}>RESOURCES assigned to this lesson:</h5>
-        <LessonResourcesList lesson={lesson} />
+        <LessonResourcesList
+          lesson={lesson}
+          close={props.close} />
       </div >
     )
   }
@@ -47,10 +44,6 @@ const Lesson = (props) => {
       </div>
       <div>
         {renderLessonResources}
-      </div>
-      <div>
-        <h5 className={appstyles.ResourceHeaderBackground}>ALL RESOURCES</h5>
-        <ResourcesList resources={props.resources} />
       </div>
     </div >
   )

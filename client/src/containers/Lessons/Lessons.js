@@ -17,7 +17,7 @@ class Lessons extends Component {
   state = {
     lesson: {},
     showLesson: false,
-    showLessonsList: true,
+    showLessonsList: false,
     createLesson: false,
     editLesson: false
   }
@@ -133,7 +133,7 @@ class Lessons extends Component {
                 lessons={lessons}
                 edit={(id) => this.showEditLessonForm(id)}
                 delete={(id) => this.props.onDeleteLesson(id)}
-                close={() => this.showLessonsList()}
+                close={() => this.closeLessonsList()}
               /></div> : null}
         </div >
         <hr />
