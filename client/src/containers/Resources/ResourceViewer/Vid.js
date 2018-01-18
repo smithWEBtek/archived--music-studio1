@@ -6,7 +6,7 @@ const Vid = (props) => {
       <iframe
         title={props.title}
         width="560"
-        height="315"
+        height="500"
         src={props.url}
         frameBorder="0"
         // allow="autoplay encrypted-media"

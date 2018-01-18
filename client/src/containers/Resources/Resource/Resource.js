@@ -11,7 +11,7 @@ const Resource = (props) => {
   const resource = props.resources.filter(resource => resource.id === +props.match.params.id)[0]
 
   let resourceData = <div><p>Resource component is loading...</p></div>
-  let resourceView = <div><p> this is not a PDF format </p></div>
+  let resourceView = <div><p>Resource view is loading...</p></div>
   let resourceTeachers = <p>None yet</p>
 
   if (resource && resource.teachers.length > 0) {
@@ -52,7 +52,7 @@ const Resource = (props) => {
         <Col xs="3">
           {resourceData}
         </Col>
-        <Col xs="9">
+        <Col xs="9" className={styles.ViewerTopMargin}>
           {resourceView}
         </Col>
       </Row>

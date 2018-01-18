@@ -15,15 +15,15 @@ const ResourceViewer = (props) => {
     </div>
   )
 
-  if (props.resource.format === 'pdf') {
+  if (props.resource.format === 'pdf' && props.resource.url !== 'no_url_given') {
     renderResource = <Pdf url={props.resource.url} />
   }
 
-  if (props.resource.format === 'vid') {
+  if (props.resource.format === 'vid' && props.resource.url !== 'no_url_given') {
     renderResource = <Vid url={props.resource.url} />
   }
 
-  if (props.resource.format === 'aud') {
+  if (props.resource.format === 'aud' && props.resource.url !== 'no_url_given') {
     renderResource = (
       <Aux>
         <hr />
