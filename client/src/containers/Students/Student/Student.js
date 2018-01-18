@@ -1,9 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-// import styles from './Student.css'
-// import { Container, Row, Col } from 'reactstrap'
-
 import appstyles from '../../../App.css'
 import ResourcesList from '../../Resources/ResourcesList/ResourcesList'
 import LessonsList from '../../Lessons/LessonsList/LessonsList'

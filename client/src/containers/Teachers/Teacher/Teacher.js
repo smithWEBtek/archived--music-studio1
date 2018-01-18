@@ -1,9 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-
-// import styles from './Teacher.css'
-// import { Container, Row, Col } from 'reactstrap'
-
 import appstyles from '../../../App.css'
 import StudentsList from '../../Students/StudentsList/StudentsList'
 import LessonsList from '../../Lessons/LessonsList/LessonsList'
