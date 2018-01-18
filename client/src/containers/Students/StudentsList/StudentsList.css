@@ -29,3 +29,11 @@
   font-style: italic;
   font-weight: 600;
 }
+
+th {
+    width: 3%;
+}
+
+td {
+    width: 10%;
+}

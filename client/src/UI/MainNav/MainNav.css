@@ -16,7 +16,7 @@
 :local(.Item) {
   margin-right: 15px;
   color: white;
-  font-size: large; 
+  font-size: large;
 }
 
 :local(.Item:hover) {
@@ -36,8 +36,10 @@
   /* animation: Logo-spin infinite 30s linear; */
   height: 100 px;
 }
+ 
 
 @keyframes Logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+ 

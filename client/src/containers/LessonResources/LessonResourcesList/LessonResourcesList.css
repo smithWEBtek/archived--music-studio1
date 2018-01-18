@@ -5,3 +5,11 @@
 .QuickView:hover {
   visibility: hidden
 }
+
+th {
+    width: 3%;
+}
+
+td {
+    width: 10%;
+}

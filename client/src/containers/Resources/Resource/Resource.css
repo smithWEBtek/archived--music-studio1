@@ -21,3 +21,7 @@
 :local(.LessonHeaderBackground) {
   background-color: rgb(119, 182, 130);
 }
+
+:local(.ViewerTopMargin){
+  margin-top: 15px;
+}
