@@ -17,7 +17,7 @@ class Students extends Component {
   state = {
     student: null,
     showStudent: false,
-    showStudentsList: true,
+    showStudentsList: false,
     createStudent: false,
     editStudent: false
   }

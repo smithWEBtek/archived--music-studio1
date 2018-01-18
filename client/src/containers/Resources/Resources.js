@@ -17,7 +17,7 @@ class Resources extends Component {
   state = {
     resource: '',
     showResource: false,
-    showResourcesList: true,
+    showResourcesList: false,
     createResource: false,
     editResource: false
   }
@@ -89,7 +89,6 @@ class Resources extends Component {
       <Container>
         <hr />
         <button onClick={() => this.showResourcesList()}><Link to='/resources/'>ALL resources</Link></button>
-
         {/*********CREATE RESOURCE MODAL********************************************/}
         <button onClick={this.createResourceForm}>Add Resource</button>
         <Modal
@@ -114,7 +113,7 @@ class Resources extends Component {
             url={this.state.resource.url}
             close={() => this.closeEditResourceForm()}
             updateResource={(data) => this.editResourceUpdate(data)}
-          /> : null}
+            /> : null}
         </Modal>
 
         {/**********RESOURCES LIST**********************************************/}
@@ -137,7 +136,6 @@ class Resources extends Component {
                 close={() => this.closeResourcesList()}
               /></div> : null}
         </div>
-        <hr />
       </Container >
     )
   }
