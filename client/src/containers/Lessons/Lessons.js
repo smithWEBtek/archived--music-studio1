@@ -44,7 +44,7 @@ class Lessons extends Component {
     this.setState({ createLesson: true })
   }
 
-  createLessonFormCancel = () => {
+  createLessonFormClose = () => {
     this.setState({ createLesson: false })
   }
 
@@ -63,9 +63,7 @@ class Lessons extends Component {
   }
 
   editLessonUpdate = (data) => {
-
     console.log('[Lessons] editLessonUpdate data', data)
-
     this.props.onUpdateLesson(data)
     this.setState({
       editLesson: false,
@@ -73,7 +71,7 @@ class Lessons extends Component {
     })
   }
 
-  closeEditLessonForm = () => {
+  editLessonFormCancel = () => {
     this.setState({
       editLesson: false,
       lesson: null
@@ -92,26 +90,23 @@ class Lessons extends Component {
         <button onClick={() => this.createLessonForm()}>Add Lesson</button>
         <Modal
           show={this.state.createLesson}
-          modalClosed={this.createLessonFormCancel}>
+          modalClosed={this.createLessonFormClose}>
           <CreateLesson
             createLesson={(newLessonData) => this.createLesson(newLessonData)}
-            createLessonCancel={this.createLessonFormCancel} />
+            closeForm={this.createLessonFormClose} />
         </Modal>
 
         {/**********EDIT LESSON MODAL********************/}
         <Modal
           show={this.state.editLesson}
-          modalClosed={this.closeEditLessonForm}>
+          modalClosed={this.editLessonFormCancel}>
           {this.state.editLesson ? <EditLesson
-            lesson={this.state.lesson}
-            // id={this.state.lesson.id}
-            // date={this.state.lesson.date}
-            // teacher_id={this.state.lesson.teacher_id}
-            // student_id={this.state.lesson.student_id}
-            // resource_id={this.state.lesson.resource_id}
-            // resource={this.state.lesson.resource}
+            lesson_id={this.state.lesson.id}
+            date={this.state.lesson.date}
+            teacher={this.state.lesson.teacher}
+            student={this.state.lesson.student}
             notes={this.state.lesson.notes}
-            close={() => this.closeEditLessonForm()}
+            closeForm={() => this.editLessonFormCancel()}
             updateLesson={(data) => this.editLessonUpdate(data)}
           /> : null}
         </Modal>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import * as actionCreators from '../../../store/actions/index'
 import { connect } from 'react-redux'
-import classes from './CreateLesson.css'
+import './CreateLesson.css'
 
 class CreateLesson extends Component {
   state = {
@@ -10,7 +10,6 @@ class CreateLesson extends Component {
     student: '',
     notes: ''
   }
-
 
   componentWillMount() {
     this.props.onFetchStudents()
@@ -27,10 +26,6 @@ class CreateLesson extends Component {
       notes: this.state.notes
     }
     this.props.createLesson(lessonData)
-    this.clearState()
-  }
-
-  clearState = () => {
     this.setState({
       createLesson: false,
       date: '',
@@ -38,7 +33,7 @@ class CreateLesson extends Component {
       student: '',
       notes: ''
     })
-    this.props.createLessonCancel()
+    this.props.closeForm()
   }
 
   //********CREATE_LESSON selector functions **************************
@@ -64,9 +59,9 @@ class CreateLesson extends Component {
     })
 
     return (
-      <div className={classes.CreateLesson}>
-        <p className={classes.FormInstructions}>Complete form and click 'Create Lesson'</p>
-        <form onSubmit={(event) => this.handleSubmit(event)} className={classes.Form}>
+      <div className="CreateLesson">
+        <p className="FormInstructions">Complete form and click 'Create Lesson'</p>
+        <form onSubmit={(event) => this.handleSubmit(event)} className="Form">
           <p>
             <label>Date</label>
             <input
@@ -79,14 +74,17 @@ class CreateLesson extends Component {
           </p>
           <p>
             <label>TeacherSelector</label>
-            <select value={this.state.teacher.lastname} onChange={(event) => this.handleTeacherSelect(event)}>
-              console.log('teacherOptions', teacherOptions)
+            <select
+              value={this.state.teacher.lastname}
+              onChange={(event) => this.handleTeacherSelect(event)}>
               {teacherOptions}
             </select>
           </p>
           <p>
             <label>StudentSelector</label>
-            <select value={this.state.student_id} onChange={(event) => this.handleStudentSelect(event)}>
+            <select
+              value={this.state.student_id}
+              onChange={(event) => this.handleStudentSelect(event)}>
               {studentOptions}
             </select>
           </p>
@@ -101,13 +99,13 @@ class CreateLesson extends Component {
           </p>
           <button
             type="button"
-            onClick={this.props.createLessonCancel}
-            className={classes.Danger}>CANCEL</button>
+            onClick={this.props.closeForm}
+            className="Danger">CANCEL</button>
 
           <button
-            className={classes.Success}>CREATE Lesson</button>
-        </form>
-      </div>
+            className="Success">CREATE Lesson</button>
+        </form >
+      </div >
     )
   }
 }

@@ -18,13 +18,13 @@ const LessonService = {
     return fetch(`${API_URL}/lessons`, request)
       .then(response => response.json())
   },
-  updateLesson(id, data) {
+  updateLesson(lesson) {
     const request = {
       method: 'PATCH',
-      body: JSON.stringify({ lesson: data }),
+      body: JSON.stringify({ lesson: lesson }),
       headers: { 'Content-Type': 'application/json' }
     }
-    return fetch(`${API_URL}/lessons/${id}`, request, { method: 'PATCH' })
+    return fetch(`${API_URL}/lessons/${lesson.id}`, request, { method: 'PATCH' })
       .then(response => {
         console.log('[LessonService][updateLesson]response:', response.json())
       })

@@ -1,88 +1,65 @@
 import React, { Component } from 'react';
 import * as actionCreators from '../../../store/actions/index'
 import { connect } from 'react-redux'
-import styles from './EditLesson.css';
+import './EditLesson.css';
 
 class EditLesson extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      id: '',
-      date: '',
-      teacher: '',
-      student: '',
-      // resources: [],
-      notes: ''
-    }
+  state = {
+    id: '',
+    date: '',
+    teacher: '',
+    studen: '',
+    notes: ''
   }
 
   componentWillMount() {
     this.props.onFetchStudents()
     this.props.onFetchTeachers()
-    this.props.onFetchResources()
-
-    console.log('[EditLesson.js][componentWillMount] this.props', this.props)
 
     this.setState({
-      id: this.props.lesson.id,
-      date: this.props.lesson.date,
-      teacher: this.props.lesson.teacher,
-      student: this.props.lesson.student,
-      resources: this.props.lesson.resources,
-      notes: this.props.lesson.notes
+      id: this.props.lesson_id,
+      date: this.props.date,
+      teacher: this.props.teacher,
+      student: this.props.student,
+      notes: this.props.notes
     })
   }
 
+  //********EDIT_LESSON form handling **************************
+  handleSubmit = (e) => {
+    const lessonData = {
+      id: this.state.id,
+      date: this.state.date,
+      teacher_id: this.state.teacher.id,
+      student_id: this.state.student.id,
+      notes: this.state.notes
+    }
+    this.props.updateLesson(lessonData)
+    this.clearState()
+  }
 
+  clearState = () => {
+    this.setState({
+      id: '',
+      date: '',
+      teacher: '',
+      student: '',
+      notes: ''
+    })
+    this.props.closeForm()
+  }
 
   //********EDIT_LESSON selector functions **************************
-  handleDateSelect = (event) => {
-    this.setState({
-      date: event.target
-    })
-  }
-
   handleTeacherSelect = (event) => {
     this.setState({
-      teacher: this.props.teachers.filter(teacher => teacher.lastname === event.target.value)[0]
+      teacher: this.props.teachers.find(teacher => teacher.lastname === event.target.value)
     })
   }
 
   handleStudentSelect = (event) => {
     this.setState({
-      student: this.props.students.filter(student => student.lastname === event.target.value)[0]
+      student: this.props.students.find(student => student.lastname === event.target.value)
     })
-  }
-
-  handleResourceSelect = (event) => {
-    this.setState({
-      resource: this.props.resources.filter(resource => resource.title === event.target.value)[0]
-    })
-  }
-
-  handleChange = (e) => {
-    const { name, value } = e.target;
-    this.setState({ [name]: value });
-    e.preventDefault()
-  }
-
-  handleSubmit = (e) => {
-    let data = {}
-    console.log('[EditLesson] handleSubmit: data', data)
-    data = {
-      id: this.state.id,
-      date: this.state.date,
-      teacher_id: this.state.teacher.id,
-      student_id: this.state.student.id,
-      // resource_ids: this.state.resources.map(r => r.id),
-      notes: this.state.notes
-    }
-
-    // debugger
-
-    this.props.updateLesson(data)
-    e.preventDefault();
   }
 
   render() {
@@ -94,61 +71,53 @@ class EditLesson extends Component {
       return <option value={student.lastname} id={student.id} key={student.id}>{student.lastname}</option>
     })
 
-    const resourceOptions = this.props.resources.map(resource => {
-      return <option value={resource.title} id={resource.id} key={resource.id}>{resource.title}</option>
-    })
-
     return (
-      <div>
-        <p className={styles.FormInstructions}>Edit form and click 'Update Lesson'</p>
-        <form onSubmit={(event) => this.handleSubmit(event)} className={styles.Form}>
+      <div className="EditLesson">
+        <p className="FormInstructions">Complete form and click 'UPDATE Lesson'</p>
+        <form onSubmit={(event) => this.handleSubmit(event)} className="Form">
           <p>
-            <label>DateSelector</label>
-            <select value={this.state.date} onChange={(event) => this.handleDateSelect(event)}>
-              {/* ...................................date select........................ */}
-            </select>
+            <label>Date</label>
+            <input
+              type="date"
+              value={this.state.date}
+              onChange={(event) => this.setState({ date: event.target.value })}
+              placeholder="date"
+              required
+            />
           </p>
           <p>
             <label>TeacherSelector</label>
-            <select value={this.state.teacher_id} onChange={(event) => this.handleTeacherSelect(event)}>
-              console.log('teacherOptions', teacherOptions)
+            <select
+              value={this.state.teacher.lastname}
+              onChange={(event) => this.handleTeacherSelect(event)}>
               {teacherOptions}
             </select>
           </p>
-
           <p>
             <label>StudentSelector</label>
-            <select value={this.state.student_id} onChange={(event) => this.handleStudentSelect(event)}>
+            <select
+              value={this.state.student.lastname}
+              onChange={(event) => this.handleStudentSelect(event)}>
               {studentOptions}
-            </select>
-          </p>
-
-          <p>
-            <label>ResourceSelector</label>
-            <select value={this.state.resource_id} onChange={(event) => this.handleResourceSelect(event)}>
-              {resourceOptions}
             </select>
           </p>
           <p>
             <label>Notes</label>
             <input
               type="text"
-              name="notes"
-              id="notes"
               value={this.state.notes}
-              onChange={this.handleChange}
-              // onChange={(e) => this.setState({ notes: e.target.value })}
+              onChange={(event) => this.setState({ notes: event.target.value })}
+              placeholder="notes"
               required />
           </p>
           <button
             type="button"
-            onClick={this.props.close}
-            className={styles.Danger}
-          >CANCEL</button>
+            onClick={this.props.editLessonCancel}
+            className="Danger">CANCEL</button>
+
           <button
-            className={styles.Success}
-          >Update Lesson</button>
-        </form>
+            className="Success">UPDATE Lesson</button>
+        </form >
       </div>
     )
   }
@@ -157,17 +126,14 @@ class EditLesson extends Component {
 const mapStateToProps = state => {
   return {
     students: state.stu.students,
-    teachers: state.tch.teachers,
-    resources: state.res.resources,
-    lessons: state.les.lessons
+    teachers: state.tch.teachers
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
     onFetchStudents: () => dispatch(actionCreators.fetchStudents()),
-    onFetchTeachers: () => dispatch(actionCreators.fetchTeachers()),
-    onFetchResources: () => dispatch(actionCreators.fetchResources())
+    onFetchTeachers: () => dispatch(actionCreators.fetchTeachers())
   };
 }
 

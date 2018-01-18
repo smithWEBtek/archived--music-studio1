@@ -60,10 +60,10 @@ export const updateLessonSuccess = () => {
 export const updateLessonFail = (error) => {
   return { type: actionTypes.UPDATE_LESSON_FAIL, error: error }
 }
-export const updateLesson = (data) => {
+export const updateLesson = (lesson) => {
   return dispatch => {
     dispatch(updateLessonStart())
-    LessonService.updateLesson(data.id, data)
+    LessonService.updateLesson(lesson)
       .then(response => {
         dispatch({ type: actionTypes.UPDATE_LESSON_SUCCESS })
         dispatch(updateLessonSuccess(response))

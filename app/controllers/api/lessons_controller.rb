@@ -21,7 +21,7 @@ class Api::LessonsController < ApplicationController
   
   def update
     @lesson = Lesson.find(params[:id])
-    @lesson.update
+    @lesson.update(lesson_params)
     if @lesson.save
       render json: @lesson
     else
