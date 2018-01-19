@@ -53,6 +53,7 @@ const ResourcesList = (props) => {
       </Aux >
     )
   })
+
   return (
     <div>
       <Table striped size="sm" className="ResourcesList">

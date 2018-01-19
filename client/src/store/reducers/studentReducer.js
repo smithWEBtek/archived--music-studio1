@@ -3,7 +3,6 @@ import StudentService from '../../containers/Students/StudentService';
 
 const initialState = {
   students: [],
-  showStudentsList: false,
   loading: false,
   error: false,
   message: ''
@@ -12,12 +11,6 @@ const initialState = {
 const updateObject = (oldObject, updatedValues) => { return { ...oldObject, ...updatedValues } }
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-
-    case actionTypes.SHOW_STUDENTS_LIST:
-      return updateObject(state, { showStudentsList: true })
-
-    case actionTypes.HIDE_STUDENTS_LIST:
-      return updateObject(state, { showStudentsList: false })
 
     //-----CREATE STUDENT-----------------------------
     case actionTypes.CREATE_STUDENT:

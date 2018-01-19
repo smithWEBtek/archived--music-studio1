@@ -100,7 +100,7 @@ class Teachers extends Component {
     return (
       <Container>
         <hr />
-        <button onClick={this.showTeachersList}><Link to='/teachers'>ALL teachers</Link></button>
+        <button onClick={() => this.showTeachersList()}><Link to='/teachers'>ALL teachers</Link></button>
 
         {/*********CREATE TEACHER MODAL********************************************/}
         <button onClick={this.createTeacherForm}>Add Teacher</button>

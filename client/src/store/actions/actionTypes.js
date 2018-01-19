@@ -1,7 +1,4 @@
 // STUDENTS------------------------------------------------------
-export const SHOW_STUDENTS_LIST = 'SHOW_STUDENTS_LIST'
-export const HIDE_STUDENTS_LIST = 'HIDE_STUDENTS_LIST'
-
 export const FETCH_STUDENTS = 'FETCH_STUDENTS'
 export const FETCH_STUDENTS_START = 'FETCH_STUDENTS_START'
 export const FETCH_STUDENTS_SUCCESS = 'FETCH_STUDENTS_SUCCESS'

@@ -3,7 +3,7 @@ import { Route, Switch, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actionCreators from '../../store/actions/index'
 
-import { Container, Row, Col } from 'reactstrap'
+import { Container } from 'reactstrap'
 // import styles from './Students.css'
 import appstyles from '../../App.css'
 import Modal from '../../UI/Modal/Modal'
@@ -17,7 +17,7 @@ class Students extends Component {
   state = {
     student: null,
     showStudent: false,
-    // showStudentsList: false,  (moved to Redux)
+    showStudentsList: false,
     createStudent: false,
     editStudent: false
   }
@@ -28,11 +28,11 @@ class Students extends Component {
 
   //********SHOW_STUDENTS_LIST form handling********************
   showStudentsList = () => {
-    this.props.onShowStudentsList()
+    this.setState({ showStudentsList: true })
   }
 
   closeStudentsList = () => {
-    this.props.onHideStudentsList()
+    this.setState({ showStudentsList: false })
   }
 
   //********SHOW_STUDENT form handling**************************
@@ -81,21 +81,10 @@ class Students extends Component {
   render() {
     const { match, students } = this.props;
 
-    // let clickableNames = students.map((student, index) => {
-    //   return (
-    //     <Link to={`/students/${student.id}`}
-    //       style={{ marginRight: '5px' }}
-    //       key={student.id}
-    //     // onClick={this.closeStudentsList}
-    //     >{student.lastname}
-    //     </Link>
-    //   )
-    // })
-
     return (
       <Container>
         <hr />
-        <button onClick={this.showStudentsList}><Link to='/students'>ALL students</Link></button>
+        <button onClick={() => this.showStudentsList()}><Link to='/students'>ALL students</Link></button>
 
         {/*********CREATE STUDENT MODAL********************/}
         <button onClick={this.createStudentForm}>Add Student</button>
@@ -123,15 +112,6 @@ class Students extends Component {
           /> : null}
         </Modal>
 
-        {/**********CLICKABLE NAMES**********************/}
-        {/* <Container>
-          <Row>
-            <Col>
-              {clickableNames}
-            </Col>
-          </Row>
-        </Container> */}
-
         {/**********STUDENTS LIST************************/}
         <div>
           <Switch>
@@ -142,7 +122,7 @@ class Students extends Component {
           </Switch>
         </div>
         <div>
-          {this.props.showStudentsList ?
+          {this.state.showStudentsList ?
             <div><h5 className={appstyles.IndexHeaderBackground}>ALL students</h5>
               <StudentsList
                 students={students}
@@ -159,8 +139,7 @@ class Students extends Component {
 
 const mapStateToProps = state => {
   return {
-    students: state.stu.students,
-    showStudentsList: state.stu.showStudentsList
+    students: state.stu.students
   };
 }
 
@@ -169,9 +148,7 @@ const mapDispatchToProps = dispatch => {
     onFetchStudents: () => dispatch(actionCreators.fetchStudents()),
     onCreateStudent: (data) => dispatch(actionCreators.createStudent(data)),
     onUpdateStudent: (data) => dispatch(actionCreators.updateStudent(data)),
-    onDeleteStudent: (id) => dispatch(actionCreators.deleteStudent(id)),
-    onShowStudentsList: () => dispatch(actionCreators.showStudentsList()),
-    onHideStudentsList: () => dispatch(actionCreators.hideStudentsList())
+    onDeleteStudent: (id) => dispatch(actionCreators.deleteStudent(id))
   };
 }
 

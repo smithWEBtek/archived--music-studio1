@@ -1,8 +1,15 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import MainNav from './UI/MainNav/MainNav'
-import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/css/bootstrap.css'
 // import Layout from './UI/Layout/Layout'
+import { Route } from 'react-router-dom'
 
+import Students from '../src/containers/Students/Students'
+import Teachers from '../src/containers/Teachers/Teachers'
+import Lessons from '../src/containers/Lessons/Lessons'
+import Resources from '../src/containers/Resources/Resources'
+import LessonResources from '../src/containers/LessonResources/LessonResources'
+import Aux from '../src/hoc/Aux/Aux'
 
 class App extends Component {
   render() {
@@ -10,8 +17,15 @@ class App extends Component {
       <div>
         <MainNav />
         {/* <Layout /> */}
-      </div>);
+        <Aux>
+          <Route path="/students" component={Students} />
+          <Route path="/teachers" component={Teachers} />
+          <Route path="/lessons/" component={Lessons} />
+          <Route path="/resources" component={Resources} />
+          <Route path="/lesson_resources" component={LessonResources} />
+        </Aux>
+      </div>)
   }
 }
 
-export default App;
+export default App
