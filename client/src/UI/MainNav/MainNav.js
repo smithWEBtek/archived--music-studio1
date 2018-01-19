@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Route, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import styles from './MainNav.css'
 import LogoSpin from '../../assets/images/LogoSpin.png'
 import Logo from '../../assets/images/Logo.png'
@@ -60,11 +60,6 @@ class MainNav extends Component {
               <div><hr /> <hr /> <hr /> <hr /> <hr /></div>
             </div>
           )} />
-          <Route path="/students" component={Students} />
-          <Route path="/teachers" component={Teachers} />
-          <Route path="/lessons/" component={Lessons} />
-          <Route path="/resources" component={Resources} />
-          <Route path="/lesson_resources" component={LessonResources} />
         </div>
       </Container >
     )
