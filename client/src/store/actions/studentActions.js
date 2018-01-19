@@ -1,15 +1,6 @@
 import * as actionTypes from './actionTypes'
 import StudentService from '../../containers/Students/StudentService'
 
-
-export const showStudentsList = () => {
-  return { type: actionTypes.SHOW_STUDENTS_LIST }
-}
-export const hideStudentsList = () => {
-  return { type: actionTypes.HIDE_STUDENTS_LIST }
-}
-
-
 //-----CREATE STUDENT ACTIONS-----------------------------
 export const createStudentStart = () => {
   return { type: actionTypes.CREATE_STUDENT_START }

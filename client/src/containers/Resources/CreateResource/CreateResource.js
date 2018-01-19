@@ -11,7 +11,7 @@ class CreateResource extends Component {
       description: '',
       format: '',
       location: '',
-      url: ''
+      url: 'no_url_given'
     }
   }
 
@@ -33,7 +33,7 @@ class CreateResource extends Component {
       description: '',
       format: '',
       location: '',
-      url: ''
+      url: 'no_url_given'
     });
     this.props.createResourceCancel()
   }

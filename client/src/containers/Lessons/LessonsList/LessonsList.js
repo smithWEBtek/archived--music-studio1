@@ -25,8 +25,7 @@ const LessonsList = (props) => {
         <td><button
           type='button'
           className={styles.Success}
-          onClick={props.close}>
-          <Link
+          onClick={props.close}><Link
             to={`/lessons/${lesson.id}`}
             key={lesson.id}
           >show</Link>

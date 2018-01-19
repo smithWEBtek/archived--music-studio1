@@ -27,6 +27,7 @@ const StudentsList = (props) => {
           <Link
             to={`/students/${student.id}`}
             key={student.id}
+            onClick={props.show}
           >show</Link>
         </button></td>
 

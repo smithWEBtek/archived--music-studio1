@@ -11,9 +11,6 @@ import Lessons from '../../containers/Lessons/Lessons'
 import Resources from '../../containers/Resources/Resources'
 import LessonResources from '../../containers/LessonResources/LessonResources'
 
-// import * as actionCreators from '../../store/actions/index'
-// import { connect } from 'react-redux'
-
 class MainNav extends Component {
   constructor(props) {
     super(props)
@@ -29,26 +26,16 @@ class MainNav extends Component {
     })
   }
 
-
   render() {
     return (
       <Container>
         <Navbar className={styles.MainNav} light expand="md">
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav navbar>
-
-              <Link to='/teachers/' className={styles.Item}>teachers</Link>
-              <Link to='/resources/' className={styles.Item}>resources</Link>
-              <Link to='/lessons/' className={styles.Item}>lessons</Link>
-              <Link to='/students/' className={styles.Item}>students localState</Link>
-
-              <Link
-                to='/students/'
-                className={styles.Item}
-                onClick={() => this.props.onShowStudentsList()}
-              >students ReduxState</Link>
-
-              {/* <NavItem><Link to='/lesson_resources/' className={styles.Item}>lessonResources</Link></NavItem> */}
+              <Link to='/students' className={styles.Item}>students</Link>
+              <Link to='/teachers' className={styles.Item}>teachers</Link>
+              <Link to='/resources' className={styles.Item}>resources</Link>
+              <Link to='/lessons' className={styles.Item}>lessons</Link>
             </Nav>
           </Collapse>
           {/* <NavbarBrand> */}
@@ -83,19 +70,5 @@ class MainNav extends Component {
     )
   }
 }
-
-// const mapStateToProps = state => {
-//   return {
-//     showStudentsList: state.stu.showStudentsList
-//   };
-// }
-
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     onShowStudentsList: () => dispatch(actionCreators.showStudentsList())
-//   }
-// }
-
-// export default connect(mapStateToProps, mapDispatchToProps)(MainNav)
 
 export default MainNav
