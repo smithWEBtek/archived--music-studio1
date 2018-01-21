@@ -36,7 +36,7 @@ const store = createStore(rootReducer, composeEnhancers(applyMiddleware(logger, 
 
 const app = (
   <Provider store={store}>
-    <BrowserRouter basename="/api">>
+    <BrowserRouter>
       <App className={classes.Body} />
     </BrowserRouter>
   </Provider>
