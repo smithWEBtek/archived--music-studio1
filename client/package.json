@@ -1,5 +1,6 @@
+
 {
-  "proxy": "http://localhost:3001/",
+  "proxy": "http://music-studio.herokuapp.com/api/",
   "name": "client",
   "version": "0.1.0",
   "private": true,
