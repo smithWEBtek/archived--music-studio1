@@ -1,9 +1,11 @@
 {
   "name": "music-studio",
   "engines": {
-    "node": "6.3.1"
+    "node": "6.3.1", 
+    "npm": "5.6.0"
   },
   "scripts": {
+    "start": "node scripts/start.js",
     "build": "cd client && npm install && npm run build && cd ..",
     "deploy": "cp -a client/build/. public/",
     "postinstall": "npm run build && npm run deploy && echo 'Client built!'"
