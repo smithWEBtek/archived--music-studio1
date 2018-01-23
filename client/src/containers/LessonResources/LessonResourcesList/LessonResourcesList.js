@@ -38,13 +38,12 @@ class LessonResourcesList extends Component {
         return (
           <tr key={index}>
             <th scope="row">{resource.id}</th>
+            <td><button type='button' onClick={() => removeLessonResource(resourceLRID)} className="Danger">
+              Rem</button></td>
             <td><Link to={`/resources/${resource.id}`}>{resource.title}</Link></td>
+            <td>{resource.format}</td>
             <td>{resource.category}</td>
             <td>{resource.description}</td>
-            <td>{resource.format}</td>
-            <td>{resource.location}</td>
-            <td><button type='button' onClick={() => removeLessonResource(resourceLRID)} className="Danger">
-              Remove</button></td>
           </tr >
         )
       })
@@ -54,15 +53,27 @@ class LessonResourcesList extends Component {
       return (
         <tr key={index}>
           <th scope="row">{resource.id}</th>
-          <td><Link to={`/resources/${resource.id}`}>{resource.title}</Link></td>
-          <td>{resource.category}</td>
-          <td>{resource.description}</td>
-          <td>{resource.format}</td>
-          <td>{resource.location}</td>
           <td><button
             type='button'
             onClick={() => addLessonResource(this.props.lesson.id, resource.id)}
-            className="Success">Add to Lesson</button></td>
+            className="Success">Add</button></td>
+
+            {resource.url === 'no_url_given' ? (
+            <td><button
+              type='button'
+              className="Disabled"
+            >Empty</button></td>)
+            : (<td><button><Link
+              to={`/resources/${resource.id}`}
+              params={{ id: resource.id }}
+              key={resource.id}
+              onClick={this.props.close}
+            >Show</Link></button></td>)}
+
+          <td><Link to={`/resources/${resource.id}`}>{resource.title}</Link></td>
+          <td>{resource.format}</td>
+          <td>{resource.category}</td>
+          <td>{resource.description}</td>
         </tr >
       )
     })
@@ -73,12 +84,11 @@ class LessonResourcesList extends Component {
           <thead>
             <tr>
               <th>ID</th>
+              <th>Remove</th>
               <th>Title</th>
+              <th>Format</th>
               <th>Category</th>
               <th>Description</th>
-              <th>Format</th>
-              <th>Location</th>
-              <th>Add/Remove</th>
             </tr>
           </thead>
           <tbody>
@@ -90,12 +100,12 @@ class LessonResourcesList extends Component {
           <thead>
             <tr>
               <th>ID</th>
+              <th>Add</th>
+              <th>Available</th>
               <th>Title</th>
+              <th>Format</th>
               <th>Category</th>
               <th>Description</th>
-              <th>Format</th>
-              <th>Location</th>
-              <th>Add/Remove</th>
             </tr>
           </thead>
           <tbody>
