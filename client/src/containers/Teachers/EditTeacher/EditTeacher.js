@@ -9,7 +9,8 @@ class EditTeacher extends Component {
       id: '',
       firstname: '',
       lastname: '',
-      email: ''
+      email: '',
+      active: ''
     }
   }
 
@@ -18,8 +19,14 @@ class EditTeacher extends Component {
       id: this.props.id,
       firstname: this.props.firstname,
       lastname: this.props.lastname,
-      email: this.props.email
+      email: this.props.email,
+      active: this.props.active
     })
+  }
+
+  toggleActiveSelect = () => {
+    let toggle = this.state.active
+    this.setState({ active: !toggle })
   }
 
   handleChange = (e) => {
@@ -60,6 +67,14 @@ class EditTeacher extends Component {
               value={this.state.email}
               onChange={this.handleChange}
             /></p>
+          <p><label>Active?</label>
+            <button
+              type="button"
+              name="active"
+              value={this.state.active}
+              onClick={() => this.toggleActiveSelect()}
+              className={this.state.active ? styles.true : styles.false}
+            >{this.state.active.toString()}</button></p>
           <button
             type="button"
             name="cancel"

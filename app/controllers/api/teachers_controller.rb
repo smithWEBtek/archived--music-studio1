@@ -1,12 +1,12 @@
 class Api::TeachersController < ApplicationController
-  
+    before_action :set_teacher, only: [:show, :update, :destroy]
+
     def index
       @teachers = Teacher.all
       render json: @teachers
     end
   
     def show
-      @teacher = Teacher.find(params[:id])
       render json: @teacher
     end
   
@@ -20,7 +20,6 @@ class Api::TeachersController < ApplicationController
     end
   
     def update
-      @teacher = Teacher.find(params[:id])
       @teacher.update(teacher_params)
       if @teacher.save
         render json: @teacher
@@ -30,13 +29,18 @@ class Api::TeachersController < ApplicationController
     end
     
     def destroy
-      @teacher = Teacher.find(params[:id])
-      @teacher.delete
+      @teacher.update(active: false)
+      @teacher.lessons.each {|les| les.update(teacher_id: 1)}
+      @teacher.students.each {|stu| stu.update(teacher_id: 1)}
     end
 
     private
-    def teacher_params
-      params.require(:teacher).permit(:firstname, :lastname, :email)
-    end
+      def set_teacher
+        @teacher = Teacher.find(params[:id])
+      end
+        
+      def teacher_params
+        params.require(:teacher).permit(:firstname, :lastname, :email, :active)
+      end
   end
   

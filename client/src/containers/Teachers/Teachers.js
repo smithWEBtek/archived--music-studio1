@@ -16,7 +16,6 @@ import TeachersList from './TeachersList/TeachersList'
 class Teachers extends Component {
   state = {
     teacher: null,
-    showTeacher: false,
     showTeachersList: false,
     createTeacher: false,
     editTeacher: false
@@ -86,17 +85,6 @@ class Teachers extends Component {
 
   render() {
     const { match, teachers } = this.props;
-    let clickableNames = teachers.map((teacher, index) => {
-      return (
-        <Link to={`/teachers/${teacher.id}`}
-          style={{ marginRight: '5px' }}
-          key={teacher.id}
-          onClick={() => this.setState({ showTeachersList: false })}
-        >{teacher.lastname}
-        </Link>
-      )
-    })
-
     return (
       <Container>
         <hr />
@@ -121,21 +109,12 @@ class Teachers extends Component {
             firstname={this.state.teacher.firstname}
             lastname={this.state.teacher.lastname}
             email={this.state.teacher.email}
+            active={this.state.teacher.active}
             close={() => this.closeEditTeacherForm()}
             updateTeacher={(data) => this.editTeacherUpdate(data)}
           /> : null}
         </Modal>
 
-        {/**********CLICKABLE NAMES**********************************************/}
-        <Container>
-          <Row>
-            <Col>
-              {clickableNames}
-            </Col>
-          </Row>
-        </Container>
-
-        {/**********TEACHERS LIST**********************************************/}
         <div>
           <Switch>
             <Route path={`${match.url}/:id/edit`} component={EditTeacher} />
@@ -149,7 +128,6 @@ class Teachers extends Component {
             <div><h5 className={appstyles.IndexHeaderBackground}>ALL teachers</h5>
               <TeachersList
                 teachers={teachers}
-                show={(id) => this.state.showTeacher(id)}
                 edit={(id) => this.showEditTeacherForm(id)}
                 delete={(id) => this.props.onDeleteTeacher(id)}
                 close={() => this.closeTeachersList()}

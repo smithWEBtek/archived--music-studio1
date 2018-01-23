@@ -29,11 +29,18 @@
   font-weight: 600;
 }
 
-
 th {
     width: 3%;
 }
 
 td {
     width: 10%;
+}
+
+:local(.false) {
+  color: rgb(238, 84, 84);
+}
+
+:local(.true) {
+  color: rgb(21, 199, 89);
 }
