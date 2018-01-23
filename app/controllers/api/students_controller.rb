@@ -1,5 +1,6 @@
 class Api::StudentsController < ApplicationController
  before_action :set_student, only: [:show, :edit, :update, :destroy, :resources]
+
   def index
     @students = Student.all
     render json: @students
@@ -50,5 +51,4 @@ class Api::StudentsController < ApplicationController
   def student_params
     params.require(:student).permit(:firstname, :lastname, :email, :level, :teacher_id)
   end
-
 end
