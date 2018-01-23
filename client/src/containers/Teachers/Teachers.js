@@ -3,7 +3,7 @@ import { Route, Switch, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actionCreators from '../../store/actions/index'
 
-import { Container, Row, Col } from 'reactstrap'
+import { Container } from 'reactstrap'
 // import styles from './Teachers.css'
 import appstyles from '../../App.css'
 import Modal from '../../UI/Modal/Modal'
