@@ -22,7 +22,7 @@ def make_teachers
     new_teacher.save
   end
 end
- 
+  
 DATA_students = {
   :student_keys =>
     ["level", "teacher_id", "firstname", "lastname", "email"],
