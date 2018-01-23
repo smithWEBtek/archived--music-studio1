@@ -30,13 +30,12 @@ class Api::TeachersController < ApplicationController
     
     def destroy
       @teacher.update(active: false)
-      @teacher.lessons.each {|les| les.update(teacher_id: 1)}
       @teacher.students.each {|stu| stu.update(teacher_id: 1)}
     end
 
     private
       def set_teacher
-        @teacher = Teacher.find(params[:id])
+        @teacher = Teacher.find_by_id(params[:id])
       end
         
       def teacher_params
