@@ -1,5 +1,15 @@
 class Api::ResourcesController < ApplicationController
 
+
+  def db_backup
+    Resource.db_backup
+  end
+
+  def db_reset
+    Resource.db_reset
+  end
+
+
   def index
     @resources = Resource.all
     render json: @resources

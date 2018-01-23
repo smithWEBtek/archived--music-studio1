@@ -6,6 +6,7 @@ class CreateStudents < ActiveRecord::Migration[5.1]
       t.string :email
       t.integer :level
       t.integer :teacher_id
+      t.boolean :active, default: true
 
       t.timestamps
     end

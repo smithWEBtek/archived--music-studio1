@@ -1,0 +1,45 @@
+<h1>Index of music-studio</h1>
+<h1>Test page</h1>
+
+<div>
+  <%= link_to 'db_backup', api_db_backup_path %>
+    <br />
+    <br />
+    <br />
+    <%= link_to 'db_reset', api_db_reset_path %>
+</div>
+<div>
+  <div>
+    <h2>Students</h2>
+    <%= @students.each do |student| %>
+      <p>
+        <%= student.lastname %>
+          <% end %>
+      </p>
+  </div>
+  <div>
+    <h2>Teachers</h2>
+    <%= @teachers.each do |teacher| %>
+      <p>
+        <%= teacher.lastname %>
+          <% end %>
+      </p>
+  </div>
+  <div>
+    <h2>Resources</h2>
+    <%= @resources.each do |resource| %>
+      <p>
+        <%= resource.title %>
+          <% end %>
+      </p>
+  </div>
+  <div>
+
+    <h2>Lessons</h2>
+    <%= @lessons.each do |lesson| %>
+      <p>
+        <%= lesson.date %>
+          <% end %>
+      </p>
+  </div>
+</div>
