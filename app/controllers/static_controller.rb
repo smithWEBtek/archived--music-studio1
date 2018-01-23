@@ -16,4 +16,8 @@ class StaticController < ApplicationController
   def db_reset
     Resource.db_reset
   end
+
+  def heroku_db_reset
+    Resource.heroku_db_reset
+  end
 end

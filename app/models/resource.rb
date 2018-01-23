@@ -10,6 +10,10 @@ class Resource < ApplicationRecord
   end
 
   def self.db_reset
-    exec 'rake db:dcm'
+    exec 'rake db:dcms'
+  end
+
+  def self.heroku_db_reset
+    exec 'rake db:hdcms'
   end
 end

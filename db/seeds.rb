@@ -1,119 +1,204 @@
-Lesson.create!([
-  {date: "2017-10-01", notes: "discuss Beethoven", teacher_id: 3, student_id: 7, active: true},
-  {date: "2017-10-08", notes: "review Bach pieces", teacher_id: 4, student_id: 8, active: true},
-  {date: "2017-10-15", notes: "move to new book on technique", teacher_id: 5, student_id: 1, active: true},
-  {date: "2017-10-21", notes: "practice on slow deliberate playing", teacher_id: 6, student_id: 1, active: true},
-  {date: "2017-10-07", notes: "practice techniques and plans", teacher_id: 4, student_id: 2, active: true},
-  {date: "2017-10-14", notes: "meet with parents about new piano", teacher_id: 5, student_id: 3, active: true},
-  {date: "2017-10-21", notes: "initial meeting", teacher_id: 2, student_id: 4, active: true},
-  {date: "2017-10-31", notes: "review new book", teacher_id: 2, student_id: 5, active: true},
-  {date: "2017-10-01", notes: "initial meeting, both parents attending", teacher_id: 2, student_id: 6, active: true},
-  {date: "2017-10-01", notes: "complete questionaire", teacher_id: 3, student_id: 7, active: true},
-  {date: "2017-10-01", notes: "plan out summer practice", teacher_id: 3, student_id: 8, active: true},
-  {date: "2017-10-01", notes: "final prep before recital", teacher_id: 3, student_id: 9, active: true},
-  {date: "2017-11-01", notes: "proposing, learn to play her song", teacher_id: 3, student_id: 4, active: true},
-  {date: "2017-12-01", notes: "final prep before recital", teacher_id: 3, student_id: 5, active: true},
-  {date: "2018-01-05", notes: "final prep before recital", teacher_id: 4, student_id: 6, active: true},
-  {date: "2018-01-12", notes: "find favorite tunes", teacher_id: 5, student_id: 2, active: true},
-  {date: "2018-01-06", notes: "learn Grandmothers favorite song", teacher_id: 3, student_id: 3, active: true},
-  {date: "2018-01-04", notes: "final prep before recital", teacher_id: 3, student_id: 9, active: true},
-  {date: "2018-01-02", notes: "practic slower", teacher_id: 2, student_id: 7, active: true},
-  {date: "2018-01-04", notes: "go watch some live music", teacher_id: 5, student_id: 5, active: true},
-  {date: "2018-01-06", notes: "go watch some live music", teacher_id: 3, student_id: 9, active: true},
-  {date: "2018-01-09", notes: "study hard", teacher_id: 2, student_id: 7, active: true},
-  {date: "2018-01-03", notes: "go watch some live music", teacher_id: 4, student_id: 6, active: true},
-  {date: "2018-01-02", notes: "have shorter sessions, but daily", teacher_id: 3, student_id: 2, active: true},
-  {date: "2018-01-02", notes: "have shorter sessions, but daily", teacher_id: 4, student_id: 2, active: true},
-  {date: "2018-01-02", notes: "have shorter sessions, but daily", teacher_id: 5, student_id: 7, active: true},
-  {date: "2018-01-02", notes: "go watch some live music", teacher_id: 4, student_id: 6, active: true},
-  {date: "2018-01-02", notes: "study hard", teacher_id: 3, student_id: 9, active: true},
-  {date: "2018-01-02", notes: "study hard", teacher_id: 4, student_id: 4, active: true},
-  {date: "2018-01-07", notes: "practic slower", teacher_id: 3, student_id: 7, active: true},
-  {date: "2018-01-02", notes: "go watch some live music", teacher_id: 3, student_id: 5, active: true},
-  {date: "2018-01-06", notes: "have shorter sessions, but daily", teacher_id: 1, student_id: 5, active: true},
-  {date: "2018-01-15", notes: "go watch some live music", teacher_id: 2, student_id: 5, active: true},
-  {date: "2018-01-12", notes: "review Beethoven left hand", teacher_id: 4, student_id: 8, active: true},
-  {date: "2018-01-02", notes: "review Beethoven left hand", teacher_id: 3, student_id: 7, active: true},
-  {date: "2018-01-03", notes: "review Beethoven left hand", teacher_id: 2, student_id: 6, active: true},
-  {date: "2018-01-02", notes: "study hard", teacher_id: 4, student_id: 9, active: true},
-  {date: "2018-01-02", notes: "study hard", teacher_id: 3, student_id: 9, active: true}
-])
-LessonResource.create!([
-  {resource_id: 1, lesson_id: 1},
-  {resource_id: 2, lesson_id: 1},
-  {resource_id: 3, lesson_id: 1},
-  {resource_id: 1, lesson_id: 2},
-  {resource_id: 2, lesson_id: 2},
-  {resource_id: 3, lesson_id: 2},
-  {resource_id: 4, lesson_id: 3},
-  {resource_id: 2, lesson_id: 3},
-  {resource_id: 1, lesson_id: 3},
-  {resource_id: 3, lesson_id: 4},
-  {resource_id: 4, lesson_id: 4},
-  {resource_id: 5, lesson_id: 4},
-  {resource_id: 6, lesson_id: 4},
-  {resource_id: 3, lesson_id: 5},
-  {resource_id: 2, lesson_id: 5},
-  {resource_id: 4, lesson_id: 5},
-  {resource_id: 2, lesson_id: 6},
-  {resource_id: 3, lesson_id: 7},
-  {resource_id: 6, lesson_id: 6},
-  {resource_id: 4, lesson_id: 7},
-  {resource_id: 3, lesson_id: 8}
-])
-Resource.create!([
-  {title: "El Manisero", category: "Salsa", description: "salsa chart", format: "pdf", location: "cloud", url: "https://res.cloudinary.com/smithwebtek/image/upload/v1509296858/charts/El_Manisero.pdf", active: true},
-  {title: "Frenesi", category: "Salsa", description: "salsa chart", format: "pdf", location: "cloud", url: "https://res.cloudinary.com/smithwebtek/image/upload/v1509296858/charts/Frenesi.pdf", active: true},
-  {title: "El Cuarto de Tula", category: "Salsa", description: "salsa chart", format: "pdf", location: "cloud", url: "https://res.cloudinary.com/smithwebtek/image/upload/v1509296858/charts/El_Cuarto_de_Tula.pdf", active: true},
-  {title: "Capullito De Aleli", category: "Salsa", description: "salsa chart", format: "pdf", location: "cloud", url: "https://res.cloudinary.com/smithwebtek/image/upload/v1509296858/charts/Capullito_De_Aleli.pdf", active: true},
-  {title: "El Cantante", category: "Salsa", description: "salsa chart", format: "pdf", location: "cloud", url: "https://res.cloudinary.com/smithwebtek/image/upload/v1509296858/charts/El_Cantante-leadSheet.pdf", active: true},
-  {title: "Guantanamera", category: "Salsa", description: "salsa chart", format: "pdf", location: "cloud", url: "https://res.cloudinary.com/smithwebtek/image/upload/v1509296858/charts/Guantanamera.pdf", active: true},
-  {title: "Chan Chan", category: "Salsa", description: "salsa chart", format: "pdf", location: "cloud", url: "https://res.cloudinary.com/smithwebtek/image/upload/v1509296857/charts/Chan_Chan_-_lead_sheet.pdf", active: true},
-  {title: "Chucho", category: "Salsa", description: "salsa chart", format: "pdf", location: "cloud", url: "https://res.cloudinary.com/smithwebtek/image/upload/v1509296857/charts/Chucho.pdf", active: true},
-  {title: "Castellano Que Bueno Baila Usted", category: "Salsa", description: "salsa chart", format: "pdf", location: "cloud", url: "https://res.cloudinary.com/smithwebtek/image/upload/v1509296857/charts/Castellano_Que_Bueno_Baila_Usted.pdf", active: true},
-  {title: "A Night In Tunisia", category: "Salsa", description: "salsa chart", format: "pdf", location: "cloud", url: "https://res.cloudinary.com/smithwebtek/image/upload/v1509296857/charts/A_Night_In_Tunisia.pdf", active: true},
-  {title: "cycle of fifths 1", category: "harmony", description: "12 keys in 12 bars", format: "doc", location: "cloud", url: "no_url_given", active: true},
-  {title: "blues in F", category: "blues", description: "12 bar blues", format: "doc", location: "cloud", url: "no_url_given", active: true},
-  {title: "II-V-I 4bar", category: "improv", description: "4 bar phrases", format: "aud", location: "cloud", url: "no_url_given", active: true},
-  {title: "maj triad", category: "chords", description: "major triad inversions", format: "doc", location: "cloud", url: "no_url_given", active: true},
-  {title: "min triad", category: "chords", description: "minor triad inversions", format: "doc", location: "cloud", url: "no_url_given", active: true},
-  {title: "major scales", category: "scales", description: "major scales", format: "aud", location: "cloud", url: "no_url_given", active: true},
-  {title: "approach notes", category: "improv", description: "approach notes", format: "doc", location: "cloud", url: "no_url_given", active: true},
-  {title: "bi chords", category: "improv", description: "bi chords", format: "doc", location: "cloud", url: "no_url_given", active: true},
-  {title: "Autumn Leaves", category: "tune", description: "standard", format: "doc", location: "cloud", url: "no_url_given", active: true},
-  {title: "Blue Bossa", category: "tune", description: "standard", format: "doc", location: "cloud", url: "no_url_given", active: true},
-  {title: "All The Things", category: "tune", description: "standard", format: "doc", location: "cloud", url: "no_url_given", active: true},
-  {title: "I Got Rhythm", category: "tune", description: "standard", format: "doc", location: "cloud", url: "no_url_given", active: true},
-  {title: "Vereno audio", category: "salsa", description: "exercise salsa montuno", format: "aud", location: "soundcloud", url: "383625701", active: true},
-  {title: "Misty-salsa", category: "latin jazz", description: "latin jazz trio", format: "aud", location: "soundcloud", url: "253001471", active: true},
-  {title: "Ven Morena Montuno", category: "Salsa", description: "basic piano montuno", format: "vid", location: "youtube", url: "https://www.youtube.com/embed/JntdJkawVF4?rel=0", active: true},
-  {title: "Montuno Lesson 1", category: "Salsa", description: "basic piano montuno", format: "vid", location: "youtube", url: "https://www.youtube.com/embed/CVX7-eZReqs?rel=0", active: true},
-  {title: "Salsa 1", category: "Salsa", description: "basic piano montuno", format: "vid", location: "youtube", url: "https://www.youtube.com/embed/-2mu-Hrr838", active: true},
-  {title: "Bill Evans - Universal Mind", category: "documentary", description: "philosophy of music", format: "vid", location: "youtube", url: "https://www.youtube.com/embed/QwXAqIaUahI?rel=0", active: true},
-  {title: "Gary Burton - Improvisation", category: "master class", description: "philosophy of improv", format: "vid", location: "youtube", url: "https://www.youtube.com/embed/t2txO_u2eNg?rel=0", active: true},
-  {title: "Kenny Werner - Effortless Mastery", category: "master class", description: "psychology of playing", format: "vid", location: "youtube", url: "https://www.youtube.com/embed/CBnYgcmSJG8?rel=0", active: true},
-  {title: "Kurt Elling - Role of Band Leader", category: "master class", description: "leading a gig", format: "vid", location: "youtube", url: "https://www.youtube.com/embed/stbmhcSLXXw?rel=0", active: true}
-])
-Student.create!([
-  {firstname: "James", lastname: "Smith", email: "jsmith@student.com", level: 1, teacher_id: 1, active: true},
-  {firstname: "Peter", lastname: "Granger", email: "pgranger@student.com", level: 2, teacher_id: 5, active: true},
-  {firstname: "Teddy", lastname: "Mullet", email: "tmullet@student.com", level: 2, teacher_id: 3, active: true},
-  {firstname: "Francis", lastname: "Callucci", email: "fcallucci@student.com", level: 2, teacher_id: 2, active: true},
-  {firstname: "Brian", lastname: "Nadeau", email: "bnadeau@student.com", level: 3, teacher_id: 2, active: true},
-  {firstname: "Sue", lastname: "Morrow", email: "smorrow@student.com", level: 1, teacher_id: 3, active: true},
-  {firstname: "Andrea", lastname: "McPhail", email: "amcphail@student.com", level: 1, teacher_id: 3, active: true},
-  {firstname: "Orin", lastname: "Franklin", email: "okeepnews@student.com", level: 3, teacher_id: 4, active: true},
-  {firstname: "Will", lastname: "Marron", email: "wmarron@student.com", level: 3, teacher_id: 4, active: true},
-  {firstname: "Penny", lastname: "Clooney", email: "pclump@student.com", level: 1, teacher_id: 5, active: true},
-  {firstname: "Babu", lastname: "Aadouz", email: "babadoo@student.com", level: 1, teacher_id: 5, active: true}
-])
-Teacher.create!([
-  {firstname: "Not", lastname: "Assigned", email: "unassigned@music.com", active: true},
-  {firstname: "John", lastname: "Coltrane", email: "trane@music.com", active: true},
-  {firstname: "Art", lastname: "Tatum", email: "artful@music.com", active: true},
-  {firstname: "Jimi", lastname: "Hendrix", email: "jimi@music.com", active: true},
-  {firstname: "James", lastname: "Brown", email: "jb@getfunky1.com", active: true},
-  {firstname: "Sonny", lastname: "Stitt", email: "sonny@swing.com", active: true},
-  {firstname: "Lester", lastname: "Parker", email: "lester@swing.com", active: true},
-  {firstname: "Charlie", lastname: "Banacos", email: "cb@swing.com", active: true}
-])
+DATA_teachers = {
+  :teacher_keys =>
+    ["firstname", "lastname", "email"],
+  :teachers => [
+  ['Not', 'Assigned', 'unassigned@music.com'],
+  ['John', 'Coltrane', 'trane@music.com' ],
+  ['Art', 'Tatum', 'artful@music.com'],
+  ['Jimi', 'Hendrix', 'jimi@music.com'],
+  ['James', 'Brown', 'jb@getfunky1.com'],
+  ['Sonny', 'Stitt', 'sonny@swing.com'],
+  ['Lester', 'Parker', 'lester@swing.com'],
+  ['Charlie', 'Banacos', 'cb@swing.com']
+  ]
+}
+
+def make_teachers
+  DATA_teachers[:teachers].each do |teacher|
+    new_teacher = Teacher.new
+    teacher.each_with_index do |attribute, i|
+      new_teacher.send(DATA_teachers[:teacher_keys][i]+"=", attribute)
+    end
+    new_teacher.save
+  end
+end
+ 
+DATA_students = {
+  :student_keys =>
+    ["level", "teacher_id", "firstname", "lastname", "email"],
+  :students => [
+    [1, 1, 'James', 'Smith', 'jsmith@student.com'],
+    [2, 5, 'Peter', 'Granger', 'pgranger@student.com'],
+    [2, 3, 'Teddy', 'Mullet', 'tmullet@student.com'],
+    [2, 2, 'Francis', 'Callucci', 'fcallucci@student.com'],
+    [3, 2, 'Brian', 'Nadeau', 'bnadeau@student.com'],
+    [1, 3, 'Sue', 'Morrow', 'smorrow@student.com'],
+    [1, 3, 'Andrea', 'McPhail', 'amcphail@student.com'],
+    [3, 4, 'Orin', 'Franklin', 'okeepnews@student.com'],
+    [3, 4, 'Will', 'Marron', 'wmarron@student.com'],
+    [1, 5, 'Penny', 'Clooney', 'pclump@student.com'],
+    [1, 5, 'Babu', 'Aadouz', 'babadoo@student.com']
+  ]
+}
+
+def make_students
+  DATA_students[:students].each do |student|
+    new_student = Student.new
+    student.each_with_index do |attribute, i|
+      new_student.send(DATA_students[:student_keys][i]+"=", attribute)
+    end
+    new_student.save
+  end
+end
+
+DATA_lessons = {
+  :lesson_keys =>
+    ["date", "notes", "teacher_id", "student_id"],
+  :lessons => [
+    ['2017-10-01', 'discuss Beethoven', 3, 7],
+    ['2017-10-08', 'review Bach pieces', 4, 8],
+    ['2017-10-15', 'move to new book on technique', 5, 1],
+    ['2017-10-21', 'practice on slow deliberate playing', 6, 1],
+    ['2017-10-07', 'practice techniques and plans', 4, 2],
+    ['2017-10-14', 'meet with parents about new piano', 5, 3],
+    ['2017-10-21', 'initial meeting', 2, 4],
+    ['2017-10-31', 'review new book', 2, 5],
+    ['2017-10-01', 'initial meeting, both parents attending', 2, 6],
+    ['2017-10-01', 'complete questionaire', 3, 7],
+    ['2017-10-01', 'plan out summer practice', 3, 8],
+    ['2017-10-01', 'final prep before recital', 3, 9],
+    ['2017-11-01', 'proposing, learn to play her song', 3, 4],
+    ['2017-12-01', 'final prep before recital', 3, 5],
+    ['2018-01-05', 'final prep before recital', 4, 6],
+    ['2018-01-12', 'find favorite tunes', 5, 2],
+    ['2018-01-06', 'learn Grandmothers favorite song', 3, 3],
+    ['2018-01-04', 'final prep before recital', 3, 9],
+    ['2018-01-02', 'practic slower',	2, 	7	],
+    ['2018-01-04', 'go watch some live music',	5, 	5	],
+    ['2018-01-06', 'go watch some live music',	3, 	9	],
+    ['2018-01-09', 'study hard',	2, 	7	],
+    ['2018-01-03', 'go watch some live music',	4, 	6	],
+    ['2018-01-02', 'have shorter sessions, but daily',	3, 	2	],
+    ['2018-01-02', 'have shorter sessions, but daily',	4, 	2	],
+    ['2018-01-02', 'have shorter sessions, but daily',	5, 	7	],
+    ['2018-01-02', 'go watch some live music',	4, 	6	],
+    ['2018-01-02', 'study hard',	3, 	9	],
+    ['2018-01-02', 'study hard',	4, 	4	],
+    ['2018-01-07' , 'practic slower',	3, 	7	],
+    ['2018-01-02', 'go watch some live music',	3, 	5	],
+    ['2018-01-06', 'have shorter sessions, but daily',	1, 	5	],
+    ['2018-01-15', 'go watch some live music',	2, 	5	],
+    ['2018-01-12', 'review Beethoven left hand',	4, 	8	],
+    ['2018-01-02', 'review Beethoven left hand',	3, 	7	],
+    ['2018-01-03', 'review Beethoven left hand',	2, 	6	],
+    ['2018-01-02', 'study hard',	4, 	9	],
+    ['2018-01-02', 'study hard',	3, 	9	]
+  ]
+}
+
+def make_lessons
+  DATA_lessons[:lessons].each do |lesson|
+    new_lesson = Lesson.new
+    lesson.each_with_index do |attribute, i|
+      new_lesson.send(DATA_lessons[:lesson_keys][i]+"=", attribute)
+    end
+    new_lesson.save
+  end
+end
+
+DATA_resources = {
+  :resource_keys =>
+    ["title", "category", "description", "format", "location", "url"],
+  :resources => [
+    ["El Manisero", "Salsa", "salsa chart", "pdf", "cloud", "https://res.cloudinary.com/smithwebtek/image/upload/v1509296858/charts/El_Manisero.pdf"],
+    ["Frenesi", "Salsa", "salsa chart", "pdf", "cloud","https://res.cloudinary.com/smithwebtek/image/upload/v1509296858/charts/Frenesi.pdf"],
+    ["El Cuarto de Tula", "Salsa", "salsa chart", "pdf", "cloud","https://res.cloudinary.com/smithwebtek/image/upload/v1509296858/charts/El_Cuarto_de_Tula.pdf"],
+    ["Capullito De Aleli", "Salsa", "salsa chart", "pdf", "cloud","https://res.cloudinary.com/smithwebtek/image/upload/v1509296858/charts/Capullito_De_Aleli.pdf"],
+    ["El Cantante", "Salsa", "salsa chart", "pdf", "cloud","https://res.cloudinary.com/smithwebtek/image/upload/v1509296858/charts/El_Cantante-leadSheet.pdf"],
+    ["Guantanamera", "Salsa", "salsa chart", "pdf", "cloud","https://res.cloudinary.com/smithwebtek/image/upload/v1509296858/charts/Guantanamera.pdf"],
+    ["Chan Chan", "Salsa", "salsa chart", "pdf", "cloud","https://res.cloudinary.com/smithwebtek/image/upload/v1509296857/charts/Chan_Chan_-_lead_sheet.pdf"],
+    ["Chucho", "Salsa", "salsa chart", "pdf", "cloud","https://res.cloudinary.com/smithwebtek/image/upload/v1509296857/charts/Chucho.pdf"],
+    ["Castellano Que Bueno Baila Usted", "Salsa", "salsa chart", "pdf", "cloud","https://res.cloudinary.com/smithwebtek/image/upload/v1509296857/charts/Castellano_Que_Bueno_Baila_Usted.pdf"],
+    ["A Night In Tunisia", "Salsa", "salsa chart", "pdf","cloud",
+    "https://res.cloudinary.com/smithwebtek/image/upload/v1509296857/charts/A_Night_In_Tunisia.pdf"],
+    ['cycle of fifths 1', 'harmony', '12 keys in 12 bars', 'doc', 'cloud', 'no_url_given'],
+    ['blues in F', 'blues', '12 bar blues', 'doc', 'cloud', 'no_url_given'],
+    ['II-V-I 4bar', 'improv', '4 bar phrases', 'aud', 'cloud', 'no_url_given'],
+    ['maj triad', 'chords', 'major triad inversions', 'doc', 'cloud', 'no_url_given'],
+    ['min triad', 'chords', 'minor triad inversions', 'doc', 'cloud', 'no_url_given'],
+    ['major scales', 'scales', 'major scales', 'aud', 'cloud', 'no_url_given'],
+    ['approach notes', 'improv', 'approach notes', 'doc', 'cloud', 'no_url_given'],
+    ['bi chords', 'improv', 'bi chords', 'doc', 'cloud', 'no_url_given'],
+    ['Autumn Leaves', 'tune', 'standard', 'doc', 'cloud', 'no_url_given'],
+    ['Blue Bossa', 'tune', 'standard', 'doc', 'cloud', 'no_url_given'],
+    ['All The Things', 'tune', 'standard', 'doc', 'cloud', 'no_url_given'],
+    ['I Got Rhythm', 'tune', 'standard', 'doc', 'cloud', 'no_url_given'],
+    ["Vereno audio", "salsa", "exercise salsa montuno", "aud", "soundcloud", "383625701"],
+    ["Misty-salsa", "latin jazz", "latin jazz trio", "aud", "soundcloud", "253001471"],
+    ["Ven Morena Montuno", "Salsa", "basic piano montuno", "vid", "youtube", "https://www.youtube.com/embed/JntdJkawVF4?rel=0"],
+    ["Montuno Lesson 1", "Salsa", "basic piano montuno", "vid", "youtube", "https://www.youtube.com/embed/CVX7-eZReqs?rel=0"],
+    ["Salsa 1", "Salsa", "basic piano montuno", "vid", "youtube", "https://www.youtube.com/embed/-2mu-Hrr838"],
+    ['Bill Evans - Universal Mind', 'documentary', 'philosophy of music', 'vid', 'youtube', 'https://www.youtube.com/embed/QwXAqIaUahI?rel=0'],
+    ['Gary Burton - Improvisation', 'master class', 'philosophy of improv', 'vid', 'youtube', 'https://www.youtube.com/embed/t2txO_u2eNg?rel=0'],
+    ['Kenny Werner - Effortless Mastery', 'master class', 'psychology of playing', 'vid', 'youtube', 'https://www.youtube.com/embed/CBnYgcmSJG8?rel=0'],
+    ['Kurt Elling - Role of Band Leader', 'master class', 'leading a gig', 'vid', 'youtube', 'https://www.youtube.com/embed/stbmhcSLXXw?rel=0']
+  ]
+}
+
+def make_resources
+  DATA_resources[:resources].each do |resource|
+    new_resource = Resource.new
+    resource.each_with_index do |attribute, i|
+      new_resource.send(DATA_resources[:resource_keys][i]+"=", attribute)
+    end
+    new_resource.save
+  end
+end
+
+DATA_lesson_resources = {
+  :lesson_resource_keys =>
+    ["lesson_id", "resource_id"],
+  :lesson_resources => [
+    [1, 1],
+    [1, 2],
+    [1, 3],
+    [2, 1],
+    [2, 2],
+    [2, 3],
+    [3, 4],
+    [3, 2],
+    [3, 1],
+    [4, 3],
+    [4, 4],
+    [4, 5],
+    [4, 6],
+    [5, 3],
+    [5, 2],
+    [5, 4],
+    [6, 2],
+    [7, 3],
+    [6, 6],
+    [7, 4],
+    [8, 3]
+  ]
+}
+
+def make_lesson_resources
+  DATA_lesson_resources[:lesson_resources].each do |lesson_resource|
+    new_lesson_resource = LessonResource.new
+    lesson_resource.each_with_index do |attribute, i|
+      new_lesson_resource.send(DATA_lesson_resources[:lesson_resource_keys][i]+"=", attribute)
+    end
+    new_lesson_resource.save
+  end
+end
+ 
+def main 
+  make_teachers
+  make_students
+  make_lessons
+  make_resources
+  make_lesson_resources
+end
+
+main

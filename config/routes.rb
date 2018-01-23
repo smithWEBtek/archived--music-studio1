@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   get '/api/db_backup', to: 'static#db_backup'
   get '/api/db_reset', to: 'static#db_reset'
+  get '/api/heroku_db_reset', to: 'static#heroku_db_reset'
   
   get 'api/students/:id/resources', to: 'students#resources'
   namespace :api do
