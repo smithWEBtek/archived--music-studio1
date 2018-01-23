@@ -1,18 +1,7 @@
 import * as actionTypes from '../actions/actionTypes';
 import TeacherService from '../../containers/Teachers/TeacherService';
 
-// const TEACHERS = [
-//   { id: 1, firstname: 'Not', lastname: 'Assigned', email: 'unassigned@music.com' },
-//   { id: 2, firstname: 'Joe', lastname: 'Pepper', email: 'jpepper@music.com' },
-//   { id: 3, firstname: 'Mila', lastname: 'Filatova', email: 'mfilatova@music.com' },
-//   { id: 4, firstname: 'Barry', lastname: 'Gendron', email: 'bgendron@music.com' },
-//   { id: 5, firstname: 'James', lastname: 'Brown', email: 'jb@getfunky1.com' },
-//   { id: 6, firstname: 'Sonny', lastname: 'Stitt', email: 'sonny@swing.com' },
-//   { id: 7, firstname: 'Lester', lastname: 'Parker', email: 'lenny@swing.com' }
-// ]
-
 const initialState = {
-  // teachers: TEACHERS,
   teachers: [],
   loading: false,
   error: false,
@@ -54,8 +43,8 @@ const reducer = (state = initialState, action) => {
 
     //-----UPDATE TEACHER-----------------------------
     case actionTypes.UPDATE_TEACHER:
-      const studentData = action.updatedTeacherData
-      return TeacherService.updateTeacher(studentData.id, studentData)
+      const teacherData = action.updatedTeacherData
+      return TeacherService.updateTeacher(teacherData.id, teacherData)
 
     case actionTypes.UPDATE_TEACHER_SUCCESS:
       return updateObject(state, { loading: false })

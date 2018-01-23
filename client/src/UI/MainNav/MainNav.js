@@ -5,12 +5,6 @@ import LogoSpin from '../../assets/images/LogoSpin.png'
 import Logo from '../../assets/images/Logo.png'
 import { Container, Collapse, Navbar, NavbarToggler, Nav } from 'reactstrap'
 
-import Students from '../../containers/Students/Students'
-import Teachers from '../../containers/Teachers/Teachers'
-import Lessons from '../../containers/Lessons/Lessons'
-import Resources from '../../containers/Resources/Resources'
-import LessonResources from '../../containers/LessonResources/LessonResources'
-
 class MainNav extends Component {
   constructor(props) {
     super(props)
