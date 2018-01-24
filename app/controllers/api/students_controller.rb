@@ -1,5 +1,5 @@
 class Api::StudentsController < ApplicationController
- before_action :set_student, only: [:show, :edit, :update, :destroy, :resources]
+ before_action :set_student, only: [:show, :update, :destroy, :resources]
 
   def index
     @students = Student.all
@@ -7,7 +7,6 @@ class Api::StudentsController < ApplicationController
   end
 
   def show
-    @student = Student.find(params[:id])
     render json: @student
   end
 
@@ -21,7 +20,6 @@ class Api::StudentsController < ApplicationController
   end
 
   def update
-    @student = Student.find(params[:id])
     @student.update(student_params)
     if @student.save
       render json: @student
@@ -31,8 +29,7 @@ class Api::StudentsController < ApplicationController
   end
 
   def destroy
-    @student = Student.find(params[:id])
-    @student.delete
+    @student.update(active: false)
   end
   
   def resources
@@ -45,10 +42,10 @@ class Api::StudentsController < ApplicationController
   end
 
   private
-  def set_student
-	  @student = Student.find_by_id(params[:id])
-	  end
-  def student_params
-    params.require(:student).permit(:firstname, :lastname, :email, :level, :teacher_id)
-  end
+    def set_student
+      @student = Student.find_by_id(params[:id])
+      end
+    def student_params
+      params.require(:student).permit(:firstname, :lastname, :email, :level, :teacher_id, :active)
+    end
 end

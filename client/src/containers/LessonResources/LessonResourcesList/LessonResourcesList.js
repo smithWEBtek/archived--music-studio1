@@ -5,7 +5,7 @@ import './LessonResourcesList.css'
 import { Table } from 'reactstrap'
 import Aux from '../../../hoc/Aux/Aux'
 import * as actionCreators from '../../../store/actions/index'
-import appstyles from '../../../App.css'
+import '../../../App.css'
 
 class LessonResourcesList extends Component {
 
@@ -58,7 +58,7 @@ class LessonResourcesList extends Component {
             onClick={() => addLessonResource(this.props.lesson.id, resource.id)}
             className="Success">Add</button></td>
 
-            {resource.url === 'no_url_given' ? (
+          {resource.url === 'no_url_given' ? (
             <td><button
               type='button'
               className="Disabled"
@@ -95,7 +95,7 @@ class LessonResourcesList extends Component {
             {renderLessonResources}
           </tbody>
         </Table>
-        <div><h5 className={appstyles.ResourceHeaderBackground}>Add Additional Resources</h5></div>
+        <div><h5 className="ResourceHeaderBackground">Add Additional Resources</h5></div>
         < Table striped size="sm" >
           <thead>
             <tr>

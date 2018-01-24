@@ -41,7 +41,7 @@ class CreateResource extends Component {
   render() {
     return (
       <div>
-        <p className={styles.FormInstructions}>Complete form and click 'Create Resource'</p>
+        <p className="FormInstructions">Complete form and click 'Create Resource'</p>
         <form onSubmit={this.handleSubmit}>
           <p><label htmlFor="resource_name">Title
             </label>
@@ -99,9 +99,9 @@ class CreateResource extends Component {
           <button
             type="button"
             onClick={this.props.createResourceCancel}
-            className={styles.Danger}>CANCEL</button>
+            className="Danger">CANCEL</button>
 
-          <button className={styles.Success}
+          <button className="Success"
           >CREATE Resource</button>
         </form>
       </div>

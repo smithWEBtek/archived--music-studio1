@@ -23,20 +23,20 @@ class MainNav extends Component {
   render() {
     return (
       <Container>
-        <Navbar className={styles.MainNav} light expand="md">
+        <Navbar className="MainNav" light expand="md">
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav navbar>
-              <Link to='/students' className={styles.Item}>students</Link>
-              <Link to='/teachers' className={styles.Item}>teachers</Link>
-              <Link to='/resources' className={styles.Item}>resources</Link>
-              <Link to='/lessons' className={styles.Item}>lessons</Link>
+              <Link to='/students' className="Item">students</Link>
+              <Link to='/teachers' className="Item">teachers</Link>
+              <Link to='/resources' className="Item">resources</Link>
+              <Link to='/lessons' className="Item">lessons</Link>
             </Nav>
           </Collapse>
           {/* <NavbarBrand> */}
           <div className="logo-home">
             <Link to='/'>
               music
-                <img src={LogoSpin} height="60px" className={styles.LogoSpin} alt="app-logo" />
+                <img src={LogoSpin} height="60px" className="LogoSpin" alt=" app-logo" />
               studio
               </Link>
           </div>
@@ -45,11 +45,11 @@ class MainNav extends Component {
         </Navbar >
         <div>
           <Route path="/" exact render={() => (
-            <div className={styles.Center}>
+            <div className="Center">
               <br />
               <h5>Welcome!</h5>
               <h5>Ready to play some music?</h5>
-              <img src={Logo} height="150px" className={styles.Logo} alt="app-logo" /><br />
+              <img src={Logo} height="150px" className="Logo" alt=" app-logo" /> <br />
               <h3>II III II III II III II III II III II III II</h3>
               <div><hr /> <hr /> <hr /> <hr /> <hr /></div>
             </div>

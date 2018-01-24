@@ -47,8 +47,8 @@ class EditResource extends Component {
   render() {
     return (
       <div>
-        <p className={styles.FormInstructions}>Edit form and click 'Save'</p>
-        <form className={styles.Form}>
+        <p className="FormInstructions">Edit form and click 'Save'</p>
+        <form className="Form">
           <p><label htmlFor="resource_title">Title </label>
             <input
               type="text"
@@ -95,11 +95,11 @@ class EditResource extends Component {
             type="button"
             name="cancel"
             onClick={this.props.close}
-            className={styles.Danger}
+            className="Danger"
           >CANCEL</button>
           <button
             type='button'
-            className={styles.Success}
+            className="Success"
             onClick={(e) => this.handleSubmit(e)}
           >SAVE</button>
         </form>

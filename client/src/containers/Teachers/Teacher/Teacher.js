@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import appstyles from '../../../App.css'
+import '../../../App.css'
 import StudentsList from '../../Students/StudentsList/StudentsList'
 import LessonsList from '../../Lessons/LessonsList/LessonsList'
 
@@ -14,7 +14,7 @@ const Teacher = (props) => {
   if (teacher) {
     teacherHeader = (
       <div>
-        <h5 className={appstyles.TeacherHeaderBackground}><strong>{teacher.firstname} {teacher.lastname}</strong></h5>
+        <h5 className="TeacherHeaderBackground"><strong>{teacher.firstname} {teacher.lastname}</strong></h5>
         <p>Email: {teacher.email} </p>
       </div>
     )
@@ -24,7 +24,7 @@ const Teacher = (props) => {
     teacherLessons = (
       <div>
         <hr />
-        <h6 className={appstyles.LessonHeaderBackground}><strong>{teacher.firstname}'s LESSONS</strong></h6>
+        <h6 className="LessonHeaderBackground"><strong>{teacher.firstname}'s LESSONS</strong></h6>
         <div><LessonsList lessons={teacher.lessons} /></div>
       </div>
     )
@@ -34,7 +34,7 @@ const Teacher = (props) => {
     teacherStudents = (
       <div>
         <hr />
-        <h6 className={appstyles.StudentHeaderBackground}><strong>{teacher.firstname}'s STUDENTS</strong></h6>
+        <h6 className="StudentHeaderBackground"><strong>{teacher.firstname}'s STUDENTS</strong></h6>
         <div><StudentsList students={teacher.students} /></div>
       </div >
     )

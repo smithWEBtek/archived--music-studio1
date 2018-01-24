@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styles from './EditTeacher.css';
+import './EditTeacher.css';
 
 class EditTeacher extends Component {
   constructor(props) {
@@ -44,8 +44,8 @@ class EditTeacher extends Component {
   render() {
     return (
       <div>
-        <p className={styles.FormInstructions}>Edit form and click 'Update Teacher'</p>
-        <form className={styles.Form}>
+        <p className="FormInstructions">Edit form and click 'Update Teacher'</p>
+        <form className="Form">
           <p><label htmlFor="teacher_name">First name </label>
             <input
               type="text"
@@ -73,17 +73,17 @@ class EditTeacher extends Component {
               name="active"
               value={this.state.active}
               onClick={() => this.toggleActiveSelect()}
-              className={this.state.active ? styles.true : styles.false}
+              className={this.state.active ? "true" : "false"}
             >{this.state.active.toString()}</button></p>
           <button
             type="button"
             name="cancel"
             onClick={this.props.close}
-            className={styles.Danger}
+            className="Danger"
           >CANCEL</button>
           <button
             type='button'
-            className={styles.Success}
+            className="Success"
             onClick={(e) => this.handleSubmit(e)}
           >SAVE</button>
         </form>

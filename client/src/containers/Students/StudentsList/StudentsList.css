@@ -37,3 +37,11 @@ th {
 td {
     width: 10%;
 }
+
+.false {
+  color: rgb(238, 84, 84);
+}
+
+.true {
+  color: rgb(21, 199, 89);
+}

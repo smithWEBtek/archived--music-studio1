@@ -12,6 +12,20 @@ const ResourcesList = (props) => {
       <Aux key={index} >
         <tr>
           <th scope="row">{index + 1}</th>
+
+          {resource.url === 'no_url_given' ? (
+            <td><button
+              type='button'
+              className="Disabled"
+            >empty</button></td>)
+            : (<td><button
+              className="Success"><Link
+                to={`/resources/${resource.id}`}
+                params={{ id: resource.id }}
+                key={resource.id}
+                onClick={props.close}
+              >show</Link></button></td>)}
+
           <td><Link
             to={`/resources/${resource.id}`}
             params={{ id: resource.id }}
@@ -24,17 +38,6 @@ const ResourcesList = (props) => {
           <td>{resource.format}</td>
           <td>{resource.location}</td>
 
-          {resource.url === 'no_url_given' ? (
-            <td><button
-              type='button'
-              className="Disabled"
-            >empty</button></td>)
-            : (<td><button><Link
-              to={`/resources/${resource.id}`}
-              params={{ id: resource.id }}
-              key={resource.id}
-              onClick={props.close}
-            >show</Link></button></td>)}
 
           {props.edit ?
             <td><button
@@ -60,12 +63,12 @@ const ResourcesList = (props) => {
         <thead>
           <tr>
             <th>ID</th>
+            <th>Show</th>
             <th>Title</th>
             <th>Category</th>
             <th>Description</th>
             <th>Format</th>
             <th>Location</th>
-            <th>Show</th>
             {props.edit ? <th>Edit</th> : null}
             {props.delete ? <th>Delete</th> : null}
           </tr>

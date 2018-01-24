@@ -5,7 +5,7 @@ import * as actionCreators from '../../store/actions/index'
 
 import { Container } from 'reactstrap'
 // import styles from './Resources.css'
-import appstyles from '../../App.css'
+import '../../App.css'
 import Modal from '../../UI/Modal/Modal'
 
 import Resource from './Resource/Resource'
@@ -113,7 +113,7 @@ class Resources extends Component {
             url={this.state.resource.url}
             close={() => this.closeEditResourceForm()}
             updateResource={(data) => this.editResourceUpdate(data)}
-            /> : null}
+          /> : null}
         </Modal>
 
         {/**********RESOURCES LIST**********************************************/}
@@ -128,7 +128,7 @@ class Resources extends Component {
         </div>
         <div>
           {this.state.showResourcesList ?
-            <div><h5 className={appstyles.IndexHeaderBackground}>ALL resources</h5>
+            <div><h5 className="IndexHeaderBackground">ALL resources</h5>
               <ResourcesList
                 resources={resources}
                 edit={(id) => this.showEditResourceForm(id)}

@@ -5,7 +5,7 @@ import * as actionCreators from '../../store/actions/index'
 
 import { Container } from 'reactstrap'
 // import styles from './Teachers.css'
-import appstyles from '../../App.css'
+import '../../App.css'
 import Modal from '../../UI/Modal/Modal'
 
 import Teacher from './Teacher/Teacher'
@@ -33,16 +33,12 @@ class Teachers extends Component {
   }
 
   closeTeachersList = () => {
-    this.setState({
-      showTeachersList: false
-    })
+    this.setState({ showTeachersList: false })
   }
 
   //********SHOW_TEACHER form handling**************************
   showTeacherClose = () => {
-    this.setState({
-      showTeacher: false
-    })
+    this.setState({ showTeacher: false })
   }
 
   //********CREATE_TEACHER form handling ***********************
@@ -90,7 +86,7 @@ class Teachers extends Component {
         <hr />
         <button onClick={() => this.showTeachersList()}><Link to='/teachers'>ALL teachers</Link></button>
 
-        {/*********CREATE TEACHER MODAL********************************************/}
+        {/*********CREATE TEACHER MODAL********************/}
         <button onClick={this.createTeacherForm}>Add Teacher</button>
         <Modal
           show={this.state.createTeacher}
@@ -100,7 +96,7 @@ class Teachers extends Component {
             createTeacherCancel={this.createTeacherFormCancel} />
         </Modal>
 
-        {/**********EDIT TEACHER MODAL**********************************************/}
+        {/**********EDIT TEACHER MODAL*********************/}
         <Modal
           show={this.state.editTeacher}
           modalClosed={this.editTeacherCancelHandler}>
@@ -115,6 +111,7 @@ class Teachers extends Component {
           /> : null}
         </Modal>
 
+        {/**********TEACHERS LIST************************/}
         <div>
           <Switch>
             <Route path={`${match.url}/:id/edit`} component={EditTeacher} />
@@ -125,7 +122,7 @@ class Teachers extends Component {
         </div>
         <div>
           {this.state.showTeachersList ?
-            <div><h5 className={appstyles.IndexHeaderBackground}>ALL teachers</h5>
+            <div><h5 className="IndexHeaderBackground">ALL teachers</h5>
               <TeachersList
                 teachers={teachers}
                 edit={(id) => this.showEditTeacherForm(id)}

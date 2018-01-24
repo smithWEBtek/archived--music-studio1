@@ -81,9 +81,9 @@ class CreateStudent extends Component {
           <button
             type="button"
             onClick={this.props.createStudentCancel}
-            className={styles.Danger}
+            className="Danger"
           >CANCEL</button>
-          <button className={styles.Success}
+          <button className="Success"
           >CREATE Student</button>
         </form>
       </div>

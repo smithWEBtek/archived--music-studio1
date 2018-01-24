@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import * as actionCreators from '../../store/actions/index'
 
 import { Container } from 'reactstrap'
-import appstyles from '../../App.css'
+import '../../App.css'
 import Modal from '../../UI/Modal/Modal'
 
 import Lesson from './Lesson/Lesson'
@@ -122,7 +122,7 @@ class Lessons extends Component {
         </div>
         <div>
           {this.state.showLessonsList ?
-            <div><h5 className={appstyles.IndexHeaderBackground}>ALL lessons</h5>
+            <div><h5 className="IndexHeaderBackground">ALL lessons</h5>
               <LessonsList
                 lessons={lessons}
                 edit={(id) => this.showEditLessonForm(id)}

@@ -5,9 +5,9 @@ import styles from './Spinner.css'
 
 const spinner = () => {
   return (
-    <div className={styles.Center}>
+    <div className="Center">
       <p className="Loader">Loading...</p>
-      <img src={LogoSpin} height="200px" className={styles.LogoSpin} alt="app-logo" />
+      <img src={LogoSpin} height="200px" className="LogoSpin" alt="app-logo" />
     </div>
   )
 }

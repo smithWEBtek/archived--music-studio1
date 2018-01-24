@@ -5,7 +5,7 @@ import * as actionCreators from '../../store/actions/index'
 
 import { Container } from 'reactstrap'
 // import styles from './Students.css'
-import appstyles from '../../App.css'
+import '../../App.css'
 import Modal from '../../UI/Modal/Modal'
 
 import Student from './Student/Student'
@@ -16,7 +16,6 @@ import StudentsList from './StudentsList/StudentsList'
 class Students extends Component {
   state = {
     student: null,
-    showStudent: false,
     showStudentsList: false,
     createStudent: false,
     editStudent: false
@@ -26,7 +25,7 @@ class Students extends Component {
     this.props.onFetchStudents();
   }
 
-  //********SHOW_STUDENTS_LIST form handling********************
+  //********SHOW_STUDENTS_LIST form handling**************
   showStudentsList = () => {
     this.setState({ showStudentsList: true })
   }
@@ -35,12 +34,12 @@ class Students extends Component {
     this.setState({ showStudentsList: false })
   }
 
-  //********SHOW_STUDENT form handling**************************
+  //********SHOW_STUDENT form handling*****************
   showStudentClose = () => {
     this.setState({ showStudent: false })
   }
 
-  //********CREATE_STUDENT form handling ***********************
+  //********CREATE_STUDENT form handling ***************
   createStudentForm = () => {
     this.setState({ createStudent: true })
   }
@@ -54,9 +53,9 @@ class Students extends Component {
     this.setState({ createStudent: false })
   }
 
-  //********EDIT_STUDENT form handling**************************
+  //********EDIT_STUDENT form handling****************
   showEditStudentForm = (id) => {
-    let studentData = this.props.students.filter(student => student.id === id)[0]
+    let studentData = this.props.students.find(student => student.id === id)
     this.setState({
       student: studentData,
       editStudent: true
@@ -80,7 +79,6 @@ class Students extends Component {
 
   render() {
     const { match, students } = this.props;
-
     return (
       <Container>
         <hr />
@@ -107,6 +105,7 @@ class Students extends Component {
             email={this.state.student.email}
             level={this.state.student.level}
             teacher_id={this.state.student.teacher_id}
+            active={this.state.student.active}
             close={() => this.closeEditStudentForm()}
             updateStudent={(data) => this.editStudentUpdate(data)}
           /> : null}
@@ -123,7 +122,7 @@ class Students extends Component {
         </div>
         <div>
           {this.state.showStudentsList ?
-            <div><h5 className={appstyles.IndexHeaderBackground}>ALL students</h5>
+            <div><h5 className="IndexHeaderBackground">ALL students</h5>
               <StudentsList
                 students={students}
                 edit={(id) => this.showEditStudentForm(id)}

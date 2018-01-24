@@ -1,4 +1,4 @@
-:local(.Modal) {
+.Modal {
   position: fixed;
   z-index: 500;
   background-color: rgb(225, 236, 232);
@@ -12,7 +12,7 @@
   transition: all 0.3s ease-out;
 }
 
-:local(.FormInstructions) {
+.FormInstructions {
   font-style: italic;
   font-weight: 200;
 }

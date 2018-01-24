@@ -1,7 +1,7 @@
-:local(.ListGroup) {
+.ListGroup {
   width: 20%;
 }
 
-:local(.ClickableNames) {
+.ClickableNames {
   align-items: stretch;
 }

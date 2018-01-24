@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import appstyles from '../../../App.css'
+import '../../../App.css'
 import LessonResourcesList from '../../LessonResources/LessonResourcesList/LessonResourcesList'
 
 const Lesson = (props) => {
@@ -13,7 +13,7 @@ const Lesson = (props) => {
   if (lesson) {
     lessonHeader = (
       <div>
-        <h5 className={appstyles.LessonHeaderBackground}>{lesson.teacher.lastname} ~ {lesson.student.lastname}</h5>
+        <h5 className="LessonHeaderBackground">{lesson.teacher.lastname} ~ {lesson.student.lastname}</h5>
         <p>Date: <strong>{lesson.date}</strong></p>
         <p>Teacher: <strong><Link to={`/teachers/${lesson.teacher_id}`}>{lesson.teacher.firstname} {lesson.teacher.lastname}</Link></strong></p>
         <p>Student: <strong><Link to={`/students/${lesson.student_id}`}>{lesson.student.firstname} {lesson.student.lastname}</Link></strong></p>
@@ -26,7 +26,7 @@ const Lesson = (props) => {
     renderLessonResources = (
       <div>
         <hr />
-        <h5 className={appstyles.ResourceHeaderBackground}>RESOURCES assigned to this lesson:</h5>
+        <h5 className="ResourceHeaderBackground">RESOURCES assigned to this lesson:</h5>
         <LessonResourcesList
           lesson={lesson}
           close={props.close} />

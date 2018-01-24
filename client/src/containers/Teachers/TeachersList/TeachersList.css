@@ -1,8 +1,8 @@
-:local(.TeachersList) {
+.TeachersList {
   color: black;
   width: 100%;
 }
-:local(.Form) {
+.Form {
   float: left;
   text-align: left;
   padding: 15px;
@@ -12,19 +12,19 @@
   font-family: 'Open Sans', sans-serif;
 }
  
-:local(.Danger:hover) {
+.Danger:hover {
   background-color: rgb(238, 84, 84);
 }
 
-:local(.Edit:hover) {
+.Edit:hover {
   background-color: rgb(250, 233, 77);
 }
 
-:local(.Success:hover) {
+.Success:hover {
   background-color: rgb(92, 243, 150);
 }
 
-:local(.FormInstructions) {
+.FormInstructions {
   font-style: italic;
   font-weight: 600;
 }
@@ -37,10 +37,10 @@ td {
     width: 10%;
 }
 
-:local(.false) {
+.false {
   color: rgb(238, 84, 84);
 }
 
-:local(.true) {
+.true {
   color: rgb(21, 199, 89);
 }

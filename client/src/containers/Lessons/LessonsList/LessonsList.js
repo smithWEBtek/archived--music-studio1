@@ -9,9 +9,18 @@ const LessonsList = (props) => {
     return (
       <tr key={index}>
         <th scope="row">{lesson.id}</th>
+        <td><button
+          type='button'
+          className="Success"
+          onClick={props.close}><Link
+            to={`/lessons/${lesson.id}`}
+            key={lesson.id}
+          >show</Link>
+        </button></td>
         <td><Link
           to={`/lessons/${lesson.id}`}
           style={{ marginRight: '5px' }}
+          onClick={props.close}
           key={lesson.id}>{lesson.teacher.lastname} ~ {lesson.student.lastname}
         </Link></td>
 
@@ -22,19 +31,11 @@ const LessonsList = (props) => {
         {/* <td>{lesson.resources ? <Link to={`/resources/${lesson.resources[0].id}`}>{lesson.resources[0].title}</Link> : 'none'}</td> */}
         <td>{lesson.notes}</td>
 
-        <td><button
-          type='button'
-          className={styles.Success}
-          onClick={props.close}><Link
-            to={`/lessons/${lesson.id}`}
-            key={lesson.id}
-          >show</Link>
-        </button></td>
 
         {props.edit ?
           <td><button
             type='button'
-            className={styles.Edit}
+            className="Edit"
             onClick={() => props.edit(lesson.id)}>edit
         </button></td>
           : null}
@@ -42,17 +43,18 @@ const LessonsList = (props) => {
         {props.delete ?
           <td><button
             onClick={() => props.delete(lesson.id)}
-            className={styles.Danger}>x</button></td>
+            className="Danger">x</button></td>
           : null}
       </tr>
     )
   })
 
   return (
-    <Table striped size="sm" className={styles.LessonsList} >
+    <Table striped size="sm" className="LessonsList">
       <thead>
         <tr>
           <th>ID</th>
+          <th>Show</th>
           <th>Teacher - Student</th>
           <th>Date</th>
           <th>Teacher</th>
@@ -60,7 +62,6 @@ const LessonsList = (props) => {
           <th>#Resources</th>
           {/* <th>Title</th> */}
           <th>Notes</th>
-          <th>Show</th>
           {props.edit ? <th>Edit</th> : null}
           {props.delete ? <th>Delete</th> : null}
         </tr>

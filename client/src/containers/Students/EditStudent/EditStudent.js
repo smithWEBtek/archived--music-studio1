@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styles from './EditStudent.css';
+import './EditStudent.css';
 
 class EditStudent extends Component {
   constructor(props) {
@@ -11,7 +11,8 @@ class EditStudent extends Component {
       lastname: '',
       email: '',
       level: '',
-      teacher_id: ''
+      teacher_id: '',
+      active: ''
     }
   }
 
@@ -22,8 +23,14 @@ class EditStudent extends Component {
       lastname: this.props.lastname,
       email: this.props.email,
       level: this.props.level,
-      teacher_id: this.props.teacher_id
+      teacher_id: this.props.teacher_id,
+      active: this.props.active
     })
+  }
+
+  toggleActiveSelect = () => {
+    let toggle = this.state.active
+    this.setState({ active: !toggle })
   }
 
   handleChange = (e) => {
@@ -41,8 +48,8 @@ class EditStudent extends Component {
   render() {
     return (
       <div>
-        <p className={styles.FormInstructions}>Edit form and click 'Update Student'</p>
-        <form className={styles.Form}>
+        <p className="FormInstructions">Edit form and click 'Update Student'</p>
+        <form className="Form">
           <p><label htmlFor="student_name">First name </label>
             <input
               type="text"
@@ -78,15 +85,23 @@ class EditStudent extends Component {
               value={this.state.teacher_id}
               onChange={this.handleChange}
             /></p>
+          <p><label>Active?</label>
+            <button
+              type="button"
+              name="active"
+              value={this.state.active}
+              onClick={() => this.toggleActiveSelect()}
+              className={this.state.active ? "true" : "false"}
+            >{this.state.active.toString()}</button></p>
           <button
             type="button"
             name="cancel"
             onClick={this.props.close}
-            className={styles.Danger}
+            className="Danger"
           >CANCEL</button>
           <button
             type='button'
-            className={styles.Success}
+            className="Success"
             onClick={(e) => this.handleSubmit(e)}
           >SAVE</button>
         </form>

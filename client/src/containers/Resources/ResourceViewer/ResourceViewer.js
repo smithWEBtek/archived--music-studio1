@@ -9,7 +9,7 @@ import styles from './ResourceViewer.css'
 const ResourceViewer = (props) => {
 
   let renderResource = (
-    <div className={styles.Center}>
+    <div className="Center">
       <Spinner />
       <p>This resource has not been created yet. </p>
     </div>

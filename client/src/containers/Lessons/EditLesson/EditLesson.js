@@ -112,7 +112,7 @@ class EditLesson extends Component {
           </p>
           <button
             type="button"
-            onClick={this.props.editLessonCancel}
+            onClick={this.props.closeForm}
             className="Danger">CANCEL</button>
 
           <button

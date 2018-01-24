@@ -1,10 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Table } from 'reactstrap'
-import styles from './StudentsList.css'
+import './StudentsList.css'
 
 const StudentsList = (props) => {
-
   let sortedStudents = props.students.sort((a, b) => a.lastname.toLowerCase() < b.lastname.toLowerCase() ? -1 : a.lastname.toLowerCase() > b.lastname.toLowerCase() ? 1 : 0)
 
   let renderStudents = sortedStudents.map((student, index) => {
@@ -14,27 +13,29 @@ const StudentsList = (props) => {
         <td><Link
           to={`/students/${student.id}`}
           style={{ marginRight: '5px' }}
+          onClick={props.close}
           key={student.id}>{student.lastname}, {student.firstname}</Link></td>
-
         <td>{student.email}</td>
         <td>{student.teacher_id}</td>
         <td>{student.level}</td>
 
+        {student.active ? <td className="true">{student.active.toString()}</td> :
+          <td className="false">{student.active.toString()}</td>}
+
         <td><button
           type='button'
-          className={styles.Success}
+          className="Success"
           onClick={props.close}>
           <Link
             to={`/students/${student.id}`}
             key={student.id}
-            onClick={props.show}
           >show</Link>
         </button></td>
 
         {props.edit ?
           <td><button
             type='button'
-            className={styles.Edit}
+            className="Edit"
             onClick={() => props.edit(student.id)}>edit
         </button></td>
           : null}
@@ -42,7 +43,7 @@ const StudentsList = (props) => {
         {props.delete ?
           <td><button
             onClick={() => props.delete(student.id)}
-            className={styles.Danger}>x</button></td>
+            className="Danger">x</button></td>
           : null}
       </tr>
     )
@@ -50,7 +51,7 @@ const StudentsList = (props) => {
 
   return (
     <div>
-      <Table striped size="sm" className={styles.StudentsList}>
+      <Table striped size="sm" className="StudentsList">
         <thead>
           <tr>
             <th>ID</th>
@@ -58,6 +59,7 @@ const StudentsList = (props) => {
             <th>Email</th>
             <th>TeacherID</th>
             <th>Level</th>
+            <th>Active?</th>
             <th>Show</th>
             {props.edit ? <th>Edit</th> : null}
             {props.delete ? <th>Delete</th> : null}

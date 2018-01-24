@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import styles from './Resource.css'
-import appstyles from '../../../App.css'
+import './Resource.css'
+import '../../../App.css'
 import { Container, Row, Col } from 'reactstrap'
 import ResourceViewer from '../ResourceViewer/ResourceViewer'
 
@@ -25,7 +25,7 @@ const Resource = (props) => {
     resourceData = (
       <div>
         <hr />
-        <h5 className={appstyles.ResourceHeaderBackground}>{resource.title}</h5>
+        <h5 className="ResourceHeaderBackground">{resource.title}</h5>
         <p>Category: <strong>{resource.category}</strong></p>
         <p>Description: <strong>{resource.description}</strong></p>
         <p>Format: <strong>{resource.format}</strong></p>
@@ -34,8 +34,8 @@ const Resource = (props) => {
           {resource.students.length}</strong></p>
         <p>Number of times teachers assigned this resource: <strong>{resource.lessons.length}</strong></p>
 
-        <div className={styles.TeacherResources}>
-          <p>Teachers who assigned this resource:</p>
+        <div className="TeacherResources">
+          <p className="TeacherResourcesMargin">Teachers who assigned this resource:</p>
           <ul>{resourceTeachers}</ul>
         </div>
       </div>
@@ -51,7 +51,7 @@ const Resource = (props) => {
         <Col xs="3">
           {resourceData}
         </Col>
-        <Col xs="9" className={styles.ViewerTopMargin}>
+        <Col xs="9" className="ViewerTopMargin">
           {resourceView}
         </Col>
       </Row>

@@ -1,11 +1,11 @@
 
-:local(.LogoSpin) {
+.LogoSpin{
   border-radius: 50%;
   animation: Logo-spin infinite 50s linear;
   height: 100 px;
 }
 
-:local(.Center) {
+.Center{
   text-align: center;
 }
 

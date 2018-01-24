@@ -1,4 +1,4 @@
-:local(.MainNav) {
+.MainNav {
   color: rgb(255, 255, 255);
   background-color: rgb(150, 150, 187);
   margin-top: 5px; 
@@ -15,29 +15,29 @@
   user-select: none;
 }
 
-:local(.Center) {
+.Center {
   text-align: center;
 }
 
-:local(.Item) {
+.Item {
   margin-right: 15px;
   color: white;
   font-size: large;
 }
 
-:local(.Item:hover) {
+.Item:hover {
   font-style: italic;
   background-color: rgb(230, 230, 243); 
   border-radius: 30%;
 }
 
-:local(.LogoSpin) {
+.LogoSpin {
   border-radius: 50%;
   animation: Logo-spin infinite 30s linear;
   height: 100 px;
 }
 
-:local(.Logo) {
+.Logo {
   border-radius: 50%;
   /* animation: Logo-spin infinite 30s linear; */
   height: 100 px;

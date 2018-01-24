@@ -1,9 +1,9 @@
 /* not used currently, but keeping this css file for future use *
 /
-:local(.ListGroup) {
+ListGroup {
   width: 20%;
 }
 
-:local(.ClickableNames) {
+ClickableNames {
   align-items: stretch;
 }
