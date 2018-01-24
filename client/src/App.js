@@ -8,7 +8,7 @@ import Students from '../src/Students/Students'
 import Teachers from '../src/Teachers/Teachers'
 import Lessons from '../src/Lessons/Lessons'
 import Resources from '../src/Resources/Resources'
-import LessonResources from '../src/LessonResources/LessonResources'
+import LessonResources from '../src/Lessons/LessonResources/LessonResources'
 import Aux from '../src/hoc/Aux/Aux'
 
 class App extends Component {

@@ -3,9 +3,9 @@ import { connect } from 'react-redux'
 import { Route, Switch, Link } from 'react-router-dom'
 import './LessonResourcesList.css'
 import { Table } from 'reactstrap'
-import Aux from '../../hoc/Aux/Aux'
-import * as actionCreators from '../../store/actions/index'
-import '../../App.css'
+import Aux from '../../../hoc/Aux/Aux'
+import * as actionCreators from '../../../store/actions/index'
+import '../../../App.css'
 
 const LessonResourcesList = (props) => {
 

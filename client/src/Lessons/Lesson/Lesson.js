@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import '../../App.css'
-import LessonResourcesList from '../../LessonResources/LessonResourcesList/LessonResourcesList'
+import LessonResourcesList from '../../Lessons/LessonResources/LessonResourcesList/LessonResourcesList'
 
 const Lesson = (props) => {
 

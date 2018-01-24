@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Route, Switch, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import * as actions from '../store/actions/index'
+import * as actions from '../../store/actions/index'
 import { Container, Table } from 'reactstrap'
 
 class LessonResources extends Component {
@@ -67,6 +67,5 @@ const mapDispatchToProps = dispatch => {
     onFetchLessonResources: () => dispatch(actions.fetchLessonResources())
   }
 }
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(LessonResources)
