@@ -1,31 +1,28 @@
 import React, { Component } from 'react'
 import './Modal.css'
-// import Aux from '../../hoc/Aux/Aux'
 import Backdrop from '../Backdrop/Backdrop'
 import { Container } from 'reactstrap'
 
-class Modal extends Component {
+const Modal = (props) => {
 
-  render() {
-    return (
-      <Container>
-        <Backdrop show={this.props.show} clicked={this.props.modalClosed} />
-        <div
-          className="Modal"
-          style={{
-            transform: this.props.show
-              ? 'translateY(0)'
-              : 'translateY(-100vh)',
-            opacity: this.props.show
-              ? '1'
-              : '0'
-          }}>
-          {this.props.children}
-        </div>
-      </Container>
+  return (
+    <Container>
+      <Backdrop show={props.show} clicked={props.modalClosed} />
+      <div
+        className="Modal"
+        style={{
+          transform: props.show
+            ? 'translateY(0)'
+            : 'translateY(-100vh)',
+          opacity: props.show
+            ? '1'
+            : '0'
+        }}>
+        {props.children}
+      </div>
+    </Container>
 
-    )
-  }
+  )
 }
 
 export default Modal
