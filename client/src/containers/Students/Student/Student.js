@@ -7,7 +7,7 @@ import LessonsList from '../../Lessons/LessonsList/LessonsList'
 
 const Student = (props) => {
 
-  const student = props.students.filter(student => student.id === +props.match.params.id)[0]
+  const student = props.students.find(student => student.id === +props.match.params.id)
   let studentHeader = <div><p>Student component is loading...</p></div>
   let studentLessons = <div><h5>No lessons recorded</h5></div>
   let studentResources = <div><h5>No resources assigned</h5></div>
@@ -60,10 +60,7 @@ const Student = (props) => {
 
 const mapStateToProps = state => {
   return {
-    students: state.stu.students,
-    teachers: state.tch.teachers,
-    resources: state.res.resources,
-    lessons: state.les.lessons
+    students: state.stu.students
   }
 }
 

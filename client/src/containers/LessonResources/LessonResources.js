@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Route, Switch, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import * as actionCreators from '../../store/actions/index'
+import * as actions from '../../store/actions/index'
 import { Container, Table } from 'reactstrap'
 
 class LessonResources extends Component {
@@ -64,7 +64,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onFetchLessonResources: () => dispatch(actionCreators.fetchLessonResources())
+    onFetchLessonResources: () => dispatch(actions.fetchLessonResources())
   }
 }
 

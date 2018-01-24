@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import './Modal.css'
 import Backdrop from '../Backdrop/Backdrop'
 import { Container } from 'reactstrap'

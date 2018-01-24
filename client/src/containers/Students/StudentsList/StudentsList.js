@@ -4,6 +4,7 @@ import { Table } from 'reactstrap'
 import './StudentsList.css'
 
 const StudentsList = (props) => {
+
   let sortedStudents = props.students.sort((a, b) => a.lastname.toLowerCase() < b.lastname.toLowerCase() ? -1 : a.lastname.toLowerCase() > b.lastname.toLowerCase() ? 1 : 0)
 
   let renderStudents = sortedStudents.map((student, index) => {

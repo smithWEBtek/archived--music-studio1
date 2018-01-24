@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { Route, Switch, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import * as actionCreators from '../../store/actions/index'
+import * as actions from '../../store/actions/index'
 
 import { Container } from 'reactstrap'
-import '../../App.css'
 import Modal from '../../UI/Modal/Modal'
 
 import Lesson from './Lesson/Lesson'
@@ -144,10 +143,10 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onFetchLessons: () => dispatch(actionCreators.fetchLessons()),
-    onCreateLesson: (data) => dispatch(actionCreators.createLesson(data)),
-    onUpdateLesson: (data) => dispatch(actionCreators.updateLesson(data)),
-    onDeleteLesson: (id) => dispatch(actionCreators.deleteLesson(id))
+    onFetchLessons: () => dispatch(actions.fetchLessons()),
+    onCreateLesson: (data) => dispatch(actions.createLesson(data)),
+    onUpdateLesson: (data) => dispatch(actions.updateLesson(data)),
+    onDeleteLesson: (id) => dispatch(actions.deleteLesson(id))
   };
 }
 
