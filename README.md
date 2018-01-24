@@ -8,7 +8,7 @@ www.smithWEBtek.com
 
 The application was built with Rails 5.0 in API mode.
 
-The React app at app/client was created with �create-react-app�
+The React app at app/client was created with [**create-react-app**](https://github.com/facebook/create-react-app)
 
 The gem 'foreman' was used to implement the React client app within the same project, using [this blog post](https://www.fullstackreact.com/articles/how-to-get-create-react-app-to-work-with-your-rails-api/) as a guide. 
 
