@@ -122,8 +122,7 @@ class Resources extends Component {
             <Route path={`${match.url}/:id/edit`} exact component={EditResource} />
             <Route path={`${match.url}/new`} exact component={CreateResource} />
             <Route path={`${match.url}/:id`} exact component={Resource} />
-            {/* <Route path={match.url} exact /> */}
-            <Route path='/resources' />
+            <Route path={match.ur} exact />
           </Switch>
         </div>
         <div>
