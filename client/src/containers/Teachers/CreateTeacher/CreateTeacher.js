@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import classes from './CreateTeacher.css';
+import './CreateTeacher.css';
 
 class CreateTeacher extends Component {
   constructor(props) {
@@ -32,8 +32,8 @@ class CreateTeacher extends Component {
   render() {
     return (
       <div>
-        <p className={classes.FormInstructions}>Complete form and click 'Add Teacher'</p>
-        <form onSubmit={this.handleSubmit} className={classes.Form}>
+        <p className="FormInstructions">Complete form and click 'Add Teacher'</p>
+        <form onSubmit={this.handleSubmit} className="Form">
           <p><label htmlFor="teacher_name">First name </label>
             <input
               type="text"
@@ -64,9 +64,9 @@ class CreateTeacher extends Component {
           <button
             type="button"
             onClick={this.props.createTeacherCancel}
-            className={classes.Danger}
+            className="Danger"
           >CANCEL</button>
-          <button className={classes.Success}>CREATE Teacher</button>
+          <button className="Success">CREATE Teacher</button>
         </form>
       </div>
     )

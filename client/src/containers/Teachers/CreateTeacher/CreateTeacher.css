@@ -10,11 +10,11 @@
 }
  
 .Danger:hover {
-  background-color: rgb(247, 186, 186);
+  background-color: rgb(238, 84, 84);
 }
 
 .Success:hover {
-  background-color: rgb(187, 250, 211);
+  background-color: rgb(92, 243, 150);
 }
 
 .FormInstructions {
