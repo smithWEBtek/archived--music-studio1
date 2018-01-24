@@ -1,5 +1,5 @@
 import * as actionTypes from './actionTypes'
-import ResourceService from '../../containers/Resources/ResourceService'
+import ResourceService from '../services/ResourceService'
 
 //-----CREATE RESOURCE ACTIONS-----------------------------
 export const createResourceStart = () => {

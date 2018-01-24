@@ -1,5 +1,5 @@
 import * as actionTypes from '../actions/actionTypes';
-import TeacherService from '../../containers/Teachers/TeacherService';
+import TeacherService from '../services/TeacherService';
 
 const initialState = {
   teachers: [],

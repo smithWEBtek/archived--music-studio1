@@ -1,5 +1,5 @@
 import * as actionTypes from './actionTypes'
-import TeacherService from '../../containers/Teachers/TeacherService'
+import TeacherService from '../services/TeacherService'
 
 //-----CREATE TEACHER ACTIONS-----------------------------
 export const createTeacherStart = () => {

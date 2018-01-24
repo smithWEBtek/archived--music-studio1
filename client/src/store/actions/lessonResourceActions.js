@@ -1,5 +1,5 @@
 import * as actionTypes from './actionTypes'
-import LessonResourceService from '../../containers/LessonResources/LessonResourceService'
+import LessonResourceService from '../services/LessonResourceService'
 import { fetchLessons } from './lessonActions';
 
 //-----CREATE LESSON_RESOURCE ACTIONS-----------------------------

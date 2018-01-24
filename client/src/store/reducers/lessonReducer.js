@@ -1,5 +1,5 @@
 import * as actionTypes from '../actions/actionTypes';
-import LessonService from '../../containers/Lessons/LessonService';
+import LessonService from '../services/LessonService';
 
 const initialState = {
   lessons: [],
