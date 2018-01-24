@@ -32,7 +32,6 @@ class MainNav extends Component {
               <Link to='/lessons' className="Item">lessons</Link>
             </Nav>
           </Collapse>
-          {/* <NavbarBrand> */}
           <div className="logo-home">
             <Link to='/'>
               music
@@ -40,7 +39,6 @@ class MainNav extends Component {
               studio
               </Link>
           </div>
-          {/* </NavbarBrand> */}
           <NavbarToggler onClick={this.toggle} />
         </Navbar >
         <div>

@@ -1,4 +1,5 @@
 class Api::LessonsController < ApplicationController
+ before_action :set_lesson, only: [:show, :update, :destroy]
 
   def index
     @lessons = Lesson.all
@@ -6,7 +7,6 @@ class Api::LessonsController < ApplicationController
   end
 
   def show
-    @lesson = Lesson.find(params[:id])
     render json: @lesson
   end
 
@@ -20,7 +20,6 @@ class Api::LessonsController < ApplicationController
   end
   
   def update
-    @lesson = Lesson.find(params[:id])
     @lesson.update(lesson_params)
     if @lesson.save
       render json: @lesson
@@ -30,12 +29,14 @@ class Api::LessonsController < ApplicationController
   end
 
   def destroy 
-    @lesson = Lesson.find(params[:id])
     @lesson.delete
   end
 
   private
-  def lesson_params
+  def set_lesson
+    @lesson = Lesson.find_by_id(params[:id])
+  end
+    def lesson_params
     params.require(:lesson).permit(:date, :teacher_id, :student_id, :notes)
   end
 end

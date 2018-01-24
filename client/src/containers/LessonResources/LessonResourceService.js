@@ -1,5 +1,5 @@
 // const API_URL = process.env.REACT_APP_API_URL
-const API_URL = process.env.HEROKU_APP_API_URL
+const API_URL = "https://music-studio.herokuapp.com/api/"
 
 const LessonResourceService = {
   fetchLessonResources: () => {

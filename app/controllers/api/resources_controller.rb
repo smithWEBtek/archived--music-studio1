@@ -1,4 +1,5 @@
 class Api::ResourcesController < ApplicationController
+  before_action :set_resource, only: [:show, :update, :destroy, :resources]
 
 
   def db_backup
@@ -9,14 +10,12 @@ class Api::ResourcesController < ApplicationController
     Resource.db_reset
   end
 
-
   def index
     @resources = Resource.all
     render json: @resources
   end
 
   def show
-    @resource = Resource.find(params[:id])
     render json: @resource
   end
 
@@ -30,7 +29,6 @@ class Api::ResourcesController < ApplicationController
   end
   
   def update
-    @resource = Resource.find(params[:id])
     @resource.update(resource_params)
     if @resource.save
       render json: @resource
@@ -40,11 +38,14 @@ class Api::ResourcesController < ApplicationController
   end
 
   def destroy
-    @resource = Resource.find(params[:id])
     @resource.delete
   end
 
   private
+  def set_resource
+    @resource = Resource.find_by_id(params[:id])
+  end
+
   def resource_params
     params.require(:resource).permit(:title, :category, :description, :format, :location, :url)
   end
