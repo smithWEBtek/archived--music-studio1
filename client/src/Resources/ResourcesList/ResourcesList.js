@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Table } from 'reactstrap'
-import Aux from '../../../hoc/Aux/Aux'
+import Aux from '../../hoc/Aux/Aux'
 import './ResourcesList.css'
 
 const ResourcesList = (props) => {

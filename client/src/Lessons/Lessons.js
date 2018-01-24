@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Route, Switch, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import * as actions from '../../store/actions/index'
+import * as actions from '../store/actions/index'
 
 import { Container } from 'reactstrap'
-import Modal from '../../UI/Modal/Modal'
+import Modal from '../UI/Modal/Modal'
 
 import Lesson from './Lesson/Lesson'
 import CreateLesson from './CreateLesson/CreateLesson'

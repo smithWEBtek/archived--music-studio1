@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import '../../../App.css'
+import '../../App.css'
 import StudentsList from '../../Students/StudentsList/StudentsList'
 import LessonsList from '../../Lessons/LessonsList/LessonsList'
 

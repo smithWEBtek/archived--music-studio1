@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import * as actionCreators from '../../../store/actions/index'
+import * as actionCreators from '../../store/actions/index'
 import { connect } from 'react-redux'
 import './CreateLesson.css'
 

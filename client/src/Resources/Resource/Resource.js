@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import './Resource.css'
-import '../../../App.css'
+import '../../App.css'
 import { Container, Row, Col } from 'reactstrap'
 import ResourceViewer from '../ResourceViewer/ResourceViewer'
 

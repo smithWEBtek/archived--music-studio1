@@ -2,8 +2,8 @@ import React from 'react'
 import Pdf from './Pdf'
 import Vid from './Vid'
 import Aud from './Aud'
-import Aux from '../../../hoc/Aux/Aux'
-import Spinner from '../../../UI/Spinner/Spinner'
+import Aux from '../../hoc/Aux/Aux'
+import Spinner from '../../UI/Spinner/Spinner'
 import './ResourceViewer.css'
 
 const ResourceViewer = (props) => {

@@ -4,11 +4,11 @@ import 'bootstrap/dist/css/bootstrap.css'
 // import Layout from './UI/Layout/Layout'
 import { Route } from 'react-router-dom'
 
-import Students from '../src/containers/Students/Students'
-import Teachers from '../src/containers/Teachers/Teachers'
-import Lessons from '../src/containers/Lessons/Lessons'
-import Resources from '../src/containers/Resources/Resources'
-import LessonResources from '../src/containers/LessonResources/LessonResources'
+import Students from '../src/Students/Students'
+import Teachers from '../src/Teachers/Teachers'
+import Lessons from '../src/Lessons/Lessons'
+import Resources from '../src/Resources/Resources'
+import LessonResources from '../src/LessonResources/LessonResources'
 import Aux from '../src/hoc/Aux/Aux'
 
 class App extends Component {
