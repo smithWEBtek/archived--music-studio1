@@ -20,17 +20,18 @@ REQUIREMENTS
 [X] use Redux middleware to respond to and modify state change
 
 
-[]  remove all CSS modules code, import CSS files directly with className="string values"
+[X]  remove all CSS modules code, import CSS files directly with className="string values"
 
 []  redirects as user would expect for: CreateLesson, CreateResource, CreateStudent, CreateTeacher
 []  main nav links should show ALL students, teachers, resources, lessong (currently you have to hit ALL button for each, respectively)
 
+
 []  Implement more 'reactstrap' components
-[]  Blog outline, topics, points, plans
-[]  Video walkthrough, outline
-[]  Publish blog
-[]  Record Video
-[]  Submit project, schedule assessment
+[X]  Blog outline, topics, points, plans
+[X]  Video walkthrough, outline
+[X]  Publish blog
+[X]  Record Video
+[X]  Submit project, schedule assessment
 
 
 Button for /students
