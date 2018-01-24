@@ -55,15 +55,12 @@ mainnav button does not set state, unless component is mounting
 
 ==================================================================================
 TODO
-[]  sort clickable names alphabetically
-[X]  make a spinner out of Logo
-[]  sort Resources by format, in the clickableNames section
-[]  Lesson  Resource CRUD (index, show, new/create, edit/update, delete)
 []  LessonInProgress: add TeachLesson function ( live editing of notes and adding of resources in a new or existing Lesson)
-[]  button in Lessons index, to "ADD RESOURCE TO CURRENT LESSON", to add multiple resources to new or existing lesson
+[]  sort Resources by format, in the clickableNames section
 []  validation: lesson MUST have teacher and student to be valid lesson, use Rails api for validation
- 
-[] Students change toggling from index to show, it is not ideal
+[X]  make a spinner out of Logo
+[X]  Lesson  Resource CRUD (index, show, new/create, edit/update, delete)
+[X]  button in Lessons index, to "ADD RESOURCE TO CURRENT LESSON", to add multiple resources to new or existing lesson
 [] Backdrop onClick, should close whatever <Modal /> is open
  
 NICE TO HAVES------------------------------------------------------
