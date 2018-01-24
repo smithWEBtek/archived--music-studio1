@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Route, Link } from 'react-router-dom'
-import styles from './MainNav.css'
+import './MainNav.css'
 import LogoSpin from '../../assets/images/LogoSpin.png'
 import Logo from '../../assets/images/Logo.png'
 import { Container, Collapse, Navbar, NavbarToggler, Nav } from 'reactstrap'

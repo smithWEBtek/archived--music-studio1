@@ -1,7 +1,7 @@
 import React from 'react';
 import './Spinner.css';
 import LogoSpin from '../../assets/images/LogoSpin.png'
-import styles from './Spinner.css'
+import './Spinner.css'
 
 const spinner = () => {
   return (

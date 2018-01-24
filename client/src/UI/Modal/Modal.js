@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import styles from './Modal.css'
+import './Modal.css'
 // import Aux from '../../hoc/Aux/Aux'
 import Backdrop from '../Backdrop/Backdrop'
 import { Container } from 'reactstrap'

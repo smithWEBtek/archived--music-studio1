@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Table } from 'reactstrap'
-import styles from './LessonsList.css'
+import './LessonsList.css'
 
 const LessonsList = (props) => {
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styles from './CreateResource.css';
+import './CreateResource.css';
 
 class CreateResource extends Component {
   constructor(props) {

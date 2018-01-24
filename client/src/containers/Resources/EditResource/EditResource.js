@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styles from './EditResource.css';
+import './EditResource.css';
 
 class EditResource extends Component {
   constructor(props) {
