@@ -5,7 +5,6 @@ class CreateLessons < ActiveRecord::Migration[5.1]
       t.string :notes
       t.integer :teacher_id
       t.integer :student_id
-      t.boolean :active, default: true
 
       t.timestamps
     end
