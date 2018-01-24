@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Switch, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import * as actionCreators from '../../store/actions/index'
+import * as actions from '../../store/actions/index'
 
 import { Container } from 'reactstrap'
 import Modal from '../../UI/Modal/Modal'
@@ -145,10 +145,10 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onFetchResources: () => dispatch(actionCreators.fetchResources()),
-    onCreateResource: (data) => dispatch(actionCreators.createResource(data)),
-    onUpdateResource: (data) => dispatch(actionCreators.updateResource(data)),
-    onDeleteResource: (id) => dispatch(actionCreators.deleteResource(id))
+    onFetchResources: () => dispatch(actions.fetchResources()),
+    onCreateResource: (data) => dispatch(actions.createResource(data)),
+    onUpdateResource: (data) => dispatch(actions.updateResource(data)),
+    onDeleteResource: (id) => dispatch(actions.deleteResource(id))
   };
 }
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Switch, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import * as actionCreators from '../../store/actions/index'
+import * as actions from '../../store/actions/index'
 
 import { Container } from 'reactstrap'
 import '../../App.css'
@@ -143,10 +143,10 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onFetchStudents: () => dispatch(actionCreators.fetchStudents()),
-    onCreateStudent: (data) => dispatch(actionCreators.createStudent(data)),
-    onUpdateStudent: (data) => dispatch(actionCreators.updateStudent(data)),
-    onDeleteStudent: (id) => dispatch(actionCreators.deleteStudent(id))
+    onFetchStudents: () => dispatch(actions.fetchStudents()),
+    onCreateStudent: (data) => dispatch(actions.createStudent(data)),
+    onUpdateStudent: (data) => dispatch(actions.updateStudent(data)),
+    onDeleteStudent: (id) => dispatch(actions.deleteStudent(id))
   };
 }
 
