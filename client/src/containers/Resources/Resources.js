@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import * as actionCreators from '../../store/actions/index'
 
 import { Container } from 'reactstrap'
-// import styles from './Resources.css'
 import '../../App.css'
 import Modal from '../../UI/Modal/Modal'
 

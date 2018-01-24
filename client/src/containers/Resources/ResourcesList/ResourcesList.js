@@ -38,7 +38,6 @@ const ResourcesList = (props) => {
           <td>{resource.format}</td>
           <td>{resource.location}</td>
 
-
           {props.edit ?
             <td><button
               type='button'

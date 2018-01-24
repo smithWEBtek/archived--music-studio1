@@ -7,8 +7,8 @@ import { Container, Row, Col } from 'reactstrap'
 import ResourceViewer from '../ResourceViewer/ResourceViewer'
 
 const Resource = (props) => {
-  const resource = props.resources.filter(resource => resource.id === +props.match.params.id)[0]
 
+  const resource = props.resources.find(resource => resource.id === +props.match.params.id)
   let resourceData = <div><p>Resource component is loading...</p></div>
   let resourceView = <div><p>Resource view is loading...</p></div>
   let resourceTeachers = <p>None yet</p>
@@ -61,10 +61,7 @@ const Resource = (props) => {
 
 const mapStateToProps = state => {
   return {
-    students: state.stu.students,
-    teachers: state.tch.teachers,
-    resources: state.res.resources,
-    lessons: state.les.lessons
+    resources: state.res.resources
   }
 }
 
