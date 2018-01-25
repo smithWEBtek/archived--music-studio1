@@ -23,15 +23,15 @@ The gem 'foreman' was used to implement the React client app within the same pro
 
 
 ### Postgresql is the database required
-You need Postgresql installed and running on your machine for this work.
+You need Postgresql installed and running on your machine for this to work.
 
 
-## to START
+## START
 The project loads all in one repo, with the front-end client using React/Redux in the /app/client folder. To start the app:
 
 1. Fork and Clone this repo
 
-2. cd into piano-student/app/client directory
+2. cd into piano-student-api/app/client directory
 
 3. run:$   npm install
 
@@ -49,7 +49,7 @@ The project loads all in one repo, with the front-end client using React/Redux i
 
 run:$  rake start:start
 
-
+###  you should see JSON data here:  http://127.0.0.1:3001/
 
 
 ### Troubleshooting 
@@ -69,7 +69,7 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
 end
 ```
 
-Play around with these if you need to troubleshoot CORS errors, where the Rails API thinks you are an enemy combatant.
+Play around with these if you need to troubleshoot CORS errors, when the Rails API thinks you are an enemy.
 
 There are 2 'procfile's at the root of the Rails app, where you can control how the app starts on Heroku, or how it starts locally, for development. 
 
@@ -102,9 +102,13 @@ NOTE. the Rails  app/config/routes.rb file is configured to default home to  /ap
 
 So, you will see the students json data by default at http://127.0.0.1:3001/
 
-If Rails seems to be running ok, because you followed the steps above to create, migrate, seed the database, you should see data. 
+If Rails seems to be running ok,
 
+and you have Postgresql installed and running
 
+and you followed the steps above to create, migrate, seed the database, 
+
+you should see data. 
 
 
 
@@ -113,40 +117,15 @@ There is a seeds.rb file in app/db/seeds.rb with sample data.
 There are 3 rake tasks that incorporate this seed data:
 
 1.  rake db:backup
+
     creates a "time stamp" named: backup<time as number>.rb
+
     located in /app/db/data
 
 2.  rake db:dcms
+
     this will: D DROP database, C CREATE database, M run MIGRATIONS, S load SEED data
-
-NOTE: This assumes you have a Heroku app created. 
-
-To deploy this project to your own Heroku account you must: 
-
-1. Edit this rake task with the name of your Heroku app:
-
-   rake db:hdcms
-    this will: H Heroku (pg reset), D DROP database, C CREATE database, M run MIGRATIONS, S load SEED data
-
-2. Edit the API_URL variable above with your Heroku app name ( mine is 'music-studio' so replace that with your Heroku app name )
-
-3. I would first get your Heroku app created, alive and work, following their excellent documentation, for deploying a Rails app. 
-
-  I would first begin with getting this app running locally of course. 
-
-  You also want to connect your github repo to the Heroku app you created, (do this on Heroku dashboard, click 'deployment'), and there you can allow automatic deploys, whenever you push to your repo on Github, it will then update Heroku.  ( [but really read their Rails deployment stuff first, this is out of scope for this README.](https://devcenter.heroku.com/articles/getting-started-with-rails4) )
-
-  Probably it would be best to first deploy some vanilla Rails apps to Heroku so you get the feel of it. 
-
-  Rails locally deployed gives nice errors, but on Heroku things are a little hidden, unless you get in the habit of using command line to open Rails console, or a bash prompt.  
-
-  heroku run rails c --app <your-app-name-if-you-have-more-than-one-app-deployed> 
-
-  heroku run bash --app <your-app-name-if-you-have-more-than-one-app-deployed> 
-  
-  [heroku rake commands](https://devcenter.heroku.com/articles/rake)
-
-
+ 
 
 ## API and interacting with the Rails app 'back-end'
 The backend data (in JSON format) (assuming port 3001) can be seen at :
