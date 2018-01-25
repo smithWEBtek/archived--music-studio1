@@ -16,7 +16,8 @@ class Students extends Component {
     student: null,
     showStudentsList: false,
     createStudent: false,
-    editStudent: false
+    editStudent: false,
+    likeCount: 0
   }
 
   componentDidMount() {
@@ -30,6 +31,17 @@ class Students extends Component {
 
   closeStudentsList = () => {
     this.setState({ showStudentsList: false })
+  }
+
+  like = () => {
+    this.increment()
+  }
+
+  increment = () => {
+    let newLikeCount = this.state.likeCount + 1
+    // console.log('[Students.js] increment', newLikeCount)
+    // debugger;
+    this.setState({ likeCount: newLikeCount })
   }
 
   //********SHOW_STUDENT form handling*****************
@@ -47,7 +59,9 @@ class Students extends Component {
   }
 
   createStudent = (newStudentData) => {
-    this.props.onCreateStudent(newStudentData)
+
+    const { history } = this.props
+    this.props.onCreateStudent(newStudentData, history)
     this.setState({ createStudent: false })
   }
 
@@ -126,6 +140,9 @@ class Students extends Component {
                 edit={(id) => this.showEditStudentForm(id)}
                 delete={(id) => this.props.onDeleteStudent(id)}
                 close={() => this.closeStudentsList()}
+                like={() => this.like()}
+                increment={() => this.increment()}
+                likeCount={this.state.likeCount}
               /></div> : null}
         </div>
         <hr />
@@ -143,7 +160,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     onFetchStudents: () => dispatch(actions.fetchStudents()),
-    onCreateStudent: (data) => dispatch(actions.createStudent(data)),
+    onCreateStudent: (data, history) => dispatch(actions.createStudent(data, history)),
     onUpdateStudent: (data) => dispatch(actions.updateStudent(data)),
     onDeleteStudent: (id) => dispatch(actions.deleteStudent(id))
   };
