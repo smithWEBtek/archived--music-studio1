@@ -46,7 +46,15 @@ const StudentsList = (props) => {
             onClick={() => props.delete(student.id)}
             className="Danger">x</button></td>
           : null}
-      </tr>
+
+        <td><button
+          type='button'
+          className="Success"
+          onClick={() => props.likeStudent(student.id)}>
+          Like</button></td>
+
+        <td>{student.likes}</td>
+      </tr >
     )
   })
 
@@ -64,6 +72,8 @@ const StudentsList = (props) => {
             <th>Show</th>
             {props.edit ? <th>Edit</th> : null}
             {props.delete ? <th>Delete</th> : null}
+            <th>Like</th>
+            <th>Count</th>
           </tr>
         </thead>
         <tbody>

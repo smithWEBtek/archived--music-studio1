@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 20171203033537) do
     t.integer "level"
     t.integer "teacher_id"
     t.boolean "active", default: true
+    t.integer "likes", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

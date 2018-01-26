@@ -7,6 +7,7 @@ class CreateStudents < ActiveRecord::Migration[5.1]
       t.integer :level
       t.integer :teacher_id
       t.boolean :active, default: true
+      t.integer :likes, default: 0
 
       t.timestamps
     end
