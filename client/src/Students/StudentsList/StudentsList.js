@@ -27,7 +27,7 @@ const StudentsList = (props) => {
             <th>ID</th>
             <th>Last, First</th>
             <th>Email</th>
-            <th>TeacherID</th>
+            <th>Teacher</th>
             <th>Level</th>
             <th>Active?</th>
             <th>Show</th>

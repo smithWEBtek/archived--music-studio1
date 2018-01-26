@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './EditStudent.css';
+import * as actions from '../../store/actions/index'
+import { connect } from 'react-redux'
 
 class EditStudent extends Component {
   constructor(props) {
@@ -12,11 +14,16 @@ class EditStudent extends Component {
       email: '',
       level: '',
       teacher_id: '',
+      teacher: '',
       active: ''
     }
   }
 
   componentDidMount() {
+    this.props.onFetchTeachers()
+
+    let teacher = this.props.teachers.find(t => t.id === this.props.teacher_id)
+
     this.setState({
       id: this.props.id,
       firstname: this.props.firstname,
@@ -24,6 +31,7 @@ class EditStudent extends Component {
       email: this.props.email,
       level: this.props.level,
       teacher_id: this.props.teacher_id,
+      teacher: teacher,
       active: this.props.active
     })
   }
@@ -45,7 +53,17 @@ class EditStudent extends Component {
     e.preventDefault();
   }
 
+  handleTeacherSelect = (event) => {
+    this.setState({
+      teacher_id: this.props.teachers.find(teacher => teacher.lastname === event.target.value).id
+    })
+  }
+
   render() {
+    const teacherOptions = this.props.teachers.map(teacher => {
+      return <option value={teacher.lastname} id={teacher.id} key={teacher.id}>{teacher.lastname}</option>
+    })
+
     return (
       <div>
         <p className="FormInstructions">Edit form and click 'Update Student'</p>
@@ -78,13 +96,13 @@ class EditStudent extends Component {
               value={this.state.level}
               onChange={this.handleChange}
             /></p>
-          <p><label>Teacher ID </label>
-            <input
-              type="text"
-              name="teacher_id"
-              value={this.state.teacher_id}
-              onChange={this.handleChange}
-            /></p>
+          <p><label>Select Teacher</label>
+            <select
+              value={this.state.teacher.lastname}
+              onChange={(event) => this.handleTeacherSelect(event)}>
+              {teacherOptions}
+            </select>
+          </p>
           <p><label>Active?</label>
             <button
               type="button"
@@ -110,4 +128,16 @@ class EditStudent extends Component {
   }
 }
 
-export default EditStudent
+const mapStateToProps = state => {
+  return {
+    teachers: state.tch.teachers
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onFetchTeachers: () => dispatch(actions.fetchTeachers())
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditStudent)
