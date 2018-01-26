@@ -4,7 +4,7 @@ import { Route, Switch, Link } from 'react-router-dom'
 import './LessonResourcesList.css'
 import { Table } from 'reactstrap'
 import Aux from '../../../hoc/Aux/Aux'
-import * as actionCreators from '../../../store/actions/index'
+import * as actions from '../../../store/actions/index'
 import '../../../App.css'
 
 const LessonResourcesList = (props) => {
@@ -123,8 +123,8 @@ const mapStateToProps = state => {
 
 const addDispatchToProps = dispatch => {
   return {
-    onCreateLessonResource: (id) => dispatch(actionCreators.createLessonResource(id)),
-    onDeleteLessonResource: (id) => dispatch(actionCreators.deleteLessonResource(id))
+    onCreateLessonResource: (id) => dispatch(actions.createLessonResource(id)),
+    onDeleteLessonResource: (id) => dispatch(actions.deleteLessonResource(id))
   }
 }
 

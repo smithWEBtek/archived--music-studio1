@@ -1,15 +1,14 @@
 import React, { Component } from 'react'
 import MainNav from './UI/MainNav/MainNav'
 import 'bootstrap/dist/css/bootstrap.css'
-// import Layout from './UI/Layout/Layout'
 import { Route } from 'react-router-dom'
+import Aux from '../src/hoc/Aux/Aux'
 
 import Students from '../src/Students/Students'
 import Teachers from '../src/Teachers/Teachers'
 import Lessons from '../src/Lessons/Lessons'
 import Resources from '../src/Resources/Resources'
 import LessonResources from '../src/Lessons/LessonResources/LessonResources'
-import Aux from '../src/hoc/Aux/Aux'
 
 class App extends Component {
   render() {

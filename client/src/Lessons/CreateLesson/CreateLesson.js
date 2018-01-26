@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import * as actionCreators from '../../store/actions/index'
+import * as actions from '../../store/actions/index'
 import { connect } from 'react-redux'
 import './CreateLesson.css'
 
@@ -26,6 +26,7 @@ class CreateLesson extends Component {
       notes: this.state.notes
     }
     this.props.createLesson(lessonData)
+    this.props.closeForm()
     this.setState({
       createLesson: false,
       date: '',
@@ -33,7 +34,6 @@ class CreateLesson extends Component {
       student: '',
       notes: ''
     })
-    this.props.closeForm()
   }
 
   //********CREATE_LESSON selector functions **************************
@@ -121,9 +121,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onFetchStudents: () => dispatch(actionCreators.fetchStudents()),
-    onFetchTeachers: () => dispatch(actionCreators.fetchTeachers()),
-    onFetchResources: () => dispatch(actionCreators.fetchResources())
+    onFetchStudents: () => dispatch(actions.fetchStudents()),
+    onFetchTeachers: () => dispatch(actions.fetchTeachers()),
+    onFetchResources: () => dispatch(actions.fetchResources())
   };
 }
 

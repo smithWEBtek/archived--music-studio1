@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './CreateStudent.css'
+import * as actions from '../../store/actions/index'
+import { connect } from 'react-redux'
 
 class CreateStudent extends Component {
   constructor(props) {
@@ -10,8 +12,12 @@ class CreateStudent extends Component {
       lastname: '',
       email: '',
       level: '',
-      teacher_id: ''
+      teacher: ''
     }
+  }
+
+  componentWillMount() {
+    this.props.onFetchTeachers()
   }
 
   handleOnChange = (event) => {
@@ -33,7 +39,17 @@ class CreateStudent extends Component {
     this.props.createStudentCancel()
   }
 
+  handleTeacherSelect = (event) => {
+    this.setState({
+      teacher_id: this.props.teachers.find(teacher => teacher.lastname === event.target.value).id
+    })
+  }
+
   render() {
+    const teacherOptions = this.props.teachers.map(teacher => {
+      return <option value={teacher.lastname} id={teacher.id} key={teacher.id}>{teacher.lastname}</option>
+    })
+
     return (
       <div>
         <p>Complete form and click 'Add Student'</p>
@@ -45,7 +61,8 @@ class CreateStudent extends Component {
               value={this.state.firstname}
               onChange={(event) => this.handleOnChange(event)}
               placeholder="firstname"
-              required /></p>
+              required />
+          </p>
           <p><label>Last name </label>
             <input
               type="text"
@@ -53,7 +70,8 @@ class CreateStudent extends Component {
               value={this.state.lastname}
               onChange={(event) => this.handleOnChange(event)}
               placeholder="lastname"
-              required /></p>
+              required />
+          </p>
           <p><label>Email </label>
             <input
               type="text"
@@ -61,23 +79,24 @@ class CreateStudent extends Component {
               value={this.state.email}
               onChange={(event) => this.handleOnChange(event)}
               placeholder="email"
-              required /></p>
-          <p><label>Level </label>
+              required />
+          </p>
+          <p><label>Level</label>
             <input
               type="text"
               name="level"
               value={this.state.level}
               onChange={(event) => this.handleOnChange(event)}
               placeholder="level"
-              required /></p>
-          <p><label>Teacher ID </label>
-            <input
-              type="text"
-              name="teacher_id"
-              value={this.state.teacher_id}
-              onChange={(event) => this.handleOnChange(event)}
-              placeholder="teacher_id"
-              required /></p>
+              required />
+          </p>
+          <p><label>Select Teacher</label>
+            <select
+              value={this.state.teacher.lastname}
+              onChange={(event) => this.handleTeacherSelect(event)}>
+              {teacherOptions}
+            </select>
+          </p>
           <button
             type="button"
             onClick={this.props.createStudentCancel}
@@ -91,4 +110,17 @@ class CreateStudent extends Component {
   }
 }
 
-export default CreateStudent;
+
+const mapStateToProps = state => {
+  return {
+    teachers: state.tch.teachers
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onFetchTeachers: () => dispatch(actions.fetchTeachers())
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreateStudent)

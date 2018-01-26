@@ -48,7 +48,8 @@ class Lessons extends Component {
   }
 
   createLesson = (newLessonData) => {
-    this.props.onCreateLesson(newLessonData)
+    const { history } = this.props
+    this.props.onCreateLesson(newLessonData, history)
     this.setState({ createLesson: false })
   }
 

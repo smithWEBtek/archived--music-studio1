@@ -11,12 +11,16 @@ export const createLessonSuccess = () => {
 export const createLessonFail = (error) => {
   return { type: actionTypes.CREATE_LESSON_FAIL, error: error }
 }
-export const createLesson = (data) => {
+export const createLesson = (data, history) => {
   return dispatch => {
     dispatch(createLessonStart())
     LessonService.createLesson(data)
       .then(response => {
         dispatch({ type: actionTypes.CREATE_LESSON, data: response })
+        console.log('[lessonActions] history', history)
+        // debugger;
+
+        history.push(`/lessons/${response.id}`)
         dispatch(createLessonSuccess())
       })
       .catch(error => {

@@ -64,7 +64,6 @@ const reducer = (state = initialState, action) => {
     //   return updateObject(state, { updatedState })
 
 
-
     case actionTypes.UPDATE_STUDENT_SUCCESS:
       return updateObject(state, { loading: false })
 

@@ -12,7 +12,6 @@ export const createStudentFail = (error) => {
   return { type: actionTypes.CREATE_STUDENT_FAIL, error: error }
 }
 export const createStudent = (data, history) => {
-
   return dispatch => {
     dispatch(createStudentStart())
     StudentService.createStudent(data)
