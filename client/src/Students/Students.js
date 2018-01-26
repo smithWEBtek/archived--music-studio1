@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { Route, Switch, Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+import React, { Component } from 'react'
+import { Route, Switch, Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 import * as actions from '../store/actions/index'
 
 import { Container } from 'reactstrap'
@@ -16,12 +16,11 @@ class Students extends Component {
     student: null,
     showStudentsList: false,
     createStudent: false,
-    editStudent: false,
-    likeCount: 0
+    editStudent: false
   }
 
-  componentDidMount() {
-    this.props.onFetchStudents();
+  componentWillMount() {
+    this.props.onFetchStudents()
   }
 
   //********SHOW_STUDENTS_LIST form handling**************
@@ -31,17 +30,6 @@ class Students extends Component {
 
   closeStudentsList = () => {
     this.setState({ showStudentsList: false })
-  }
-
-  like = () => {
-    this.increment()
-  }
-
-  increment = () => {
-    let newLikeCount = this.state.likeCount + 1
-    // console.log('[Students.js] increment', newLikeCount)
-    // debugger;
-    this.setState({ likeCount: newLikeCount })
   }
 
   //********SHOW_STUDENT form handling*****************
@@ -59,7 +47,6 @@ class Students extends Component {
   }
 
   createStudent = (newStudentData) => {
-
     const { history } = this.props
     this.props.onCreateStudent(newStudentData, history)
     this.setState({ createStudent: false })
@@ -90,7 +77,8 @@ class Students extends Component {
   }
 
   render() {
-    const { match, students } = this.props;
+    const { match, students } = this.props
+
     return (
       <Container>
         <hr />
@@ -140,21 +128,18 @@ class Students extends Component {
                 edit={(id) => this.showEditStudentForm(id)}
                 delete={(id) => this.props.onDeleteStudent(id)}
                 close={() => this.closeStudentsList()}
-                like={() => this.like()}
-                increment={() => this.increment()}
-                likeCount={this.state.likeCount}
               /></div> : null}
         </div>
         <hr />
       </Container>
     )
   }
-};
+}
 
 const mapStateToProps = state => {
   return {
     students: state.stu.students
-  };
+  }
 }
 
 const mapDispatchToProps = dispatch => {
@@ -163,7 +148,7 @@ const mapDispatchToProps = dispatch => {
     onCreateStudent: (data, history) => dispatch(actions.createStudent(data, history)),
     onUpdateStudent: (data) => dispatch(actions.updateStudent(data)),
     onDeleteStudent: (id) => dispatch(actions.deleteStudent(id))
-  };
+  }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Students);
+export default connect(mapStateToProps, mapDispatchToProps)(Students)
