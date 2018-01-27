@@ -48,9 +48,6 @@ class Students extends Component {
 
   createStudent = (newStudentData) => {
     const { history } = this.props
-
-    debugger;
-
     this.props.onCreateStudent(newStudentData, history)
     this.setState({ createStudent: false })
   }
