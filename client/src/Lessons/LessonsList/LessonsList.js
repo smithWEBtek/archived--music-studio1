@@ -31,7 +31,6 @@ const LessonsList = (props) => {
         {/* <td>{lesson.resources ? <Link to={`/resources/${lesson.resources[0].id}`}>{lesson.resources[0].title}</Link> : 'none'}</td> */}
         <td>{lesson.notes}</td>
 
-
         {props.edit ?
           <td><button
             type='button'
@@ -55,7 +54,7 @@ const LessonsList = (props) => {
         <tr>
           <th>ID</th>
           <th>Show</th>
-          <th>Teacher - Student</th>
+          <th>Teacher/Student</th>
           <th>Date</th>
           <th>Teacher</th>
           <th>Student</th>
