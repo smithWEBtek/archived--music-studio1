@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './CreateStudent.css'
+import { connect } from 'react-redux'
+import * as actions from '../../store/actions/index'
 
 class CreateStudent extends Component {
   constructor(props) {
@@ -10,8 +12,13 @@ class CreateStudent extends Component {
       lastname: '',
       email: '',
       level: '',
-      teacher_id: ''
+      teacher_id: '',
+      teacher: ''
     }
+  }
+
+  componentWillMount(){
+    this.props.onFetchTeachers()
   }
 
   handleOnChange = (event) => {
@@ -33,7 +40,18 @@ class CreateStudent extends Component {
     this.props.createStudentCancel()
   }
 
+  handleTeacherSelect = (event) => {
+    this.setState({
+      teacher_id: this.props.teachers.find(teacher => teacher.lastname === event.target.value).id
+    })
+  }
+
   render() {
+
+    const teacherOptions = this.props.teachers.map(teacher => {
+      return <option value={teacher.lastname} id={teacher.id} key={teacher.id}>{teacher.lastname}</option>
+    })
+
     return (
       <div>
         <p>Complete form and click 'Add Student'</p>
@@ -70,14 +88,13 @@ class CreateStudent extends Component {
               onChange={(event) => this.handleOnChange(event)}
               placeholder="level"
               required /></p>
-          <p><label>Teacher ID </label>
-            <input
-              type="text"
-              name="teacher_id"
-              value={this.state.teacher_id}
-              onChange={(event) => this.handleOnChange(event)}
-              placeholder="teacher_id"
-              required /></p>
+          <p><label>Select Teacher</label>
+            <select
+              value={this.state.teacher.lastname}
+              onChange={(event) => this.handleTeacherSelect(event)}>
+              {teacherOptions}
+            </select>
+          </p>
           <button
             type="button"
             onClick={this.props.createStudentCancel}
@@ -91,4 +108,16 @@ class CreateStudent extends Component {
   }
 }
 
-export default CreateStudent;
+const mapStateToProps = state => {
+  return {
+    teachers: state.tch.teachers
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onFetchTeachers: ()=> dispatch(actions.fetchTeachers())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreateStudent)
