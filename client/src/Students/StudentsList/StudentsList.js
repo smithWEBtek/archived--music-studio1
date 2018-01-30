@@ -49,11 +49,11 @@ const StudentsList = (props) => {
 
         <td><button
           type='button'
-          className="Success"
+          className="Like"
           onClick={() => props.likeStudent(student.id)}>
           Like</button></td>
 
-        <td>{student.likes}</td>
+        <td className="LikeCount">{student.likes}</td>
       </tr >
     )
   })
