@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Table } from 'reactstrap'
 import './StudentsList.css'
-import Aux from '../../hoc/Aux/Aux'
 
 const StudentsList = (props) => {
 
