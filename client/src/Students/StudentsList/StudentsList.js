@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Table } from 'reactstrap'
 import './StudentsList.css'
+import Aux from '../../hoc/Aux/Aux'
 
 const StudentsList = (props) => {
 
@@ -47,14 +48,18 @@ const StudentsList = (props) => {
             className="Danger">x</button></td>
           : null}
 
-        <td><button
-          type='button'
-          className="Like"
-          onClick={() => props.likeStudent(student.id)}>
-          Like</button></td>
+        {props.likeStudent ?
+          <td><button
+            type='button'
+            className="Like"
+            onClick={() => props.likeStudent(student.id)}>
+            Like</button></td>
+          : null}
 
-        <td className="LikeCount">{student.likes}</td>
-      </tr >
+        {props.likeStudent ?
+          <td className="LikeCount">{student.likes}</td>
+          : null}
+      </tr>
     )
   })
 
@@ -70,10 +75,12 @@ const StudentsList = (props) => {
             <th>Level</th>
             <th>Active?</th>
             <th>Show</th>
+
             {props.edit ? <th>Edit</th> : null}
             {props.delete ? <th>Delete</th> : null}
-            <th>Like</th>
-            <th>Count</th>
+            {props.likeStudent ? <th>Like</th> : null}
+            {props.likeStudent ? <th>Count</th> : null}
+
           </tr>
         </thead>
         <tbody>
