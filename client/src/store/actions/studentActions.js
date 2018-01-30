@@ -18,7 +18,6 @@ export const createStudent = (data) => {
       .then(response => {
         dispatch({ type: actionTypes.CREATE_STUDENT, data: response })
         dispatch(createStudentSuccess())
-        dispatch({ type: actionTypes.FETCH_STUDENTS })
       })
       .catch(error => {
         dispatch(createStudentFail(error))
