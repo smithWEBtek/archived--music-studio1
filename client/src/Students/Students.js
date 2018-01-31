@@ -145,7 +145,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     onFetchStudents: () => dispatch(actions.fetchStudents()),
-    onCreateStudent: (data, history) => dispatch(actions.createStudent(data, history)),
+    onCreateStudent: (newStudentData, history) => dispatch(actions.createStudent(newStudentData, history)),
     onUpdateStudent: (data) => dispatch(actions.updateStudent(data)),
     onDeleteStudent: (id) => dispatch(actions.deleteStudent(id))
   }
