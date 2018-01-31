@@ -64,10 +64,13 @@ export const updateStudent = (data) => {
   return dispatch => {
     dispatch(updateStudentStart())
     StudentService.updateStudent(data.id, data)
-      .then(response => {
+      .then(data => {
+        debugger;
+
+        dispatch({ type: actionTypes.UPDATE_STUDENT, updatedStudentData: data })
         dispatch({ type: actionTypes.UPDATE_STUDENT_SUCCESS })
-        dispatch(updateStudentSuccess(response))
-        dispatch(fetchStudents())
+        dispatch(updateStudentSuccess(data))
+        //dispatch(fetchStudents())
       })
       .catch(error => {
         dispatch(updateStudentFail(error))
