@@ -78,8 +78,8 @@ class Students extends Component {
   //********LIKE_STUDENT form handling****************
   likeStudent = (id) => {
     let student = this.props.students.find(stu => stu.id === id)
-    student.likes += 1
-    this.props.onUpdateStudent(student)
+    let updatedStudent = Object.assign({}, student, { likes: student.likes + 1 })
+    this.props.onUpdateStudent(updatedStudent)
   }
 
 
