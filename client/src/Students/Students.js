@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Route, Switch, Link } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
 import * as actions from '../store/actions/index'
 
@@ -18,12 +18,6 @@ class Students extends Component {
     createStudent: false,
     editStudent: false
   }
-
-  componentWillMount() {
-    this.props.onFetchStudents()
-  }
-
-
 
   //********SHOW_STUDENTS_LIST form handling**************
   showStudentsList = () => {
@@ -85,14 +79,12 @@ class Students extends Component {
     this.props.onUpdateStudent(updatedStudent)
   }
 
-
   render() {
     const { match, students } = this.props
 
     return (
       <Container>
         <hr />
-        <button onClick={() => this.showStudentsList()}><Link to='/students'>ALL students</Link></button>
 
         {/*********CREATE STUDENT MODAL********************/}
         <button onClick={this.createStudentForm}>Add Student</button>
@@ -122,14 +114,7 @@ class Students extends Component {
         </Modal>
 
         {/**********STUDENTS LIST************************/}
-        <div>
-          <Switch>
-            <Route path={`${match.url}/:id/edit`} exact component={EditStudent} />
-            <Route path={`${match.url}/new`} exact component={CreateStudent} />
-            <Route path={`${match.url}/:id`} exact component={Student} />
-            <Route path={match.url} exact />
-          </Switch>
-        </div>
+
         <div>
           {this.state.showStudentsList ?
             <div><h5 className="IndexHeaderBackground">ALL students</h5>
@@ -140,6 +125,16 @@ class Students extends Component {
                 close={() => this.closeStudentsList()}
                 likeStudent={(id) => this.likeStudent(id)}
               /></div> : null}
+
+          <div>
+            <Switch>
+              <Route path={`${match.url}/:id/edit`} exact component={EditStudent} />
+              <Route path={`${match.url}/new`} exact component={CreateStudent} />
+              <Route path={`${match.url}/:id`} exact component={Student} />
+              <Route path={match.url} exact />
+            </Switch>
+          </div>
+
         </div>
         <hr />
       </Container>
@@ -149,13 +144,15 @@ class Students extends Component {
 
 const mapStateToProps = state => {
   return {
-    students: state.stu.students
+    students: state.stu.students,
+    teachers: state.tch.teachers,
+    resources: state.tch.resources,
+    lessons: state.les.lessons
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    onFetchStudents: () => dispatch(actions.fetchStudents()),
     onCreateStudent: (newStudentData, history) => dispatch(actions.createStudent(newStudentData, history)),
     onUpdateStudent: (data) => dispatch(actions.updateStudent(data)),
     onDeleteStudent: (id) => dispatch(actions.deleteStudent(id))

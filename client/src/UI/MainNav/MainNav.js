@@ -1,9 +1,15 @@
 import React, { Component } from 'react'
-import { Route, Link } from 'react-router-dom'
+import { Switch, Route, Link } from 'react-router-dom'
 import './MainNav.css'
 import LogoSpin from '../../assets/images/LogoSpin.png'
 import Logo from '../../assets/images/Logo.png'
 import { Container, Collapse, Navbar, NavbarToggler, Nav } from 'reactstrap'
+
+import Students from '../../Students/Students'
+import Teachers from '../../Teachers/Teachers'
+import Lessons from '../../Lessons/Lessons'
+import Resources from '../../Resources/Resources'
+import LessonResources from '../../Lessons/LessonResources/LessonResources'
 
 class MainNav extends Component {
   constructor(props) {
@@ -85,6 +91,13 @@ class MainNav extends Component {
               </div>
             </div>
           )} />
+          <Switch>
+            <Route exact path="/students" component={Students} />
+            <Route exact path="/teachers" component={Teachers} />
+            <Route exact path="/lessons/" component={Lessons} />
+            <Route exact path="/resources" component={Resources} />
+            <Route exact path="/lesson_resources" component={LessonResources} />
+          </Switch>
         </div>
       </Container >
     )
