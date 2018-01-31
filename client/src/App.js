@@ -11,6 +11,12 @@ import Resources from '../src/Resources/Resources'
 import LessonResources from '../src/Lessons/LessonResources/LessonResources'
 
 class App extends Component {
+
+  // componentWillMount() {
+  //   this.props.onFetchStudents()
+  // }
+
+
   render() {
     return (
       <div>

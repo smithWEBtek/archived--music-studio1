@@ -1,5 +1,4 @@
 import * as actionTypes from '../actions/actionTypes';
-// import StudentService from '../services/StudentService';
 
 const initialState = {
   students: [],
@@ -44,28 +43,20 @@ const reducer = (state = initialState, action) => {
 
 
     //-----UPDATE STUDENT-----------------------------
-    // case actionTypes.UPDATE_STUDENT:
-    //   const studentData = action.updatedStudentData
-    //   return StudentService.updateStudent(studentData.id, studentData)
-
-    // case actionTypes.UPDATE_STUDENT:
-    //   const studentData = action.updatedStudentData
-
-    //   const studentIndex = state.students.findIndex(student => student.id === studentData.id);
-
-    //   const updatedState = {
-    //     ...state,
-    //     students: [
-    //       ...state.students.slice(0, studentIndex),
-    //       ...state.students.slice(studentIndex + 1)
-    //     ]
-    //   };
-
-    //   return updateObject(state, { updatedState })
-
+    case actionTypes.UPDATE_STUDENT:
+      const studentData = action.updatedStudentData
+      const studentIndex = state.students.findIndex(student => student.id === studentData.id);
+      const stateTemp = {
+        ...state,
+        students: [
+          ...state.students.slice(0, studentIndex),
+          ...state.students.slice(studentIndex + 1, state.students.length)
+        ]
+      };
+      const updatedState = Object.assign({}, { ...stateTemp }, { students: stateTemp.students.concat(studentData) })
+      return updateObject(state, { updatedState })
 
     case actionTypes.UPDATE_STUDENT_SUCCESS:
-
       return updateObject(state, { loading: false })
 
     case actionTypes.UPDATE_STUDENT_FAIL:

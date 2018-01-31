@@ -1,5 +1,5 @@
 import React from 'react'
-import StudentRow from './StudentRow'
+import { Link } from 'react-router-dom'
 import { Table } from 'reactstrap'
 import './StudentsList.css'
 
@@ -9,15 +9,6 @@ const StudentsList = (props) => {
 
   let renderStudents = sortedStudents.map((student, index) => {
     return (
-<<<<<<< HEAD
-      <StudentRow
-        key={index}
-        student={student}
-        close={props.close}
-        edit={props.edit}
-        delete={props.delete}
-      />
-=======
       <tr key={index}>
         <th scope="row">{student.id}</th>
         <td><Link
@@ -68,7 +59,6 @@ const StudentsList = (props) => {
           <td className="LikeCount">{student.likes}</td>
           : null}
       </tr>
->>>>>>> test2
     )
   })
 
@@ -87,14 +77,9 @@ const StudentsList = (props) => {
 
             {props.edit ? <th>Edit</th> : null}
             {props.delete ? <th>Delete</th> : null}
-<<<<<<< HEAD
-            <th>Like</th>
-            <th>Count</th>
-=======
             {props.likeStudent ? <th>Like</th> : null}
             {props.likeStudent ? <th>Count</th> : null}
 
->>>>>>> test2
           </tr>
         </thead>
         <tbody>
