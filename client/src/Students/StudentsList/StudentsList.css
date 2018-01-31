@@ -13,16 +13,36 @@
   font-family: 'Open Sans', sans-serif;
 }
  
+.Danger {
+  background-color: rgb(255, 219, 219);
+}
+
 .Danger:hover {
   background-color: rgb(238, 84, 84);
+}
+
+.Edit {
+  background-color: rgb(238, 232, 182);
 }
 
 .Edit:hover {
   background-color: rgb(250, 233, 77);
 }
 
+.Success {
+  background-color: rgb(220, 247, 230);
+}
+
 .Success:hover {
   background-color: rgb(92, 243, 150);
+}
+
+.Like {
+  background-color: rgb(215, 252, 232);
+}
+
+.Like:hover {
+  background-color: rgba(8, 167, 80, 0.822);
 }
 
 .FormInstructions {
@@ -44,4 +64,15 @@ td {
 
 .true {
   color: rgb(21, 199, 89);
+}
+
+.LikeCount {
+  color: rgb(79, 95, 63);
+  font-weight: 600;
+  font-size: 1.125em;
+  text-align: center;
+}
+
+button {
+  border-radius: 25%;
 }

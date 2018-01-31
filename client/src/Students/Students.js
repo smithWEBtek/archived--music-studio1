@@ -76,6 +76,14 @@ class Students extends Component {
     })
   }
 
+  //********LIKE_STUDENT form handling****************
+  likeStudent = (id) => {
+    let student = this.props.students.find(stu => stu.id === id)
+    let updatedStudent = Object.assign({}, student, { likes: student.likes + 1 })
+    this.props.onUpdateStudent(updatedStudent)
+  }
+
+
   render() {
     const { match, students } = this.props
 
@@ -128,6 +136,7 @@ class Students extends Component {
                 edit={(id) => this.showEditStudentForm(id)}
                 delete={(id) => this.props.onDeleteStudent(id)}
                 close={() => this.closeStudentsList()}
+                likeStudent={(id) => this.likeStudent(id)}
               /></div> : null}
         </div>
         <hr />

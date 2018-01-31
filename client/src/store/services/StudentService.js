@@ -25,8 +25,8 @@ const StudentService = {
       headers: { 'Content-Type': 'application/json' }
     }
     return fetch(`${API_URL}/students/${id}`, request, { method: 'PATCH' })
-      .then(response => {
-        console.log('[StudentService][updateStudent]response:', response.json())
+      .then(function (response) {
+        return response.json()
       })
   },
   deleteStudent(id) {

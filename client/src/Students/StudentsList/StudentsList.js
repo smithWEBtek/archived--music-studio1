@@ -9,6 +9,7 @@ const StudentsList = (props) => {
 
   let renderStudents = sortedStudents.map((student, index) => {
     return (
+<<<<<<< HEAD
       <StudentRow
         key={index}
         student={student}
@@ -16,6 +17,58 @@ const StudentsList = (props) => {
         edit={props.edit}
         delete={props.delete}
       />
+=======
+      <tr key={index}>
+        <th scope="row">{student.id}</th>
+        <td><Link
+          to={`/students/${student.id}`}
+          style={{ marginRight: '5px' }}
+          onClick={props.close}
+          key={student.id}>{student.lastname}, {student.firstname}</Link></td>
+        <td>{student.email}</td>
+        <td>{student.teacher_id}</td>
+        <td>{student.level}</td>
+
+        {student.active ? <td className="true">{student.active.toString()}</td> :
+          <td className="false">{student.active.toString()}</td>}
+
+        <td><button
+          type='button'
+          className="Success"
+          onClick={props.close}>
+          <Link
+            to={`/students/${student.id}`}
+            key={student.id}
+          >show</Link>
+        </button></td>
+
+        {props.edit ?
+          <td><button
+            type='button'
+            className="Edit"
+            onClick={() => props.edit(student.id)}>edit
+        </button></td>
+          : null}
+
+        {props.delete ?
+          <td><button
+            onClick={() => props.delete(student.id)}
+            className="Danger">x</button></td>
+          : null}
+
+        {props.likeStudent ?
+          <td><button
+            type='button'
+            className="Like"
+            onClick={() => props.likeStudent(student.id)}>
+            Like</button></td>
+          : null}
+
+        {props.likeStudent ?
+          <td className="LikeCount">{student.likes}</td>
+          : null}
+      </tr>
+>>>>>>> test2
     )
   })
 
@@ -31,10 +84,17 @@ const StudentsList = (props) => {
             <th>Level</th>
             <th>Active?</th>
             <th>Show</th>
+
             {props.edit ? <th>Edit</th> : null}
             {props.delete ? <th>Delete</th> : null}
+<<<<<<< HEAD
             <th>Like</th>
             <th>Count</th>
+=======
+            {props.likeStudent ? <th>Like</th> : null}
+            {props.likeStudent ? <th>Count</th> : null}
+
+>>>>>>> test2
           </tr>
         </thead>
         <tbody>

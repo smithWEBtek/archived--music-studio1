@@ -65,6 +65,7 @@ const reducer = (state = initialState, action) => {
 
 
     case actionTypes.UPDATE_STUDENT_SUCCESS:
+
       return updateObject(state, { loading: false })
 
     case actionTypes.UPDATE_STUDENT_FAIL:
