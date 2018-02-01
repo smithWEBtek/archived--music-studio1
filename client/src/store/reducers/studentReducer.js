@@ -43,9 +43,15 @@ const reducer = (state = initialState, action) => {
 
 
     //-----UPDATE STUDENT-----------------------------
+
     case actionTypes.UPDATE_STUDENT:
-      const studentData = action.updatedStudentData
+      const studentData = action.payload
       const studentIndex = state.students.findIndex(student => student.id === studentData.id);
+
+
+      debugger;
+
+
       const stateTemp = {
         ...state,
         students: [
@@ -55,6 +61,9 @@ const reducer = (state = initialState, action) => {
       };
       const updatedState = Object.assign({}, { ...stateTemp }, { students: stateTemp.students.concat(studentData) })
       return updateObject(state, { updatedState })
+
+    case actionTypes.UPDATE_STUDENT_START:
+      return updateObject(state, { loading: true })
 
     case actionTypes.UPDATE_STUDENT_SUCCESS:
       return updateObject(state, { loading: false })

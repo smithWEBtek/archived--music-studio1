@@ -50,15 +50,17 @@ class Students extends Component {
 
   //********EDIT_STUDENT form handling****************
   showEditStudentForm = (id) => {
-    let studentData = this.props.students.find(student => student.id === id)
+    let student = this.props.students.find(student => student.id === id)
+    let copyOfStudent = { ...student }
     this.setState({
-      student: studentData,
+      student: copyOfStudent,
       editStudent: true
     })
   }
 
   editStudentUpdate = (data) => {
-    this.props.onUpdateStudent(data)
+    let { history } = this.props
+    this.props.onUpdateStudent(data, history)
     this.setState({
       editStudent: false,
       student: null
@@ -72,14 +74,32 @@ class Students extends Component {
     })
   }
 
+
   //********LIKE_STUDENT form handling****************
+  // change this to use Object.assign()
+  // then update the student via (action to API) and (action dispatch to reducer)
+  // the component should be getting state from Redux
+  // the individual student should be updated via action
+  // Redux state should be updated for the single student, instead of relying on fetching all students
+  // and this all needs to happen while retaining Routing
+  // it may be neccessary to pass location as a prop, to retain Routing behavior
+  // https://reacttraining.com/react-router/web/guides/dealing-with-update-blocking
+
+  // keep the new component <StudentRow />
+  // add perisistence to DB in this branch
+  // then test the 'likeStudent' function, action, service, api, reducer, redux state, refresh view
+
+
+
   likeStudent = (id) => {
+    let { history } = this.props
     let student = this.props.students.find(stu => stu.id === id)
     let updatedStudent = Object.assign({}, student, { likes: student.likes + 1 })
-    this.props.onUpdateStudent(updatedStudent)
+    this.props.onUpdateStudent(updatedStudent, history)
   }
 
   render() {
+    // const { location, match, students } = this.props
     const { match, students } = this.props
 
     return (
@@ -124,6 +144,10 @@ class Students extends Component {
                 delete={(id) => this.props.onDeleteStudent(id)}
                 close={() => this.closeStudentsList()}
                 likeStudent={(id) => this.likeStudent(id)}
+<<<<<<< HEAD
+=======
+              // location={location}
+>>>>>>> test1copy
               /></div> : null}
 
           <div>
@@ -153,8 +177,14 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+<<<<<<< HEAD
     onCreateStudent: (newStudentData, history) => dispatch(actions.createStudent(newStudentData, history)),
     onUpdateStudent: (data) => dispatch(actions.updateStudent(data)),
+=======
+    onFetchStudents: () => dispatch(actions.fetchStudents()),
+    onCreateStudent: (data, history) => dispatch(actions.createStudent(data, history)),
+    onUpdateStudent: (data, history) => dispatch(actions.updateStudent(data, history)),
+>>>>>>> test1copy
     onDeleteStudent: (id) => dispatch(actions.deleteStudent(id))
   }
 }
