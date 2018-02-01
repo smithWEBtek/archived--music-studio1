@@ -12,7 +12,6 @@ const StudentsList = (props) => {
       <StudentRow
         key={index}
         student={student}
-        close={props.close}
         edit={props.edit}
         delete={props.delete}
         likeStudent={props.likeStudent}

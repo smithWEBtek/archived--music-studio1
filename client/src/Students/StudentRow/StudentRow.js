@@ -12,7 +12,6 @@ const StudentRow = (props) => {
         <td><Link
           to={`/students/${props.student.id}`}
           style={{ marginRight: '5px' }}
-          onClick={props.close}
           key={props.student.id}>{props.student.lastname}, {props.student.firstname}</Link></td>
         <td>{props.student.email}</td>
         <td>{props.student.teacher_id}</td>
@@ -20,8 +19,7 @@ const StudentRow = (props) => {
 
         <td><button
           type='button'
-          className="Success"
-          onClick={props.close}>
+          className="Success">
           <Link
             to={`/students/${props.student.id}`}
             key={props.student.id}

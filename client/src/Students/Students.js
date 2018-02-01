@@ -14,7 +14,6 @@ import StudentsList from './StudentsList/StudentsList'
 class Students extends Component {
   state = {
     student: null,
-    showStudentsList: false,
     createStudent: false,
     editStudent: false
   }
@@ -23,14 +22,12 @@ class Students extends Component {
     this.props.onFetchStudents()
   }
 
-  //********SHOW_STUDENTS_LIST form handling**************
-  showStudentsList = () => {
-    this.setState({ showStudentsList: true })
+  componentWillReceiveProps(nextProps) {
+    // if (nextProps != this.props) {
+
+    // }
   }
 
-  closeStudentsList = () => {
-    this.setState({ showStudentsList: false })
-  }
 
   //********SHOW_STUDENT form handling*****************
   showStudentClose = () => {
@@ -109,8 +106,6 @@ class Students extends Component {
     return (
       <Container>
         <hr />
-        <button onClick={() => this.showStudentsList()}><Link to='/students'>ALL students</Link></button>
-
         {/*********CREATE STUDENT MODAL********************/}
         <button onClick={this.createStudentForm}>Add Student</button>
         <Modal
@@ -148,16 +143,14 @@ class Students extends Component {
           </Switch>
         </div>
         <div>
-          {this.state.showStudentsList ?
-            <div><h5 className="IndexHeaderBackground">ALL students</h5>
-              <StudentsList
-                students={students}
-                edit={(id) => this.showEditStudentForm(id)}
-                delete={(id) => this.props.onDeleteStudent(id)}
-                close={() => this.closeStudentsList()}
-                likeStudent={(id) => this.likeStudent(id)}
-              // location={location}
-              /></div> : null}
+          <div><h5 className="IndexHeaderBackground">ALL students</h5>
+            <StudentsList
+              students={students}
+              edit={(id) => this.showEditStudentForm(id)}
+              delete={(id) => this.props.onDeleteStudent(id)}
+              likeStudent={(id) => this.likeStudent(id)}
+            // location={location}
+            /></div>
         </div>
         <hr />
       </Container>
