@@ -19,7 +19,7 @@ class Students extends Component {
     rerender: false
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.onFetchStudents()
   }
 

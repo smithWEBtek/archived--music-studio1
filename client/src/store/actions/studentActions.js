@@ -68,7 +68,7 @@ export const updateStudent = (data, history, location) => {
       .then(response => {
         dispatch({ type: actionTypes.UPDATE_STUDENT, updatedStudentData: response })
         history.push(`/`)
-        history.push(`/students/`)
+        history.push(`/students`)
         dispatch(updateStudentSuccess())
       })
       .catch(error => {
