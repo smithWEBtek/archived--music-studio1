@@ -54,20 +54,10 @@ class Students extends Component {
 
   //********EDIT_STUDENT form handling****************
   showEditStudentForm = (id) => {
-    let studentData = this.props.students.find(student => student.id === id)
-
-    // change this to use Object.assign()
-    // then update the student via (action to API) and (action dispatch to reducer)
-    // the component should be getting state from Redux
-    // the individual student should be updated via action
-    // Redux state should be updated for the single student, instead of relying on fetching all students
-    // and this all needs to happen while retaining Routing
-    // it may be neccessary to pass location as a prop, to retain Routing behavior
-    // https://reacttraining.com/react-router/web/guides/dealing-with-update-blocking
-
-
+    let student = this.props.students.find(student => student.id === id)
+    let copyOfStudent = { ...student }
     this.setState({
-      student: studentData,
+      student: copyOfStudent,
       editStudent: true
     })
   }
@@ -85,6 +75,33 @@ class Students extends Component {
       editStudent: false,
       student: null
     })
+  }
+
+
+  //********LIKE_STUDENT form handling****************
+  // change this to use Object.assign()
+  // then update the student via (action to API) and (action dispatch to reducer)
+  // the component should be getting state from Redux
+  // the individual student should be updated via action
+  // Redux state should be updated for the single student, instead of relying on fetching all students
+  // and this all needs to happen while retaining Routing
+  // it may be neccessary to pass location as a prop, to retain Routing behavior
+  // https://reacttraining.com/react-router/web/guides/dealing-with-update-blocking
+
+  // keep the new component <StudentRow />
+  // add perisistence to DB in this branch
+  // then test the 'likeStudent' function, action, service, api, reducer, redux state, refresh view
+
+
+
+  likeStudent = (id) => {
+    let { history } = this.props
+
+    console.log('[Students][likeStudent] history ', history)
+    debugger
+    let student = this.props.students.find(stu => stu.id === id)
+    let updatedStudent = Object.assign({}, student, { likes: student.likes + 1 })
+    this.props.onUpdateStudent(updatedStudent, history)
   }
 
   render() {
@@ -157,7 +174,7 @@ const mapDispatchToProps = dispatch => {
   return {
     onFetchStudents: () => dispatch(actions.fetchStudents()),
     onCreateStudent: (data, history) => dispatch(actions.createStudent(data, history)),
-    onUpdateStudent: (data) => dispatch(actions.updateStudent(data)),
+    onUpdateStudent: (data, history) => dispatch(actions.updateStudent(data, history)),
     onDeleteStudent: (id) => dispatch(actions.deleteStudent(id))
   }
 }

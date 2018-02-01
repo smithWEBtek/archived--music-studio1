@@ -18,15 +18,16 @@ const StudentService = {
     return fetch(`${API_URL}/students`, request)
       .then(response => response.json())
   },
-  updateStudent(id, data) {
+  updateStudent(data) {
     const request = {
       method: 'PATCH',
       body: JSON.stringify({ student: data }),
       headers: { 'Content-Type': 'application/json' }
     }
-    return fetch(`${API_URL}/students/${id}`, request, { method: 'PATCH' })
-      .then(response => {
-        console.log('[StudentService][updateStudent]response:', response.json())
+    return fetch(`${API_URL}/students/${data.id}`, request)
+      .then(response => response.json())
+      .catch(error => {
+        console.log('[StudentService][updateStudent] ERROR: ', error)
       })
   },
   deleteStudent(id) {
