@@ -14,7 +14,7 @@ const reducer = (state = initialState, action) => {
 
     //-----CREATE STUDENT-----------------------------
     case actionTypes.CREATE_STUDENT:
-      const newStudent = action.data
+      const newStudent = action.payload
       return updateObject(state, { students: state.students.concat(newStudent) })
 
     case actionTypes.CREATE_STUDENT_START:

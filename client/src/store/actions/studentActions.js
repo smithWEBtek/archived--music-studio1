@@ -16,7 +16,7 @@ export const createStudent = (data, history) => {
     dispatch(createStudentStart())
     StudentService.createStudent(data)
       .then(response => {
-        dispatch({ type: actionTypes.CREATE_STUDENT, data: response })
+        dispatch({ type: actionTypes.CREATE_STUDENT, payload: response })
         history.push(`/students/${response.id}`)
         dispatch(createStudentSuccess())
       })
@@ -67,16 +67,15 @@ export const updateStudent = (data, history, location) => {
     StudentService.updateStudent(data)
       .then(response => {
         dispatch({ type: actionTypes.UPDATE_STUDENT, updatedStudentData: response })
-        dispatch(updateStudentSuccess())
         history.push(`/`)
         history.push(`/students/`)
+        dispatch(updateStudentSuccess())
       })
       .catch(error => {
         dispatch(updateStudentFail(error))
       })
   }
 }
-
 
 
 //-----FETCH STUDENT ACTIONS-----------------------------

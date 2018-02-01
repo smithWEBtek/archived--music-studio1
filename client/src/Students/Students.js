@@ -21,26 +21,9 @@ class Students extends Component {
 
   componentWillMount() {
     this.props.onFetchStudents()
-
-    // this.setState({ students: this.props.students })
   }
 
-  // componentWillReceiveProps(nextProps) {
-  //   if (nextProps !== this.props) {
-  //     this.setState({ rerender: true })
-  //   }
-  // }
-
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   if (nextProps !== this.props) {
-  //     return true
-  //   } else {
-  //     return false
-  //   }
-  // }
-
-
-  //********SHOW_STUDENT form handling*****************
+  //********SHOW_STUDENT handling*****************
   showStudentClose = () => {
     this.setState({ showStudent: false })
   }
@@ -60,7 +43,7 @@ class Students extends Component {
     this.setState({ createStudent: false })
   }
 
-  //********EDIT_STUDENT form handling****************
+  //********EDIT_STUDENT handling****************
   showEditStudentForm = (id) => {
     let student = this.props.students.find(student => student.id === id)
     let copyOfStudent = { ...student }
@@ -86,23 +69,7 @@ class Students extends Component {
     })
   }
 
-
-  //********LIKE_STUDENT form handling****************
-  // change this to use Object.assign()
-  // then update the student via (action to API) and (action dispatch to reducer)
-  // the component should be getting state from Redux
-  // the individual student should be updated via action
-  // Redux state should be updated for the single student, instead of relying on fetching all students
-  // and this all needs to happen while retaining Routing
-  // it may be neccessary to pass location as a prop, to retain Routing behavior
-  // https://reacttraining.com/react-router/web/guides/dealing-with-update-blocking
-
-  // keep the new component <StudentRow />
-  // add perisistence to DB in this branch
-  // then test the 'likeStudent' function, action, service, api, reducer, redux state, refresh view
-
-
-
+  //********LIKE_STUDENT handling****************
   likeStudent = (id) => {
     let { history } = this.props
     let student = this.props.students.find(stu => stu.id === id)
@@ -156,6 +123,7 @@ class Students extends Component {
         <div>
           <div><h5 className="IndexHeaderBackground">ALL students</h5>
             <StudentsList
+              // students={students}
               students={students}
               edit={(id) => this.showEditStudentForm(id)}
               delete={(id) => this.props.onDeleteStudent(id)}
@@ -171,7 +139,8 @@ class Students extends Component {
 
 const mapStateToProps = state => {
   return {
-    students: state.stu.students
+    students: state.stu.students,
+    teachers: state.tch.teachers
   }
 }
 
