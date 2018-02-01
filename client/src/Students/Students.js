@@ -144,10 +144,7 @@ class Students extends Component {
                 delete={(id) => this.props.onDeleteStudent(id)}
                 close={() => this.closeStudentsList()}
                 likeStudent={(id) => this.likeStudent(id)}
-<<<<<<< HEAD
-=======
               // location={location}
->>>>>>> test1copy
               /></div> : null}
 
           <div>
@@ -177,14 +174,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-<<<<<<< HEAD
-    onCreateStudent: (newStudentData, history) => dispatch(actions.createStudent(newStudentData, history)),
-    onUpdateStudent: (data) => dispatch(actions.updateStudent(data)),
-=======
     onFetchStudents: () => dispatch(actions.fetchStudents()),
     onCreateStudent: (data, history) => dispatch(actions.createStudent(data, history)),
     onUpdateStudent: (data, history) => dispatch(actions.updateStudent(data, history)),
->>>>>>> test1copy
     onDeleteStudent: (id) => dispatch(actions.deleteStudent(id))
   }
 }
