@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Route, Switch, Link } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
 import * as actions from '../store/actions/index'
 
@@ -15,18 +15,20 @@ class Students extends Component {
   state = {
     student: null,
     createStudent: false,
-    editStudent: false
+    editStudent: false,
+    students: []
   }
 
   componentWillMount() {
     this.props.onFetchStudents()
+    this.setState({ students: this.props.students })
   }
 
-  componentWillReceiveProps(nextProps) {
-    // if (nextProps != this.props) {
-
-    // }
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   if (nextProps.students !== this.props.students) {
+  //     this.setState({ students: this.props.students })
+  //   }
+  // }
 
 
   //********SHOW_STUDENT form handling*****************
@@ -60,6 +62,10 @@ class Students extends Component {
   }
 
   editStudentUpdate = (data) => {
+
+    debugger
+
+
     let { history } = this.props
     this.props.onUpdateStudent(data, history)
     this.setState({
@@ -95,8 +101,8 @@ class Students extends Component {
   likeStudent = (id) => {
     let { history } = this.props
     let student = this.props.students.find(stu => stu.id === id)
-    let updatedStudent = Object.assign({}, student, { likes: student.likes + 1 })
-    this.props.onUpdateStudent(updatedStudent, history)
+    let data = Object.assign({}, student, { likes: student.likes + 1 })
+    this.props.onUpdateStudent(data, history)
   }
 
   render() {

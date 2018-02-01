@@ -66,17 +66,17 @@ export const updateStudent = (data, history, location) => {
     dispatch(updateStudentStart())
     StudentService.updateStudent(data)
       .then(response => {
-        return { type: actionTypes.UPDATE_STUDENT, payload: response }
+        dispatch({ type: actionTypes.UPDATE_STUDENT, updatedStudentData: response })
+        dispatch(updateStudentSuccess())
+        history.push(`/`)
+        history.push(`/students/`)
       })
-      .then(
-      history.push(`/students/${data.id}`),
-      history.push(`/students/`),
-      dispatch(updateStudentSuccess()))
       .catch(error => {
         dispatch(updateStudentFail(error))
       })
   }
 }
+
 
 
 //-----FETCH STUDENT ACTIONS-----------------------------

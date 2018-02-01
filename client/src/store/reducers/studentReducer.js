@@ -46,13 +46,8 @@ const reducer = (state = initialState, action) => {
     //-----UPDATE STUDENT-----------------------------
 
     case actionTypes.UPDATE_STUDENT:
-      const studentData = action.payload
+      const studentData = action.updatedStudentData
       const studentIndex = state.students.findIndex(student => student.id === studentData.id);
-
-
-      debugger;
-
-
       const stateTemp = {
         ...state,
         students: [
