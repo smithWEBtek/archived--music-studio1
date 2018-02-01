@@ -1,5 +1,5 @@
 import React from 'react'
-import './StudentsList.css'
+import './StudentRow.css'
 import { Link } from 'react-router-dom'
 import Aux from '../../hoc/Aux/Aux'
 
@@ -28,9 +28,7 @@ const StudentRow = (props) => {
           >show</Link>
         </button></td>
 
-        {props.student.active ?
-          <td className="true">{props.student.active.toString()}</td>
-          : null}
+        <td className={props.student.active.toString()}>{props.student.active.toString()}</td>
 
         {props.edit ?
           <td><button

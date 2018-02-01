@@ -1,5 +1,5 @@
 import React from 'react'
-import StudentRow from './StudentRow'
+import StudentRow from '../StudentRow/StudentRow'
 import { Table } from 'reactstrap'
 import './StudentsList.css'
 

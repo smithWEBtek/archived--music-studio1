@@ -63,7 +63,8 @@ class Students extends Component {
   }
 
   editStudentUpdate = (data) => {
-    this.props.onUpdateStudent(data)
+    let { history } = this.props
+    this.props.onUpdateStudent(data, history)
     this.setState({
       editStudent: false,
       student: null
