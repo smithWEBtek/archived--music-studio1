@@ -55,6 +55,17 @@ class Students extends Component {
   //********EDIT_STUDENT form handling****************
   showEditStudentForm = (id) => {
     let studentData = this.props.students.find(student => student.id === id)
+
+    // change this to use Object.assign()
+    // then update the student via (action to API) and (action dispatch to reducer)
+    // the component should be getting state from Redux
+    // the individual student should be updated via action
+    // Redux state should be updated for the single student, instead of relying on fetching all students
+    // and this all needs to happen while retaining Routing
+    // it may be neccessary to pass location as a prop, to retain Routing behavior
+    // https://reacttraining.com/react-router/web/guides/dealing-with-update-blocking
+
+
     this.setState({
       student: studentData,
       editStudent: true
