@@ -3,6 +3,8 @@ import MainNav from './UI/MainNav/MainNav'
 import 'bootstrap/dist/css/bootstrap.css'
 import { Route } from 'react-router-dom'
 import Aux from '../src/hoc/Aux/Aux'
+// import { connect } from 'react-redux'
+// import * as actions from '../src/store/actions/index'
 
 import Students from '../src/Students/Students'
 import Teachers from '../src/Teachers/Teachers'
@@ -11,6 +13,13 @@ import Resources from '../src/Resources/Resources'
 import LessonResources from '../src/Lessons/LessonResources/LessonResources'
 
 class App extends Component {
+
+  // componentDidMount() {
+  //   this.props.onFetchStudents()
+  //   this.props.onFetchTeachers()
+  //   this.props.onFetchResources()
+  //   this.props.onFetchLessons()
+  // }
 
   render() {
     return (
@@ -27,4 +36,23 @@ class App extends Component {
   }
 }
 
+// const mapStateToProps = state => {
+//   return {
+//     students: state.stu.students,
+//     teachers: state.tch.teachers,
+//     resources: state.res.resources,
+//     lessons: state.les.lessons
+//   }
+// }
+
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     onFetchStudents: () => dispatch(actions.fetchStudents()),
+//     onFetchTeachers: () => dispatch(actions.fetchTeachers()),
+//     onFetchResources: () => dispatch(actions.fetchResources()),
+//     onFetchLessons: () => dispatch(actions.fetchLessons())
+//   }
+// }
+
+// export default connect(mapStateToProps, mapDispatchToProps)(App)
 export default App

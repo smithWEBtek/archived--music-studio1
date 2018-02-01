@@ -16,17 +16,26 @@ class Students extends Component {
     student: null,
     createStudent: false,
     editStudent: false,
-    students: []
+    rerender: false
   }
 
   componentWillMount() {
     this.props.onFetchStudents()
-    this.setState({ students: this.props.students })
+
+    // this.setState({ students: this.props.students })
   }
 
   // componentWillReceiveProps(nextProps) {
-  //   if (nextProps.students !== this.props.students) {
-  //     this.setState({ students: this.props.students })
+  //   if (nextProps !== this.props) {
+  //     this.setState({ rerender: true })
+  //   }
+  // }
+
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   if (nextProps !== this.props) {
+  //     return true
+  //   } else {
+  //     return false
   //   }
   // }
 
@@ -62,10 +71,6 @@ class Students extends Component {
   }
 
   editStudentUpdate = (data) => {
-
-    debugger
-
-
     let { history } = this.props
     this.props.onUpdateStudent(data, history)
     this.setState({
@@ -135,7 +140,7 @@ class Students extends Component {
             teacher_id={this.state.student.teacher_id}
             active={this.state.student.active}
             close={() => this.closeEditStudentForm()}
-            updateStudent={(data) => this.editStudentUpdate(data)}
+            editStudentUpdate={(data) => this.editStudentUpdate(data)}
           /> : null}
         </Modal>
 

@@ -20,7 +20,7 @@ class Teachers extends Component {
   }
 
   componentDidMount() {
-    this.props.onFetchTeachers();
+    // this.props.onFetchTeachers();
   }
 
   //********SHOW_TEACHERS_LIST form handling********************

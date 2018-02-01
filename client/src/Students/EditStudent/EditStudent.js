@@ -41,7 +41,7 @@ class EditStudent extends Component {
 
   handleSubmit = (e) => {
     let data = this.state;
-    this.props.updateStudent(data)
+    this.props.editStudentUpdate(data)
     e.preventDefault();
   }
 

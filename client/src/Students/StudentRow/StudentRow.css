@@ -45,3 +45,9 @@ td {
 .true {
   color: rgb(21, 199, 89);
 }
+
+.LikeCount {
+  font-size: 1.4em;
+  color: black;
+  text-align: center;
+}
