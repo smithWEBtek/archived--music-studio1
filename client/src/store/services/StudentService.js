@@ -25,7 +25,9 @@ const StudentService = {
       headers: { 'Content-Type': 'application/json' }
     }
     return fetch(`${API_URL}/students/${data.id}`, request)
-      .then(response => response.json())
+      .then(response => {
+        return response.json()
+      })
       .catch(error => {
         console.log('[StudentService][updateStudent] ERROR: ', error)
       })

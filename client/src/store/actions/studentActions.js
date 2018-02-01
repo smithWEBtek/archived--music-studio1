@@ -61,14 +61,17 @@ export const updateStudentSuccess = () => {
 export const updateStudentFail = (error) => {
   return { type: actionTypes.UPDATE_STUDENT_FAIL, error: error }
 }
-export const updateStudent = (data, history) => {
+export const updateStudent = (data, history, location) => {
   return dispatch => {
     dispatch(updateStudentStart())
     StudentService.updateStudent(data)
       .then(response => {
         return { type: actionTypes.UPDATE_STUDENT, payload: response }
-        dispatch(updateStudentSuccess())
       })
+      .then(
+      history.push(`/students/${data.id}`),
+      history.push(`/students/`),
+      dispatch(updateStudentSuccess()))
       .catch(error => {
         dispatch(updateStudentFail(error))
       })

@@ -15,6 +15,8 @@ const StudentsList = (props) => {
         close={props.close}
         edit={props.edit}
         delete={props.delete}
+        likeStudent={props.likeStudent}
+      // location={props.location}
       />
     )
   })

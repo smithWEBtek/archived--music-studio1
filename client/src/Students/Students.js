@@ -96,15 +96,13 @@ class Students extends Component {
 
   likeStudent = (id) => {
     let { history } = this.props
-
-    console.log('[Students][likeStudent] history ', history)
-    debugger
     let student = this.props.students.find(stu => stu.id === id)
     let updatedStudent = Object.assign({}, student, { likes: student.likes + 1 })
     this.props.onUpdateStudent(updatedStudent, history)
   }
 
   render() {
+    // const { location, match, students } = this.props
     const { match, students } = this.props
 
     return (
@@ -156,6 +154,8 @@ class Students extends Component {
                 edit={(id) => this.showEditStudentForm(id)}
                 delete={(id) => this.props.onDeleteStudent(id)}
                 close={() => this.closeStudentsList()}
+                likeStudent={(id) => this.likeStudent(id)}
+              // location={location}
               /></div> : null}
         </div>
         <hr />
