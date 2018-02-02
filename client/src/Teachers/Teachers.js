@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch, Link } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../store/actions/index'
 
@@ -14,24 +14,12 @@ import TeachersList from './TeachersList/TeachersList'
 class Teachers extends Component {
   state = {
     teacher: null,
-    showTeachersList: false,
     createTeacher: false,
     editTeacher: false
   }
 
   componentDidMount() {
     // this.props.onFetchTeachers();
-  }
-
-  //********SHOW_TEACHERS_LIST form handling********************
-  showTeachersList = () => {
-    this.setState({
-      showTeachersList: true
-    })
-  }
-
-  closeTeachersList = () => {
-    this.setState({ showTeachersList: false })
   }
 
   //********SHOW_TEACHER form handling**************************
@@ -82,7 +70,6 @@ class Teachers extends Component {
     return (
       <Container>
         <hr />
-        <button onClick={() => this.showTeachersList()}><Link to='/teachers'>ALL teachers</Link></button>
 
         {/*********CREATE TEACHER MODAL********************/}
         <button onClick={this.createTeacherForm}>Add Teacher</button>
@@ -119,14 +106,13 @@ class Teachers extends Component {
           </Switch>
         </div>
         <div>
-          {this.state.showTeachersList ?
-            <div><h5 className="IndexHeaderBackground">ALL teachers</h5>
-              <TeachersList
-                teachers={teachers}
-                edit={(id) => this.showEditTeacherForm(id)}
-                delete={(id) => this.props.onDeleteTeacher(id)}
-                close={() => this.closeTeachersList()}
-              /></div> : null}
+          <div><h5 className="IndexHeaderBackground">ALL teachers</h5>
+            <TeachersList
+              teachers={teachers}
+              edit={(id) => this.showEditTeacherForm(id)}
+              delete={(id) => this.props.onDeleteTeacher(id)}
+            />
+          </div>
         </div>
         <hr />
       </Container>

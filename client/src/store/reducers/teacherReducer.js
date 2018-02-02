@@ -1,5 +1,4 @@
 import * as actionTypes from '../actions/actionTypes';
-import TeacherService from '../services/TeacherService';
 
 const initialState = {
   teachers: [],
@@ -8,72 +7,100 @@ const initialState = {
   message: ''
 };
 
-const updateObject = (oldObject, updatedValues) => { return { ...oldObject, ...updatedValues } }
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    //-----CREATE TEACHER-----------------------------
-    case actionTypes.CREATE_TEACHER:
-      const newTeacher = action.data
-      return updateObject(state, { teachers: state.teachers.concat(newTeacher) })
 
+    //-----CREATE TEACHER-----------------------------
     case actionTypes.CREATE_TEACHER_START:
-      return updateObject(state, { loading: true })
+      return Object.assign({}, state, { loading: true })
 
     case actionTypes.CREATE_TEACHER_SUCCESS:
-      return updateObject(state, { loading: false })
+      return Object.assign({}, state, { loading: false })
 
     case actionTypes.CREATE_TEACHER_FAIL:
-      return updateObject(state, {
+      return Object.assign({}, state, {
         error: action.error,
         loading: false,
-        message: action.response
+        message: action.type
       })
 
-    //-----DELETE TEACHER-----------------------------
-    case actionTypes.DELETE_TEACHER:
-      const updatedTeachersArray = state.teachers.filter(teacher => teacher.id !== action.id);
-      return updateObject(state, { teachers: updatedTeachersArray, loading: false })
-
-    case actionTypes.DELETE_TEACHER_SUCCESS:
-      return updateObject(state, { loading: false })
-
-    case actionTypes.DELETE_TEACHER_FAIL:
-      return updateObject(state, { error: action.error, loading: false })
-
-
-    //-----UPDATE TEACHER-----------------------------
-    case actionTypes.UPDATE_TEACHER:
-      const teacherData = action.updatedTeacherData
-      return TeacherService.updateTeacher(teacherData.id, teacherData)
-
-    case actionTypes.UPDATE_TEACHER_SUCCESS:
-      return updateObject(state, { loading: false })
-
-    case actionTypes.UPDATE_TEACHER_FAIL:
-      return updateObject(state, { error: action.error, loading: false })
-
-
-    //-----FETCH TEACHER-----------------------------
-    // case actionTypes.FETCH_TEACHER_START:
-    //   return updateObject(state, { loading: true })
-
-    // case actionTypes.FETCH_TEACHER_SUCCESS:
-    //   return updateObject(state, { teachers: action.studentData })
-
-    // case actionTypes.FETCH_TEACHER_FAIL:
-    //   return updateObject(state, { error: action.error })
+    case actionTypes.CREATE_TEACHER:
+      const newTeacher = action.teacherData
+      return Object.assign({}, state, {
+        teachers: state.teachers.concat(newTeacher)
+      })
 
 
     //-----FETCH TEACHERS-----------------------------
     case actionTypes.FETCH_TEACHERS_START:
-      return updateObject(state, { loading: true })
+      return Object.assign({}, state, { loading: true })
 
     case actionTypes.FETCH_TEACHERS_SUCCESS:
-      return updateObject(state, { teachers: action.teachersList.sort((a, b) => (a.id) - (b.id)) })
+      return Object.assign({}, state, { loading: false })
 
     case actionTypes.FETCH_TEACHERS_FAIL:
-      return updateObject(state, { error: action.error })
+      return Object.assign({}, state, {
+        error: action.error,
+        loading: false,
+        message: action.type
+      })
 
+    case actionTypes.FETCH_TEACHERS:
+      const teachers = action.teachersList
+      return Object.assign({}, state, {
+        teachers: teachers.sort((a, b) => (a.lastname) - (b.lastname))
+      })
+
+
+    //-----UPDATE TEACHER-----------------------------
+    case actionTypes.UPDATE_TEACHER_START:
+      return Object.assign({}, state, { loading: true })
+
+    case actionTypes.UPDATE_TEACHER_SUCCESS:
+      return Object.assign({}, state, { loading: false })
+
+    case actionTypes.UPDATE_TEACHER_FAIL:
+      return Object.assign({}, state, {
+        error: action.error,
+        loading: false,
+        message: action.type
+      })
+
+    case actionTypes.UPDATE_TEACHER:
+      const teacherData = action.updatedTeacherData
+      const teacherIndex = state.teachers.findIndex(teacher => teacher.id === teacherData.id);
+      const stateTemp = {
+        ...state,
+        teachers: [
+          ...state.teachers.slice(0, teacherIndex),
+          ...state.teachers.slice(teacherIndex + 1, state.teachers.length)
+        ]
+      };
+      return Object.assign({}, { ...stateTemp }, { teachers: stateTemp.teachers.concat(teacherData) })
+
+
+    //-----DELETE TEACHER-----------------------------
+    case actionTypes.DELETE_TEACHER_START:
+      return Object.assign({}, state, { loading: true })
+
+    case actionTypes.DELETE_TEACHER_SUCCESS:
+      return Object.assign({}, state, { loading: false })
+
+    case actionTypes.DELETE_TEACHER_FAIL:
+      return Object.assign({}, state, {
+        error: action.error,
+        loading: false,
+        message: action.type
+      })
+
+    case actionTypes.DELETE_TEACHER:
+      const updatedTeachersArray = state.teachers.filter(teacher => teacher.id !== action.id);
+
+      return Object.assign({}, state, {
+        teachers: updatedTeachersArray
+      })
+
+    //----- DEFAULT --------------------------------
     default:
       return state;
   }

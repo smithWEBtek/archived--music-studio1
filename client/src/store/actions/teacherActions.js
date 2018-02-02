@@ -11,12 +11,13 @@ export const createTeacherSuccess = () => {
 export const createTeacherFail = (error) => {
   return { type: actionTypes.CREATE_TEACHER_FAIL, error: error }
 }
-export const createTeacher = (data) => {
+export const createTeacher = (data, history) => {
   return dispatch => {
     dispatch(createTeacherStart())
     TeacherService.createTeacher(data)
       .then(response => {
-        dispatch({ type: actionTypes.CREATE_TEACHER, data: response })
+        dispatch({ type: actionTypes.CREATE_TEACHER, teacherData: response })
+        history.push(`/teachers/${response.id}`)
         dispatch(createTeacherSuccess())
       })
       .catch(error => {
@@ -25,26 +26,26 @@ export const createTeacher = (data) => {
   }
 }
 
-//-----DELETE TEACHER ACTIONS-----------------------------
-export const deleteTeacherStart = () => {
-  return { type: actionTypes.DELETE_TEACHER_START }
+
+//-----FETCH TEACHERS ACTIONS-----------------------------
+export const fetchTeachersStart = () => {
+  return { type: actionTypes.FETCH_TEACHERS_START }
 }
-export const deleteTeacherSuccess = () => {
-  return { type: actionTypes.DELETE_TEACHER_SUCCESS }
+export const fetchTeachersSuccess = (teachers) => {
+  return { type: actionTypes.FETCH_TEACHERS_SUCCESS, teachersList: teachers }
 }
-export const deleteTeacherFail = (error) => {
-  return { type: actionTypes.DELETE_TEACHER_FAIL, error: error }
+export const fetchTeachersFail = (error) => {
+  return { type: actionTypes.FETCH_TEACHERS_FAIL, error: error }
 }
-export const deleteTeacher = (id) => {
+export const fetchTeachers = () => {
   return dispatch => {
-    dispatch(deleteTeacherStart())
-    TeacherService.deleteTeacher(id)
+    dispatch(fetchTeachersStart())
+    TeacherService.fetchTeachers()
       .then(response => {
-        dispatch({ type: actionTypes.DELETE_TEACHER, id: id })
-        dispatch({ type: actionTypes.DELETE_TEACHER_SUCCESS, message: response })
+        dispatch({ type: actionTypes.FETCH_TEACHERS, teachersList: response })
       })
       .catch(error => {
-        dispatch({ type: actionTypes.DELETE_TEACHER_FAIL, error: error })
+        dispatch(fetchTeachersFail(error))
       })
   }
 }
@@ -60,14 +61,15 @@ export const updateTeacherSuccess = () => {
 export const updateTeacherFail = (error) => {
   return { type: actionTypes.UPDATE_TEACHER_FAIL, error: error }
 }
-export const updateTeacher = (data) => {
+export const updateTeacher = (data, history) => {
   return dispatch => {
     dispatch(updateTeacherStart())
-    TeacherService.updateTeacher(data.id, data)
+    TeacherService.updateTeacher(data)
       .then(response => {
-        dispatch({ type: actionTypes.UPDATE_TEACHER_SUCCESS })
-        dispatch(updateTeacherSuccess(response))
-        dispatch(fetchTeachers())
+        dispatch({ type: actionTypes.UPDATE_TEACHER, updatedTeacherData: response })
+        history.push(`/`)
+        history.push(`/teachers`)
+        dispatch(updateTeacherSuccess())
       })
       .catch(error => {
         dispatch(updateTeacherFail(error))
@@ -75,49 +77,27 @@ export const updateTeacher = (data) => {
   }
 }
 
-//-----FETCH TEACHER ACTIONS-----------------------------
-// export const fetchTeacherStart = () => {
-//   return { type: actionTypes.FETCH_TEACHER_START }
-// }
-// export const fetchTeacherSuccess = (teacher) => {
-//   return { type: actionTypes.FETCH_TEACHER_SUCCESS, teacherData: teacher }
-// }
-// export const fetchTeacherFail = (error) => {
-//   return { type: actionTypes.FETCH_TEACHER_FAIL, error: error }
-// }
-// export const fetchTeacher = (id) => {
-//   return dispatch => {
-//     dispatch(fetchTeacherStart())
-//     TeacherService.fetchTeacher(id)
-//       .then(response => {
-//         dispatch(fetchTeacherSuccess(response))
-//       })
-//       .catch(error => {
-//         dispatch(fetchTeacherFail(error))
-//       })
-//   }
-// }
-
-//-----INDEX TEACHERS ACTIONS-----------------------------
-export const fetchTeachersStart = () => {
-  return { type: actionTypes.FETCH_TEACHERS_START }
+//-----DELETE TEACHER ACTIONS-----------------------------
+export const deleteTeacherStart = () => {
+  return { type: actionTypes.DELETE_TEACHER_START }
 }
-export const fetchTeachersSuccess = (teachers) => {
-  return { type: actionTypes.FETCH_TEACHERS_SUCCESS, teachersList: teachers }
+export const deleteTeacherSuccess = () => {
+  return { type: actionTypes.DELETE_TEACHER_SUCCESS }
 }
-export const fetchTeachersFail = (error) => {
-  return { type: actionTypes.FETCH_TEACHERS_FAIL, error: error }
+export const deleteTeacherFail = (error) => {
+  return { type: actionTypes.DELETE_TEACHER_FAIL, error: error }
 }
-
-export const fetchTeachers = () => {
+export const deleteTeacher = (id, history) => {
   return dispatch => {
-    dispatch(fetchTeachersStart())
-    TeacherService.fetchTeachers()
+    dispatch(deleteTeacherStart())
+    TeacherService.deleteTeacher(id)
       .then(response => {
-        dispatch(fetchTeachersSuccess(response))
+        dispatch({ type: actionTypes.DELETE_TEACHER, id: id })
+        dispatch(deleteTeacherSuccess())
+        history.push('/teachers')
       })
       .catch(error => {
-        dispatch(fetchTeachersFail(error))
+        dispatch(deleteTeacherFail(error))
       })
   }
 }
