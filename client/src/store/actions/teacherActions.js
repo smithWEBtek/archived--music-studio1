@@ -76,27 +76,27 @@ export const updateTeacher = (data) => {
 }
 
 //-----FETCH TEACHER ACTIONS-----------------------------
-export const fetchTeacherStart = () => {
-  return { type: actionTypes.FETCH_TEACHER_START }
-}
-export const fetchTeacherSuccess = (teacher) => {
-  return { type: actionTypes.FETCH_TEACHER_SUCCESS, teacherData: teacher }
-}
-export const fetchTeacherFail = (error) => {
-  return { type: actionTypes.FETCH_TEACHER_FAIL, error: error }
-}
-export const fetchTeacher = (id) => {
-  return dispatch => {
-    dispatch(fetchTeacherStart())
-    TeacherService.fetchTeacher(id)
-      .then(response => {
-        dispatch(fetchTeacherSuccess(response))
-      })
-      .catch(error => {
-        dispatch(fetchTeacherFail(error))
-      })
-  }
-}
+// export const fetchTeacherStart = () => {
+//   return { type: actionTypes.FETCH_TEACHER_START }
+// }
+// export const fetchTeacherSuccess = (teacher) => {
+//   return { type: actionTypes.FETCH_TEACHER_SUCCESS, teacherData: teacher }
+// }
+// export const fetchTeacherFail = (error) => {
+//   return { type: actionTypes.FETCH_TEACHER_FAIL, error: error }
+// }
+// export const fetchTeacher = (id) => {
+//   return dispatch => {
+//     dispatch(fetchTeacherStart())
+//     TeacherService.fetchTeacher(id)
+//       .then(response => {
+//         dispatch(fetchTeacherSuccess(response))
+//       })
+//       .catch(error => {
+//         dispatch(fetchTeacherFail(error))
+//       })
+//   }
+// }
 
 //-----INDEX TEACHERS ACTIONS-----------------------------
 export const fetchTeachers = () => {

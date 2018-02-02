@@ -45,7 +45,7 @@ export const deleteStudent = (id) => {
         dispatch({ type: actionTypes.DELETE_STUDENT_SUCCESS, message: response })
       })
       .catch(error => {
-        dispatch({ type: actionTypes.DELETE_STUDENT_FAIL, error: error })
+        dispatch(deleteStudentFail(error))
       })
   }
 }
@@ -77,29 +77,6 @@ export const updateStudent = (data, history, location) => {
   }
 }
 
-
-//-----FETCH STUDENT ACTIONS-----------------------------
-export const fetchStudentStart = () => {
-  return { type: actionTypes.FETCH_STUDENT_START }
-}
-export const fetchStudentSuccess = (student) => {
-  return { type: actionTypes.FETCH_STUDENT_SUCCESS, studentData: student }
-}
-export const fetchStudentFail = (error) => {
-  return { type: actionTypes.FETCH_STUDENT_FAIL, error: error }
-}
-export const fetchStudent = (id) => {
-  return dispatch => {
-    dispatch(fetchStudentStart())
-    StudentService.fetchStudent(id)
-      .then(response => {
-        dispatch(fetchStudentSuccess(response))
-      })
-      .catch(error => {
-        dispatch(fetchStudentFail(error))
-      })
-  }
-}
 
 //-----INDEX STUDENTS ACTIONS-----------------------------
 export const fetchStudents = () => {

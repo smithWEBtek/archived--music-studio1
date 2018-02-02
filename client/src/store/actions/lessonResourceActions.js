@@ -78,31 +78,7 @@ export const updateLessonResource = (data) => {
   }
 }
 
-
-//-----FETCH LESSON_RESOURCE ACTIONS-----------------------------
-export const fetchLessonResourceStart = () => {
-  return { type: actionTypes.FETCH_LESSON_RESOURCE_START }
-}
-export const fetchLessonResourceSuccess = (lessonResource) => {
-  return { type: actionTypes.FETCH_LESSON_RESOURCE_SUCCESS, lessonResourceData: lessonResource }
-}
-export const fetchLessonResourceFail = (error) => {
-  return { type: actionTypes.FETCH_LESSON_RESOURCE_FAIL, error: error }
-}
-export const fetchLessonResource = (id) => {
-  return dispatch => {
-    dispatch(fetchLessonResourceStart())
-    LessonResourceService.fetchLessonResource(id)
-      .then(response => {
-        dispatch(fetchLessonResourceSuccess(response))
-      })
-      .catch(error => {
-        dispatch(fetchLessonResourceFail(error))
-      })
-  }
-}
-
-//-----INDEX LESSON_RESOURCES ACTIONS-----------------------------
+//-----FETCH LESSON_RESOURCES ACTIONS-----------------------------
 export const fetchLessonResources = () => {
   return dispatch => {
     dispatch(fetchLessonResourcesStart())

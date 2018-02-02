@@ -69,14 +69,14 @@ const reducer = (state = initialState, action) => {
 
 
     //-----FETCH STUDENT-----------------------------
-    case actionTypes.FETCH_STUDENT_START:
-      return updateObject(state, { loading: true })
+    // case actionTypes.FETCH_STUDENT_START:
+    //   return updateObject(state, { loading: true })
 
-    case actionTypes.FETCH_STUDENT_SUCCESS:
-      return updateObject(state, { students: action.studentData })
+    // case actionTypes.FETCH_STUDENT_SUCCESS:
+    //   return updateObject(state, { students: action.studentData })
 
-    case actionTypes.FETCH_STUDENT_FAIL:
-      return updateObject(state, { error: action.error })
+    // case actionTypes.FETCH_STUDENT_FAIL:
+    //   return updateObject(state, { error: action.error })
 
 
     //-----FETCH STUDENTS-----------------------------

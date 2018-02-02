@@ -80,30 +80,7 @@ export const updateLesson = (lesson) => {
 }
 
 
-//-----FETCH LESSON ACTIONS-----------------------------
-export const fetchLessonStart = () => {
-  return { type: actionTypes.FETCH_LESSON_START }
-}
-export const fetchLessonSuccess = (lesson) => {
-  return { type: actionTypes.FETCH_LESSON_SUCCESS, lessonData: lesson }
-}
-export const fetchLessonFail = (error) => {
-  return { type: actionTypes.FETCH_LESSON_FAIL, error: error }
-}
-export const fetchLesson = (id) => {
-  return dispatch => {
-    dispatch(fetchLessonStart())
-    LessonService.fetchLesson(id)
-      .then(response => {
-        dispatch(fetchLessonSuccess(response))
-      })
-      .catch(error => {
-        dispatch(fetchLessonFail(error))
-      })
-  }
-}
-
-//-----INDEX LESSONS ACTIONS-----------------------------
+//-----FETCH LESSONS ACTIONS-----------------------------
 export const fetchLessons = () => {
   return dispatch => {
     dispatch(fetchLessonsStart())

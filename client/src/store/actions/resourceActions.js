@@ -76,30 +76,7 @@ export const updateResource = (data) => {
 }
 
 
-//-----FETCH RESOURCE ACTIONS-----------------------------
-export const fetchResourceStart = () => {
-  return { type: actionTypes.FETCH_RESOURCE_START }
-}
-export const fetchResourceSuccess = (resource) => {
-  return { type: actionTypes.FETCH_RESOURCE_SUCCESS, resourceData: resource }
-}
-export const fetchResourceFail = (error) => {
-  return { type: actionTypes.FETCH_RESOURCE_FAIL, error: error }
-}
-export const fetchResource = (id) => {
-  return dispatch => {
-    dispatch(fetchResourceStart())
-    ResourceService.fetchResource(id)
-      .then(response => {
-        dispatch(fetchResourceSuccess(response))
-      })
-      .catch(error => {
-        dispatch(fetchResourceFail(error))
-      })
-  }
-}
-
-//-----INDEX RESOURCES ACTIONS-----------------------------
+//-----FETCH RESOURCES ACTIONS-----------------------------
 export const fetchResources = () => {
   return dispatch => {
     dispatch(fetchResourcesStart())

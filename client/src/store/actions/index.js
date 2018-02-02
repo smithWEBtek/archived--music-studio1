@@ -1,6 +1,4 @@
 export {
-  fetchLesson,
-  showLesson,
   createLesson,
   deleteLesson,
   updateLesson,
@@ -8,8 +6,6 @@ export {
 } from './lessonActions'
 
 export {
-  fetchResource,
-  showResource,
   createResource,
   deleteResource,
   updateResource,
@@ -17,8 +13,6 @@ export {
 } from './resourceActions'
 
 export {
-  fetchStudent,
-  showStudent,
   createStudent,
   deleteStudent,
   updateStudent,
@@ -26,8 +20,6 @@ export {
 } from './studentActions'
 
 export {
-  fetchTeacher,
-  showTeacher,
   createTeacher,
   deleteTeacher,
   updateTeacher,
@@ -35,8 +27,6 @@ export {
 } from './teacherActions'
 
 export {
-  fetchLessonResource,
-  showLessonResource,
   createLessonResource,
   deleteLessonResource,
   updateLessonResource,

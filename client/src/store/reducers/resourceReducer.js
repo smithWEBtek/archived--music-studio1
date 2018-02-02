@@ -52,14 +52,14 @@ const reducer = (state = initialState, action) => {
 
 
     //-----FETCH RESOURCE-----------------------------
-    case actionTypes.FETCH_RESOURCE_START:
-      return updateObject(state, { loading: true })
+    // case actionTypes.FETCH_RESOURCE_START:
+    //   return updateObject(state, { loading: true })
 
-    case actionTypes.FETCH_RESOURCE_SUCCESS:
-      return updateObject(state, { resources: action.resourceData })
+    // case actionTypes.FETCH_RESOURCE_SUCCESS:
+    //   return updateObject(state, { resources: action.resourceData })
 
-    case actionTypes.FETCH_RESOURCE_FAIL:
-      return updateObject(state, { error: action.error })
+    // case actionTypes.FETCH_RESOURCE_FAIL:
+    //   return updateObject(state, { error: action.error })
 
 
     //-----FETCH RESOURCES-----------------------------
