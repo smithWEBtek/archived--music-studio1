@@ -56,7 +56,8 @@ class EditStudent extends Component {
       lastname: this.state.lastname,
       email: this.state.email,
       level: this.state.level,
-      teacher_id: this.state.teacher.id
+      teacher_id: this.state.teacher.id,
+      active: this.state.active
     }
 
     this.props.editStudentUpdate(data)
