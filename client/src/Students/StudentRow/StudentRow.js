@@ -28,7 +28,6 @@ const StudentRow = (props) => {
           >show</Link>
         </button></td>
 
-
         {props.edit ?
           <td><button
             type='button'
