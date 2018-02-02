@@ -69,6 +69,12 @@ class Students extends Component {
     })
   }
 
+  //********DELETE_STUDENT handling****************
+  deleteStudent = (id) => {
+    let { history } = this.props
+    this.props.onDeleteStudent(id, history)
+  }
+
   //********LIKE_STUDENT handling****************
   likeStudent = (id) => {
     let { history } = this.props
@@ -78,7 +84,6 @@ class Students extends Component {
   }
 
   render() {
-    // const { location, match, students } = this.props
     const { match, students } = this.props
 
     return (
@@ -123,12 +128,10 @@ class Students extends Component {
         <div>
           <div><h5 className="IndexHeaderBackground">ALL students</h5>
             <StudentsList
-              // students={students}
               students={students}
               edit={(id) => this.showEditStudentForm(id)}
-              delete={(id) => this.props.onDeleteStudent(id)}
+              deleteStudent={(id) => this.deleteStudent(id)}
               likeStudent={(id) => this.likeStudent(id)}
-            // location={location}
             /></div>
         </div>
         <hr />
@@ -149,7 +152,7 @@ const mapDispatchToProps = dispatch => {
     onFetchStudents: () => dispatch(actions.fetchStudents()),
     onCreateStudent: (data, history) => dispatch(actions.createStudent(data, history)),
     onUpdateStudent: (data, history) => dispatch(actions.updateStudent(data, history)),
-    onDeleteStudent: (id) => dispatch(actions.deleteStudent(id))
+    onDeleteStudent: (id, history) => dispatch(actions.deleteStudent(id, history))
   }
 }
 

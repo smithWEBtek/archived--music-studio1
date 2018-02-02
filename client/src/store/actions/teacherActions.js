@@ -99,6 +99,16 @@ export const updateTeacher = (data) => {
 // }
 
 //-----INDEX TEACHERS ACTIONS-----------------------------
+export const fetchTeachersStart = () => {
+  return { type: actionTypes.FETCH_TEACHERS_START }
+}
+export const fetchTeachersSuccess = (teachers) => {
+  return { type: actionTypes.FETCH_TEACHERS_SUCCESS, teachersList: teachers }
+}
+export const fetchTeachersFail = (error) => {
+  return { type: actionTypes.FETCH_TEACHERS_FAIL, error: error }
+}
+
 export const fetchTeachers = () => {
   return dispatch => {
     dispatch(fetchTeachersStart())
@@ -110,16 +120,4 @@ export const fetchTeachers = () => {
         dispatch(fetchTeachersFail(error))
       })
   }
-}
-
-export const fetchTeachersStart = () => {
-  return { type: actionTypes.FETCH_TEACHERS_START }
-}
-
-export const fetchTeachersSuccess = (teachers) => {
-  return { type: actionTypes.FETCH_TEACHERS_SUCCESS, teachersList: teachers }
-}
-
-export const fetchTeachersFail = (error) => {
-  return { type: actionTypes.FETCH_TEACHERS_FAIL, error: error }
 }

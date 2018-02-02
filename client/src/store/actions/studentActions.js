@@ -16,7 +16,7 @@ export const createStudent = (data, history) => {
     dispatch(createStudentStart())
     StudentService.createStudent(data)
       .then(response => {
-        dispatch({ type: actionTypes.CREATE_STUDENT, payload: response })
+        dispatch({ type: actionTypes.CREATE_STUDENT, studentData: response })
         history.push(`/students/${response.id}`)
         dispatch(createStudentSuccess())
       })
@@ -26,29 +26,29 @@ export const createStudent = (data, history) => {
   }
 }
 
-//-----DELETE STUDENT ACTIONS-----------------------------
-export const deleteStudentStart = () => {
-  return { type: actionTypes.DELETE_STUDENT_START }
+//-----FETCH STUDENTS ACTIONS-----------------------------
+export const fetchStudentsStart = () => {
+  return { type: actionTypes.FETCH_STUDENTS_START }
 }
-export const deleteStudentSuccess = () => {
-  return { type: actionTypes.DELETE_STUDENT_SUCCESS }
+export const fetchStudentsSuccess = (students) => {
+  return { type: actionTypes.FETCH_STUDENTS_SUCCESS, studentsList: students }
 }
-export const deleteStudentFail = (error) => {
-  return { type: actionTypes.DELETE_STUDENT_FAIL, error: error }
+export const fetchStudentsFail = (error) => {
+  return { type: actionTypes.FETCH_STUDENTS_FAIL, error: error }
 }
-export const deleteStudent = (id) => {
+export const fetchStudents = () => {
   return dispatch => {
-    dispatch(deleteStudentStart())
-    StudentService.deleteStudent(id)
+    dispatch(fetchStudentsStart())
+    StudentService.fetchStudents()
       .then(response => {
-        dispatch({ type: actionTypes.DELETE_STUDENT, id: id })
-        dispatch({ type: actionTypes.DELETE_STUDENT_SUCCESS, message: response })
+        dispatch(fetchStudentsSuccess(response))
       })
       .catch(error => {
-        dispatch(deleteStudentFail(error))
+        dispatch(fetchStudentsFail(error))
       })
   }
 }
+
 
 
 //-----UPDATE STUDENT ACTIONS-----------------------------
@@ -77,29 +77,27 @@ export const updateStudent = (data, history, location) => {
   }
 }
 
-
-//-----INDEX STUDENTS ACTIONS-----------------------------
-export const fetchStudents = () => {
+//-----DELETE STUDENT ACTIONS-----------------------------
+export const deleteStudentStart = () => {
+  return { type: actionTypes.DELETE_STUDENT_START }
+}
+export const deleteStudentSuccess = () => {
+  return { type: actionTypes.DELETE_STUDENT_SUCCESS }
+}
+export const deleteStudentFail = (error) => {
+  return { type: actionTypes.DELETE_STUDENT_FAIL, error: error }
+}
+export const deleteStudent = (id, history) => {
   return dispatch => {
-    dispatch(fetchStudentsStart())
-    StudentService.fetchStudents()
+    dispatch(deleteStudentStart())
+    StudentService.deleteStudent(id)
       .then(response => {
-        dispatch(fetchStudentsSuccess(response))
+        dispatch({ type: actionTypes.DELETE_STUDENT, id: id })
+        dispatch({ type: actionTypes.DELETE_STUDENT_SUCCESS })
+        history.push('/students')
       })
       .catch(error => {
-        dispatch(fetchStudentsFail(error))
+        dispatch(deleteStudentFail(error))
       })
   }
-}
-
-export const fetchStudentsStart = () => {
-  return { type: actionTypes.FETCH_STUDENTS_START }
-}
-
-export const fetchStudentsSuccess = (students) => {
-  return { type: actionTypes.FETCH_STUDENTS_SUCCESS, studentsList: students }
-}
-
-export const fetchStudentsFail = (error) => {
-  return { type: actionTypes.FETCH_STUDENTS_FAIL, error: error }
 }

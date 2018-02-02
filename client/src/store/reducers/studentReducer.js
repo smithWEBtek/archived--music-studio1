@@ -1,5 +1,4 @@
 import * as actionTypes from '../actions/actionTypes';
-// import StudentService from '../services/StudentService';
 
 const initialState = {
   students: [],
@@ -8,43 +7,50 @@ const initialState = {
   message: ''
 };
 
-const updateObject = (oldObject, updatedValues) => { return { ...oldObject, ...updatedValues } }
 const reducer = (state = initialState, action) => {
   switch (action.type) {
 
     //-----CREATE STUDENT-----------------------------
-    case actionTypes.CREATE_STUDENT:
-      const newStudent = action.payload
-      return updateObject(state, { students: state.students.concat(newStudent) })
-
     case actionTypes.CREATE_STUDENT_START:
-      return updateObject(state, { loading: true })
+      return Object.assign({}, state, { loading: true })
 
     case actionTypes.CREATE_STUDENT_SUCCESS:
-      return updateObject(state, { loading: false })
+      return Object.assign({}, state, { loading: false })
 
     case actionTypes.CREATE_STUDENT_FAIL:
-      return updateObject(state, {
+      return Object.assign({}, state, {
         error: action.error,
         loading: false,
-        message: action.response
+        message: action.type
+      })
+
+    case actionTypes.CREATE_STUDENT:
+      const newStudent = action.studentData
+      return Object.assign({}, state, {
+        students: state.students.concat(newStudent)
       })
 
 
-    //-----DELETE STUDENT-----------------------------
-    case actionTypes.DELETE_STUDENT:
-      const updatedStudentsArray = state.students.filter(student => student.id !== action.id);
-      return updateObject(state, { students: updatedStudentsArray, loading: false })
+    //-----FETCH STUDENTS-----------------------------
+    case actionTypes.FETCH_STUDENTS_START:
+      return Object.assign({}, state, { loading: true })
 
-    case actionTypes.DELETE_STUDENT_SUCCESS:
-      return updateObject(state, { loading: false })
+    case actionTypes.FETCH_STUDENTS_SUCCESS:
+      const students = action.studentsList
+      return Object.assign({}, state, {
+        students: students.sort((a, b) => (a.lastname) - (b.lastname)),
+        loading: false
+      })
 
-    case actionTypes.DELETE_STUDENT_FAIL:
-      return updateObject(state, { error: action.error, loading: false })
+    case actionTypes.FETCH_STUDENTS_FAIL:
+      return Object.assign({}, state, {
+        error: action.error,
+        loading: false,
+        message: action.type
+      })
 
 
     //-----UPDATE STUDENT-----------------------------
-
     case actionTypes.UPDATE_STUDENT:
       const studentData = action.updatedStudentData
       const studentIndex = state.students.findIndex(student => student.id === studentData.id);
@@ -55,39 +61,44 @@ const reducer = (state = initialState, action) => {
           ...state.students.slice(studentIndex + 1, state.students.length)
         ]
       };
-      const updatedState = Object.assign({}, { ...stateTemp }, { students: stateTemp.students.concat(studentData) })
-      return updateObject(state, { updatedState })
+      return Object.assign({}, { ...stateTemp }, { students: stateTemp.students.concat(studentData) })
 
     case actionTypes.UPDATE_STUDENT_START:
-      return updateObject(state, { loading: true })
+      return Object.assign({}, state, { loading: true })
 
     case actionTypes.UPDATE_STUDENT_SUCCESS:
-      return updateObject(state, { loading: false })
+      return Object.assign({}, state, { loading: false })
 
     case actionTypes.UPDATE_STUDENT_FAIL:
-      return updateObject(state, { error: action.error, loading: false })
+      return Object.assign({}, state, {
+        error: action.error,
+        loading: false,
+        message: action.type
+      })
 
 
-    //-----FETCH STUDENT-----------------------------
-    // case actionTypes.FETCH_STUDENT_START:
-    //   return updateObject(state, { loading: true })
+    //-----DELETE STUDENT-----------------------------
+    case actionTypes.DELETE_STUDENT:
+      const updatedStudentsArray = state.students.filter(student => student.id !== action.id);
 
-    // case actionTypes.FETCH_STUDENT_SUCCESS:
-    //   return updateObject(state, { students: action.studentData })
+      return Object.assign({}, state, {
+        students: updatedStudentsArray,
+        loading: false
+      })
 
-    // case actionTypes.FETCH_STUDENT_FAIL:
-    //   return updateObject(state, { error: action.error })
 
+    case actionTypes.DELETE_STUDENT_START:
+      return Object.assign({}, state, { loading: true })
 
-    //-----FETCH STUDENTS-----------------------------
-    case actionTypes.FETCH_STUDENTS_START:
-      return updateObject(state, { loading: true })
+    case actionTypes.DELETE_STUDENT_SUCCESS:
+      return Object.assign({}, state, { loading: false })
 
-    case actionTypes.FETCH_STUDENTS_SUCCESS:
-      return updateObject(state, { students: action.studentsList.sort((a, b) => (a.id) - (b.id)) })
-
-    case actionTypes.FETCH_STUDENTS_FAIL:
-      return updateObject(state, { error: action.error })
+    case actionTypes.DELETE_STUDENT_FAIL:
+      return Object.assign({}, state, {
+        error: action.error,
+        loading: false,
+        message: action.type
+      })
 
     default:
       return state;

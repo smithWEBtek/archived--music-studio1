@@ -1,14 +1,6 @@
 const API_URL = process.env.REACT_APP_API_URL || "https://music-studio.herokuapp.com/api"
 
 const StudentService = {
-  fetchStudents: () => {
-    return fetch(`${API_URL}/students`)
-      .then(response => response.json())
-  },
-  fetchStudent: (id) => {
-    return fetch(`${API_URL}/students/${id}`)
-      .then(response => response.json())
-  },
   createStudent(student) {
     const request = {
       method: 'POST',
@@ -16,6 +8,10 @@ const StudentService = {
       headers: { 'Content-Type': 'application/json' }
     }
     return fetch(`${API_URL}/students`, request)
+      .then(response => response.json())
+  },
+  fetchStudents: () => {
+    return fetch(`${API_URL}/students`)
       .then(response => response.json())
   },
   updateStudent(data) {

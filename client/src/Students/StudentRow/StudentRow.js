@@ -17,6 +17,8 @@ const StudentRow = (props) => {
         <td>{props.student.teacher_id}</td>
         <td>{props.student.level}</td>
 
+        <td className={props.student.active.toString()}>{props.student.active.toString()}</td>
+
         <td><button
           type='button'
           className="Success">
@@ -26,7 +28,6 @@ const StudentRow = (props) => {
           >show</Link>
         </button></td>
 
-        <td className={props.student.active.toString()}>{props.student.active.toString()}</td>
 
         {props.edit ?
           <td><button
@@ -36,10 +37,10 @@ const StudentRow = (props) => {
         </button></td>
           : null}
 
-        {props.delete ?
+        {props.deleteStudent ?
           <td><button
-            onClick={() => props.delete(props.student.id)}
-            className="Danger">x</button></td>
+            onClick={() => props.deleteStudent(props.student.id)}
+            className="Danger">X</button></td>
           : null}
 
         {props.likeStudent ?

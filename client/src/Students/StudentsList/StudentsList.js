@@ -13,9 +13,8 @@ const StudentsList = (props) => {
         key={index}
         student={student}
         edit={props.edit}
-        delete={props.delete}
+        deleteStudent={props.deleteStudent}
         likeStudent={props.likeStudent}
-      // location={props.location}
       />
     )
   })
@@ -33,7 +32,7 @@ const StudentsList = (props) => {
             <th>Active?</th>
             <th>Show</th>
             {props.edit ? <th>Edit</th> : null}
-            {props.delete ? <th>Delete</th> : null}
+            {props.deleteStudent ? <th>X</th> : null}
             <th>Like</th>
             <th>Count</th>
           </tr>
