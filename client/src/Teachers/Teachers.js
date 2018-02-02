@@ -19,7 +19,7 @@ class Teachers extends Component {
   }
 
   componentDidMount() {
-    // this.props.onFetchTeachers();
+    this.props.onFetchTeachers();
   }
 
   //********SHOW_TEACHER form handling**************************
@@ -36,8 +36,9 @@ class Teachers extends Component {
     this.setState({ createTeacher: false })
   }
 
-  createTeacher = (newTeacherData) => {
-    this.props.onCreateTeacher(newTeacherData)
+  createTeacher = (data) => {
+    let { history } = this.props
+    this.props.onCreateTeacher(data, history)
     this.setState({ createTeacher: false })
   }
 
@@ -51,7 +52,8 @@ class Teachers extends Component {
   }
 
   editTeacherUpdate = (data) => {
-    this.props.onUpdateTeacher(data)
+    let { history } = this.props
+    this.props.onUpdateTeacher(data, history)
     this.setState({
       editTeacher: false,
       teacher: null
@@ -63,6 +65,12 @@ class Teachers extends Component {
       editTeacher: false,
       teacher: null
     })
+  }
+
+  //********DELETE_TEACHER handling****************
+  deleteTeacher = (id) => {
+    let { history } = this.props
+    this.props.onDeleteTeacher(id, history)
   }
 
   render() {
@@ -129,9 +137,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     onFetchTeachers: () => dispatch(actions.fetchTeachers()),
-    onCreateTeacher: (data) => dispatch(actions.createTeacher(data)),
-    onUpdateTeacher: (data) => dispatch(actions.updateTeacher(data)),
-    onDeleteTeacher: (id) => dispatch(actions.deleteTeacher(id))
+    onCreateTeacher: (data, history) => dispatch(actions.createTeacher(data, history)),
+    onUpdateTeacher: (data, history) => dispatch(actions.updateTeacher(data, history)),
+    onDeleteTeacher: (id, history) => dispatch(actions.deleteTeacher(id, history))
   };
 }
 

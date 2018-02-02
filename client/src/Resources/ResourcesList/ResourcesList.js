@@ -23,14 +23,12 @@ const ResourcesList = (props) => {
                 to={`/resources/${resource.id}`}
                 params={{ id: resource.id }}
                 key={resource.id}
-                onClick={props.close}
               >show</Link></button></td>)}
 
           <td><Link
             to={`/resources/${resource.id}`}
             params={{ id: resource.id }}
             key={resource.id}
-            onClick={props.close}
           >{resource.title}</Link></td>
 
           <td>{resource.category}</td>

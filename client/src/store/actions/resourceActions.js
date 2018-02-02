@@ -11,16 +11,68 @@ export const createResourceSuccess = () => {
 export const createResourceFail = (error) => {
   return { type: actionTypes.CREATE_RESOURCE_FAIL, error: error }
 }
-export const createResource = (data) => {
+export const createResource = (data, history) => {
   return dispatch => {
     dispatch(createResourceStart())
     ResourceService.createResource(data)
       .then(response => {
-        dispatch({ type: actionTypes.CREATE_RESOURCE, data: response })
+        dispatch({ type: actionTypes.CREATE_RESOURCE, resourceData: response })
+        history.push(`/resources/${response.id}`)
         dispatch(createResourceSuccess())
       })
       .catch(error => {
         dispatch(createResourceFail(error))
+      })
+  }
+}
+
+
+//-----FETCH RESOURCES ACTIONS-----------------------------
+export const fetchResourcesStart = () => {
+  return { type: actionTypes.FETCH_RESOURCES_START }
+}
+export const fetchResourcesSuccess = (resources) => {
+  return { type: actionTypes.FETCH_RESOURCES_SUCCESS, resourcesList: resources }
+}
+export const fetchResourcesFail = (error) => {
+  return { type: actionTypes.FETCH_RESOURCES_FAIL, error: error }
+}
+export const fetchResources = () => {
+  return dispatch => {
+    dispatch(fetchResourcesStart())
+    ResourceService.fetchResources()
+      .then(response => {
+        dispatch({ type: actionTypes.FETCH_RESOURCES, resourcesList: response })
+      })
+      .catch(error => {
+        dispatch(fetchResourcesFail(error))
+      })
+  }
+}
+
+
+//-----UPDATE RESOURCE ACTIONS-----------------------------
+export const updateResourceStart = () => {
+  return { type: actionTypes.UPDATE_RESOURCE_START }
+}
+export const updateResourceSuccess = () => {
+  return { type: actionTypes.UPDATE_RESOURCE_SUCCESS }
+}
+export const updateResourceFail = (error) => {
+  return { type: actionTypes.UPDATE_RESOURCE_FAIL, error: error }
+}
+export const updateResource = (data, history) => {
+  return dispatch => {
+    dispatch(updateResourceStart())
+    ResourceService.updateResource(data)
+      .then(response => {
+        dispatch({ type: actionTypes.UPDATE_RESOURCE, updatedResourceData: response })
+        history.push(`/`)
+        history.push(`/resources`)
+        dispatch(updateResourceSuccess())
+      })
+      .catch(error => {
+        dispatch(updateResourceFail(error))
       })
   }
 }
@@ -41,63 +93,10 @@ export const deleteResource = (id) => {
     ResourceService.deleteResource(id)
       .then(response => {
         dispatch({ type: actionTypes.DELETE_RESOURCE, id: id })
-        dispatch({ type: actionTypes.DELETE_RESOURCE_SUCCESS, message: response })
+        dispatch(deleteResourceSuccess())
       })
       .catch(error => {
-        dispatch({ type: actionTypes.DELETE_RESOURCE_FAIL, error: error })
+        dispatch(deleteResourceFail(error))
       })
   }
-}
-
-
-//-----UPDATE RESOURCE ACTIONS-----------------------------
-export const updateResourceStart = () => {
-  return { type: actionTypes.UPDATE_RESOURCE_START }
-}
-export const updateResourceSuccess = () => {
-  return { type: actionTypes.UPDATE_RESOURCE_SUCCESS }
-}
-export const updateResourceFail = (error) => {
-  return { type: actionTypes.UPDATE_RESOURCE_FAIL, error: error }
-}
-export const updateResource = (data) => {
-  return dispatch => {
-    dispatch(updateResourceStart())
-    ResourceService.updateResource(data.id, data)
-      .then(response => {
-        dispatch({ type: actionTypes.UPDATE_RESOURCE_SUCCESS })
-        dispatch(updateResourceSuccess(response))
-        dispatch(fetchResources())
-      })
-      .catch(error => {
-        dispatch(updateResourceFail(error))
-      })
-  }
-}
-
-
-//-----FETCH RESOURCES ACTIONS-----------------------------
-export const fetchResources = () => {
-  return dispatch => {
-    dispatch(fetchResourcesStart())
-    ResourceService.fetchResources()
-      .then(response => {
-        dispatch(fetchResourcesSuccess(response))
-      })
-      .catch(error => {
-        dispatch(fetchResourcesFail(error))
-      })
-  }
-}
-
-export const fetchResourcesStart = () => {
-  return { type: actionTypes.FETCH_RESOURCES_START }
-}
-
-export const fetchResourcesSuccess = (resources) => {
-  return { type: actionTypes.FETCH_RESOURCES_SUCCESS, resourcesList: resources }
-}
-
-export const fetchResourcesFail = (error) => {
-  return { type: actionTypes.FETCH_RESOURCES_FAIL, error: error }
 }

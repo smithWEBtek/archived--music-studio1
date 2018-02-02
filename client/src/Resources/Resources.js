@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch, Link } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../store/actions/index'
 
@@ -14,25 +14,12 @@ class Resources extends Component {
   state = {
     resource: '',
     showResource: false,
-    showResourcesList: false,
     createResource: false,
     editResource: false
   }
 
   componentDidMount() {
     this.props.onFetchResources();
-  }
-
-  showResourcesList = () => {
-    this.setState({
-      showResourcesList: true
-    })
-  }
-
-  closeResourcesList = () => {
-    this.setState({
-      showResourcesList: false
-    })
   }
 
   //********SHOW_RESOURCE form handling**************************
@@ -85,7 +72,7 @@ class Resources extends Component {
     return (
       <Container>
         <hr />
-        <button onClick={() => this.showResourcesList()}><Link to='/resources/'>ALL resources</Link></button>
+
         {/*********CREATE RESOURCE MODAL********************************************/}
         <button onClick={this.createResourceForm}>Add Resource</button>
         <Modal
@@ -123,14 +110,12 @@ class Resources extends Component {
           </Switch>
         </div>
         <div>
-          {this.state.showResourcesList ?
-            <div><h5 className="IndexHeaderBackground">ALL resources</h5>
-              <ResourcesList
-                resources={resources}
-                edit={(id) => this.showEditResourceForm(id)}
-                delete={(id) => this.props.onDeleteResource(id)}
-                close={() => this.closeResourcesList()}
-              /></div> : null}
+          <div><h5 className="IndexHeaderBackground">ALL resources</h5>
+            <ResourcesList
+              resources={resources}
+              edit={(id) => this.showEditResourceForm(id)}
+              delete={(id) => this.props.onDeleteResource(id)} />
+          </div>
         </div>
       </Container >
     )

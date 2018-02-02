@@ -9,10 +9,16 @@ const TeacherService = {
     }
     return fetch(`${API_URL}/teachers`, request)
       .then(response => response.json())
+      .catch(error => {
+        console.log('[TeacherService][createTeacher] ERROR: ', error)
+      })
   },
   fetchTeachers: () => {
     return fetch(`${API_URL}/teachers`)
       .then(response => response.json())
+      .catch(error => {
+        console.log('[TeacherService][fetchTeachers] ERROR: ', error)
+      })
   },
   updateTeacher(data) {
     const request = {
@@ -34,6 +40,9 @@ const TeacherService = {
     }
     return fetch(`${API_URL}/teachers/${id}`, request)
       .then(response => response.json())
+      .catch(error => {
+        console.log('[TeacherService][deleteTeacher] ERROR: ', error)
+      })
   }
 }
 

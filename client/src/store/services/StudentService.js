@@ -9,10 +9,16 @@ const StudentService = {
     }
     return fetch(`${API_URL}/students`, request)
       .then(response => response.json())
+      .catch(error => {
+        console.log('[StudentService][createStudent] ERROR: ', error)
+      })
   },
   fetchStudents: () => {
     return fetch(`${API_URL}/students`)
       .then(response => response.json())
+      .catch(error => {
+        console.log('[StudentService][fetchStudents] ERROR: ', error)
+      })
   },
   updateStudent(data) {
     const request = {
@@ -34,6 +40,9 @@ const StudentService = {
     }
     return fetch(`${API_URL}/students/${id}`, request)
       .then(response => response.json())
+      .catch(error => {
+        console.log('[StudentService][deleteStudent] ERROR: ', error)
+      })
   }
 }
 
