@@ -21,9 +21,7 @@ const StudentService = {
       headers: { 'Content-Type': 'application/json' }
     }
     return fetch(`${API_URL}/students/${data.id}`, request)
-      .then(response => {
-        return response.json()
-      })
+      .then(response => response.json())
       .catch(error => {
         console.log('[StudentService][updateStudent] ERROR: ', error)
       })
@@ -34,10 +32,8 @@ const StudentService = {
       body: JSON.stringify({ id: id }),
       headers: { 'Content-Type': 'application/json' }
     }
-    return fetch(`${API_URL}/students/${id}`, request, { method: 'DELETE' })
-      .then(response => {
-        console.log('[StudentService][deleteStudent]response:', response)
-      })
+    return fetch(`${API_URL}/students/${id}`, request)
+      .then(response => response.json())
   }
 }
 
