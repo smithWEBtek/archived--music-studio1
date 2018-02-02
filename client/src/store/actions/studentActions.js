@@ -93,7 +93,7 @@ export const deleteStudent = (id, history) => {
     StudentService.deleteStudent(id)
       .then(response => {
         dispatch({ type: actionTypes.DELETE_STUDENT, id: id })
-        dispatch({ type: actionTypes.DELETE_STUDENT_SUCCESS })
+        dispatch(deleteStudentSuccess())
         history.push('/students')
       })
       .catch(error => {

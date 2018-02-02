@@ -30,6 +30,7 @@ class Api::StudentsController < ApplicationController
 
   def destroy
     @student.update(active: false)
+    render json: { message: 'student remains in Database, with active set to false' }
   end
   
   def resources

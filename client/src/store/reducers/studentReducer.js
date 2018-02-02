@@ -80,15 +80,6 @@ const reducer = (state = initialState, action) => {
 
 
     //-----DELETE STUDENT-----------------------------
-    case actionTypes.DELETE_STUDENT:
-      const updatedStudentsArray = state.students.filter(student => student.id !== action.id);
-
-      return Object.assign({}, state, {
-        students: updatedStudentsArray,
-        loading: false
-      })
-
-
     case actionTypes.DELETE_STUDENT_START:
       return Object.assign({}, state, { loading: true })
 
@@ -102,6 +93,14 @@ const reducer = (state = initialState, action) => {
         message: action.type
       })
 
+    case actionTypes.DELETE_STUDENT:
+      const updatedStudentsArray = state.students.filter(student => student.id !== action.id);
+
+      return Object.assign({}, state, {
+        students: updatedStudentsArray
+      })
+
+    //----- DEFAULT --------------------------------
     default:
       return state;
   }
