@@ -26,6 +26,7 @@ export const createStudent = (data, history) => {
   }
 }
 
+
 //-----FETCH STUDENTS ACTIONS-----------------------------
 export const fetchStudentsStart = () => {
   return { type: actionTypes.FETCH_STUDENTS_START }
@@ -41,14 +42,13 @@ export const fetchStudents = () => {
     dispatch(fetchStudentsStart())
     StudentService.fetchStudents()
       .then(response => {
-        dispatch(fetchStudentsSuccess(response))
+        dispatch({ type: actionTypes.FETCH_STUDENTS, studentsList: response })
       })
       .catch(error => {
         dispatch(fetchStudentsFail(error))
       })
   }
 }
-
 
 
 //-----UPDATE STUDENT ACTIONS-----------------------------

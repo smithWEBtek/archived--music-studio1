@@ -36,11 +36,7 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, { loading: true })
 
     case actionTypes.FETCH_STUDENTS_SUCCESS:
-      const students = action.studentsList
-      return Object.assign({}, state, {
-        students: students.sort((a, b) => (a.lastname) - (b.lastname)),
-        loading: false
-      })
+      return Object.assign({}, state, { loading: false })
 
     case actionTypes.FETCH_STUDENTS_FAIL:
       return Object.assign({}, state, {
@@ -49,20 +45,14 @@ const reducer = (state = initialState, action) => {
         message: action.type
       })
 
+    case actionTypes.FETCH_STUDENTS:
+      const students = action.studentsList
+      return Object.assign({}, state, {
+        students: students.sort((a, b) => (a.lastname) - (b.lastname))
+      })
+
 
     //-----UPDATE STUDENT-----------------------------
-    case actionTypes.UPDATE_STUDENT:
-      const studentData = action.updatedStudentData
-      const studentIndex = state.students.findIndex(student => student.id === studentData.id);
-      const stateTemp = {
-        ...state,
-        students: [
-          ...state.students.slice(0, studentIndex),
-          ...state.students.slice(studentIndex + 1, state.students.length)
-        ]
-      };
-      return Object.assign({}, { ...stateTemp }, { students: stateTemp.students.concat(studentData) })
-
     case actionTypes.UPDATE_STUDENT_START:
       return Object.assign({}, state, { loading: true })
 
@@ -75,6 +65,18 @@ const reducer = (state = initialState, action) => {
         loading: false,
         message: action.type
       })
+
+    case actionTypes.UPDATE_STUDENT:
+      const studentData = action.updatedStudentData
+      const studentIndex = state.students.findIndex(student => student.id === studentData.id);
+      const stateTemp = {
+        ...state,
+        students: [
+          ...state.students.slice(0, studentIndex),
+          ...state.students.slice(studentIndex + 1, state.students.length)
+        ]
+      };
+      return Object.assign({}, { ...stateTemp }, { students: stateTemp.students.concat(studentData) })
 
 
     //-----DELETE STUDENT-----------------------------
