@@ -110,6 +110,8 @@ class Students extends Component {
             email={this.state.student.email}
             level={this.state.student.level}
             teacher_id={this.state.student.teacher_id}
+            teacher={this.state.student.teacher}
+            teachers={this.props.teachers}
             active={this.state.student.active}
             close={() => this.closeEditStudentForm()}
             editStudentUpdate={(data) => this.editStudentUpdate(data)}

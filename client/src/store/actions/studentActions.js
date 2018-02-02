@@ -61,7 +61,7 @@ export const updateStudentSuccess = () => {
 export const updateStudentFail = (error) => {
   return { type: actionTypes.UPDATE_STUDENT_FAIL, error: error }
 }
-export const updateStudent = (data, history, location) => {
+export const updateStudent = (data, history) => {
   return dispatch => {
     dispatch(updateStudentStart())
     StudentService.updateStudent(data)

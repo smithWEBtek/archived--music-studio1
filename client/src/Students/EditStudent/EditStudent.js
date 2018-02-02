@@ -12,6 +12,8 @@ class EditStudent extends Component {
       email: '',
       level: '',
       teacher_id: '',
+      teacher: '',
+      teachers: [],
       active: ''
     }
   }
@@ -24,7 +26,15 @@ class EditStudent extends Component {
       email: this.props.email,
       level: this.props.level,
       teacher_id: this.props.teacher_id,
+      teacher: this.props.teacher,
+      teachers: this.props.teachers,
       active: this.props.active
+    })
+  }
+
+  handleTeacherSelect = (event) => {
+    this.setState({
+      teacher: this.props.teachers.find(teacher => teacher.lastname === event.target.value)
     })
   }
 
@@ -40,12 +50,24 @@ class EditStudent extends Component {
   }
 
   handleSubmit = (e) => {
-    let data = this.state;
+    let data = {
+      id: this.state.id,
+      firstname: this.state.firstname,
+      lastname: this.state.lastname,
+      email: this.state.email,
+      level: this.state.level,
+      teacher_id: this.state.teacher.id
+    }
+
     this.props.editStudentUpdate(data)
     e.preventDefault();
   }
 
   render() {
+    const teacherSelectOptions = this.props.teachers.map(teacher => {
+      return <option value={teacher.lastname} id={teacher.id} key={teacher.id}>{teacher.lastname}</option>
+    })
+
     return (
       <div>
         <p className="FormInstructions">Edit form and click 'Update Student'</p>
@@ -78,13 +100,14 @@ class EditStudent extends Component {
               value={this.state.level}
               onChange={this.handleChange}
             /></p>
-          <p><label>Teacher ID </label>
-            <input
-              type="text"
-              name="teacher_id"
-              value={this.state.teacher_id}
-              onChange={this.handleChange}
-            /></p>
+          <p>
+            <label>TeacherSelector</label>
+            <select
+              value={this.state.teacher.lastname}
+              onChange={(event) => this.handleTeacherSelect(event)}>
+              {teacherSelectOptions}
+            </select>
+          </p>
           <p><label>Active?</label>
             <button
               type="button"
