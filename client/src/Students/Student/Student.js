@@ -6,7 +6,6 @@ import ResourcesList from '../../Resources/ResourcesList/ResourcesList'
 import LessonsList from '../../Lessons/LessonsList/LessonsList'
 
 const Student = (props) => {
-
   const student = props.students.find(student => student.id === +props.match.params.id)
   let studentHeader = <div><p>Student component is loading...</p></div>
   let studentLessons = <div><h5>No lessons recorded</h5></div>

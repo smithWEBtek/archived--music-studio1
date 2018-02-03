@@ -17,24 +17,6 @@ class CreateLesson extends Component {
     this.props.onFetchResources()
   }
 
-  //********CREATE_LESSON form handling **************************
-  handleSubmit = (e) => {
-    const lessonData = {
-      date: this.state.date,
-      teacher_id: this.state.teacher.id,
-      student_id: this.state.student.id,
-      notes: this.state.notes
-    }
-    this.props.createLesson(lessonData)
-    this.props.closeForm()
-    this.setState({
-      createLesson: false,
-      date: '',
-      teacher: '',
-      student: '',
-      notes: ''
-    })
-  }
 
   //********CREATE_LESSON selector functions **************************
   handleTeacherSelect = (event) => {
@@ -47,6 +29,24 @@ class CreateLesson extends Component {
     this.setState({
       student: this.props.students.find(student => student.lastname === event.target.value)
     })
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const newLessonData = {
+      date: this.state.date,
+      teacher_id: this.state.teacher.id,
+      student_id: this.state.student.id,
+      notes: this.state.notes
+    }
+    this.props.createLesson(newLessonData)
+    this.setState({
+      date: '',
+      teacher: '',
+      student: '',
+      notes: ''
+    })
+    this.props.closeCreateLessonForm()
   }
 
   render() {
@@ -99,7 +99,7 @@ class CreateLesson extends Component {
           </p>
           <button
             type="button"
-            onClick={this.props.closeForm}
+            onClick={this.props.closeCreateLessonForm}
             className="Danger">CANCEL</button>
 
           <button

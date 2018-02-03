@@ -1,14 +1,6 @@
 const API_URL = process.env.REACT_APP_API_URL || "https://music-studio.herokuapp.com/api"
 
 const LessonService = {
-  fetchLessons: () => {
-    return fetch(`${API_URL}/lessons`)
-      .then(response => response.json())
-  },
-  fetchLesson: (id) => {
-    return fetch(`${API_URL}/lessons/${id}`)
-      .then(response => response.json())
-  },
   createLesson(lesson) {
     const request = {
       method: 'POST',
@@ -17,15 +9,28 @@ const LessonService = {
     }
     return fetch(`${API_URL}/lessons`, request)
       .then(response => response.json())
+      .catch(error => {
+        console.log('[LessonService][createLesson] ERROR: ', error)
+      })
   },
-  updateLesson(lesson) {
+  fetchLessons: () => {
+    return fetch(`${API_URL}/lessons`)
+      .then(response => response.json())
+      .catch(error => {
+        console.log('[LessonService][fetchLessons] ERROR: ', error)
+      })
+  },
+  updateLesson(data) {
     const request = {
       method: 'PATCH',
-      body: JSON.stringify({ lesson: lesson }),
+      body: JSON.stringify({ lesson: data }),
       headers: { 'Content-Type': 'application/json' }
     }
-    return fetch(`${API_URL}/lessons/${lesson.id}`, request)
+    return fetch(`${API_URL}/lessons/${data.id}`, request)
       .then(response => response.json())
+      .catch(error => {
+        console.log('[LessonService][updateLesson] ERROR: ', error)
+      })
   },
   deleteLesson(id) {
     const request = {
@@ -35,6 +40,9 @@ const LessonService = {
     }
     return fetch(`${API_URL}/lessons/${id}`, request)
       .then(response => response.json())
+      .catch(error => {
+        console.log('[LessonService][deleteLesson] ERROR: ', error)
+      })
   }
 }
 

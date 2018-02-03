@@ -94,10 +94,10 @@ const reducer = (state = initialState, action) => {
       })
 
     case actionTypes.DELETE_RESOURCE:
-      const updatedResourcesArray = state.resources.filter(resource => resource.id !== action.id);
+      const updatedResources = state.resources.filter(resource => resource.id !== action.id);
 
       return Object.assign({}, state, {
-        resources: updatedResourcesArray
+        resources: updatedResources
       })
 
     //----- DEFAULT --------------------------------

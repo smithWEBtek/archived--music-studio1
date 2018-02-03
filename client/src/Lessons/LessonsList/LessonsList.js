@@ -9,18 +9,25 @@ const LessonsList = (props) => {
     return (
       <tr key={index}>
         <th scope="row">{lesson.id}</th>
-        <td><button
-          type='button'
-          className="Success"><Link
+
+        <td>
+          <button
+            type='button'
+            className="Success">
+            <Link
+              to={`/lessons/${lesson.id}`}
+              key={lesson.id}>show
+            </Link>
+          </button>
+        </td>
+
+        <td>
+          <Link
             to={`/lessons/${lesson.id}`}
-            key={lesson.id}
-          >show</Link>
-        </button></td>
-        <td><Link
-          to={`/lessons/${lesson.id}`}
-          style={{ marginRight: '5px' }}
-          key={lesson.id}>{lesson.teacher.lastname} ~ {lesson.student.lastname}
-        </Link></td>
+            style={{ marginRight: '5px' }}
+            key={lesson.id}>{lesson.teacher.lastname} ~ {lesson.student.lastname}
+          </Link>
+        </td>
 
         <td>{lesson.date}</td>
         <td><Link to={`/teachers/${lesson.teacher_id}`}>{lesson.teacher.firstname} {lesson.teacher.lastname}</Link></td>
@@ -29,18 +36,24 @@ const LessonsList = (props) => {
         <td>{lesson.notes}</td>
 
         {props.edit ?
-          <td><button
-            type='button'
-            className="Edit"
-            onClick={() => props.edit(lesson.id)}>edit
-        </button></td>
+          <td>
+            <button
+              type='button'
+              className="Edit"
+              onClick={() => props.edit(lesson.id)}>edit
+            </button>
+          </td>
           : null}
 
         {props.deleteLesson ?
-          <td><button
-            onClick={() => props.deleteLesson(lesson.id)}
-            className="Danger">x</button></td>
+          <td>
+            <button
+              onClick={() => props.deleteLesson(lesson.id)}
+              className="Danger">X
+            </button>
+          </td>
           : null}
+
       </tr>
     )
   })

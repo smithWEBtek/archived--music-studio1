@@ -6,7 +6,7 @@ import LessonResourcesList from '../../Lessons/LessonResources/LessonResourcesLi
 
 const Lesson = (props) => {
 
-  const lesson = props.lessons.filter(les => les.id === +props.match.params.id)[0]
+  const lesson = props.lessons.find(les => les.id === +props.match.params.id)
   let lessonHeader = <div><p>Lesson component is loading...</p></div>
   let renderLessonResources = <div><h5>No resources assigned</h5></div>
 

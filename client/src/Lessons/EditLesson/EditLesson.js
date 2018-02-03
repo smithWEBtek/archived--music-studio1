@@ -46,7 +46,7 @@ class EditLesson extends Component {
       student: '',
       notes: ''
     })
-    this.props.closeForm()
+    this.props.closeEditLessonForm()
   }
 
   //********EDIT_LESSON selector functions **************************
@@ -112,7 +112,7 @@ class EditLesson extends Component {
           </p>
           <button
             type="button"
-            onClick={this.props.closeForm}
+            onClick={this.props.closeEditLessonForm}
             className="Danger">CANCEL</button>
 
           <button

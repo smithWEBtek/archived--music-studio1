@@ -7,9 +7,9 @@ const initialState = {
   message: ''
 };
 
-
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+
     //-----CREATE LESSON-----------------------------
     case actionTypes.CREATE_LESSON_START:
       return Object.assign({}, state, { loading: true })
@@ -21,12 +21,62 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         error: action.error,
         loading: false,
-        message: action.response
+        message: action.type
       })
 
     case actionTypes.CREATE_LESSON:
       const newLesson = action.lessonData
-      return Object.assign({}, state, { lessons: state.lessons.concat(newLesson) })
+      return Object.assign({}, state, {
+        lessons: state.lessons.concat(newLesson)
+      })
+
+
+    //-----FETCH LESSONS-----------------------------
+    case actionTypes.FETCH_LESSONS_START:
+      return Object.assign({}, state, { loading: true })
+
+    case actionTypes.FETCH_LESSONS_SUCCESS:
+      return Object.assign({}, state, { loading: false })
+
+    case actionTypes.FETCH_LESSONS_FAIL:
+      return Object.assign({}, state, {
+        error: action.error,
+        loading: false,
+        message: action.type
+      })
+
+    case actionTypes.FETCH_LESSONS:
+      const lessons = action.lessonsList
+      return Object.assign({}, state, {
+        lessons: lessons.sort((a, b) => (a.lastname) - (b.lastname))
+      })
+
+
+    //-----UPDATE LESSON-----------------------------
+    case actionTypes.UPDATE_LESSON_START:
+      return Object.assign({}, state, { loading: true })
+
+    case actionTypes.UPDATE_LESSON_SUCCESS:
+      return Object.assign({}, state, { loading: false })
+
+    case actionTypes.UPDATE_LESSON_FAIL:
+      return Object.assign({}, state, {
+        error: action.error,
+        loading: false,
+        message: action.type
+      })
+
+    case actionTypes.UPDATE_LESSON:
+      const lessonData = action.updatedLessonData
+      const lessonIndex = state.lessons.findIndex(lesson => lesson.id === lessonData.id);
+      const stateTemp = {
+        ...state,
+        lessons: [
+          ...state.lessons.slice(0, lessonIndex),
+          ...state.lessons.slice(lessonIndex + 1, state.lessons.length)
+        ]
+      };
+      return Object.assign({}, { ...stateTemp }, { lessons: stateTemp.lessons.concat(lessonData) })
 
 
     //-----DELETE LESSON-----------------------------
@@ -44,54 +94,12 @@ const reducer = (state = initialState, action) => {
       })
 
     case actionTypes.DELETE_LESSON:
-      const updatedLessonsArray = state.lessons.filter(lesson => lesson.id !== action.id);
-      return Object.assign({}, state, { lessons: updatedLessonsArray })
-
-
-    //-----UPDATE LESSON-----------------------------    
-    case actionTypes.UPDATE_LESSON_START:
-      return Object.assign({}, state, { loading: true })
-
-    case actionTypes.UPDATE_LESSON_SUCCESS:
-      return Object.assign({}, state, { loading: false })
-
-    case actionTypes.UPDATE_LESSON_FAIL:
+      const updatedLessons = state.lessons.filter(lesson => lesson.id !== action.id);
       return Object.assign({}, state, {
-        error: action.error,
-        loading: false,
-        message: action.type
+        lessons: updatedLessons
       })
 
-    case actionTypes.UPDATE_LESSON:
-      const lessonData = action.updatedLessonData
-      const lessonIndex = state.lessons.findIndex(lesson => lesson.id === lessonData.id)
-      const stateTemp = {
-        ...state,
-        lessons: [
-          ...state.lessons.slice(0, lessonIndex),
-          ...state.lessons.slice(lessonIndex + 1, state.lessons.length)
-        ]
-      };
-      return Object.assign({}, { ...stateTemp }, { lessons: stateTemp.lessons.concat(lessonData) })
-
-
-    //-----FETCH LESSONS-----------------------------
-    case actionTypes.FETCH_LESSONS_START:
-      return Object.assign({}, state, { loading: true })
-
-    case actionTypes.FETCH_LESSONS_SUCCESS:
-      return Object.assign({}, state, { loading: false })
-
-    case actionTypes.FETCH_LESSONS_FAIL:
-      return Object.assign({}, state, {
-        error: action.error,
-        loading: false,
-        message: action.type
-      })
-    case actionTypes.FETCH_LESSONS:
-      return Object.assign({}, state, { lessons: action.lessonsList.sort((a, b) => (a.id) - (b.id)) })
-
-    //----- DEFAULT ----------------------------------
+    //----- DEFAULT --------------------------------
     default:
       return state;
   }

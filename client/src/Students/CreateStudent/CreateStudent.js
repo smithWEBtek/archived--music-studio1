@@ -25,6 +25,12 @@ class CreateStudent extends Component {
     this.setState({ [name]: value })
   }
 
+  handleTeacherSelect = (event) => {
+    this.setState({
+      teacher_id: this.props.teachers.find(teacher => teacher.lastname === event.target.value).id
+    })
+  }
+
   handleSubmit = (e) => {
     e.preventDefault();
     const newStudentData = this.state;
@@ -37,12 +43,6 @@ class CreateStudent extends Component {
       teacher_id: ''
     });
     this.props.createStudentCancel()
-  }
-
-  handleTeacherSelect = (event) => {
-    this.setState({
-      teacher_id: this.props.teachers.find(teacher => teacher.lastname === event.target.value).id
-    })
   }
 
   render() {

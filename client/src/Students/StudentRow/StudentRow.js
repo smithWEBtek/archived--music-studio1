@@ -9,10 +9,15 @@ const StudentRow = (props) => {
     <Aux>
       <tr>
         <th scope="row">{props.student.id}</th>
-        <td><Link
-          to={`/students/${props.student.id}`}
-          style={{ marginRight: '5px' }}
-          key={props.student.id}>{props.student.lastname}, {props.student.firstname}</Link></td>
+
+        <td>
+          <Link
+            to={`/students/${props.student.id}`}
+            style={{ marginRight: '5px' }}
+            key={props.student.id}>{props.student.lastname}, {props.student.firstname}
+          </Link>
+        </td>
+
         <td>{props.student.email}</td>
         <td>{props.student.teacher_id}</td>
         <td>{props.student.level}</td>

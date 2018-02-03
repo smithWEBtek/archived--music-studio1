@@ -32,7 +32,7 @@ export const fetchLessonsStart = () => {
   return { type: actionTypes.FETCH_LESSONS_START }
 }
 export const fetchLessonsSuccess = (lessons) => {
-  return { type: actionTypes.FETCH_LESSONS_SUCCESS }
+  return { type: actionTypes.FETCH_LESSONS_SUCCESS, lessonsList: lessons }
 }
 export const fetchLessonsFail = (error) => {
   return { type: actionTypes.FETCH_LESSONS_FAIL, error: error }

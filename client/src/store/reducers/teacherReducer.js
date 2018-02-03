@@ -94,9 +94,9 @@ const reducer = (state = initialState, action) => {
       })
 
     case actionTypes.DELETE_TEACHER:
-      const updatedTeachersArray = state.teachers.filter(teacher => teacher.id !== action.id);
+      const updatedTeachers = state.teachers.filter(teacher => teacher.id !== action.id);
       return Object.assign({}, state, {
-        teachers: updatedTeachersArray
+        teachers: updatedTeachers
       })
 
     //----- DEFAULT --------------------------------

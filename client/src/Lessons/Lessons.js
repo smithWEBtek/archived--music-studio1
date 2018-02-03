@@ -14,7 +14,7 @@ import LessonsList from './LessonsList/LessonsList'
 class Lessons extends Component {
   state = {
     lesson: {},
-    showLesson: false,
+    // showLesson: false,
     createLesson: false,
     editLesson: false
   }
@@ -28,7 +28,7 @@ class Lessons extends Component {
     this.setState({ createLesson: true })
   }
 
-  createLessonFormClose = () => {
+  closeCreateLessonForm = () => {
     this.setState({ createLesson: false })
   }
 
@@ -56,7 +56,7 @@ class Lessons extends Component {
     })
   }
 
-  editLessonFormCancel = () => {
+  closeEditLessonForm = () => {
     this.setState({
       editLesson: false,
       lesson: null
@@ -80,23 +80,23 @@ class Lessons extends Component {
         <button onClick={() => this.createLessonForm()}>Add Lesson</button>
         <Modal
           show={this.state.createLesson}
-          modalClosed={this.createLessonFormClose}>
+          modalClosed={this.closeCreateLessonForm}>
           <CreateLesson
             createLesson={(newLessonData) => this.createLesson(newLessonData)}
-            closeForm={this.createLessonFormClose} />
+            closeCreateLessonForm={this.closeCreateLessonForm} />
         </Modal>
 
         {/**********EDIT LESSON MODAL********************/}
         <Modal
           show={this.state.editLesson}
-          modalClosed={this.editLessonFormCancel}>
+          modalClosed={this.closeEditLessonForm}>
           {this.state.editLesson ? <EditLesson
             lesson_id={this.state.lesson.id}
             date={this.state.lesson.date}
             teacher={this.state.lesson.teacher}
             student={this.state.lesson.student}
             notes={this.state.lesson.notes}
-            closeForm={() => this.editLessonFormCancel()}
+            closeEditLessonForm={() => this.closeEditLessonForm()}
             updateLesson={(data) => this.editLessonUpdate(data)}
           /> : null}
         </Modal>
@@ -104,10 +104,10 @@ class Lessons extends Component {
         {/**********LESSONS LIST***********************/}
         < div >
           <Switch>
-            <Route path={`${match.url}/:id/edit`} exact component={EditLesson} />
             <Route path={`${match.url}/new`} exact component={CreateLesson} />
             <Route path={`${match.url}/:id`} exact component={Lesson} />
-            <Route path={`${match.url}`} exact />
+            <Route path={`${match.url}/:id/edit`} exact component={EditLesson} />
+            <Route path={match.url} exact />
           </Switch>
         </div>
         <div>
