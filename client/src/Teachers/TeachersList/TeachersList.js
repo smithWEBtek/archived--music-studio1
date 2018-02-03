@@ -6,7 +6,7 @@ import './TeachersList.css'
 const TeachersList = (props) => {
   let sortedTeachers = props.teachers.sort((a, b) => a.lastname.toLowerCase() < b.lastname.toLowerCase() ? -1 : a.lastname.toLowerCase() > b.lastname.toLowerCase() ? 1 : 0)
 
-  let renderedTeachers = sortedTeachers.map((teacher, index) => {
+  let renderTeachers = sortedTeachers.map((teacher, index) => {
     return (
       <TeacherRow
         key={index}
@@ -28,11 +28,11 @@ const TeachersList = (props) => {
             <th>Active?</th>
             <th>Show</th>
             {props.edit ? <th>Edit</th> : null}
-            {props.delete ? <th>Delete</th> : null}
+            {props.deleteTeacher ? <th>Delete</th> : null}
           </tr>
         </thead>
         <tbody>
-          {renderedTeachers}
+          {renderTeachers}
         </tbody>
       </Table>
     </div>

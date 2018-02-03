@@ -1,8 +1,8 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { Table } from 'reactstrap'
 import Aux from '../../hoc/Aux/Aux'
 import './ResourcesList.css'
+import ResourceRow from '../ResourceRow/ResourceRow'
 
 const ResourcesList = (props) => {
 
@@ -10,46 +10,12 @@ const ResourcesList = (props) => {
   let renderResources = sortedResources.map((resource, index) => {
     return (
       <Aux key={index} >
-        <tr>
-          <th scope="row">{index + 1}</th>
-
-          {resource.url === 'no_url_given' ? (
-            <td><button
-              type='button'
-              className="Disabled"
-            >empty</button></td>)
-            : (<td><button
-              className="Success"><Link
-                to={`/resources/${resource.id}`}
-                params={{ id: resource.id }}
-                key={resource.id}
-              >show</Link></button></td>)}
-
-          <td><Link
-            to={`/resources/${resource.id}`}
-            params={{ id: resource.id }}
-            key={resource.id}
-          >{resource.title}</Link></td>
-
-          <td>{resource.category}</td>
-          <td>{resource.description}</td>
-          <td>{resource.format}</td>
-          <td>{resource.location}</td>
-
-          {props.edit ?
-            <td><button
-              type='button'
-              className="Edit"
-              onClick={() => props.edit(resource.id)}>edit
-        </button></td>
-            : null}
-
-          {props.delete ?
-            <td><button
-              onClick={() => props.delete(resource.id)}
-              className="Danger">x</button></td>
-            : null}
-        </tr>
+        <ResourceRow
+          key={index}
+          resource={resource}
+          edit={props.edit}
+          deleteResource={props.deleteResource}
+        />
       </Aux >
     )
   })
@@ -67,7 +33,7 @@ const ResourcesList = (props) => {
             <th>Format</th>
             <th>Location</th>
             {props.edit ? <th>Edit</th> : null}
-            {props.delete ? <th>Delete</th> : null}
+            {props.deleteResource ? <th>Delete</th> : null}
           </tr>
         </thead>
         <tbody>

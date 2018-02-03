@@ -51,7 +51,8 @@ class Resources extends Component {
   }
 
   editResourceUpdate = (data) => {
-    this.props.onUpdateResource(data)
+    let { history } = this.props
+    this.props.onUpdateResource(data, history)
     this.setState({
       editResource: false,
       resource: null
@@ -63,6 +64,12 @@ class Resources extends Component {
       editResource: false,
       resource: null
     })
+  }
+
+  //********DELETE_RESOURCE handling****************
+  deleteResource = (id) => {
+    let { history } = this.props
+    this.props.onDeleteResource(id, history)
   }
 
   render() {
@@ -114,7 +121,7 @@ class Resources extends Component {
             <ResourcesList
               resources={resources}
               edit={(id) => this.showEditResourceForm(id)}
-              delete={(id) => this.props.onDeleteResource(id)} />
+              deleteResource={(id) => this.deleteResource(id)} />
           </div>
         </div>
       </Container >
@@ -131,9 +138,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     onFetchResources: () => dispatch(actions.fetchResources()),
-    onCreateResource: (data) => dispatch(actions.createResource(data)),
-    onUpdateResource: (data) => dispatch(actions.updateResource(data)),
-    onDeleteResource: (id) => dispatch(actions.deleteResource(id))
+    onCreateResource: (data, history) => dispatch(actions.createResource(data, history)),
+    onUpdateResource: (data, history) => dispatch(actions.updateResource(data, history)),
+    onDeleteResource: (id, history) => dispatch(actions.deleteResource(id, history))
   };
 }
 

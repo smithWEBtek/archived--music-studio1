@@ -118,7 +118,7 @@ class Teachers extends Component {
             <TeachersList
               teachers={teachers}
               edit={(id) => this.showEditTeacherForm(id)}
-              delete={(id) => this.props.onDeleteTeacher(id)}
+              deleteTeacher={(id) => this.props.onDeleteTeacher(id)}
             />
           </div>
         </div>

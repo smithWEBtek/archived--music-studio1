@@ -32,7 +32,7 @@ export const fetchResourcesStart = () => {
   return { type: actionTypes.FETCH_RESOURCES_START }
 }
 export const fetchResourcesSuccess = (resources) => {
-  return { type: actionTypes.FETCH_RESOURCES_SUCCESS, resourcesList: resources }
+  return { type: actionTypes.FETCH_RESOURCES_SUCCESS }
 }
 export const fetchResourcesFail = (error) => {
   return { type: actionTypes.FETCH_RESOURCES_FAIL, error: error }

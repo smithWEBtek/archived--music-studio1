@@ -37,9 +37,9 @@ const TeacherRow = (props) => {
         </button></td>
           : null}
 
-        {props.delete ?
+        {props.deleteTeacher ?
           <td><button
-            onClick={() => props.delete(props.teacher.id)}
+            onClick={() => props.deleteTeacher(props.teacher.id)}
             className="Danger">x</button></td>
           : null}
       </tr>
