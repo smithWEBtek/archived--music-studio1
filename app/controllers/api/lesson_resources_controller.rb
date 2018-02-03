@@ -29,6 +29,8 @@ class Api::LessonResourcesController < ApplicationController
     end
     
     def destroy
+binding.pry
+
       @lesson_resource = LessonResource.find(params[:id])
       @lesson_resource.delete
     end

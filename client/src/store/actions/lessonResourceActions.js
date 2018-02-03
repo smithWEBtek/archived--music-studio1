@@ -16,7 +16,7 @@ export const createLessonResource = (data) => {
     dispatch(createLessonResourceStart())
     LessonResourceService.createLessonResource(data)
       .then(response => {
-        dispatch({ type: actionTypes.CREATE_LESSON_RESOURCE, data: response })
+        dispatch({ type: actionTypes.CREATE_LESSON_RESOURCE, lessonResourceData: response })
         dispatch(createLessonResourceSuccess())
       })
       .catch(error => {
@@ -30,15 +30,12 @@ export const createLessonResource = (data) => {
 export const fetchLessonResourcesStart = () => {
   return { type: actionTypes.FETCH_LESSON_RESOURCES_START }
 }
-
 export const fetchLessonResourcesSuccess = (lessonResources) => {
   return { type: actionTypes.FETCH_LESSON_RESOURCES_SUCCESS, lessonResourcesList: lessonResources }
 }
-
 export const fetchLessonResourcesFail = (error) => {
   return { type: actionTypes.FETCH_LESSON_RESOURCES_FAIL, error: error }
 }
-
 export const fetchLessonResources = () => {
   return dispatch => {
     dispatch(fetchLessonResourcesStart())
@@ -67,7 +64,7 @@ export const updateLessonResourceFail = (error) => {
 export const updateLessonResource = (data) => {
   return dispatch => {
     dispatch(updateLessonResourceStart())
-    LessonResourceService.updateLessonResource(data.id, data)
+    LessonResourceService.updateLessonResource(data)
       .then(response => {
         dispatch({ type: actionTypes.UPDATE_LESSON_RESOURCE, updatedLessonResourceData: response })
         dispatch(updateLessonResourceSuccess())
@@ -77,7 +74,6 @@ export const updateLessonResource = (data) => {
       })
   }
 }
-
 
 //-----DELETE LESSON_RESOURCE ACTIONS-----------------------------
 export const deleteLessonResourceStart = () => {
@@ -102,4 +98,3 @@ export const deleteLessonResource = (id) => {
       })
   }
 }
-

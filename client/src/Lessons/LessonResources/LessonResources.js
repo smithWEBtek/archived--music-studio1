@@ -12,10 +12,13 @@ class LessonResources extends Component {
 
   render() {
     const renderLessonResources = this.props.lessonResources.map((lesres, index) => {
+
+      debugger
+
       return (
         <tr key={index}>
           <th scope="row">{lesres.id}</th>
-          <td>{lesres.lesson.date}</td>
+          {/* <td>{lesres.lesson.date}</td> */}
           <td><Link
             to={`/lessons/${lesres.lesson_id}`}
             style={{ marginRight: '5px' }}
