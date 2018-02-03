@@ -17,7 +17,7 @@ export const createResource = (data, history) => {
     ResourceService.createResource(data)
       .then(response => {
         dispatch({ type: actionTypes.CREATE_RESOURCE, resourceData: response })
-        history.push(`/resources/${response.id}`)
+        history.push(`/resources/${data.id}`)
         dispatch(createResourceSuccess())
       })
       .catch(error => {

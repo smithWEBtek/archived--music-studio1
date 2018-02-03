@@ -24,10 +24,8 @@ const LessonService = {
       body: JSON.stringify({ lesson: lesson }),
       headers: { 'Content-Type': 'application/json' }
     }
-    return fetch(`${API_URL}/lessons/${lesson.id}`, request, { method: 'PATCH' })
-      .then(response => {
-        console.log('[LessonService][updateLesson]response:', response.json())
-      })
+    return fetch(`${API_URL}/lessons/${lesson.id}`, request)
+      .then(response => response.json())
   },
   deleteLesson(id) {
     const request = {
@@ -35,10 +33,8 @@ const LessonService = {
       body: JSON.stringify({ id: id }),
       headers: { 'Content-Type': 'application/json' }
     }
-    return fetch(`${API_URL}/lessons/${id}`, request, { method: 'DELETE' })
-      .then(response => {
-        console.log('[LessonService][deleteLesson]response:', response)
-      })
+    return fetch(`${API_URL}/lessons/${id}`, request)
+      .then(response => response.json())
   }
 }
 

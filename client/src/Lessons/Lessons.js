@@ -107,7 +107,7 @@ class Lessons extends Component {
             <Route path={`${match.url}/:id/edit`} exact component={EditLesson} />
             <Route path={`${match.url}/new`} exact component={CreateLesson} />
             <Route path={`${match.url}/:id`} exact component={Lesson} />
-            <Route path={match.url} exact />
+            <Route path={`${match.url}`} exact />
           </Switch>
         </div>
         <div>

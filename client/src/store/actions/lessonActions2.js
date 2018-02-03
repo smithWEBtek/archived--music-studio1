@@ -16,7 +16,7 @@ export const createLesson = (data, history) => {
     dispatch(createLessonStart())
     LessonService.createLesson(data)
       .then(response => {
-        dispatch({ type: actionTypes.CREATE_LESSON, lessonData: response })
+        dispatch({ type: actionTypes.CREATE_LESSON, data: response })
         history.push(`/lessons/${response.id}`)
         dispatch(createLessonSuccess())
       })
@@ -26,17 +26,19 @@ export const createLesson = (data, history) => {
   }
 }
 
-
 //-----FETCH LESSONS ACTIONS-----------------------------
 export const fetchLessonsStart = () => {
   return { type: actionTypes.FETCH_LESSONS_START }
 }
+
 export const fetchLessonsSuccess = (lessons) => {
-  return { type: actionTypes.FETCH_LESSONS_SUCCESS }
+  return { type: actionTypes.FETCH_LESSONS_SUCCESS, lessonsList: lessons }
 }
+
 export const fetchLessonsFail = (error) => {
   return { type: actionTypes.FETCH_LESSONS_FAIL, error: error }
 }
+
 export const fetchLessons = () => {
   return dispatch => {
     dispatch(fetchLessonsStart())
@@ -50,7 +52,6 @@ export const fetchLessons = () => {
       })
   }
 }
-
 
 //-----UPDATE LESSON ACTIONS-----------------------------
 export const updateLessonStart = () => {
@@ -68,8 +69,7 @@ export const updateLesson = (data, history) => {
     LessonService.updateLesson(data)
       .then(response => {
         dispatch({ type: actionTypes.UPDATE_LESSON, updatedLessonData: response })
-        history.push(`/`)
-        history.push(`/lessons`)
+        history.push(`/lessons/${data.id}`)
         dispatch(updateLessonSuccess())
       })
       .catch(error => {
@@ -94,11 +94,12 @@ export const deleteLesson = (id, history) => {
     LessonService.deleteLesson(id)
       .then(response => {
         dispatch({ type: actionTypes.DELETE_LESSON, id: id })
-        dispatch(deleteLessonSuccess())
+        history.push('/')
         history.push('/lessons')
+        dispatch(deleteLessonSuccess())
       })
       .catch(error => {
-        dispatch(deleteLessonFail(error))
+        dispatch({ type: actionTypes.DELETE_LESSON_FAIL, error: error })
       })
   }
 }
