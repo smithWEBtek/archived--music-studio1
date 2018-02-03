@@ -25,7 +25,7 @@ const reducer = (state = initialState, action) => {
 
     case actionTypes.CREATE_LESSON_RESOURCE:
       const newLessonResource = action.data
-      return Object.assigne({}, state, { lessonResources: state.lessonResources.concat(newLessonResource) })
+      return Object.assign({}, state, { lessonResources: state.lessonResources.concat(newLessonResource) })
 
 
     //-----FETCH LESSON_RESOURCES-----------------------------

@@ -53,7 +53,10 @@ const StudentRow = (props) => {
             className="Success">LIKE</button></td>
           : null}
 
-        <td className="LikeCount">{props.student.likes.toString()}</td>
+        {props.likeStudent ?
+          <td className="LikeCount">{props.student.likes.toString()}</td>
+          : null}
+
       </tr>
     </Aux>
   )

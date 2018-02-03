@@ -33,8 +33,8 @@ const StudentsList = (props) => {
             <th>Show</th>
             {props.edit ? <th>Edit</th> : null}
             {props.deleteStudent ? <th>X</th> : null}
-            <th>Like</th>
-            <th>Count</th>
+            {props.likeStudent ? <th>Like</th> : null}
+            {props.likeStudent ? <th>Count</th> : null}
           </tr>
         </thead>
         <tbody>
