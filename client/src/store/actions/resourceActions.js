@@ -43,6 +43,7 @@ export const fetchResources = () => {
     ResourceService.fetchResources()
       .then(response => {
         dispatch({ type: actionTypes.FETCH_RESOURCES, resourcesList: response })
+        dispatch(fetchResourcesSuccess())
       })
       .catch(error => {
         dispatch(fetchResourcesFail(error))

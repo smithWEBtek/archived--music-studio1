@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch, Link } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../store/actions/index'
 
@@ -15,27 +15,12 @@ class Lessons extends Component {
   state = {
     lesson: {},
     showLesson: false,
-    showLessonsList: false,
     createLesson: false,
     editLesson: false
   }
 
   componentDidMount() {
     this.props.onFetchLessons();
-  }
-
-  //********SHOW_LESSONS_LIST form handling********************
-  showLessonsList = () => {
-    this.setState({ showLessonsList: true })
-  }
-
-  closeLessonsList = () => {
-    this.setState({ showLessonsList: false })
-  }
-
-  //********SHOW_LESSON form handling**************************
-  showLessonClose = () => {
-    this.setState({ showLesson: false })
   }
 
   //********CREATE_LESSON form handling **************************
@@ -63,8 +48,8 @@ class Lessons extends Component {
   }
 
   editLessonUpdate = (data) => {
-    console.log('[Lessons] editLessonUpdate data', data)
-    this.props.onUpdateLesson(data)
+    const { history } = this.props
+    this.props.onUpdateLesson(data, history)
     this.setState({
       editLesson: false,
       lesson: null
@@ -78,13 +63,18 @@ class Lessons extends Component {
     })
   }
 
+  //********DELETE_LESSON handling****************
+  deleteLesson = (id) => {
+    let { history } = this.props
+    this.props.onDeleteLesson(id, history)
+  }
+
   render() {
     const { match, lessons } = this.props;
 
     return (
       <Container>
         <hr />
-        <button onClick={() => this.showLessonsList()}><Link to='/lessons'>ALL lessons</Link></button>
 
         {/*********CREATE LESSON MODAL********************/}
         <button onClick={() => this.createLessonForm()}>Add Lesson</button>
@@ -121,14 +111,12 @@ class Lessons extends Component {
           </Switch>
         </div>
         <div>
-          {this.state.showLessonsList ?
-            <div><h5 className="IndexHeaderBackground">ALL lessons</h5>
-              <LessonsList
-                lessons={lessons}
-                edit={(id) => this.showEditLessonForm(id)}
-                delete={(id) => this.props.onDeleteLesson(id)}
-                close={() => this.closeLessonsList()}
-              /></div> : null}
+          <div><h5 className="IndexHeaderBackground">ALL lessons</h5>
+            <LessonsList
+              lessons={lessons}
+              edit={(id) => this.showEditLessonForm(id)}
+              deleteLesson={(id) => this.deleteLesson(id)} />
+          </div>
         </div >
         <hr />
       </Container >
@@ -145,9 +133,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     onFetchLessons: () => dispatch(actions.fetchLessons()),
-    onCreateLesson: (data) => dispatch(actions.createLesson(data)),
-    onUpdateLesson: (data) => dispatch(actions.updateLesson(data)),
-    onDeleteLesson: (id) => dispatch(actions.deleteLesson(id))
+    onCreateLesson: (data, history) => dispatch(actions.createLesson(data, history)),
+    onUpdateLesson: (data, history) => dispatch(actions.updateLesson(data, history)),
+    onDeleteLesson: (id, history) => dispatch(actions.deleteLesson(id, history))
   };
 }
 

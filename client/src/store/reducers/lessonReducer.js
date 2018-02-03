@@ -1,5 +1,4 @@
 import * as actionTypes from '../actions/actionTypes';
-import LessonService from '../services/LessonService';
 
 const initialState = {
   lessons: [],
@@ -8,73 +7,91 @@ const initialState = {
   message: ''
 };
 
-const updateObject = (oldObject, updatedValues) => { return { ...oldObject, ...updatedValues } }
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     //-----CREATE LESSON-----------------------------
-    case actionTypes.CREATE_LESSON:
-      const newLesson = action.data
-      return updateObject(state, { lessons: state.lessons.concat(newLesson) })
-
     case actionTypes.CREATE_LESSON_START:
-      return updateObject(state, { loading: true })
+      return Object.assign({}, state, { loading: true })
 
     case actionTypes.CREATE_LESSON_SUCCESS:
-      return updateObject(state, { loading: false })
+      return Object.assign({}, state, { loading: false })
 
     case actionTypes.CREATE_LESSON_FAIL:
-      return updateObject(state, {
+      return Object.assign({}, state, {
         error: action.error,
         loading: false,
         message: action.response
       })
 
+    case actionTypes.CREATE_LESSON:
+      const newLesson = action.lessonData
+      return Object.assign({}, state, { lessons: state.lessons.concat(newLesson) })
+
 
     //-----DELETE LESSON-----------------------------
-    case actionTypes.DELETE_LESSON:
-      const updatedLessonsArray = state.lessons.filter(lesson => lesson.id !== action.id);
-      return updateObject(state, { lessons: updatedLessonsArray, loading: false })
+    case actionTypes.DELETE_LESSON_START:
+      return Object.assign({}, state, { loading: true })
 
     case actionTypes.DELETE_LESSON_SUCCESS:
-      return updateObject(state, { loading: false })
+      return Object.assign({}, state, { loading: false })
 
     case actionTypes.DELETE_LESSON_FAIL:
-      return updateObject(state, { error: action.error, loading: false })
+      return Object.assign({}, state, {
+        error: action.error,
+        loading: false,
+        message: action.type
+      })
+
+    case actionTypes.DELETE_LESSON:
+      const updatedLessonsArray = state.lessons.filter(lesson => lesson.id !== action.id);
+      return Object.assign({}, state, { lessons: updatedLessonsArray })
 
 
-    //-----UPDATE LESSON-----------------------------
-    case actionTypes.UPDATE_LESSON:
-      const lessonData = action.updatedLessonData
-      return LessonService.updateLesson(lessonData.id, lessonData)
+    //-----UPDATE LESSON-----------------------------    
+    case actionTypes.UPDATE_LESSON_START:
+      return Object.assign({}, state, { loading: true })
 
     case actionTypes.UPDATE_LESSON_SUCCESS:
-      return updateObject(state, { loading: false })
+      return Object.assign({}, state, { loading: false })
 
     case actionTypes.UPDATE_LESSON_FAIL:
-      return updateObject(state, { error: action.error, loading: false })
+      return Object.assign({}, state, {
+        error: action.error,
+        loading: false,
+        message: action.type
+      })
 
-
-    //-----FETCH LESSON-----------------------------
-    // case actionTypes.FETCH_LESSON_START:
-    //   return updateObject(state, { loading: true })
-
-    // case actionTypes.FETCH_LESSON_SUCCESS:
-    //   return updateObject(state, { lessons: action.lessonData })
-
-    // case actionTypes.FETCH_LESSON_FAIL:
-    //   return updateObject(state, { error: action.error })
+    case actionTypes.UPDATE_LESSON:
+      const lessonData = action.updatedLessonData
+      const lessonIndex = state.lessons.findIndex(lesson => lesson.id === lessonData.id)
+      const stateTemp = {
+        ...state,
+        lessons: [
+          ...state.lessons.slice(0, lessonIndex),
+          ...state.lessons.slice(lessonIndex + 1, state.lessons.length)
+        ]
+      };
+      return Object.assign({}, { ...stateTemp }, { lessons: stateTemp.lessons.concat(lessonData) })
 
 
     //-----FETCH LESSONS-----------------------------
     case actionTypes.FETCH_LESSONS_START:
-      return updateObject(state, { loading: true })
+      return Object.assign({}, state, { loading: true })
 
     case actionTypes.FETCH_LESSONS_SUCCESS:
-      return updateObject(state, { lessons: action.lessonsList.sort((a, b) => (a.id) - (b.id)) })
+      return Object.assign({}, state, { loading: false })
 
     case actionTypes.FETCH_LESSONS_FAIL:
-      return updateObject(state, { error: action.error })
+      return Object.assign({}, state, {
+        error: action.error,
+        loading: false,
+        message: action.type
+      })
+    case actionTypes.FETCH_LESSONS:
+      return Object.assign({}, state, { lessons: action.lessonsList.sort((a, b) => (a.id) - (b.id)) })
 
+    //----- DEFAULT ----------------------------------
     default:
       return state;
   }

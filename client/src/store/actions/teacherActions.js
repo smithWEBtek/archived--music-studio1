@@ -43,6 +43,7 @@ export const fetchTeachers = () => {
     TeacherService.fetchTeachers()
       .then(response => {
         dispatch({ type: actionTypes.FETCH_TEACHERS, teachersList: response })
+        dispatch(fetchTeachersSuccess())
       })
       .catch(error => {
         dispatch(fetchTeachersFail(error))

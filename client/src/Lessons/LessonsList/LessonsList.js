@@ -11,8 +11,7 @@ const LessonsList = (props) => {
         <th scope="row">{lesson.id}</th>
         <td><button
           type='button'
-          className="Success"
-          onClick={props.close}><Link
+          className="Success"><Link
             to={`/lessons/${lesson.id}`}
             key={lesson.id}
           >show</Link>
@@ -20,7 +19,6 @@ const LessonsList = (props) => {
         <td><Link
           to={`/lessons/${lesson.id}`}
           style={{ marginRight: '5px' }}
-          onClick={props.close}
           key={lesson.id}>{lesson.teacher.lastname} ~ {lesson.student.lastname}
         </Link></td>
 
@@ -28,9 +26,7 @@ const LessonsList = (props) => {
         <td><Link to={`/teachers/${lesson.teacher_id}`}>{lesson.teacher.firstname} {lesson.teacher.lastname}</Link></td>
         <td><Link to={`/students/${lesson.student_id}`}>{lesson.student.firstname} {lesson.student.lastname}</Link></td>
         <td>{lesson.resources ? lesson.resources.length : 0}</td>
-        {/* <td>{lesson.resources ? <Link to={`/resources/${lesson.resources[0].id}`}>{lesson.resources[0].title}</Link> : 'none'}</td> */}
         <td>{lesson.notes}</td>
-
 
         {props.edit ?
           <td><button
@@ -40,9 +36,9 @@ const LessonsList = (props) => {
         </button></td>
           : null}
 
-        {props.delete ?
+        {props.deleteLesson ?
           <td><button
-            onClick={() => props.delete(lesson.id)}
+            onClick={() => props.deleteLesson(lesson.id)}
             className="Danger">x</button></td>
           : null}
       </tr>
@@ -60,10 +56,9 @@ const LessonsList = (props) => {
           <th>Teacher</th>
           <th>Student</th>
           <th>#Resources</th>
-          {/* <th>Title</th> */}
           <th>Notes</th>
           {props.edit ? <th>Edit</th> : null}
-          {props.delete ? <th>Delete</th> : null}
+          {props.deleteLesson ? <th>Delete</th> : null}
         </tr>
       </thead>
       <tbody>
