@@ -35,12 +35,12 @@ const LessonsList = (props) => {
         <td>{lesson.resources ? lesson.resources.length : 0}</td>
         <td>{lesson.notes}</td>
 
-        {props.edit ?
+        {props.showEditLessonForm ?
           <td>
             <button
               type='button'
               className="Edit"
-              onClick={() => props.edit(lesson.id)}>edit
+              onClick={() => props.showEditLessonForm(lesson.id)}>edit
             </button>
           </td>
           : null}

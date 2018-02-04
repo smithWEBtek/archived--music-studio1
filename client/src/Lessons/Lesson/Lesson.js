@@ -7,13 +7,13 @@ import LessonResourcesList from '../../Lessons/LessonResources/LessonResourcesLi
 const Lesson = (props) => {
 
   const lesson = props.lessons.find(les => les.id === +props.match.params.id)
-  let lessonHeader = <div><p>Lesson component is loading...</p></div>
+  let lessonMain = <div><h5>Lesson component is loading...</h5></div>
   let renderLessonResources = <div><h5>No resources assigned</h5></div>
 
   if (lesson) {
-    lessonHeader = (
+    lessonMain = (
       <div>
-        <h5 className="LessonHeaderBackground">{lesson.teacher.lastname} ~ {lesson.student.lastname}</h5>
+        <h5 className="LessonHeaderBackground">{lesson.teacher.lastname} teaching {lesson.student.lastname}</h5>
         <p>Date: <strong>{lesson.date}</strong></p>
         <p>Teacher: <strong><Link to={`/teachers/${lesson.teacher_id}`}>{lesson.teacher.firstname} {lesson.teacher.lastname}</Link></strong></p>
         <p>Student: <strong><Link to={`/students/${lesson.student_id}`}>{lesson.student.firstname} {lesson.student.lastname}</Link></strong></p>
@@ -28,8 +28,7 @@ const Lesson = (props) => {
         <hr />
         <h5 className="ResourceHeaderBackground">RESOURCES assigned to this lesson:</h5>
         <LessonResourcesList
-          lesson={lesson}
-          close={props.close} />
+          lesson={lesson} />
       </div >
     )
   }
@@ -37,7 +36,7 @@ const Lesson = (props) => {
   return (
     <div>
       <div>
-        {lessonHeader}
+        {lessonMain}
       </div>
       <div>
         {renderLessonResources}

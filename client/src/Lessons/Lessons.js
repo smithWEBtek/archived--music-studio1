@@ -14,7 +14,6 @@ import LessonsList from './LessonsList/LessonsList'
 class Lessons extends Component {
   state = {
     lesson: {},
-    // showLesson: false,
     createLesson: false,
     editLesson: false
   }
@@ -24,7 +23,7 @@ class Lessons extends Component {
   }
 
   //********CREATE_LESSON form handling **************************
-  createLessonForm = () => {
+  showCreateLessonForm = () => {
     this.setState({ createLesson: true })
   }
 
@@ -77,7 +76,7 @@ class Lessons extends Component {
         <hr />
 
         {/*********CREATE LESSON MODAL********************/}
-        <button onClick={() => this.createLessonForm()}>Add Lesson</button>
+        <button onClick={() => this.showCreateLessonForm()}>Add Lesson</button>
         <Modal
           show={this.state.createLesson}
           modalClosed={this.closeCreateLessonForm}>
@@ -114,7 +113,7 @@ class Lessons extends Component {
           <div><h5 className="IndexHeaderBackground">ALL lessons</h5>
             <LessonsList
               lessons={lessons}
-              edit={(id) => this.showEditLessonForm(id)}
+              showEditLessonForm={(id) => this.showEditLessonForm(id)}
               deleteLesson={(id) => this.deleteLesson(id)} />
           </div>
         </div >

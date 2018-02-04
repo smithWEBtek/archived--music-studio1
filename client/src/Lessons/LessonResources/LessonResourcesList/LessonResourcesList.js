@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Route, Switch, Link } from 'react-router-dom'
+import { Route, Switch, Link, withRouter } from 'react-router-dom'
 import './LessonResourcesList.css'
 import { Table } from 'reactstrap'
 import Aux from '../../../hoc/Aux/Aux'
@@ -10,15 +10,17 @@ import '../../../App.css'
 const LessonResourcesList = (props) => {
 
   const addLessonResource = (lesson_id, resource_id) => {
+    let { history } = props
     let data = {
       lesson_id: lesson_id,
       resource_id: resource_id
     }
-    props.onCreateLessonResource(data)
+    props.onCreateLessonResource(data, history)
   }
 
   const removeLessonResource = (id) => {
-    props.onDeleteLessonResource(id)
+    let { history } = props
+    props.onDeleteLessonResource(id, props.lesson.id, history)
   }
 
   let renderLessonResources = <tr><td>No resources for this lesson</td></tr>
@@ -27,11 +29,12 @@ const LessonResourcesList = (props) => {
   if (props.lesson.resources) {
     renderLessonResources = props.lesson.resources.map((resource, index) => {
       let resourceLRID = props.lesson.lesson_resources.find(lr => lr.resource_id === resource.id).id
+      console.log('[LessonResourcesList] resourceLRID', resourceLRID)
       return (
         <tr key={index}>
           <th scope="row">{resource.id}</th>
           <td><button type='button' onClick={() => removeLessonResource(resourceLRID)} className="Danger">
-            Rem</button></td>
+            Remove</button></td>
           <td><Link to={`/resources/${resource.id}`}>{resource.title}</Link></td>
           <td>{resource.format}</td>
           <td>{resource.category}</td>
@@ -123,9 +126,9 @@ const mapStateToProps = state => {
 
 const addDispatchToProps = dispatch => {
   return {
-    onCreateLessonResource: (id) => dispatch(actions.createLessonResource(id)),
-    onDeleteLessonResource: (id) => dispatch(actions.deleteLessonResource(id))
+    onCreateLessonResource: (data, history) => dispatch(actions.createLessonResource(data, history)),
+    onDeleteLessonResource: (id, lesson_id, history) => dispatch(actions.deleteLessonResource(id, lesson_id, history))
   }
 }
 
-export default connect(mapStateToProps, addDispatchToProps)(LessonResourcesList)
+export default connect(mapStateToProps, addDispatchToProps)(withRouter(LessonResourcesList))

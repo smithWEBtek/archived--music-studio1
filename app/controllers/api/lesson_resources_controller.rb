@@ -9,7 +9,7 @@ class Api::LessonResourcesController < ApplicationController
       render json: @lesson_resource
     end
   
-    def create
+    def create    
       @lesson_resource = LessonResource.new(lesson_resource_params)
       if @lesson_resource.save
         render json: @lesson_resource
@@ -17,20 +17,8 @@ class Api::LessonResourcesController < ApplicationController
         render json: { errors: { message: 'lesson_resource NOT created' }}
       end
     end
-  
-    def update
-      @lesson_resource = LessonResource.find(params[:id])
-      @lesson_resource.update(lesson_resource_params)
-      if @lesson_resource.save
-        render json: @lesson_resource
-      else
-        render json: { errors: { message: 'lesson_resource NOT updated' }}
-      end
-    end
     
     def destroy
-binding.pry
-
       @lesson_resource = LessonResource.find(params[:id])
       @lesson_resource.delete
     end
