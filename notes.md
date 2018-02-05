@@ -60,3 +60,21 @@ and the only way I found to do this was to navigate away from that page and then
 #### Since I am NOT re-fetching using the API, but only re-fetching updated Redux state, is there any harm in this approach?
 
 
+
+Hey Logan! Chuffed to hear you’re trying this out with react-router on Heroku. It will take a little bit more finessing.
+
+You’ll need add a fallback_index_html to your ApplicationController:
+
+class ApplicationController < ActionController::Base
+  def fallback_index_html
+    render :file => 'public/index.html'
+  end
+end
+And at the bottom of your routes.rb:
+
+get '*path', to: "application#fallback_index_html", constraints: ->(request) do
+  !request.xhr? && request.format.html?
+end
+That way Rails will pass anything it doesn’t match to your index.html so that react-router can take over.
+
+Hope that helps, and thanks for taking the time to check out the walkthrough.
