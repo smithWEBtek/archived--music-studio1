@@ -31,7 +31,7 @@ class MainNav extends Component {
               <Link to='/teachers' className="Item">teachers</Link>
               <Link to='/resources' className="Item">resources</Link>
               <Link to='/lessons' className="Item">lessons</Link>
-              <Link to='/lesson_resources' className="Item">lessonsResources</Link>
+              {/* <Link to='/lesson_resources' className="Item">lessonsResources</Link> */}
             </Nav>
           </Collapse>
           <div className="logo-home">

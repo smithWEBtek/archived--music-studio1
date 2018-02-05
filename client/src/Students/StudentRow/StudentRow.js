@@ -14,10 +14,12 @@ const StudentRow = (props) => {
           <Link
             to={`/students/${props.student.id}`}
             style={{ marginRight: '5px' }}
-            key={props.student.id}>{props.student.lastname}, {props.student.firstname}
+            key={props.student.id}>{props.student.lastname}
           </Link>
         </td>
-
+        <td>
+          {props.student.firstname}
+        </td>
         <td>{props.student.email}</td>
         <td>{props.student.teacher_id}</td>
         <td>{props.student.level}</td>
