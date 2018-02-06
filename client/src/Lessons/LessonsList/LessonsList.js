@@ -5,7 +5,7 @@ import './LessonsList.css'
 
 const LessonsList = (props) => {
 
-  const renderLessons = props.lessons.map((lesson, index) => {
+  const renderLessons = props.lessons.sort((a, b) => a.date > b.date ? -1 : a.date < b.date ? 1 : 0).map((lesson, index) => {
     return (
       <tr key={index}>
         <th scope="row">{lesson.id}</th>

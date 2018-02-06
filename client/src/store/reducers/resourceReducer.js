@@ -48,7 +48,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.FETCH_RESOURCES:
       const resources = action.resourcesList
       return Object.assign({}, state, {
-        resources: resources.sort((a, b) => (a.lastname) - (b.lastname))
+        resources: resources
       })
 
 

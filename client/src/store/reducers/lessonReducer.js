@@ -48,7 +48,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.FETCH_LESSONS:
       const lessons = action.lessonsList
       return Object.assign({}, state, {
-        lessons: lessons.sort((a, b) => (a.lastname) - (b.lastname))
+        lessons: lessons
       })
 
 

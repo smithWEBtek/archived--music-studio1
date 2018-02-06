@@ -11,7 +11,7 @@ class LessonResources extends Component {
   }
 
   render() {
-    const renderLessonResources = this.props.lessonResources.map((lesres, index) => {
+    const renderLessonResources = this.props.lessonResources.sort((a, b) => a.resource.title < b.resource.title ? -1 : a.resource.title > b.resource.title ? 1 : 0).map((lesres, index) => {
       return (
         <tr key={index}>
           <th scope="row">{lesres.id}</th>
