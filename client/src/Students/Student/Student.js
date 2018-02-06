@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom'
 import '../../App.css'
 import ResourcesList from '../../Resources/ResourcesList/ResourcesList'
 import LessonsList from '../../Lessons/LessonsList/LessonsList'
+import EditStudent from '../EditStudent/EditStudent'
+
 
 const Student = (props) => {
   const student = props.students.find(student => student.id === +props.match.params.id)
@@ -18,6 +20,20 @@ const Student = (props) => {
         <p>Level: <strong>{student.level}</strong></p>
         <p><Link to={`/teachers/${student.teacher.id}`}>Teacher: <strong>{student.teacher.lastname}</strong></Link></p>
         <p>Last lesson date: <strong>{student.lessons.length !== 0 ? student.lessons[student.lessons.length - 1].date : 'no lessons on record for this student'}</strong></p>
+        <p className={student.active.toString()}>Active: {student.active.toString()}</p>
+        <Link
+          to={`/students/${student.id}/edit`}
+          component={
+            <EditStudent
+              id={student.id}
+              firstname={student.firstname}
+              lastname={student.lastname}
+              email={student.email}
+              level={student.level}
+              teacher_id={student.teacher_id}
+              teacher={student.teacher}
+            />
+          }>EditStudent</Link>
       </div>
     )
   }

@@ -78,6 +78,8 @@ class Students extends Component {
   //********LIKE_STUDENT handling****************
   likeStudent = (id) => {
     let { history } = this.props
+    history.push('/students') // this primes the pump, so that "history.goBack()" doesn't screw up User experience
+
     let student = this.props.students.find(stu => stu.id === id)
     let data = Object.assign({}, student, { likes: student.likes + 1 })
     this.props.onUpdateStudent(data, history)
@@ -104,17 +106,18 @@ class Students extends Component {
           show={this.state.editStudent}
           modalClosed={this.closeEditStudentForm}>
           {this.state.student ? <EditStudent
-            id={this.state.student.id}
-            firstname={this.state.student.firstname}
-            lastname={this.state.student.lastname}
-            email={this.state.student.email}
-            level={this.state.student.level}
-            teacher_id={this.state.student.teacher_id}
-            teacher={this.state.student.teacher}
-            teachers={this.props.teachers}
-            active={this.state.student.active}
+            student_id={this.state.student.id}
+            // id={this.state.student.id}
+            // firstname={this.state.student.firstname}
+            // lastname={this.state.student.lastname}
+            // email={this.state.student.email}
+            // level={this.state.student.level}
+            // teacher_id={this.state.student.teacher_id}
+            // teacher={this.state.student.teacher}
+            // teachers={this.props.teachers}
+            // active={this.state.student.active}
             close={() => this.closeEditStudentForm()}
-            editStudentUpdate={(data) => this.editStudentUpdate(data)}
+          // editStudentUpdate={(data) => this.editStudentUpdate(data)}
           /> : null}
         </Modal>
 

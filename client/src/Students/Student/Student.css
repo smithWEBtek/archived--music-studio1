@@ -20,3 +20,12 @@
   font-style: italic;
   font-weight: 600;
 }
+
+
+.false {
+  color: rgb(238, 84, 84);
+}
+
+.true {
+  color: rgb(21, 199, 89);
+}

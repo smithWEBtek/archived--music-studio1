@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import './EditStudent.css';
+import { connect } from 'react-redux'
+import * as actions from '../../store/actions/studentActions'
 
 class EditStudent extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
+      student: '',
       id: '',
       firstname: '',
       lastname: '',
@@ -13,22 +16,35 @@ class EditStudent extends Component {
       level: '',
       teacher_id: '',
       teacher: '',
+      active: '',
       teachers: [],
-      active: ''
+      close: null
     }
   }
 
   componentDidMount() {
+    let student = this.state.student
+    if (this.props.student_id) {
+      student = this.props.students.find(stu => stu.id === this.props.student_id)
+      this.setState({
+        close: this.props.close,
+        student: student
+      })
+    } else {
+      student = this.props.students.find(stu => stu.id === +this.props.match.params.id)
+      this.setState({ student: student })
+    }
+
     this.setState({
-      id: this.props.id,
-      firstname: this.props.firstname,
-      lastname: this.props.lastname,
-      email: this.props.email,
-      level: this.props.level,
-      teacher_id: this.props.teacher_id,
-      teacher: this.props.teacher,
-      teachers: this.props.teachers,
-      active: this.props.active
+      id: student.id,
+      firstname: student.firstname,
+      lastname: student.lastname,
+      email: student.email,
+      level: student.level,
+      teacher_id: student.teacher_id,
+      teacher: student.teacher,
+      active: student.active,
+      teachers: this.props.teachers
     })
   }
 
@@ -50,6 +66,7 @@ class EditStudent extends Component {
   }
 
   handleSubmit = (e) => {
+    let { history } = this.props
     let data = {
       id: this.state.id,
       firstname: this.state.firstname,
@@ -59,8 +76,10 @@ class EditStudent extends Component {
       teacher_id: this.state.teacher.id,
       active: this.state.active
     }
-
-    this.props.editStudentUpdate(data)
+    this.props.onUpdateStudent(data, history)
+    if (this.state.close) {
+      this.props.close()
+    }
     e.preventDefault();
   }
 
@@ -134,4 +153,17 @@ class EditStudent extends Component {
   }
 }
 
-export default EditStudent
+const mapStateToProps = state => {
+  return {
+    students: state.stu.students,
+    teachers: state.tch.teachers
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onUpdateStudent: (data, history) => dispatch(actions.updateStudent(data, history))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditStudent)
