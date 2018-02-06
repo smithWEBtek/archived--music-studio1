@@ -13,7 +13,7 @@ const TeacherService = {
         console.log('[TeacherService][createTeacher] ERROR: ', error)
       })
   },
-  fetchTeachers: () => {
+  fetchTeachers() {
     return fetch(`${API_URL}/teachers`)
       .then(response => response.json())
       .catch(error => {

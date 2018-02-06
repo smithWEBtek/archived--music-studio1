@@ -13,7 +13,7 @@ const StudentService = {
         console.log('[StudentService][createStudent] ERROR: ', error)
       })
   },
-  fetchStudents: () => {
+  fetchStudents() {
     return fetch(`${API_URL}/students`)
       .then(response => response.json())
       .catch(error => {

@@ -13,7 +13,7 @@ const ResourceService = {
         console.log('[ResourceService][createResource] ERROR: ', error)
       })
   },
-  fetchResources: () => {
+  fetchResources() {
     return fetch(`${API_URL}/resources`)
       .then(response => response.json())
       .catch(error => {
