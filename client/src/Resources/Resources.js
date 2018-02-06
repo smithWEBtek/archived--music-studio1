@@ -50,15 +50,6 @@ class Resources extends Component {
     })
   }
 
-  editResourceUpdate = (data) => {
-    let { history } = this.props
-    this.props.onUpdateResource(data, history)
-    this.setState({
-      editResource: false,
-      resource: null
-    })
-  }
-
   closeEditResourceForm = () => {
     this.setState({
       editResource: false,
@@ -95,15 +86,8 @@ class Resources extends Component {
           show={this.state.editResource}
           modalClosed={this.closeEditResourceForm}>
           {this.state.resource ? <EditResource
-            id={this.state.resource.id}
-            title={this.state.resource.title}
-            category={this.state.resource.category}
-            description={this.state.resource.description}
-            format={this.state.resource.format}
-            location={this.state.resource.location}
-            url={this.state.resource.url}
+            resource_id={this.state.resource.id}
             close={() => this.closeEditResourceForm()}
-            updateResource={(data) => this.editResourceUpdate(data)}
           /> : null}
         </Modal>
 

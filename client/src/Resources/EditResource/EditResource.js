@@ -1,30 +1,47 @@
 import React, { Component } from 'react';
 import './EditResource.css';
+import { connect } from 'react-redux'
+import * as actions from '../../store/actions/resourceActions'
 
 class EditResource extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
+      resource: '',
       id: '',
       title: '',
       category: '',
       description: '',
       format: '',
       location: '',
-      url: ''
+      url: '',
+      close: ''
     }
   }
 
   componentDidMount() {
+    let resource = this.state.resource
+
+    if (this.props.resource_id) {
+      resource = this.props.resources.find(res => res.id === this.props.resource_id)
+      this.setState({
+        resource: resource,
+        close: this.props.close
+      })
+    } else {
+      resource = this.props.resources.find(res => res.id === +this.props.match.params.id)
+      this.setState({ resource: resource })
+    }
+
     this.setState({
-      id: this.props.id,
-      title: this.props.title,
-      category: this.props.category,
-      description: this.props.description,
-      format: this.props.format,
-      location: this.props.location,
-      url: this.props.url
+      id: resource.id,
+      title: resource.title,
+      category: resource.category,
+      description: resource.description,
+      format: resource.format,
+      location: resource.location,
+      url: resource.url
     })
   }
 
@@ -34,13 +51,33 @@ class EditResource extends Component {
     e.preventDefault()
   }
 
-  handleSubmit = (e) => {
-    let data = this.state;
-    if (data.url === "") {
-      data.url = 'no_url_given'
+  handleCancel = () => {
+    if (this.state.close) {
+      this.props.close()
+    } else {
+      this.props.history.goBack()
     }
-    console.log('[EditResource] this.state', this.state)
-    this.props.updateResource(data)
+  }
+
+  handleSubmit = (e) => {
+    let { history } = this.props
+    if (this.state.url === "") {
+      this.setState({ url: 'no_url_given' })
+    }
+    let data = {
+      id: this.state.id,
+      title: this.state.title,
+      category: this.state.category,
+      description: this.state.description,
+      format: this.state.format,
+      location: this.state.location,
+      url: this.state.url
+    }
+
+    this.props.onUpdateResource(data, history)
+    if (this.state.close) {
+      this.props.close()
+    }
     e.preventDefault();
   }
 
@@ -94,7 +131,7 @@ class EditResource extends Component {
           <button
             type="button"
             name="cancel"
-            onClick={this.props.close}
+            onClick={this.handleCancel}
             className="Danger"
           >CANCEL</button>
           <button
@@ -108,4 +145,17 @@ class EditResource extends Component {
   }
 }
 
-export default EditResource
+const mapStateToProps = state => {
+  return {
+    resources: state.res.resources,
+    teachers: state.tch.teachers
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onUpdateResource: (data, history) => dispatch(actions.updateResource(data, history))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditResource)

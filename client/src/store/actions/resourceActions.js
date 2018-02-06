@@ -17,7 +17,7 @@ export const createResource = (data, history) => {
     ResourceService.createResource(data)
       .then(response => {
         dispatch({ type: actionTypes.CREATE_RESOURCE, resourceData: response })
-        history.push(`/resources/${data.id}`)
+        history.push(`/resources/${response.id}`)
         dispatch(createResourceSuccess())
       })
       .catch(error => {
@@ -68,8 +68,7 @@ export const updateResource = (data, history) => {
     ResourceService.updateResource(data)
       .then(response => {
         dispatch({ type: actionTypes.UPDATE_RESOURCE, updatedResourceData: response })
-        history.push(`/`)
-        history.push(`/resources`)
+        history.goBack()
         dispatch(updateResourceSuccess())
       })
       .catch(error => {

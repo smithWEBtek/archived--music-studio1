@@ -20,14 +20,7 @@ const Teacher = (props) => {
         <p className={teacher.active.toString()}>Active: {teacher.active.toString()}</p>
         <Link
           to={`/teachers/${teacher.id}/edit`}
-          component={
-            <EditTeacher
-              id={teacher.id}
-              firstname={teacher.firstname}
-              lastname={teacher.lastname}
-              email={teacher.email}
-            />
-          }>EditTeacher</Link>
+          component={<EditTeacher />}>EditTeacher</Link>
       </div>
     )
   }

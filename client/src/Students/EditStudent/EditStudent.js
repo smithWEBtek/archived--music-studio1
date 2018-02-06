@@ -65,6 +65,14 @@ class EditStudent extends Component {
     e.preventDefault()
   }
 
+  handleCancel = () => {
+    if (this.state.close) {
+      this.props.close()
+    } else {
+      this.props.history.goBack()
+    }
+  }
+
   handleSubmit = (e) => {
     let { history } = this.props
     let data = {
@@ -139,7 +147,7 @@ class EditStudent extends Component {
           <button
             type="button"
             name="cancel"
-            onClick={this.props.close}
+            onClick={this.handleCancel}
             className="Danger"
           >CANCEL</button>
           <button
