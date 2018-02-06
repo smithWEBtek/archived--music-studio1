@@ -2,7 +2,7 @@ DATA_teachers = {
   :teacher_keys =>
     ["firstname", "lastname", "email"],
   :teachers => [
-  ['Not', 'Assigned', 'unassigned@music.com'],
+  ['None', 'None', 'none@music.com'],
   ['John', 'Coltrane', 'trane@music.com' ],
   ['Art', 'Tatum', 'artful@music.com'],
   ['Jimi', 'Hendrix', 'jimi@music.com'],
@@ -27,7 +27,8 @@ DATA_students = {
   :student_keys =>
     ["level", "teacher_id", "firstname", "lastname", "email"],
   :students => [
-    [1, 1, 'James', 'Smith', 'jsmith@student.com'],
+    [1, 1, 'None', 'None', 'none@music.com'],
+    [1, 6, 'James', 'Smith', 'jsmith@student.com'],
     [2, 5, 'Peter', 'Granger', 'pgranger@student.com'],
     [2, 3, 'Teddy', 'Mullet', 'tmullet@student.com'],
     [2, 2, 'Francis', 'Callucci', 'fcallucci@student.com'],

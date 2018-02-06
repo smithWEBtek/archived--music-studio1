@@ -12,6 +12,7 @@ class CreateStudent extends Component {
       lastname: '',
       email: '',
       level: '',
+      teacher_id: 1,
       teacher: ''
     }
   }

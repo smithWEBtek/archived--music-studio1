@@ -3,8 +3,8 @@ class CreateLessons < ActiveRecord::Migration[5.1]
     create_table :lessons do |t|
       t.date :date
       t.string :notes
-      t.integer :teacher_id
-      t.integer :student_id
+      t.integer :teacher_id, default: 1
+      t.integer :student_id, default: 1
 
       t.timestamps
     end

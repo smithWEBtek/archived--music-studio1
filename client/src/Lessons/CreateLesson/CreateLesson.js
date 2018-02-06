@@ -7,7 +7,9 @@ class CreateLesson extends Component {
   state = {
     date: '',
     teacher: '',
+    teacher_id: 1,
     student: '',
+    student_id: 1,
     notes: ''
   }
 

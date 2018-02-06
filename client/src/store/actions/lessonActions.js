@@ -18,6 +18,7 @@ export const createLesson = (data, history) => {
       .then(response => {
         dispatch({ type: actionTypes.CREATE_LESSON, lessonData: response })
         history.push(`/lessons/${response.id}`)
+        console.log('createLesson', response)
         dispatch(createLessonSuccess())
       })
       .catch(error => {

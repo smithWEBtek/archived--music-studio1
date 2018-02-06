@@ -25,8 +25,8 @@ ActiveRecord::Schema.define(version: 20171203033537) do
   create_table "lessons", force: :cascade do |t|
     t.date "date"
     t.string "notes"
-    t.integer "teacher_id"
-    t.integer "student_id"
+    t.integer "teacher_id", default: 1
+    t.integer "student_id", default: 1
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
