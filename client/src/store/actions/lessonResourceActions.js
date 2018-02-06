@@ -19,7 +19,6 @@ export const createLessonResource = (data, history) => {
       .then(response => {
         dispatch({ type: actionTypes.CREATE_LESSON_RESOURCE, lessonResourceData: response })
         dispatch(createLessonResourceSuccess())
-        // history.push(`/lessons/${data.lesson_id}`)
         dispatch(fetchLessons())
       })
       .catch(error => {
