@@ -27,8 +27,8 @@ class EditStudent extends Component {
     if (this.props.student_id) {
       student = this.props.students.find(stu => stu.id === this.props.student_id)
       this.setState({
-        close: this.props.close,
-        student: student
+        student: student,
+        close: this.props.close
       })
     } else {
       student = this.props.students.find(stu => stu.id === +this.props.match.params.id)

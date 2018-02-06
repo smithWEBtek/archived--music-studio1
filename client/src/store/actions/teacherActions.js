@@ -68,8 +68,7 @@ export const updateTeacher = (data, history) => {
     TeacherService.updateTeacher(data)
       .then(response => {
         dispatch({ type: actionTypes.UPDATE_TEACHER, updatedTeacherData: response })
-        history.push(`/`)
-        history.push(`/teachers`)
+        history.goBack()
         dispatch(updateTeacherSuccess())
       })
       .catch(error => {

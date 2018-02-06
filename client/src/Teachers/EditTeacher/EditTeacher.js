@@ -1,26 +1,42 @@
 import React, { Component } from 'react';
 import './EditTeacher.css';
+import { connect } from 'react-redux'
+import * as actions from '../../store/actions/teacherActions'
 
 class EditTeacher extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
+      teacher: '',
       id: '',
       firstname: '',
       lastname: '',
       email: '',
-      active: ''
+      active: '',
+      close: null
     }
   }
 
   componentDidMount() {
+    let teacher = this.state.teacher
+    if (this.props.teacher_id) {
+      teacher = this.props.teachers.find(tch => tch.id === this.props.teacher_id)
+      this.setState({
+        teacher: teacher,
+        close: this.props.close
+      })
+    } else {
+      teacher = this.props.teachers.find(tch => tch.id === +this.props.match.params.id)
+      this.setState({ teacher: teacher })
+    }
+
     this.setState({
-      id: this.props.id,
-      firstname: this.props.firstname,
-      lastname: this.props.lastname,
-      email: this.props.email,
-      active: this.props.active
+      id: teacher.id,
+      firstname: teacher.firstname,
+      lastname: teacher.lastname,
+      email: teacher.email,
+      active: teacher.active
     })
   }
 
@@ -36,8 +52,19 @@ class EditTeacher extends Component {
   }
 
   handleSubmit = (e) => {
-    let data = this.state;
-    this.props.updateTeacher(data)
+    let { history } = this.props
+    let data = {
+      id: this.state.id,
+      firstname: this.state.firstname,
+      lastname: this.state.lastname,
+      email: this.state.email,
+      active: this.state.active
+    }
+
+    this.props.onUpdateTeacher(data, history)
+    if (this.state.close) {
+      this.props.close()
+    }
     e.preventDefault();
   }
 
@@ -92,4 +119,16 @@ class EditTeacher extends Component {
   }
 }
 
-export default EditTeacher
+const mapStateToProps = state => {
+  return {
+    teachers: state.tch.teachers
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onUpdateTeacher: (data, history) => dispatch(actions.updateTeacher(data, history))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditTeacher)

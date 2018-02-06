@@ -51,15 +51,6 @@ class Teachers extends Component {
     })
   }
 
-  editTeacherUpdate = (data) => {
-    let { history } = this.props
-    this.props.onUpdateTeacher(data, history)
-    this.setState({
-      editTeacher: false,
-      teacher: null
-    })
-  }
-
   closeEditTeacherForm = () => {
     this.setState({
       editTeacher: false,
@@ -94,13 +85,8 @@ class Teachers extends Component {
           show={this.state.editTeacher}
           modalClosed={this.editTeacherCancelHandler}>
           {this.state.teacher ? <EditTeacher
-            id={this.state.teacher.id}
-            firstname={this.state.teacher.firstname}
-            lastname={this.state.teacher.lastname}
-            email={this.state.teacher.email}
-            active={this.state.teacher.active}
+            teacher_id={this.state.teacher.id}
             close={() => this.closeEditTeacherForm()}
-            updateTeacher={(data) => this.editTeacherUpdate(data)}
           /> : null}
         </Modal>
 
@@ -138,7 +124,6 @@ const mapDispatchToProps = dispatch => {
   return {
     onFetchTeachers: () => dispatch(actions.fetchTeachers()),
     onCreateTeacher: (data, history) => dispatch(actions.createTeacher(data, history)),
-    onUpdateTeacher: (data, history) => dispatch(actions.updateTeacher(data, history)),
     onDeleteTeacher: (id, history) => dispatch(actions.deleteTeacher(id, history))
   };
 }
