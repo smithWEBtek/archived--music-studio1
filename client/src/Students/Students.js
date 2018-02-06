@@ -78,8 +78,7 @@ class Students extends Component {
   //********LIKE_STUDENT handling****************
   likeStudent = (id) => {
     let { history } = this.props
-    history.push('/students') // this primes the pump, so that "history.goBack()" doesn't screw up User experience
-
+    history.push('/students')
     let student = this.props.students.find(stu => stu.id === id)
     let data = Object.assign({}, student, { likes: student.likes + 1 })
     this.props.onUpdateStudent(data, history)
