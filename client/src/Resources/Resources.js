@@ -37,7 +37,8 @@ class Resources extends Component {
   }
 
   createResource = (newResourceData) => {
-    this.props.onCreateResource(newResourceData)
+    const { history } = this.props
+    this.props.onCreateResource(newResourceData, history)
     this.setState({ createResource: false })
   }
 

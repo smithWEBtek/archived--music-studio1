@@ -42,6 +42,7 @@ export const fetchStudents = () => {
     dispatch(fetchStudentsStart())
     StudentService.fetchStudents()
       .then(response => {
+
         dispatch({ type: actionTypes.FETCH_STUDENTS, studentsList: response })
         dispatch(fetchStudentsSuccess())
       })

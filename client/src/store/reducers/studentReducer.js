@@ -67,16 +67,18 @@ const reducer = (state = initialState, action) => {
       })
 
     case actionTypes.UPDATE_STUDENT:
-      const studentData = action.updatedStudentData
-      const studentIndex = state.students.findIndex(student => student.id === studentData.id);
-      const stateTemp = {
-        ...state,
-        students: [
-          ...state.students.slice(0, studentIndex),
-          ...state.students.slice(studentIndex + 1, state.students.length)
-        ]
-      };
-      return Object.assign({}, { ...stateTemp }, { students: stateTemp.students.concat(studentData) })
+      //const studentData = action.updatedStudentData
+      //debugger
+      //const studentIndex = state.students.findIndex(student => student.id === studentData.id);
+      // const stateTemp = {
+      //   ...state,
+      //   students: [
+      //     ...state.students.slice(0, studentIndex),
+      //     ...state.students.slice(studentIndex + 1, state.students.length)
+      //   ]
+      // };
+      const updatedStudentsArray = state.students.map(student => student.id == action.updatedStudentData.id ? action.updatedStudentData : student)
+      return Object.assign({}, state, { students: updatedStudentsArray })
 
 
     //-----DELETE STUDENT-----------------------------
