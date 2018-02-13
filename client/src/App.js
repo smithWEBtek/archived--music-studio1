@@ -12,19 +12,20 @@ import LessonResources from '../src/Lessons/LessonResources/LessonResources'
 
 class App extends Component {
 
-  render() {
-    return (
-      <div>
-        <MainNav />
-        <Aux>
-          <Route path="/students" component={Students} />
-          <Route path="/teachers" component={Teachers} />
-          <Route path="/lessons/" component={Lessons} />
-          <Route path="/resources" component={Resources} />
-          <Route path="/lesson_resources" component={LessonResources} />
-        </Aux>
-      </div>)
-  }
+	render() {
+		return (
+			<div>
+				<MainNav />
+				<Aux>
+					<Route path="/" exact component={MainNav} />
+					<Route path="/students" component={Students} />
+					<Route path="/teachers" component={Teachers} />
+					<Route path="/lessons/" component={Lessons} />
+					<Route path="/resources" component={Resources} />
+					<Route path="/lesson_resources" component={LessonResources} />
+				</Aux>
+			</div>)
+	}
 }
 
 export default App
