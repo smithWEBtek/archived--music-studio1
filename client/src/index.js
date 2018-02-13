@@ -13,33 +13,33 @@ import App from './App'
 import classes from './index.css'
 
 const rootReducer = combineReducers({
-  stu: studentReducer,
-  tch: teacherReducer,
-  les: lessonReducer,
-  res: resourceReducer,
-  lesres: lessonResourceReducer
+	stu: studentReducer,
+	tch: teacherReducer,
+	les: lessonReducer,
+	res: resourceReducer,
+	lesres: lessonResourceReducer
 })
 
 const logger = store => {
-  console.log('[Middleware] prior state', store.getState())
-  return next => {
-    return action => {
-      console.log('[Middleware] Dispatching', action)
-      const result = next(action)
-      return result
-    }
-  }
+	console.log('[Middleware] prior state', store.getState())
+	return next => {
+		return action => {
+			console.log('[Middleware] Dispatching', action)
+			const result = next(action)
+			return result
+		}
+	}
 }
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(logger, thunk)))
 
 const app = (
-  <Provider store={store}>
-    <BrowserRouter>
-      <App className={classes.Body} />
-    </BrowserRouter>
-  </Provider>
+	<Provider store={store}>
+		<BrowserRouter basename='/'>
+			<App className={classes.Body} />
+		</BrowserRouter>
+	</Provider>
 )
 
 ReactDOM.render(app, document.getElementById('root'))
