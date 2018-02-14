@@ -36,7 +36,7 @@ const store = createStore(rootReducer, composeEnhancers(applyMiddleware(logger, 
 
 const app = (
 	<Provider store={store}>
-		<BrowserRouter>
+		<BrowserRouter basename="/music-studio.herokuapp.com">
 			<App className={classes.Body} />
 		</BrowserRouter>
 	</Provider>
