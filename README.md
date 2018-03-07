@@ -35,7 +35,7 @@ The project loads all in one repo, with the front-end client using React/Redux i
 
 3. run:$   npm install
 
-4. cd into piano-student-api  (root) directory
+4. cd into music-studio  (root) directory
 
 5. run:$   bundle install     (installs all the gems listed in the gemfile)
 
