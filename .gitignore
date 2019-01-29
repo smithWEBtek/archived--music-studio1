@@ -26,6 +26,7 @@
 # testing
 
 /client/coverage
+/node_modules
 
 # production
 
